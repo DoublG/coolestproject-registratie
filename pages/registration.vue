@@ -2,13 +2,8 @@
   <b-row>
     <b-col>
       <h1>{{ $t('title') }}</h1>
-<<<<<<< HEAD
-      <b-alert dismissible :show="show" :variant="variant" id="info">
+      <b-alert dismissible :show="show" :variant="variant">
         {{ message }}
-=======
-      <b-alert dismissible :show="error_show" :variant="error_variant">
-        {{ error_message }}
->>>>>>> 3ba29c62902d74796dcf81b527a1aba2f5b19ed3
       </b-alert>
       <h2>{{ $t('personal_info') }}</h2>
       <ValidationObserver ref="observer" v-slot="{ passes }">
@@ -398,7 +393,7 @@
             </ValidationProvider>
           </div>
           <div v-else>
-            <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, regex: /[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}/ }" name="ProjectCode">
+            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:36" name="ProjectCode">
               <b-form-group
                 id="input-group-22"
                 label="Projectcode:"
@@ -670,7 +665,7 @@ export default {
         await this.$axios.$post('/api/register', this.$store.getters['registration/sanitizedJSON'])
         this.onReset(evt)
         this.variant = 'success'
-        this.message = 'Registratie gelukt'
+        this.message = 'De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website'
         this.show = true
       } catch (error) {
         this.variant = 'danger'
