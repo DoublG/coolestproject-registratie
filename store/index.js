@@ -12,23 +12,26 @@ export const state = () => ({
   minAge: 5,
   geslacht: [
     { text: 'Ik ben een', value: null },
-    { value: 'm', text: 'Meisje' },
-    { value: 'j', text: 'Jongen' },
+    { value: 'f', text: 'Meisje' },
+    { value: 'm', text: 'Jongen' },
     { value: 'x', text: 'X' }
-  ],
-  shirttype: [
-    { text: 'Kies een type', value: null },
-    { value: 'm', text: 'Meisje' },
-    { value: 'j', text: 'Jongen' }
   ],
   shirtsize: [
     { text: 'Kies een maat', value: null },
-    { value: 's', text: 'S' },
-    { value: 'm', text: 'M' },
-    { value: 'l', text: 'L' },
-    { value: 'xl', text: 'XL' },
-    { value: 'xxl', text: 'XXL' },
-    { value: '3xl', text: '3XL' }
+    // meisje
+    { value: 'female_small', text: 'Meisje S' },
+    { value: 'female_medium', text: 'Meisje M' },
+    { value: 'female_large', text: 'Meisje L' },
+    { value: 'female_xl', text: 'Meisje XL' },
+    { value: 'female_xxl', text: 'Meisje XXL' },
+    { value: 'female_3xl', text: 'Meisje 3XL' },
+    // jongen
+    { value: 'male_small', text: 'Jongen S' },
+    { value: 'male_medium', text: 'Jongen M' },
+    { value: 'male_large', text: 'Jongen L' },
+    { value: 'male_xl', text: 'Jongen XL' },
+    { value: 'male_xxl', text: 'Jongen XXL' },
+    { value: 'male_3xl', text: 'Jongen 3XL' }
   ],
   project_types: [
     { value: 'scratch', text: 'Scratch' },

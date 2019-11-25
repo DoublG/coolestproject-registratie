@@ -1,5 +1,6 @@
 <template>
   <svg
+    id="Layer_1"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:cc="http://creativecommons.org/ns#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -8,7 +9,6 @@
     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
     version="1.1"
-    id="Layer_1"
     x="0px"
     y="0px"
     height="1.5em"
@@ -28,6 +28,7 @@
     </metadata>
     <defs id="defs12" />
     <sodipodi:namedview
+      id="namedview10"
       pagecolor="#ffffff"
       borderColor="#666666"
       borderopacity="1"
@@ -38,7 +39,6 @@
       inkscape:pageshadow="2"
       inkscape:window-width="3762"
       inkscape:window-height="2096"
-      id="namedview10"
       showgrid="false"
       inkscape:zoom="7.1188809"
       inkscape:cx="82.286056"
