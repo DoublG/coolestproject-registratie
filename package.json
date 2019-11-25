@@ -2,7 +2,7 @@
   "name": "coolestproject_registatie",
   "version": "1.0.0",
   "description": "Coolestproject Registratie",
-  "author": "MWoidt",
+  "author": "Erik Woidt",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
