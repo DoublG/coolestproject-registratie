@@ -2,8 +2,8 @@
   <b-row>
     <b-col>
       <h1>{{ $t('title') }}</h1>
-      <b-alert dismissible :show="error_show" :variant="error_variant">
-        {{ error_message }}
+      <b-alert dismissible :show="show" :variant="variant">
+        {{ message }}
       </b-alert>
       <h2>{{ $t('personal_info') }}</h2>
       <ValidationObserver ref="observer" v-slot="{ passes }">
@@ -663,16 +663,6 @@ export default {
     async onSubmit (evt) {
       try {
         await this.$axios.$post('/api/register', this.$store.getters['registration/sanitizedJSON'])
-<<<<<<< HEAD
-        this.error_variant = 'success'
-        this.error_message = 'Je registratie is gelukt, je krijgt zo dadelijk een mailtje met meer informatie'
-        this.error_show = true
-        this.onReset(evt)
-      } catch (error) {
-        this.error_variant = 'danger'
-        this.error_message = error
-        this.error_show = true
-=======
         this.onReset(evt)
         this.variant = 'success'
         this.message = 'De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website'
@@ -681,7 +671,6 @@ export default {
         this.variant = 'danger'
         this.message = 'error, later komt hier meer info in'
         this.show = true
->>>>>>> 2d21c60b13b92594d281c5dd16203b466fd1081d
       }
       window.scrollTo(0, 0)
     },
