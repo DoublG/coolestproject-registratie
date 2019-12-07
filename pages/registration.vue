@@ -66,22 +66,26 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" :rules="{ required:true, between_dates: { min: beginYear, max: endYear } }" name="Birthmonth">
+          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Birthyear">
             <b-form-group
               id="input-group-4"
-              label="Geboortemaand"
+              label="Geboortejaar"
               label-for="input-4"
             >
-              <YearMonth
-                id="input-4"
-                v-model="birthmonth"
-                :event-date="startDateEvent"
-                :state="errors[0] ? false : (valid ? true : null)"
-                aria-describedby="input-4-live-feedback"
-                :min-age="minAge"
-                :max-age="maxAge"
-              />
+              <b-form-select v-model="year" :options="year_list" :state="errors[0] ? false : (valid ? true : null)" />
               <b-form-invalid-feedback id="input-4-live-feedback" :style="{ display: 'inline' }">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
+          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Birthmonth">
+            <b-form-group
+              id="input-group-24"
+              label="Geboortemaand"
+              label-for="input-24"
+            >
+              <b-form-select v-model="month" :options="month_list" :state="errors[0] ? false : (valid ? true : null)" />
+              <b-form-invalid-feedback id="input-24-live-feedback" :style="{ display: 'inline' }">
                 {{ errors[0] }}
               </b-form-invalid-feedback>
             </b-form-group>
@@ -393,7 +397,7 @@
             </ValidationProvider>
           </div>
           <div v-else>
-            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:36" name="ProjectCode">
+            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:36|min:36" name="ProjectCode">
               <b-form-group
                 id="input-group-22"
                 label="Projectcode:"
@@ -455,11 +459,9 @@ import { mapState } from 'vuex'
 import addYears from 'date-fns/add_years'
 import differenceInCalendarYears from 'date-fns/difference_in_calendar_years'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import YearMonth from '~/components/YearMonth.vue'
 
 export default {
   components: {
-    YearMonth,
     ValidationObserver,
     ValidationProvider
   },
@@ -468,10 +470,55 @@ export default {
       own_project: 'own',
       show: false,
       variant: 'success',
-      message: 'De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website'
+      message: 'De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website',
+      month_list: [
+        { text: 'Kies een maand', value: null },
+        { value: 1, text: 'januari' },
+        { value: 2, text: 'februari' },
+        { value: 3, text: 'maart' },
+        { value: 4, text: 'april' },
+        { value: 5, text: 'mei' },
+        { value: 6, text: 'juni' },
+        { value: 7, text: 'juli' },
+        { value: 8, text: 'augustus' },
+        { value: 9, text: 'september' },
+        { value: 10, text: 'oktober' },
+        { value: 11, text: 'november' },
+        { value: 12, text: 'december' }
+      ],
+      year: null,
+      month: null
+    }
+  },
+  asyncData ({ store }) {
+    let date = store.state.registration.birthmonth
+    let year = null
+    let month = null
+
+    if (date instanceof Date === false && date !== null) {
+      date = new Date(date)
+    }
+    if (date !== null) {
+      year = date.getFullYear()
+      month = date.getMonth()
+    }
+    return {
+      year,
+      month
     }
   },
   computed: {
+    year_list: () => {
+      const yearStart = 2002
+      const yearEnd = 2014
+      const yearList = [
+        { text: 'Kies een jaar', value: null }
+      ]
+      for (let i = 0; i < yearEnd - yearStart; i++) {
+        yearList.push({ text: yearStart + i, value: yearStart + i })
+      }
+      return yearList
+    },
     endDate: (state) => {
       return addYears(state.startDateEvent, -5)
     },
@@ -552,14 +599,6 @@ export default {
       },
       get () {
         return this.$store.state.registration.mandatory_approvals
-      }
-    },
-    birthmonth: {
-      set (value) {
-        this.$store.dispatch('registration/birthmonth', value)
-      },
-      get () {
-        return this.$store.state.registration.birthmonth
       }
     },
     t_size: {
@@ -676,9 +715,36 @@ export default {
     },
     onReset (evt) {
       this.$store.dispatch('registration/clear_form')
+      this.year = this.month = null // clean temp fields
       requestAnimationFrame(() => {
         this.$refs.observer.reset()
       })
+    }
+  },
+  watch: {
+    year (val) {
+      let date = this.$store.state.registration.birthmonth
+      if (date === null) {
+        date = new Date()
+      }
+      if (typeof date === 'string') {
+        date = new Date(date)
+      }
+      date.setDate(1)
+      date.setFullYear(val)
+      this.$store.dispatch('registration/birthmonth', date)
+    },
+    month (val) {
+      let date = this.$store.state.registration.birthmonth
+      if (date === null) {
+        date = new Date()
+      }
+      if (typeof date === 'string') {
+        date = new Date(date)
+      }
+      date.setDate(1)
+      date.setMonth(val)
+      this.$store.dispatch('registration/birthmonth', date)
     }
   }
 }
