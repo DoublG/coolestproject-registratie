@@ -170,7 +170,6 @@ export const getters = {
     // 1) We don't want to send null values
     // 2) the local store stores everything as a string so we need to fix that before sending
     // 3) we only want to send the date not the time
-    //
     const sanitizedJSON = {}
     Object.keys(state).forEach(function (key) {
       if (state[key] !== null) {
@@ -189,6 +188,17 @@ export const getters = {
         }
       }
     })
+    // we have 2 scenarios, the service doesn't allow any extra fields
+    // 1) registration with project
+    // 2) registration without project
+    if (sanitizedJSON.project_code) {
+      delete sanitizedJSON.project_name
+      delete sanitizedJSON.project_descr
+      delete sanitizedJSON.project_type
+      delete sanitizedJSON.project_lang
+    } else {
+      delete sanitizedJSON.project_code
+    }
     return sanitizedJSON
   }
 }
