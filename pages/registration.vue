@@ -725,16 +725,6 @@ export default {
     async onSubmit (evt) {
       try {
         await this.$axios.$post('/api/register', this.$store.getters['registration/sanitizedJSON'])
-<<<<<<< HEAD
-        this.error_variant = 'success'
-        this.error_message = 'Je registratie is gelukt, je krijgt zo dadelijk een mailtje met meer informatie'
-        this.error_show = true
-        // this.onReset(evt)
-      } catch (error) {
-        this.error_variant = 'danger'
-        this.error_message = error
-        this.error_show = true
-=======
         this.onReset(evt)
         this.variant = 'success'
         this.message = 'De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website'
@@ -743,7 +733,6 @@ export default {
         this.variant = 'danger'
         this.message = 'error, later komt hier meer info in'
         this.show = true
->>>>>>> ff63bd28afdd8d66078621938bf0fad46ee90475
       }
       window.scrollTo(0, 0)
     },
