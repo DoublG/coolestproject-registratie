@@ -28,8 +28,6 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-<<<<<<< HEAD
-=======
           <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Birthyear">
             <b-form-group
               id="input-group-4"
@@ -54,7 +52,6 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
->>>>>>> ff63bd28afdd8d66078621938bf0fad46ee90475
           <ValidationProvider v-slot="{ valid, errors }" rules="required|alpha_spaces" name="FirstName">
             <b-form-group
               id="input-group-5"
