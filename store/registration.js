@@ -5,7 +5,7 @@ const originalState = () => {
     firstname: null,
     lastname: null,
     sex: null,
-    general_questions: ['photo', 'contact'],
+    general_questions: [],
     mandatory_approvals: [],
     birthmonth: null,
     t_size: null,

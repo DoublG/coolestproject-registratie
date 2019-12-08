@@ -8,45 +8,7 @@
       <h2>{{ $t('personal_info') }}</h2>
       <ValidationObserver ref="observer" v-slot="{ passes }">
         <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
-          <ValidationProvider v-slot="{ valid, errors }" rules="required|digits:4" name="PostalCode">
-            <b-form-group
-              id="input-group-1"
-              label="Postcode"
-              label-for="input-1"
-            >
-              <b-form-input
-                id="input-1"
-                v-model="postalcode"
-                placeholder="postcode"
-                type="number"
-                :state="errors[0] ? false : (valid ? true : null)"
-                aria-describedby="input-1-live-feedback"
-              />
-              <b-form-invalid-feedback id="input-1-live-feedback">
-                {{ errors[0] }}
-              </b-form-invalid-feedback>
-            </b-form-group>
-          </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, regex: /^((\+|00)32\s?|0)4(60|[789]\d)(\s?\d{2}){3}$/ }" name="MobileNumber">
-            <b-form-group
-              id="input-group-2"
-              label="mobiel nummer (+32)"
-              label-for="input-2"
-            >
-              <b-form-input
-                id="input-2"
-                v-model="gsm"
-                type="tel"
-                placeholder="mobiel nummer"
-                :state="errors[0] ? false : (valid ? true : null)"
-                aria-describedby="input-2-live-feedback"
-              />
-              <b-form-invalid-feedback id="input-2-live-feedback">
-                {{ errors[0] }}
-              </b-form-invalid-feedback>
-            </b-form-group>
-          </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" rules="required|email" name="Email">
+         <ValidationProvider v-slot="{ valid, errors }" rules="required|email" name="Email">
             <b-form-group
               id="input-group-3"
               label="Email adres"
@@ -62,26 +24,6 @@
                 aria-describedby="input-3-live-feedback"
               />
               <b-form-invalid-feedback id="input-3-live-feedback">
-                {{ errors[0] }}
-              </b-form-invalid-feedback>
-            </b-form-group>
-          </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" :rules="{ required:true, between_dates: { min: beginYear, max: endYear } }" name="Birthmonth">
-            <b-form-group
-              id="input-group-4"
-              label="Geboortemaand"
-              label-for="input-4"
-            >
-              <YearMonth
-                id="input-4"
-                v-model="birthmonth"
-                :event-date="startDateEvent"
-                :state="errors[0] ? false : (valid ? true : null)"
-                aria-describedby="input-4-live-feedback"
-                :min-age="minAge"
-                :max-age="maxAge"
-              />
-              <b-form-invalid-feedback id="input-4-live-feedback" :style="{ display: 'inline' }">
                 {{ errors[0] }}
               </b-form-invalid-feedback>
             </b-form-group>
@@ -104,7 +46,7 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" rules="required|alpha_spaces" name="LastName">
+          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="LastName">
             <b-form-group
               id="input-group-6"
               label="Achternaam:"
@@ -118,6 +60,26 @@
                 aria-describedby="input-6-live-feedback"
               />
               <b-form-invalid-feedback id="input-6-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
+          <ValidationProvider v-slot="{ valid, errors }" :rules="{ required:true, between_dates: { min: beginYear, max: endYear } }" name="Birthmonth">
+            <b-form-group
+              id="input-group-4"
+              label="Geboortemaand"
+              label-for="input-4"
+            >
+              <YearMonth
+                id="input-4"
+                v-model="birthmonth"
+                :event-date="startDateEvent"
+                :state="errors[0] ? false : (valid ? true : null)"
+                aria-describedby="input-4-live-feedback"
+                :min-age="minAge"
+                :max-age="maxAge"
+              />
+              <b-form-invalid-feedback id="input-4-live-feedback" :style="{ display: 'inline' }">
                 {{ errors[0] }}
               </b-form-invalid-feedback>
             </b-form-group>
@@ -154,6 +116,44 @@
                 aria-describedby="input-9-live-feedback"
               />
               <b-form-invalid-feedback id="input-9-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
+          <ValidationProvider v-slot="{ valid, errors }" rules="required|digits:4" name="PostalCode">
+            <b-form-group
+              id="input-group-1"
+              label="Postcode"
+              label-for="input-1"
+            >
+              <b-form-input
+                id="input-1"
+                v-model="postalcode"
+                placeholder="postcode"
+                type="number"
+                :state="errors[0] ? false : (valid ? true : null)"
+                aria-describedby="input-1-live-feedback"
+              />
+              <b-form-invalid-feedback id="input-1-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
+          <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, regex: /^((\+|00)32\s?|0)4(60|[789]\d)(\s?\d{2}){3}$/ }" name="MobileNumber">
+            <b-form-group
+              id="input-group-2"
+              label="mobiel nummer (+32)"
+              label-for="input-2"
+            >
+              <b-form-input
+                id="input-2"
+                v-model="gsm"
+                type="tel"
+                placeholder="mobiel nummer"
+                :state="errors[0] ? false : (valid ? true : null)"
+                aria-describedby="input-2-live-feedback"
+              />
+              <b-form-invalid-feedback id="input-2-live-feedback">
                 {{ errors[0] }}
               </b-form-invalid-feedback>
             </b-form-group>
@@ -356,7 +356,7 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:25" name="ProjectName">
+            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:75" name="ProjectName">
               <b-form-group
                 id="input-group-20"
                 label="Projectnaam:"
@@ -663,25 +663,14 @@ export default {
     async onSubmit (evt) {
       try {
         await this.$axios.$post('/api/register', this.$store.getters['registration/sanitizedJSON'])
-<<<<<<< HEAD
         this.error_variant = 'success'
         this.error_message = 'Je registratie is gelukt, je krijgt zo dadelijk een mailtje met meer informatie'
         this.error_show = true
-        this.onReset(evt)
+        // this.onReset(evt)
       } catch (error) {
         this.error_variant = 'danger'
         this.error_message = error
         this.error_show = true
-=======
-        this.onReset(evt)
-        this.variant = 'success'
-        this.message = 'De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website'
-        this.show = true
-      } catch (error) {
-        this.variant = 'danger'
-        this.message = 'error, later komt hier meer info in'
-        this.show = true
->>>>>>> 2d21c60b13b92594d281c5dd16203b466fd1081d
       }
       window.scrollTo(0, 0)
     },

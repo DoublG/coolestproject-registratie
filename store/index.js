@@ -8,7 +8,7 @@ export const plugins = [vuexLocal.plugin]
 
 export const state = () => ({
   startDateEvent: new Date(2020, 5, 16),
-  maxAge: 90,
+  maxAge: 18,
   minAge: 5,
   geslacht: [
     { text: 'Ik ben een', value: null },
