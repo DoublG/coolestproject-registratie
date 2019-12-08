@@ -5,7 +5,7 @@ const originalState = () => {
     firstname: null,
     lastname: null,
     sex: null,
-    general_questions: ['photo', 'contact'],
+    general_questions: [],
     mandatory_approvals: [],
     birthmonth: null,
     t_size: null,
@@ -188,7 +188,7 @@ export const getters = {
         }
       }
     })
-    // we have 2 scenarios
+    // we have 2 scenarios, the service doesn't allow any extra fields
     // 1) registration with project
     // 2) registration without project
     if (sanitizedJSON.project_code) {
