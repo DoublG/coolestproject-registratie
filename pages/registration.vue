@@ -8,7 +8,7 @@
       <h2>{{ $t('personal_info') }}</h2>
       <ValidationObserver ref="observer" v-slot="{ passes }">
         <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
-         <ValidationProvider v-slot="{ valid, errors }" rules="required|email" name="Email">
+          <ValidationProvider v-slot="{ valid, errors }" rules="required|email" name="Email">
             <b-form-group
               id="input-group-3"
               label="Email adres"
@@ -84,26 +84,6 @@
                 aria-describedby="input-6-live-feedback"
               />
               <b-form-invalid-feedback id="input-6-live-feedback">
-                {{ errors[0] }}
-              </b-form-invalid-feedback>
-            </b-form-group>
-          </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" :rules="{ required:true, between_dates: { min: beginYear, max: endYear } }" name="Birthmonth">
-            <b-form-group
-              id="input-group-4"
-              label="Geboortemaand"
-              label-for="input-4"
-            >
-              <YearMonth
-                id="input-4"
-                v-model="birthmonth"
-                :event-date="startDateEvent"
-                :state="errors[0] ? false : (valid ? true : null)"
-                aria-describedby="input-4-live-feedback"
-                :min-age="minAge"
-                :max-age="maxAge"
-              />
-              <b-form-invalid-feedback id="input-4-live-feedback" :style="{ display: 'inline' }">
                 {{ errors[0] }}
               </b-form-invalid-feedback>
             </b-form-group>
@@ -218,22 +198,36 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" name="GeneralQuestions">
+            <h3>Algemene vragen</h3>
+            <ValidationProvider v-slot="{ valid, errors }" rules="required" name="GeneralQuestions">
               <b-form-group
                 id="input-group-12"
-                label="Algemene vragen:"
+                :label="$t('no_photo')"
               >
-                <b-form-checkbox-group
-                  id="checkboxes-12"
-                  v-model="general_questions"
-                  :options="general_questions_list"
-                  :checked="general_questions"
+                <b-form-radio-group
                   :state="errors[0] ? false : (valid ? true : null)"
-                  aria-describedby="input-12-live-feedback"
-                />
-                <b-form-invalid-feedback id="input-12-live-feedback">
-                  {{ errors[0] }}
-                </b-form-invalid-feedback>
+                  v-model="general_questions"
+                  :options="photo_options"
+                >
+                  <b-form-invalid-feedback id="input-12-live-feedback">
+                    {{ errors[0] }}
+                  </b-form-invalid-feedback>
+                </b-form-radio-group>
+              </b-form-group>
+            </ValidationProvider>
+            <ValidationProvider v-slot="{ valid, errors }" rules="required" name="GeneralQuestions2">
+              <b-form-group
+                id="input-group-122"
+                label="Je mag me contacteren voor de volgende evenementen"
+              >
+                <b-form-radio-group
+                  :state="errors[0] ? false : (valid ? true : null)"
+                  v-model="general_questions2"
+                  :options="contact_options">
+                  <b-form-invalid-feedback id="input-122-live-feedback">
+                    {{ errors[0] }}
+                  </b-form-invalid-feedback>
+                </b-form-radio-group>
               </b-form-group>
             </ValidationProvider>
           </div>
@@ -313,22 +307,35 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
+            <h3>Algemene vragen</h3>
             <ValidationProvider v-slot="{ valid, errors }" name="GeneralQuestions">
               <b-form-group
-                id="input-group-17"
-                label="Algemene vragen"
+                id="input-group-12"
+                label="Ik ben akkoord dat er fotos genomen worden"
               >
-                <b-form-checkbox-group
-                  id="checkboxes-17"
-                  v-model="general_questions"
-                  :checked="general_questions"
-                  :options="general_questions_list"
-                  :state="errors[0] ? false : (valid ? true : null)"
-                  aria-describedby="input-17-live-feedback"
-                />
-                <b-form-invalid-feedback id="input-17-live-feedback">
-                  {{ errors[0] }}
-                </b-form-invalid-feedback>
+                <b-form-radio-group>
+                  <b-form-radio v-model="general_questions" name="own_foto" value="foto">
+                    JA
+                  </b-form-radio>
+                  <b-form-radio v-model="general_questions" name="own_foto" value="no_foto">
+                    NEEN
+                  </b-form-radio>
+                </b-form-radio-group>
+              </b-form-group>
+            </ValidationProvider>
+            <ValidationProvider v-slot="{ valid, errors }" name="GeneralQuestions2">
+              <b-form-group
+                id="input-group-122"
+                label=" Je mag me contacteren voor de volgende evenementen"
+              >
+                <b-form-radio-group>
+                  <b-form-radio v-model="general_questions2" name="own_contact" value="contact">
+                    JA
+                  </b-form-radio>
+                  <b-form-radio v-model="general_questions2" name="own_contact" value="no_contact">
+                    NEEN
+                  </b-form-radio>
+                </b-form-radio-group>
               </b-form-group>
             </ValidationProvider>
           </div>
@@ -380,7 +387,7 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:75" name="ProjectName">
+            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:100" name="ProjectName">
               <b-form-group
                 id="input-group-20"
                 label="Projectnaam:"
@@ -398,7 +405,7 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:200" name="ProjectDescription">
+            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:1024" name="ProjectDescription">
               <b-form-group
                 id="input-group-21"
                 label="Omschrijving:"
@@ -487,24 +494,32 @@ export default {
   },
   data () {
     return {
+      photo_options: [
+        { value: 'photo', text: this.$i18n.t('YES') },
+        { value: 'no_photo', text: this.$i18n.t('NO') }
+      ],
+      contact_options: [
+        { value: 'contact', text: this.$i18n.t('YES') },
+        { value: 'no_contact', text: this.$i18n.t('NO') }
+      ],
       own_project: 'own',
       show: false,
       variant: 'success',
       message: 'De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website',
       month_list: [
         { text: 'Kies een maand', value: null },
-        { value: 1, text: 'januari' },
-        { value: 2, text: 'februari' },
-        { value: 3, text: 'maart' },
-        { value: 4, text: 'april' },
-        { value: 5, text: 'mei' },
-        { value: 6, text: 'juni' },
-        { value: 7, text: 'juli' },
-        { value: 8, text: 'augustus' },
-        { value: 9, text: 'september' },
-        { value: 10, text: 'oktober' },
-        { value: 11, text: 'november' },
-        { value: 12, text: 'december' }
+        { value: 0, text: 'januari' },
+        { value: 1, text: 'februari' },
+        { value: 2, text: 'maart' },
+        { value: 3, text: 'april' },
+        { value: 4, text: 'mei' },
+        { value: 5, text: 'juni' },
+        { value: 6, text: 'juli' },
+        { value: 7, text: 'augustus' },
+        { value: 8, text: 'september' },
+        { value: 9, text: 'oktober' },
+        { value: 10, text: 'november' },
+        { value: 11, text: 'december' }
       ],
       year: null,
       month: null
@@ -514,7 +529,6 @@ export default {
     let date = store.state.registration.birthmonth
     let year = null
     let month = null
-
     if (date instanceof Date === false && date !== null) {
       date = new Date(date)
     }
@@ -522,6 +536,7 @@ export default {
       year = date.getFullYear()
       month = date.getMonth()
     }
+    console.log('async')
     return {
       year,
       month
@@ -564,6 +579,9 @@ export default {
       'languages',
       'general_questions_list',
       'mandatory_approvals_list'
+    ]),
+    ...mapState('registration', [
+      'birthmonth'
     ]),
     postalcode: {
       set (value) {
@@ -611,6 +629,14 @@ export default {
       },
       get () {
         return this.$store.state.registration.general_questions
+      }
+    },
+    general_questions2: {
+      set (value) {
+        this.$store.dispatch('registration/general_questions2', value)
+      },
+      get () {
+        return this.$store.state.registration.general_questions2
       }
     },
     mandatory_approvals: {
@@ -722,7 +748,7 @@ export default {
     async onSubmit (evt) {
       try {
         await this.$axios.$post('/api/register', this.$store.getters['registration/sanitizedJSON'])
-        this.onReset(evt)
+        // this.onReset(evt)
         this.variant = 'success'
         this.message = 'De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website'
         this.show = true
@@ -775,11 +801,17 @@ export default {
 {
   "en": {
     "title": "Registration",
-    "personal_info": "Personal information"
+    "personal_info": "Personal information",
+    "no_photo": "Ik ben akkoord dat er fotos genomen worden",
+    "YES": "Yes",
+    "NO": "No"
   },
   "nl": {
     "title": "Registratie",
-    "personal_info": "Persoonlijke informatie"
+    "personal_info": "Persoonlijke informatie",
+    "no_photo": "Ik ben akkoord dat er fotos genomen worden",
+    "YES": "Ja",
+    "NO": "Neen"
   }
 }
 </i18n>

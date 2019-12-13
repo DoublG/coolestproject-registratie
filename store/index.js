@@ -45,8 +45,10 @@ export const state = () => ({
     { value: 'fr', text: 'Frans' },
     { value: 'en', text: 'Engels' }
   ],
-  general_questions_list: [
-    { value: 'photo', text: 'Ik ben akkoord dat er fotos genomen worden' },
+  general_questions_fotos: [
+    { value: 'photo', text: 'Ik ben akkoord dat er fotos genomen worden' }
+  ],
+  general_questions_contact: [
     { value: 'contact', text: 'Je mag me contacteren voor de volgende events' }
   ],
   mandatory_approvals_list: [

@@ -6,6 +6,7 @@ const originalState = () => {
     lastname: null,
     sex: null,
     general_questions: [],
+    general_questions2: [],
     mandatory_approvals: [],
     birthmonth: null,
     t_size: null,
@@ -52,6 +53,9 @@ export const mutations = {
   },
   general_questions (state, generalQuestions) {
     state.general_questions = generalQuestions
+  },
+  general_questions2 (state, generalQuestions2) {
+    state.general_questions2 = generalQuestions2
   },
   mandatory_approvals (state, mandatoryApprovals) {
     state.mandatory_approvals = mandatoryApprovals
@@ -122,6 +126,9 @@ export const actions = {
   general_questions ({ commit }, generalQuestions) {
     commit('general_questions', generalQuestions)
   },
+  general_questions2 ({ commit }, generalQuestions2) {
+    commit('general_questions2', generalQuestions2)
+  },
   mandatory_approvals ({ commit }, mandatoryApprovals) {
     commit('mandatory_approvals', mandatoryApprovals)
   },
@@ -170,7 +177,9 @@ export const getters = {
     // 1) We don't want to send null values
     // 2) the local store stores everything as a string so we need to fix that before sending
     // 3) we only want to send the date not the time
-    const sanitizedJSON = {}
+    const sanitizedJSON = {
+      general_questions: []
+    }
     Object.keys(state).forEach(function (key) {
       if (state[key] !== null) {
         switch (key) {
@@ -181,6 +190,12 @@ export const getters = {
           case 'postalcode':
             const postalcode = typeof state[key] === typeof Number ? state[key] : Number.parseInt(state[key])
             sanitizedJSON[key] = postalcode
+            break
+          case 'general_questions':
+            sanitizedJSON.general_questions[0] = state[key]
+            break
+          case 'general_questions2':
+            sanitizedJSON.general_questions[1] = state[key]
             break
           default:
             sanitizedJSON[key] = state[key]
