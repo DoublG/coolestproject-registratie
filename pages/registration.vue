@@ -198,16 +198,17 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <h3>Algemene vragen</h3>
+            <h2> {{ $t('Algemene vragen') }}</h2>
             <ValidationProvider v-slot="{ valid, errors }" rules="required" name="GeneralQuestions">
               <b-form-group
                 id="input-group-12"
                 :label="$t('no_photo')"
               >
                 <b-form-radio-group
-                  :state="errors[0] ? false : (valid ? true : null)"
                   v-model="general_questions"
+                  :state="errors[0] ? false : (valid ? true : null)"
                   :options="photo_options"
+                   stacked
                 >
                   <b-form-invalid-feedback id="input-12-live-feedback">
                     {{ errors[0] }}
@@ -218,12 +219,14 @@
             <ValidationProvider v-slot="{ valid, errors }" rules="required" name="GeneralQuestions2">
               <b-form-group
                 id="input-group-122"
-                label="Je mag me contacteren voor de volgende evenementen"
+                :label="$t('no_contact')"
               >
                 <b-form-radio-group
-                  :state="errors[0] ? false : (valid ? true : null)"
                   v-model="general_questions2"
-                  :options="contact_options">
+                  :state="errors[0] ? false : (valid ? true : null)"
+                  :options="contact_options"
+                   stacked
+                >
                   <b-form-invalid-feedback id="input-122-live-feedback">
                     {{ errors[0] }}
                   </b-form-invalid-feedback>
@@ -232,7 +235,7 @@
             </ValidationProvider>
           </div>
           <div v-else>
-            <h2>Informatie van je ouders/voogd</h2>
+            <h2>{{ $t('Informatie van je ouders/voogd') }}</h2>
             <ValidationProvider v-slot="{ valid, errors }" rules="required|email" name="Email">
               <b-form-group
                 id="input-group-13"
@@ -307,45 +310,49 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <h3>Algemene vragen</h3>
-            <ValidationProvider v-slot="{ valid, errors }" name="GeneralQuestions">
+             <h2> {{ $t('Algemene vragen') }}</h2>
+            <ValidationProvider v-slot="{ valid, errors }" rules="required" name="GeneralQuestions">
               <b-form-group
                 id="input-group-12"
-                label="Ik ben akkoord dat er fotos genomen worden"
+                :label="$t('no_photo')"
               >
-                <b-form-radio-group>
-                  <b-form-radio v-model="general_questions" name="own_foto" value="foto">
-                    JA
-                  </b-form-radio>
-                  <b-form-radio v-model="general_questions" name="own_foto" value="no_foto">
-                    NEEN
-                  </b-form-radio>
+                <b-form-radio-group
+                  v-model="general_questions"
+                  :state="errors[0] ? false : (valid ? true : null)"
+                  :options="photo_options"
+                   stacked
+                >
+                  <b-form-invalid-feedback id="input-12-live-feedback">
+                    {{ errors[0] }}
+                  </b-form-invalid-feedback>
                 </b-form-radio-group>
               </b-form-group>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" name="GeneralQuestions2">
+            <ValidationProvider v-slot="{ valid, errors }" rules="required" name="GeneralQuestions2">
               <b-form-group
                 id="input-group-122"
-                label=" Je mag me contacteren voor de volgende evenementen"
+                :label="$t('no_contact')"
               >
-                <b-form-radio-group>
-                  <b-form-radio v-model="general_questions2" name="own_contact" value="contact">
-                    JA
-                  </b-form-radio>
-                  <b-form-radio v-model="general_questions2" name="own_contact" value="no_contact">
-                    NEEN
-                  </b-form-radio>
+                <b-form-radio-group
+                  v-model="general_questions2"
+                  :state="errors[0] ? false : (valid ? true : null)"
+                  :options="contact_options"
+                   stacked
+                >
+                  <b-form-invalid-feedback id="input-122-live-feedback">
+                    {{ errors[0] }}
+                  </b-form-invalid-feedback>
                 </b-form-radio-group>
               </b-form-group>
             </ValidationProvider>
           </div>
-          <h1>Project</h1>
+          <h1> {{ $t('Project') }}</h1>
           <b-form-group>
             <b-form-radio v-model="own_project" name="own_project" value="own">
-              Ik heb mijn eigen project
+              {{ $t('eigenProject') }}
             </b-form-radio>
             <b-form-radio v-model="own_project" name="own_project" value="other">
-              Ik werk mee aan een bestaand project
+               {{ $t('medeProject') }}
             </b-form-radio>
           </b-form-group>
           <div v-if="isOwnProject">
@@ -354,7 +361,7 @@
                 id="input-group-18"
                 label="Taal:"
                 label-for="select-18"
-                description="In welke taal wil je het project uitleggen aan de jury"
+                :description= "$t('taalJury')"
               >
                 <b-form-select
                   id="select-18"
@@ -495,12 +502,12 @@ export default {
   data () {
     return {
       photo_options: [
-        { value: 'photo', text: this.$i18n.t('YES') },
-        { value: 'no_photo', text: this.$i18n.t('NO') }
+        { value: 'photo', text: this.$i18n.t('YESp') },
+        { value: 'no_photo', text: this.$i18n.t('NOp') }
       ],
       contact_options: [
-        { value: 'contact', text: this.$i18n.t('YES') },
-        { value: 'no_contact', text: this.$i18n.t('NO') }
+        { value: 'contact', text: this.$i18n.t('YESc') },
+        { value: 'no_contact', text: this.$i18n.t('NOc') }
       ],
       own_project: 'own',
       show: false,
@@ -536,7 +543,6 @@ export default {
       year = date.getFullYear()
       month = date.getMonth()
     }
-    console.log('async')
     return {
       year,
       month
@@ -802,16 +808,50 @@ export default {
   "en": {
     "title": "Registration",
     "personal_info": "Personal information",
-    "no_photo": "Ik ben akkoord dat er fotos genomen worden",
-    "YES": "Yes",
-    "NO": "No"
+    "no_photo": "I allow to take pictures of me",
+    "no_contact": "I allow to contact me for future events",
+    "YESp": "Yes",
+    "NOp": "No",
+    "YESc": "Yes",
+    "NOc": "No",
+    "Informatie van je ouders/voogd": "Information from your parents / guardian",
+    "Algemene vragen": "General Questions",
+    "Project": "Project",
+    "eigenProject": "I have my own project",
+    "medeProject": "I participate in an existing project",
+    "taalJury": "In which language do you want to explain the project to the jury?"
+  },
+  "fr": {
+    "title": "Enregistrement",
+    "personal_info": "Informations personnelles",
+    "no_photo": "Je permets de prendre des photos",
+    "no_contact": "Je permets de me contacter pour de futurs événements",
+    "YESp": "oui",
+    "NOp": "non",
+    "YESc": "oui",
+    "NOc": "non",
+    "Informatie van je ouders/voogd": "Informations de vos parents / tuteurs",
+    "Algemene vragen": "Questions d'ordre général",
+    "Project": "Projet",
+    "eigenProject": "J'ai mon propre projet",
+    "medeProject": "Je participe à un projet existant",
+    "taalJury": "Dans quelle langue souhaitez-vous expliquer le projet au jury?"
   },
   "nl": {
     "title": "Registratie",
     "personal_info": "Persoonlijke informatie",
-    "no_photo": "Ik ben akkoord dat er fotos genomen worden",
-    "YES": "Ja",
-    "NO": "Neen"
+    "no_photo": "CoderDojo is leuk en daarom tonen wij graag waar we mee bezig zijn. Het is mogelijk dat de deelnemer tijdens een sessie gefotografeerd of gefilmd wordt.",
+    "no_contact": "We respecteren je data. Bekijk daarom zeker even ons privacy statement op de website. Mogen we jou via mail op de hoogte brengen over volgende Coolest Projects evenementen?",
+    "YESp": "Dat is geen probleem",
+    "NOp": "Gelieve geen foto’s en filmpjes te gebruiken waarop de deelnemer herkenbaar is",
+    "YESc": "Je mag mij contacteren wanneer ik kan inschrijven voor een volgende evenement",
+    "NOc": "Bewaar mijn data niet en contacteer mij niet",
+    "Informatie van je ouders/voogd":"Informatie van je ouders/voogd",
+    "Algemene vragen": "Algemeine vragen",
+    "Project": "Project",
+    "eigenProject": "Ik heb mijn eigen project",
+    "medeProject": "Ik werk mee aan een bestaand project",
+    "taalJury": "In welke taal wil je het project uitleggen aan de jury?"
   }
 }
 </i18n>
