@@ -11,27 +11,27 @@ export const state = () => ({
   maxAge: 18,
   minAge: 5,
   geslacht: [
-    { text: 'Ik ben een', value: null },
-    { value: 'f', text: 'Meisje' },
-    { value: 'm', text: 'Jongen' },
+    { text: 'Ik ben een../Je suis un../I am a..', value: null },
+    { value: 'f', text: 'Meisje/Fille/Girl' },
+    { value: 'm', text: 'Jongen/Garçon/Boy' },
     { value: 'x', text: 'X' }
   ],
   shirtsize: [
-    { text: 'Kies een maat', value: null },
-    // meisje
-    { value: 'female_small', text: 'Meisje S' },
-    { value: 'female_medium', text: 'Meisje M' },
-    { value: 'female_large', text: 'Meisje L' },
-    { value: 'female_xl', text: 'Meisje XL' },
-    { value: 'female_xxl', text: 'Meisje XXL' },
-    { value: 'female_3xl', text: 'Meisje 3XL' },
-    // jongen
-    { value: 'male_small', text: 'Jongen S' },
-    { value: 'male_medium', text: 'Jongen M' },
-    { value: 'male_large', text: 'Jongen L' },
-    { value: 'male_xl', text: 'Jongen XL' },
-    { value: 'male_xxl', text: 'Jongen XXL' },
-    { value: 'male_3xl', text: 'Jongen 3XL' }
+    { text: 'Kies een maat/Choisissez une taille/Choose a size', value: null },
+    // Meisje/Fille/Girl
+    { value: 'female_small', text: 'Meisje/Fille/Girl............. S' },
+    { value: 'female_medium', text: 'Meisje/Fille/Girl............. M' },
+    { value: 'female_large', text: 'Meisje/Fille/Girl............. L' },
+    { value: 'female_xl', text: 'Meisje/Fille/Girl............. XL' },
+    { value: 'female_xxl', text: 'Meisje/Fille/Girl............. XXL' },
+    { value: 'female_3xl', text: 'Meisje/Fille/Girl............. 3XL' },
+    // Jongen/Garçon/Boy
+    { value: 'male_small', text: 'Jongen/Garçon/Boy..... S' },
+    { value: 'male_medium', text: 'Jongen/Garçon/Boy.... M' },
+    { value: 'male_large', text: 'Jongen/Garçon/Boy..... L' },
+    { value: 'male_xl', text: 'Jongen/Garçon/Boyn... XL' },
+    { value: 'male_xxl', text: 'Jongen/Garçon/Boy..... XXL' },
+    { value: 'male_3xl', text: 'Jongen/Garçon/Boy..... 3XL' }
   ],
   project_types: [
     { value: 'scratch', text: 'Scratch' },

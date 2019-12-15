@@ -11,15 +11,15 @@
           <ValidationProvider v-slot="{ valid, errors }" rules="required|email" name="Email">
             <b-form-group
               id="input-group-3"
-              label="Email adres"
+              :label="$t('Email adres:')"
               label-for="input-3"
-              description="We delen dit met niemand"
+              :description="$t('We delen dit met niemand')"
             >
               <b-form-input
                 id="input-3"
                 v-model="email"
                 type="email"
-                placeholder="email adres"
+                :placeholder="$t('Email adres:')"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-3-live-feedback"
               />
@@ -31,7 +31,7 @@
           <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Birthyear">
             <b-form-group
               id="input-group-4"
-              label="Geboortejaar"
+              :label="$t('Geboortejaar:')"
               label-for="input-4"
             >
               <b-form-select v-model="year" :options="year_list" :state="errors[0] ? false : (valid ? true : null)" />
@@ -43,7 +43,7 @@
           <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Birthmonth">
             <b-form-group
               id="input-group-24"
-              label="Geboortemaand"
+              :label="$t('Geboortemaand:')"
               label-for="input-24"
             >
               <b-form-select v-model="month" :options="month_list" :state="errors[0] ? false : (valid ? true : null)" />
@@ -52,16 +52,16 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" rules="required|alpha_spaces" name="FirstName">
+          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="FirstName">
             <b-form-group
               id="input-group-5"
-              label="Voornaam:"
+              :label="$t('Voornaam:')"
               label-for="input-5"
             >
               <b-form-input
                 id="input-5"
                 v-model="firstname"
-                placeholder="Geef je voornaam in"
+                :placeholder="$t('GeefVoornaam:')"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-5-live-feedback"
               />
@@ -73,13 +73,13 @@
           <ValidationProvider v-slot="{ valid, errors }" rules="required" name="LastName">
             <b-form-group
               id="input-group-6"
-              label="Achternaam:"
+              :label="$t('Achternaam:')"
               label-for="input-6"
             >
               <b-form-input
                 id="input-6"
                 v-model="lastname"
-                placeholder="Geef je achternaam in"
+                :placeholder="$t('GeefAchternaam:')"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-6-live-feedback"
               />
@@ -91,7 +91,7 @@
           <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Sex">
             <b-form-group
               id="input-group-7"
-              label="Geslacht:"
+              :label="$t('Geslacht:')"
               label-for="input-7"
             >
               <b-form-select
@@ -109,7 +109,7 @@
           <ValidationProvider v-slot="{ valid, errors }" rules="required" name="T-shirtSize">
             <b-form-group
               id="input-group-9"
-              label="T-shirt maat:"
+              :label="$t('T-shirt maat:')"
               label-for="input-9"
             >
               <b-form-select
@@ -127,13 +127,13 @@
           <ValidationProvider v-slot="{ valid, errors }" rules="required|digits:4" name="PostalCode">
             <b-form-group
               id="input-group-1"
-              label="Postcode"
+              :label="$t('Postcode:')"
               label-for="input-1"
             >
               <b-form-input
                 id="input-1"
                 v-model="postalcode"
-                placeholder="postcode"
+                :placeholder="$t('Postcode:')"
                 type="number"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-1-live-feedback"
@@ -146,14 +146,14 @@
           <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, regex: /^((\+|00)32\s?|0)4(60|[789]\d)(\s?\d{2}){3}$/ }" name="MobileNumber">
             <b-form-group
               id="input-group-2"
-              label="mobiel nummer (+32)"
+              :label="$t('mobiel nummer (+32):')"
               label-for="input-2"
             >
               <b-form-input
                 id="input-2"
                 v-model="gsm"
                 type="tel"
-                placeholder="mobiel nummer"
+                :placeholder="$t('mobiel nummer (+32):')"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-2-live-feedback"
               />
@@ -165,13 +165,13 @@
           <ValidationProvider v-slot="{ valid, errors }" name="Via">
             <b-form-group
               id="input-group-10"
-              label="Van waar ken je ons:"
+              :label="$t('Van waar ken je ons:')"
               label-for="input-10"
             >
               <b-form-input
                 id="input-10"
                 v-model="via"
-                placeholder="Geef je dojo, school, ..."
+                :placeholder="$t('Geef je dojo, school')"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-10-live-feedback"
               />
@@ -184,7 +184,7 @@
             <ValidationProvider v-slot="{ valid, errors }" name="MedicalInfo">
               <b-form-group
                 id="input-group-11"
-                label="Zijn er aandoeningen of allergieën waar we rekening mee moeten houden:"
+                :label="$t('Zijn er aandoeningen')"
                 label-for="input-11"
               >
                 <b-form-textarea
@@ -208,7 +208,7 @@
                   v-model="general_questions"
                   :state="errors[0] ? false : (valid ? true : null)"
                   :options="photo_options"
-                   stacked
+                  stacked
                 >
                   <b-form-invalid-feedback id="input-12-live-feedback">
                     {{ errors[0] }}
@@ -225,7 +225,7 @@
                   v-model="general_questions2"
                   :state="errors[0] ? false : (valid ? true : null)"
                   :options="contact_options"
-                   stacked
+                  stacked
                 >
                   <b-form-invalid-feedback id="input-122-live-feedback">
                     {{ errors[0] }}
@@ -239,15 +239,15 @@
             <ValidationProvider v-slot="{ valid, errors }" rules="required|email" name="Email">
               <b-form-group
                 id="input-group-13"
-                label="Email adres ouders/voogd"
+                :label="$t('Email adres ouders/voogd:')"
                 label-for="input-13"
-                description="We delen dit met niemand"
+                de:description="$t('We delen dit met niemand')"
               >
                 <b-form-input
                   id="input-13"
                   v-model="email_guardian"
                   type="email"
-                  placeholder="email adres"
+                  :placeholder="$t('Email adres ouders/voogd:')"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-13-live-feedback"
                 />
@@ -259,15 +259,15 @@
             <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, regex: /^((\+|00)32\s?|0)4(60|[789]\d)(\s?\d{2}){3}$/ }" name="Phone">
               <b-form-group
                 id="input-group-14"
-                label="mobiel nummer ouders/voogd"
+                :label="$t('mobiel nummer ouders/voogd')"
                 label-for="input-14"
-                description="Waar kunnen we jou bereiken in geval van nood"
+                :description="$t('Waar kunnen we jou bereiken in geval van nood')"
               >
                 <b-form-input
                   id="input-14"
                   v-model="gsm_guardian"
                   type="tel"
-                  placeholder="mobiel nummer"
+                  :placeholder="$t('mobiel nummer ouders/voogd')"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-14-live-feedback"
                 />
@@ -279,7 +279,7 @@
             <ValidationProvider v-slot="{ valid, errors }" name="Medical">
               <b-form-group
                 id="input-group-15"
-                label="Zijn er aandoeningen of allergieën waar we rekening mee moeten houden:"
+                :label="$t('Zijn er aandoeningen')"
                 label-for="input-15"
               >
                 <b-form-textarea
@@ -296,7 +296,7 @@
             <ValidationProvider v-slot="{ valid, errors }" name="Extra">
               <b-form-group
                 id="input-group-16"
-                label="Is er nog extra informatie waar we rekening mee moeten houden:"
+                :label="$t('Is er nog extra informatie')"
                 label-for="input-16"
               >
                 <b-form-textarea
@@ -310,7 +310,7 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-             <h2> {{ $t('Algemene vragen') }}</h2>
+            <h2> {{ $t('Algemene vragen') }}</h2>
             <ValidationProvider v-slot="{ valid, errors }" rules="required" name="GeneralQuestions">
               <b-form-group
                 id="input-group-12"
@@ -320,7 +320,7 @@
                   v-model="general_questions"
                   :state="errors[0] ? false : (valid ? true : null)"
                   :options="photo_options"
-                   stacked
+                  stacked
                 >
                   <b-form-invalid-feedback id="input-12-live-feedback">
                     {{ errors[0] }}
@@ -337,7 +337,7 @@
                   v-model="general_questions2"
                   :state="errors[0] ? false : (valid ? true : null)"
                   :options="contact_options"
-                   stacked
+                  stacked
                 >
                   <b-form-invalid-feedback id="input-122-live-feedback">
                     {{ errors[0] }}
@@ -352,16 +352,16 @@
               {{ $t('eigenProject') }}
             </b-form-radio>
             <b-form-radio v-model="own_project" name="own_project" value="other">
-               {{ $t('medeProject') }}
+              {{ $t('medeProject') }}
             </b-form-radio>
           </b-form-group>
           <div v-if="isOwnProject">
             <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Language">
               <b-form-group
                 id="input-group-18"
-                label="Taal:"
+                :label="$t('Taal:')"
                 label-for="select-18"
-                :description= "$t('taalJury')"
+                :description="$t('taalJury')"
               >
                 <b-form-select
                   id="select-18"
@@ -378,9 +378,9 @@
             <ValidationProvider v-slot="{ valid, errors }" rules="required" name="ProjectQuestions">
               <b-form-group
                 id="input-group-19"
-                label="Projecttype:"
+                :label="$t('Projecttype:')"
                 label-for="input-19"
-                description="Selecteer wat je project allemaal doet, nodig heeft"
+                :description="$t('Selecteer wat je project allemaal doet, nodig heeft')"
               >
                 <b-form-checkbox-group
                   id="checkboxes-19"
@@ -397,13 +397,13 @@
             <ValidationProvider v-slot="{ valid, errors }" rules="required|max:100" name="ProjectName">
               <b-form-group
                 id="input-group-20"
-                label="Projectnaam:"
+                :label="$t('Projectnaam:')"
                 label-for="input-20"
               >
                 <b-form-input
                   id="input-20"
                   v-model="project_name"
-                  placeholder="Projectnaam"
+                  :placeholder="$t('GeefProjectnaam:')"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-20-live-feedback"
                 />
@@ -412,10 +412,10 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:1024" name="ProjectDescription">
+            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:500" name="ProjectDescription">
               <b-form-group
                 id="input-group-21"
-                label="Omschrijving:"
+                :label="$t('Omschrijving:')"
                 label-for="input-21"
               >
                 <b-form-textarea
@@ -434,9 +434,9 @@
             <ValidationProvider v-slot="{ valid, errors }" rules="required|max:36|min:36" name="ProjectCode">
               <b-form-group
                 id="input-group-22"
-                label="Projectcode:"
+                :label="$t('Projectcode:')"
                 label-for="input-22"
-                description="Geef de code in die je van de projecteigenaar gekregen hebt"
+                :description="$t('Geef de code in die je van de projecteigenaar gekregen hebt')"
               >
                 <b-form-input
                   id="input-22"
@@ -453,7 +453,7 @@
           </div>
           <ValidationProvider v-slot="{ valid, errors }" :rules="{required: true, all_true: mandatory_approvals}" name="ProjectName">
             <b-form-group
-              description="Je moet akkoord gaan met volgende vragen om je te kunnen inschrijven"
+              :description="$t('Je moet akkoord')"
             >
               <b-form-checkbox-group
                 id="checkboxes-23"
@@ -514,19 +514,19 @@ export default {
       variant: 'success',
       message: 'De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website',
       month_list: [
-        { text: 'Kies een maand', value: null },
-        { value: 0, text: 'januari' },
-        { value: 1, text: 'februari' },
-        { value: 2, text: 'maart' },
-        { value: 3, text: 'april' },
-        { value: 4, text: 'mei' },
-        { value: 5, text: 'juni' },
-        { value: 6, text: 'juli' },
-        { value: 7, text: 'augustus' },
-        { value: 8, text: 'september' },
-        { value: 9, text: 'oktober' },
-        { value: 10, text: 'november' },
-        { value: 11, text: 'december' }
+        { text: 'Kies een maand/Sélectionnez un mois/Select a month', value: null },
+        { value: 0, text: 'januari/janvier/January' },
+        { value: 1, text: 'februari/février/February' },
+        { value: 2, text: 'maart/mars/March' },
+        { value: 3, text: 'april/avril/April' },
+        { value: 4, text: 'mei/mai/May' },
+        { value: 5, text: 'juni/juni/June' },
+        { value: 6, text: 'juli/juillet/July' },
+        { value: 7, text: 'augustus/ao t/August' },
+        { value: 8, text: 'september/septembre/September' },
+        { value: 9, text: 'oktober/octobre/October' },
+        { value: 10, text: 'november/novembre/November' },
+        { value: 11, text: 'december/décembre/December' }
       ],
       year: null,
       month: null
@@ -553,7 +553,7 @@ export default {
       const yearStart = 2002
       const yearEnd = 2014
       const yearList = [
-        { text: 'Kies een jaar', value: null }
+        { text: 'Kies een jaar/Choisissez une année/Choose a year', value: null }
       ]
       for (let i = 0; i < yearEnd - yearStart; i++) {
         yearList.push({ text: yearStart + i, value: yearStart + i })
@@ -819,7 +819,35 @@ export default {
     "Project": "Project",
     "eigenProject": "I have my own project",
     "medeProject": "I participate in an existing project",
-    "taalJury": "In which language do you want to explain the project to the jury?"
+    "taalJury": "In which language do you want to explain the project to the jury?",
+    "We delen dit met niemand": "We do not share this with anyone",
+    "Waar kunnen we jou bereiken in geval van nood": "Where can we reach you in an emergency?",
+    "Selecteer wat je project allemaal doet, nodig heeft": "Select what your project does, needs",
+    "Geef de code in die je van de projecteigenaar gekregen hebt": "Enter the code that you received from the project owner",
+    "Je moet akkoord": "You must agree to the following question in order to register",
+    "Email adres:": "E-mail address",
+    "Geboortejaar:": "Year of birth:",
+    "Geboortemaand:": "Birth month:",
+    "Voornaam:": "First Name:",
+    "Achternaam:": "Last Name:",
+    "Geslacht:": "I am a ..:",
+    "T-shirt maat:": "T-shirt size:",
+    "Postcode:": "Postal Code:",
+    "mobiel nummer (+32):": "mobile number (+32):",
+    "Van waar ken je ons:": "Where do you know us:",
+    "Zijn er aandoeningen": "Are there any conditions or allergies that we should take into account:",
+    "Email adres ouders/voogd:": "Email address parents / guardian:",
+    "mobiel nummer ouders/voogd": "mobile number parents / guardian",
+    "Is er nog extra informatie": "Is there any additional information that we must take into account:",
+    "Taal:": "Language:",
+    "Projecttype:": "Project type:",
+    "Projectnaam:": "Project name:",
+    "Omschrijving:": "Description:",
+    "Projectcode:": "Project code:",
+    "GeefVoornaam:": "Enter your first name",
+    "GeefAchternaam:": "Enter your last name",
+    "Geef je dojo, school": "Give your dojo, school, ..",
+    "GeefProjectnaam:": "Enter project name:"
   },
   "fr": {
     "title": "Enregistrement",
@@ -835,7 +863,35 @@ export default {
     "Project": "Projet",
     "eigenProject": "J'ai mon propre projet",
     "medeProject": "Je participe à un projet existant",
-    "taalJury": "Dans quelle langue souhaitez-vous expliquer le projet au jury?"
+    "taalJury": "Dans quelle langue souhaitez-vous expliquer le projet au jury?",
+    "We delen dit met niemand": "Nous ne partageons cela avec personne",
+    "Waar kunnen we jou bereiken in geval van nood": "Où pouvons-nous vous joindre en cas d'urgence?",
+    "Selecteer wat je project allemaal doet, nodig heeft": "Sélectionnez ce que votre projet fait, a besoin",
+    "Geef de code in die je van de projecteigenaar gekregen hebt": "Entrez le code que vous avez reçu du propriétaire du projet",
+    "Je moet akkoord": "Vous devez accepter la question suivante pour vous inscrire",
+    "Email adres:": "Adresse e-mail",
+    "Geboortejaar:": "Année de naissance:",
+    "Geboortemaand:": "Mois de naissance:",
+    "Voornaam:": "Prénom:",
+    "Achternaam:": "nom de famille:",
+    "Geslacht:": "Je suis un(e)..:",
+    "T-shirt maat:": "T-shirt taille:",
+    "Postcode:": "Code postal:",
+    "mobiel nummer (+32):": "numéro de portable (+32):",
+    "Van waar ken je ons:": "Où nous connaissez-vous?:",
+    "Zijn er aandoeningen": "Y a-t-il des conditions ou des allergies dont nous devons tenir compte:",
+    "Email adres ouders/voogd:": "Adresse e-mail parents / tuteur:",
+    "mobiel nummer ouders/voogd": "parents / tuteurs du numéro de portable",
+    "Is er nog extra informatie": "Existe-t-il des informations supplémentaires dont nous devrions tenir compte:",
+    "Taal:": "Langue:",
+    "Projecttype:": "Type de projet:",
+    "Projectnaam:": "Nom du projet:",
+    "Omschrijving:": "Description:",
+    "Projectcode:": "Code de projet:",
+    "GeefVoornaam:": "Entrez votre prénom",
+    "GeefAchternaam:": "Entrez votre nom de famille",
+    "Geef je dojo, school": "Donnez votre dojo, école, ..",
+    "GeefProjectnaam:": "Entrez le nom du projet"
   },
   "nl": {
     "title": "Registratie",
@@ -851,7 +907,35 @@ export default {
     "Project": "Project",
     "eigenProject": "Ik heb mijn eigen project",
     "medeProject": "Ik werk mee aan een bestaand project",
-    "taalJury": "In welke taal wil je het project uitleggen aan de jury?"
+    "taalJury": "In welke taal wil je het project uitleggen aan de jury?",
+    "We delen dit met niemand": "We delen dit met niemand",
+    "Waar kunnen we jou bereiken in geval van nood": "Waar kunnen we jou bereiken in geval van nood?",
+    "Selecteer wat je project allemaal doet, nodig heeft": "Selecteer wat je project allemaal doet, nodig heeft",
+    "Geef de code in die je van de projecteigenaar gekregen hebt": "Geef de code in die je van de projecteigenaar gekregen hebt",
+    "Je moet akkoord": "Je moet akkoord gaan met volgende vraag om je te kunnen inschrijven",
+    "Email adres:": "Email adres",
+    "Geboortejaar:": "Geboortejaar:",
+    "Geboortemaand:": "Geboortemaand:",
+    "Voornaam:": "Voornaam:",
+    "Achternaam:": "Achternaam:",
+    "Geslacht:": "Ik ben een..:",
+    "T-shirt maat:": "T-shirt maat:",
+    "Postcode:": "Postcode:",
+    "mobiel nummer (+32):": "mobiel nummer (+32):",
+    "Van waar ken je ons:": "Van waar ken je ons:",
+    "Zijn er aandoeningen": "Zijn er aandoeningen of allergieën waar we rekening mee moeten houden:",
+    "Email adres ouders/voogd:": "Email adres ouders/voogd:",
+    "mobiel nummer ouders/voogd": "mobiel nummer ouders/voogd",
+    "Is er nog extra informatie": "Is er nog extra informatie waar we rekening mee moeten houden:",
+    "Taal:": "Taal:",
+    "Projecttype:": "Projecttype:",
+    "Projectnaam:": "Projectnaam:",
+    "Omschrijving:": "Omschrijving:",
+    "Projectcode:": "Projectcode:",
+    "GeefAchternaam:": "Geef je achternaam in",
+    "GeefVoornaam:": "Geef je voornaam in:",
+    "Geef je dojo, school": "Geef je dojo, school, ..",
+    "GeefProjectnaam:": "Geef project naam:"
   }
 }
 </i18n>

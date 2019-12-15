@@ -11,7 +11,7 @@
         Coolest Projects Registration Procedure 2020
       </template>
       <b-button variant="dark" class="button-hero" href="/registration">
-        <font-awesome-icon :icon="['fas', 'paper-plane']" /> Start registratie
+        <font-awesome-icon :icon="['fas', 'paper-plane']" /> Start registratie/inscription/registration
       </b-button>
     </b-jumbotron>
     <b-container>
