@@ -28,30 +28,6 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Birthyear">
-            <b-form-group
-              id="input-group-4"
-              :label="$t('Geboortejaar:')"
-              label-for="input-4"
-            >
-              <b-form-select v-model="year" :options="year_list" :state="errors[0] ? false : (valid ? true : null)" />
-              <b-form-invalid-feedback id="input-4-live-feedback" :style="{ display: 'inline' }">
-                {{ errors[0] }}
-              </b-form-invalid-feedback>
-            </b-form-group>
-          </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Birthmonth">
-            <b-form-group
-              id="input-group-24"
-              :label="$t('Geboortemaand:')"
-              label-for="input-24"
-            >
-              <b-form-select v-model="month" :options="month_list" :state="errors[0] ? false : (valid ? true : null)" />
-              <b-form-invalid-feedback id="input-24-live-feedback" :style="{ display: 'inline' }">
-                {{ errors[0] }}
-              </b-form-invalid-feedback>
-            </b-form-group>
-          </ValidationProvider>
           <ValidationProvider v-slot="{ valid, errors }" rules="required" name="FirstName">
             <b-form-group
               id="input-group-5"
@@ -84,6 +60,30 @@
                 aria-describedby="input-6-live-feedback"
               />
               <b-form-invalid-feedback id="input-6-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
+          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Birthyear">
+            <b-form-group
+              id="input-group-4"
+              :label="$t('Geboortejaar:')"
+              label-for="input-4"
+            >
+              <b-form-select v-model="year" :options="year_list" :state="errors[0] ? false : (valid ? true : null)" />
+              <b-form-invalid-feedback id="input-4-live-feedback" :style="{ display: 'inline' }">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
+          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Birthmonth">
+            <b-form-group
+              id="input-group-24"
+              :label="$t('Geboortemaand:')"
+              label-for="input-24"
+            >
+              <b-form-select v-model="month" :options="month_list" :state="errors[0] ? false : (valid ? true : null)" />
+              <b-form-invalid-feedback id="input-24-live-feedback" :style="{ display: 'inline' }">
                 {{ errors[0] }}
               </b-form-invalid-feedback>
             </b-form-group>
@@ -412,7 +412,7 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:500" name="ProjectDescription">
+            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:4000" name="ProjectDescription">
               <b-form-group
                 id="input-group-21"
                 :label="$t('Omschrijving:')"
@@ -515,7 +515,7 @@ export default {
       message: 'De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website',
       month_list: [
         { text: 'Kies een maand/Sélectionnez un mois/Select a month', value: null },
-        { value: 0, text: 'januari/janvier/January' },
+        { value: 0, text: this.$i18n.t('januari') }, // januari/janvier/January'
         { value: 1, text: 'februari/février/February' },
         { value: 2, text: 'maart/mars/March' },
         { value: 3, text: 'april/avril/April' },
@@ -529,7 +529,51 @@ export default {
         { value: 11, text: 'december/décembre/December' }
       ],
       year: null,
-      month: null
+      month: null,
+      geslacht: [
+        { text: 'Ik ben een../Je suis un../I am a..', value: null },
+        { value: 'f', text: 'Meisje/Fille/Girl' },
+        { value: 'm', text: 'Jongen/Garçon/Boy' },
+        { value: 'x', text: 'X' }
+      ],
+      languages: [
+        { value: 'nl', text: 'Nederlands' },
+        { value: 'fr', text: 'Frans' },
+        { value: 'en', text: 'Engels' }
+      ],
+      general_questions_fotos: [
+        { value: 'photo', text: 'Ik ben akkoord dat er fotos genomen worden' }
+      ],
+      general_questions_contact: [
+        { value: 'contact', text: 'Je mag me contacteren voor de volgende events' }
+      ],
+      mandatory_approvals_list: [
+        { value: 'ok', text: 'Ik ben akkoord met de algemene voorwaarden' }
+      ],
+      shirtsize: [
+        { text: 'Kies een maat/Choisissez une taille/Choose a size', value: null },
+        // Meisje/Fille/Girl
+        { value: 'female_small', text: '' }, //    'Meisje/Fille/Girl............. S'
+        { value: 'female_medium', text: 'Meisje/Fille/Girl............. M' },
+        { value: 'female_large', text: 'Meisje/Fille/Girl............. L' },
+        { value: 'female_xl', text: 'Meisje/Fille/Girl............. XL' },
+        { value: 'female_xxl', text: 'Meisje/Fille/Girl............. XXL' },
+        { value: 'female_3xl', text: 'Meisje/Fille/Girl............. 3XL' },
+        // Jongen/Garçon/Boy
+        { value: 'male_small', text: 'Jongen/Garçon/Boy..... S' },
+        { value: 'male_medium', text: 'Jongen/Garçon/Boy.... M' },
+        { value: 'male_large', text: 'Jongen/Garçon/Boy..... L' },
+        { value: 'male_xl', text: 'Jongen/Garçon/Boyn... XL' },
+        { value: 'male_xxl', text: 'Jongen/Garçon/Boy..... XXL' },
+        { value: 'male_3xl', text: 'Jongen/Garçon/Boy..... 3XL' }
+      ],
+      project_types: [
+        { value: 'scratch', text: 'Scratch' },
+        { value: 'hardware', text: 'Hardware' },
+        { value: 'software', text: 'Software' },
+        { value: 'wifi', text: 'Wifi' },
+        { value: 'kabel', text: 'Kabelnetwerk' }
+      ]
     }
   },
   asyncData ({ store }) {
@@ -564,7 +608,7 @@ export default {
       return addYears(state.startDateEvent, -5)
     },
     isGuardianNeeded: (state) => {
-      return differenceInCalendarYears(state.startDateEvent, state.birthmonth) < 16
+      return differenceInCalendarYears(state.startDateEvent, new Date(state.year, state.month, 1)) < state.guardianAge
     },
     isOwnProject: (state) => {
       return state.own_project === 'own'
@@ -579,12 +623,7 @@ export default {
       'startDateEvent',
       'maxAge',
       'minAge',
-      'geslacht',
-      'shirtsize',
-      'project_types',
-      'languages',
-      'general_questions_list',
-      'mandatory_approvals_list'
+      'guardianAge'
     ]),
     ...mapState('registration', [
       'birthmonth'
@@ -948,7 +987,8 @@ export default {
     "GeefAchternaam:": "Geef je achternaam in",
     "GeefVoornaam:": "Geef je voornaam in:",
     "Geef je dojo, school": "Geef je dojo, school, ..",
-    "GeefProjectnaam:": "Geef project naam:"
+    "GeefProjectnaam:": "Geef project naam:",
+    "januari": "januari"
   }
 }
 </i18n>
