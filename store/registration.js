@@ -1,5 +1,6 @@
 const originalState = () => {
   return {
+    language: 'nl',
     postalcode: null,
     email: null,
     firstname: null,
@@ -27,6 +28,9 @@ const originalState = () => {
 export const state = originalState
 
 export const mutations = {
+  language (state, language) {
+    state.language = language
+  },
   email_guardian (state, emailGuardian) {
     state.email_guardian = emailGuardian
   },
@@ -99,6 +103,9 @@ export const mutations = {
 }
 
 export const actions = {
+  language ({ commit }, language) {
+    commit('language', language)
+  },
   email_guardian ({ commit }, emailGuardian) {
     commit('email_guardian', emailGuardian)
   },

@@ -753,6 +753,8 @@ export default {
   methods: {
     async onSubmit (evt) {
       try {
+        // pass language to store
+        this.$store.dispatch('registration/language', this.$i18n.locale)
         await this.$axios.$post('/api/register', this.$store.getters['registration/sanitizedJSON'])
         // this.onReset(evt)
         this.variant = 'success'
@@ -797,6 +799,17 @@ export default {
       date.setDate(1)
       date.setMonth(val)
       this.$store.dispatch('registration/birthmonth', date)
+    },
+    own_project (val) {
+      // cleanup data
+      if (val === 'own') {
+        this.project_code = null
+      } else {
+        this.project_name = null
+        this.project_descr = null
+        this.project_type = null
+        this.project_lang = null
+      }
     }
   }
 }
