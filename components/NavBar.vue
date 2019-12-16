@@ -21,8 +21,20 @@
             <b-nav-item :to="localePath('registration')">
               {{ $t('Registratie') }}
             </b-nav-item>
+            <b-nav-item :to="localePath('login')" v-if="!loggedIn">
+              <font-awesome-icon :icon="['fas', 'unlock']" /> Login
+            </b-nav-item>
+            <b-nav-item :to="localePath('project')" v-if="loggedIn">
+              <font-awesome-icon :icon="['fas', 'project-diagram']" /> Project
+            </b-nav-item>
+            <b-nav-item :to="localePath('user')" v-if="loggedIn">
+              <font-awesome-icon :icon="['fas', 'user']" /> User
+            </b-nav-item>
           </b-navbar-nav>
           <b-navbar-nav class="ml-auto">
+            <b-nav-item :to="localePath('logout')" v-if="loggedIn">
+              <font-awesome-icon :icon="['fas', 'lock']" /> Logout
+            </b-nav-item>
             <b-nav-item v-for="(lang, i) in langs" :key="`Lang${i}`" :to="switchLocalePath(lang)">
               {{ lang }}
             </b-nav-item>
@@ -39,6 +51,9 @@ export default {
       loggedIn: false,
       langs: ['nl', 'fr', 'en']
     }
+  },
+  mounted () {
+    this.loggedIn = new Date(this.$store.state.auth.expires) > new Date()
   },
   computed: {},
   methods: {}
