@@ -473,14 +473,14 @@
               variant="info"
               class="button-hero"
             >
-              <font-awesome-icon :icon="['fas', 'paper-plane']" /> Ik schrijf me in
+              <font-awesome-icon :icon="['fas', 'paper-plane']" /> {{ $t('Ik schrijf me in') }}
             </b-button>
             <b-button
               type="reset"
               variant="danger"
               class="button-hero"
             >
-              <font-awesome-icon :icon="['fas', 'trash-alt']" /> Verwijder alles
+              <font-awesome-icon :icon="['fas', 'trash-alt']" />  {{ $t('verwijder alles') }}
             </b-button>
           </b-form-group>
         </b-form>
@@ -514,26 +514,25 @@ export default {
       variant: 'success',
       message: 'De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website',
       month_list: [
-        { text: 'Kies een maand/Sélectionnez un mois/Select a month', value: null },
-        { value: 0, text: this.$i18n.t('januari') }, // januari/janvier/January'
-        { value: 1, text: 'februari/février/February' },
-        { value: 2, text: 'maart/mars/March' },
-        { value: 3, text: 'april/avril/April' },
-        { value: 4, text: 'mei/mai/May' },
-        { value: 5, text: 'juni/juni/June' },
-        { value: 6, text: 'juli/juillet/July' },
-        { value: 7, text: 'augustus/ao t/August' },
-        { value: 8, text: 'september/septembre/September' },
-        { value: 9, text: 'oktober/octobre/October' },
-        { value: 10, text: 'november/novembre/November' },
-        { value: 11, text: 'december/décembre/December' }
+        { text: this.$i18n.t('Kiesmaand'), value: null },
+        { value: 0, text: this.$i18n.t('januari') },
+        { value: 1, text: this.$i18n.t('februari') },
+        { value: 2, text: this.$i18n.t('maart') },
+        { value: 3, text: this.$i18n.t('april') },
+        { value: 4, text: this.$i18n.t('juni') },
+        { value: 6, text: this.$i18n.t('juli') },
+        { value: 7, text: this.$i18n.t('augustus') },
+        { value: 8, text: this.$i18n.t('september') },
+        { value: 9, text: this.$i18n.t('october') },
+        { value: 10, text: this.$i18n.t('november') },
+        { value: 11, text: this.$i18n.t('december') }
       ],
       year: null,
       month: null,
       geslacht: [
-        { text: 'Ik ben een../Je suis un../I am a..', value: null },
-        { value: 'f', text: 'Meisje/Fille/Girl' },
-        { value: 'm', text: 'Jongen/Garçon/Boy' },
+        { text: this.$i18n.t('Ik ben een'), value: null },
+        { value: 'f', text: this.$i18n.t('meisje') },
+        { value: 'm', text: this.$i18n.t('jongen') },
         { value: 'x', text: 'X' }
       ],
       languages: [
@@ -548,24 +547,24 @@ export default {
         { value: 'contact', text: 'Je mag me contacteren voor de volgende events' }
       ],
       mandatory_approvals_list: [
-        { value: 'ok', text: 'Ik ben akkoord met de algemene voorwaarden' }
+        { value: 'ok', text: this.$i18n.t('Ik ben akkoord') }
       ],
       shirtsize: [
-        { text: 'Kies een maat/Choisissez une taille/Choose a size', value: null },
+        { text: this.$i18n.t('kiesmaat'), value: null },
         // Meisje/Fille/Girl
-        { value: 'female_small', text: '' }, //    'Meisje/Fille/Girl............. S'
-        { value: 'female_medium', text: 'Meisje/Fille/Girl............. M' },
-        { value: 'female_large', text: 'Meisje/Fille/Girl............. L' },
-        { value: 'female_xl', text: 'Meisje/Fille/Girl............. XL' },
-        { value: 'female_xxl', text: 'Meisje/Fille/Girl............. XXL' },
-        { value: 'female_3xl', text: 'Meisje/Fille/Girl............. 3XL' },
+        { value: 'female_small', text: this.$i18n.t('meisje') + ' ...S' },
+        { value: 'female_medium', text: this.$i18n.t('meisje') + '... M' },
+        { value: 'female_large', text: this.$i18n.t('meisje') + '... L' },
+        { value: 'female_xl', text: this.$i18n.t('meisje') + '... XL' },
+        { value: 'female_xxl', text: this.$i18n.t('meisje') + '... XXL' },
+        { value: 'female_3xl', text: this.$i18n.t('meisje') + '... 3XL' },
         // Jongen/Garçon/Boy
-        { value: 'male_small', text: 'Jongen/Garçon/Boy..... S' },
-        { value: 'male_medium', text: 'Jongen/Garçon/Boy.... M' },
-        { value: 'male_large', text: 'Jongen/Garçon/Boy..... L' },
-        { value: 'male_xl', text: 'Jongen/Garçon/Boyn... XL' },
-        { value: 'male_xxl', text: 'Jongen/Garçon/Boy..... XXL' },
-        { value: 'male_3xl', text: 'Jongen/Garçon/Boy..... 3XL' }
+        { value: 'male_small', text: this.$i18n.t('jongen') + '...  S' },
+        { value: 'male_medium', text: this.$i18n.t('jongen') + '...   M' },
+        { value: 'male_large', text: this.$i18n.t('jongen') + '...   L' },
+        { value: 'male_xl', text: this.$i18n.t('jongen') + '...   XL' },
+        { value: 'male_xxl', text: this.$i18n.t('jongen') + '...   XXL' },
+        { value: 'male_3xl', text: this.$i18n.t('jongen') + '...   3XL' }
       ],
       project_types: [
         { value: 'scratch', text: 'Scratch' },
@@ -593,11 +592,12 @@ export default {
     }
   },
   computed: {
-    year_list: () => {
+    year_list: (app) => {
       const yearStart = 2002
       const yearEnd = 2014
+      debugger
       const yearList = [
-        { text: 'Kies een jaar/Choisissez une année/Choose a year', value: null }
+        { text: app.$i18n.t('year'), value: null } // 'Kies een jaar/Choisissez une année/Choose a year'
       ]
       for (let i = 0; i < yearEnd - yearStart; i++) {
         yearList.push({ text: yearStart + i, value: yearStart + i })
@@ -877,6 +877,7 @@ export default {
     "Selecteer wat je project allemaal doet, nodig heeft": "Select what your project does, needs",
     "Geef de code in die je van de projecteigenaar gekregen hebt": "Enter the code that you received from the project owner",
     "Je moet akkoord": "You must agree to the following question in order to register",
+    "Ik ben akkoord": "I agree with the terms and conditions",
     "Email adres:": "E-mail address",
     "Geboortejaar:": "Year of birth:",
     "Geboortemaand:": "Birth month:",
@@ -899,7 +900,26 @@ export default {
     "GeefVoornaam:": "Enter your first name",
     "GeefAchternaam:": "Enter your last name",
     "Geef je dojo, school": "Give your dojo, school, ..",
-    "GeefProjectnaam:": "Enter project name:"
+    "GeefProjectnaam:": "Enter project name:",
+    "januari": "January",
+    "februari": "February",
+    "maart": "March",
+    "april": "April",
+    "mei": "May",
+    "juni": "June",
+    "juli": "July",
+    "augustus": "August",
+    "september": "September",
+    "oktober": "October",
+    "november": "November",
+    "december": "December",
+    "Kiesmaand": "Select a month",
+    "Ik ben een": "I am a..",
+    "meisje": "Girl",
+    "jongen": "Boy",
+    "kiesmaat": "Choose a size",
+    "Ik schrijf me in": "I register",
+    "verwijder alles": "delete all"
   },
   "fr": {
     "title": "Enregistrement",
@@ -921,6 +941,7 @@ export default {
     "Selecteer wat je project allemaal doet, nodig heeft": "Sélectionnez ce que votre projet fait, a besoin",
     "Geef de code in die je van de projecteigenaar gekregen hebt": "Entrez le code que vous avez reçu du propriétaire du projet",
     "Je moet akkoord": "Vous devez accepter la question suivante pour vous inscrire",
+    "Ik ben akkoord": "J'accepte les termes et conditions",
     "Email adres:": "Adresse e-mail",
     "Geboortejaar:": "Année de naissance:",
     "Geboortemaand:": "Mois de naissance:",
@@ -943,7 +964,27 @@ export default {
     "GeefVoornaam:": "Entrez votre prénom",
     "GeefAchternaam:": "Entrez votre nom de famille",
     "Geef je dojo, school": "Donnez votre dojo, école, ..",
-    "GeefProjectnaam:": "Entrez le nom du projet"
+    "GeefProjectnaam:": "Entrez le nom du projet",
+    "januari": "janvier",
+    "februari": "février",
+    "maart": "mars",
+    "april": "avril",
+    "mei": "mai",
+    "juni": "juin",
+    "juli": "juillet",
+    "augustus": "août",
+    "september": "septembre",
+    "oktober": "octobre",
+    "november": "novembre",
+    "december": "décembre",
+    "Kiesmaand": "Sélectionnez un mois",
+    "Kiesjaar": "Sélectionnez une année",
+    "Ik ben een": "Je suis un(e)..",
+    "meisje": "Fille",
+    "jongen": "Garçon",
+    "kiesmaat": "Choisissez une taille",
+    "Ik schrijf me in": "Je m'inscris",
+    "verwijder alles": "tout supprimer"
   },
   "nl": {
     "title": "Registratie",
@@ -955,7 +996,7 @@ export default {
     "YESc": "Je mag mij contacteren wanneer ik kan inschrijven voor een volgende evenement",
     "NOc": "Bewaar mijn data niet en contacteer mij niet",
     "Informatie van je ouders/voogd":"Informatie van je ouders/voogd",
-    "Algemene vragen": "Algemeine vragen",
+    "Algemene vragen": "Algemene vragen",
     "Project": "Project",
     "eigenProject": "Ik heb mijn eigen project",
     "medeProject": "Ik werk mee aan een bestaand project",
@@ -965,6 +1006,7 @@ export default {
     "Selecteer wat je project allemaal doet, nodig heeft": "Selecteer wat je project allemaal doet, nodig heeft",
     "Geef de code in die je van de projecteigenaar gekregen hebt": "Geef de code in die je van de projecteigenaar gekregen hebt",
     "Je moet akkoord": "Je moet akkoord gaan met volgende vraag om je te kunnen inschrijven",
+    "Ik ben akkoord": "Ik ben akkord met de algemene voorwarden",
     "Email adres:": "Email adres",
     "Geboortejaar:": "Geboortejaar:",
     "Geboortemaand:": "Geboortemaand:",
@@ -988,7 +1030,26 @@ export default {
     "GeefVoornaam:": "Geef je voornaam in:",
     "Geef je dojo, school": "Geef je dojo, school, ..",
     "GeefProjectnaam:": "Geef project naam:",
-    "januari": "januari"
+    "januari": "januari",
+    "februari": "februari",
+    "maart": "maart",
+    "april": "april",
+    "mei": "mei",
+    "juni": "juni",
+    "juli": "juli",
+    "augustus": "augustus",
+    "september": "september",
+    "oktober": "october",
+    "november": "november",
+    "december": "december",
+    "Kiesmaand": "Kies een maand",
+    "Kiesjaar": "Kies een jaar",
+    "Ik ben een": "Ik ben een..",
+    "meisje": "Meisje",
+    "jongen": "Jongen",
+    "kiesmaat": "Kies een maat",
+    "Ik schrijf me in": "Ik schrijf me in",
+    "verwijder alles": "VERWIJDER ALLES"
   }
 }
 </i18n>

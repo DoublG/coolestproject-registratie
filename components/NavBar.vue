@@ -19,7 +19,7 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
             <b-nav-item :to="localePath('registration')">
-              Registratie
+              {{ $t('Registratie') }}
             </b-nav-item>
           </b-navbar-nav>
           <b-navbar-nav class="ml-auto">
@@ -44,3 +44,18 @@ export default {
   methods: {}
 }
 </script>
+<style></style>
+
+<i18n>
+{
+  "en": {
+      "Registratie": "Registration"
+      },
+  "fr": {
+    "Registratie": "Inscriptione"
+     },
+  "nl": {
+    "Registratie": "Registratie"
+  }
+}
+</i18n>
