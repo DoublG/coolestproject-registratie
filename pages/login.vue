@@ -10,13 +10,13 @@
         label="Email adres"
         label-for="input-1"
       >
-      <b-form-input
-        id="input-1"
-        v-model="email"
-        type="email"
-        placeholder="email adres"
-        aria-describedby="input-1-live-feedback"
-      />
+        <b-form-input
+          id="input-1"
+          v-model="email"
+          type="email"
+          placeholder="email adres"
+          aria-describedby="input-1-live-feedback"
+        />
       </b-form-group>
       <b-form-group>
         <b-button

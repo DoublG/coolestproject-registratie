@@ -512,7 +512,7 @@ export default {
       own_project: 'own',
       show: false,
       variant: 'success',
-      message: 'De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website',
+      message: this.$i18n.t('successReg'),
       month_list: [
         { text: this.$i18n.t('Kiesmaand'), value: null },
         { value: 0, text: this.$i18n.t('januari') },
@@ -575,27 +575,10 @@ export default {
       ]
     }
   },
-  asyncData ({ store }) {
-    let date = store.state.registration.birthmonth
-    let year = null
-    let month = null
-    if (date instanceof Date === false && date !== null) {
-      date = new Date(date)
-    }
-    if (date !== null) {
-      year = date.getFullYear()
-      month = date.getMonth()
-    }
-    return {
-      year,
-      month
-    }
-  },
   computed: {
     year_list: (app) => {
       const yearStart = 2002
       const yearEnd = 2014
-      debugger
       const yearList = [
         { text: app.$i18n.t('year'), value: null } // 'Kies een jaar/Choisissez une année/Choose a year'
       ]
@@ -789,31 +772,6 @@ export default {
       }
     }
   },
-  methods: {
-    async onSubmit (evt) {
-      try {
-        // pass language to store
-        this.$store.dispatch('registration/language', this.$i18n.locale)
-        await this.$axios.$post('/api/register', this.$store.getters['registration/sanitizedJSON'])
-        // this.onReset(evt)
-        this.variant = 'success'
-        this.message = 'De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website'
-        this.show = true
-      } catch (error) {
-        this.variant = 'danger'
-        this.message = 'error, later komt hier meer info in'
-        this.show = true
-      }
-      window.scrollTo(0, 0)
-    },
-    onReset (evt) {
-      this.$store.dispatch('registration/clear_form')
-      this.year = this.month = null // clean temp fields
-      requestAnimationFrame(() => {
-        this.$refs.observer.reset()
-      })
-    }
-  },
   watch: {
     year (val) {
       let date = this.$store.state.registration.birthmonth
@@ -849,6 +807,31 @@ export default {
         this.project_type = null
         this.project_lang = null
       }
+    }
+  },
+  methods: {
+    async onSubmit (evt) {
+      try {
+        // pass language to store
+        this.$store.dispatch('registration/language', this.$i18n.locale)
+        await this.$axios.$post('/api/register', this.$store.getters['registration/sanitizedJSON'])
+        // this.onReset(evt)
+        this.variant = 'success'
+        this.message = this.$i18n.t('successReg')
+        this.show = true
+      } catch (error) {
+        this.variant = 'danger'
+        this.message = 'error, later komt hier meer info in'
+        this.show = true
+      }
+      window.scrollTo(0, 0)
+    },
+    onReset (evt) {
+      this.$store.dispatch('registration/clear_form')
+      this.year = this.month = null // clean temp fields
+      requestAnimationFrame(() => {
+        this.$refs.observer.reset()
+      })
     }
   }
 }
@@ -919,7 +902,8 @@ export default {
     "jongen": "Boy",
     "kiesmaat": "Choose a size",
     "Ik schrijf me in": "I register",
-    "verwijder alles": "delete all"
+    "verwijder alles": "delete all",
+    "successReg": "Registration is successful, you will receive an email shortly with which you can log in to our website"
   },
   "fr": {
     "title": "Enregistrement",
@@ -984,7 +968,8 @@ export default {
     "jongen": "Garçon",
     "kiesmaat": "Choisissez une taille",
     "Ik schrijf me in": "Je m'inscris",
-    "verwijder alles": "tout supprimer"
+    "verwijder alles": "tout supprimer",
+    "successReg": "L'inscription est réussie, vous recevrez sous peu un e-mail avec lequel vous pourrez vous connecter à notre site Web"
   },
   "nl": {
     "title": "Registratie",
@@ -1049,7 +1034,8 @@ export default {
     "jongen": "Jongen",
     "kiesmaat": "Kies een maat",
     "Ik schrijf me in": "Ik schrijf me in",
-    "verwijder alles": "VERWIJDER ALLES"
+    "verwijder alles": "VERWIJDER ALLES",
+    "successReg": "De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website"
   }
 }
 </i18n>
