@@ -21,18 +21,18 @@
             <b-nav-item :to="localePath('registration')">
               {{ $t('Registratie') }}
             </b-nav-item>
-            <b-nav-item :to="localePath('login')" v-if="!loggedIn">
+            <b-nav-item v-if="!loggedIn" :to="localePath('login')">
               <font-awesome-icon :icon="['fas', 'unlock']" /> Login
             </b-nav-item>
-            <b-nav-item :to="localePath('project')" v-if="loggedIn">
+            <b-nav-item v-if="loggedIn" :to="localePath('project')">
               <font-awesome-icon :icon="['fas', 'project-diagram']" /> Project
             </b-nav-item>
-            <b-nav-item :to="localePath('user')" v-if="loggedIn">
+            <b-nav-item v-if="loggedIn" :to="localePath('user')">
               <font-awesome-icon :icon="['fas', 'user']" /> User
             </b-nav-item>
           </b-navbar-nav>
           <b-navbar-nav class="ml-auto">
-            <b-nav-item :to="localePath('logout')" v-if="loggedIn">
+            <b-nav-item v-if="loggedIn" :to="localePath('logout')">
               <font-awesome-icon :icon="['fas', 'lock']" /> Logout
             </b-nav-item>
             <b-nav-item v-for="(lang, i) in langs" :key="`Lang${i}`" :to="switchLocalePath(lang)">
@@ -52,10 +52,10 @@ export default {
       langs: ['nl', 'fr', 'en']
     }
   },
+  computed: {},
   mounted () {
     this.loggedIn = new Date(this.$store.state.auth.expires) > new Date()
   },
-  computed: {},
   methods: {}
 }
 </script>
