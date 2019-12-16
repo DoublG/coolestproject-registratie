@@ -18,8 +18,8 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item :to="localePath('registration')" v-if="!loggedIn">
-              Registratie
+            <b-nav-item :to="localePath('registration')">
+              {{ $t('Registratie') }}
             </b-nav-item>
             <b-nav-item :to="localePath('login')" v-if="!loggedIn">
               <font-awesome-icon :icon="['fas', 'unlock']" /> Login
@@ -59,3 +59,18 @@ export default {
   methods: {}
 }
 </script>
+<style></style>
+
+<i18n>
+{
+  "en": {
+      "Registratie": "Registration"
+      },
+  "fr": {
+    "Registratie": "Inscriptione"
+     },
+  "nl": {
+    "Registratie": "Registratie"
+  }
+}
+</i18n>

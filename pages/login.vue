@@ -24,7 +24,7 @@
           variant="info"
           class="button-hero"
         >
-          <font-awesome-icon :icon="['fas', 'envelope']" /> Stuur me een logincode
+          <font-awesome-icon :icon="['fas', 'envelope']" /> {{ $t('Stuur me een logincode') }}
         </b-button>
       </b-form-group>
     </b-col>
@@ -81,15 +81,18 @@ export default {
 {
   "en": {
     "title": "Login",
-    "message": "Computer says no"
+    "message": "Computer says no",
+    "Stuur me een logincode": "Please send me the login code"
   },
   "fr": {
     "title": "Login",
-    "message": "Er is iets missgelopen"
+    "message": "Er is iets missgelopen",
+    "Stuur me een logincode": "Envoyez-moi un code de connexione"
   },
   "nl": {
     "title": "Login",
-    "message": "Er is iets missgelopen"
+    "message": "Er is iets missgelopen",
+    "Stuur me een logincode": "Stuur me een logincode"
   }
 }
 </i18n>
