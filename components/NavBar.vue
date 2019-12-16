@@ -18,17 +18,23 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item :to="localePath('registration')">
+            <b-nav-item :to="localePath('registration')" v-if="!loggedIn">
               Registratie
             </b-nav-item>
-            <b-nav-item :to="localePath('user')" v-if="loggedIn">
-              User
+            <b-nav-item :to="localePath('login')" v-if="!loggedIn">
+              <font-awesome-icon :icon="['fas', 'unlock']" /> Login
             </b-nav-item>
             <b-nav-item :to="localePath('project')" v-if="loggedIn">
-              Project
+              <font-awesome-icon :icon="['fas', 'project-diagram']" /> Project
+            </b-nav-item>
+            <b-nav-item :to="localePath('user')" v-if="loggedIn">
+              <font-awesome-icon :icon="['fas', 'user']" /> User
             </b-nav-item>
           </b-navbar-nav>
           <b-navbar-nav class="ml-auto">
+            <b-nav-item :to="localePath('logout')" v-if="loggedIn">
+              <font-awesome-icon :icon="['fas', 'lock']" /> Logout
+            </b-nav-item>
             <b-nav-item v-for="(lang, i) in langs" :key="`Lang${i}`" :to="switchLocalePath(lang)">
               {{ lang }}
             </b-nav-item>
