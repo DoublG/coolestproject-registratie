@@ -575,6 +575,7 @@ export default {
       ]
     }
   },
+
   computed: {
     year_list: (app) => {
       const yearStart = 2002
@@ -807,6 +808,22 @@ export default {
         this.project_type = null
         this.project_lang = null
       }
+    }
+  },
+  asyncData ({ store }) {
+    let date = store.state.registration.birthmonth
+    let year = null
+    let month = null
+    if (date instanceof Date === false && date !== null) {
+      date = new Date(date)
+    }
+    if (date !== null) {
+      year = date.getFullYear()
+      month = date.getMonth()
+    }
+    return {
+      year,
+      month
     }
   },
   methods: {
