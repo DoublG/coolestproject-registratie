@@ -18,23 +18,26 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item :to="localePath('registration')">
+            <b-nav-item :to="localePath('registration')" v-if="!isLoggedIn">
               {{ $t('Registratie') }}
             </b-nav-item>
-            <b-nav-item v-if="!loggedIn" :to="localePath('login')">
+            <b-nav-item :to="localePath('login')" v-if="!isLoggedIn">
               <font-awesome-icon :icon="['fas', 'unlock']" /> Login
             </b-nav-item>
-            <b-nav-item v-if="loggedIn" :to="localePath('project')">
+            <b-nav-item :to="localePath('project')" v-if="isLoggedIn">
               <font-awesome-icon :icon="['fas', 'project-diagram']" /> Project
             </b-nav-item>
-            <b-nav-item v-if="loggedIn" :to="localePath('user')">
+            <b-nav-item :to="localePath('user')" v-if="isLoggedIn">
               <font-awesome-icon :icon="['fas', 'user']" /> User
             </b-nav-item>
           </b-navbar-nav>
           <b-navbar-nav class="ml-auto">
-            <b-nav-item v-if="loggedIn" :to="localePath('logout')">
+            <b-nav-item :to="localePath('logout')" v-if="isLoggedIn" @click="logout">
               <font-awesome-icon :icon="['fas', 'lock']" /> Logout
             </b-nav-item>
+            <b-nav-form>
+              <font-awesome-icon :icon="['fas', 'globe-europe']" />
+            </b-nav-form>
             <b-nav-item v-for="(lang, i) in langs" :key="`Lang${i}`" :to="switchLocalePath(lang)">
               {{ lang }}
             </b-nav-item>
@@ -45,6 +48,8 @@
   </div>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   data () {
     return {
@@ -52,11 +57,17 @@ export default {
       langs: ['nl', 'fr', 'en']
     }
   },
-  computed: {},
-  mounted () {
-    this.loggedIn = new Date(this.$store.state.auth.expires) > new Date()
+  mounted () {},
+  computed: {
+    ...mapGetters('auth', [
+      'isLoggedIn'
+    ])
   },
-  methods: {}
+  methods: {
+    ...mapActions('auth', [
+      'logout'
+    ])
+  }
 }
 </script>
 <style></style>

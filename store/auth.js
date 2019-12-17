@@ -18,5 +18,15 @@ export const actions = {
   },
   expires ({ commit }, expires) {
     commit('expires', expires)
+  },
+  logout ({ commit }) {
+    commit('expires', null)
+    commit('api_key', null)
+  }
+}
+
+export const getters = {
+  isLoggedIn: (state) => {
+    return new Date(state.expires) > new Date()
   }
 }
