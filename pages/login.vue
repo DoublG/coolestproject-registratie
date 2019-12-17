@@ -34,6 +34,7 @@
 import axios from 'axios'
 
 export default {
+  middleware: 'notAuthenticated',
   components: {
   },
   data () {

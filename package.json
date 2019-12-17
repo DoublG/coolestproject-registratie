@@ -6,6 +6,7 @@
   "private": true,
   "license": "MIT License",
   "scripts": {
+    "prestart": "npm install",
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
     "dev2": "cross-env NODE_ENV=development NUXT_HOST=0.0.0.0 nodemon server/index.js --watch server",
     "build": "nuxt build",

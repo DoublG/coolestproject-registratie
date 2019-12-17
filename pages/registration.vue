@@ -495,6 +495,7 @@ import differenceInCalendarYears from 'date-fns/difference_in_calendar_years'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 
 export default {
+  middleware: 'notAuthenticated',
   components: {
     ValidationObserver,
     ValidationProvider
