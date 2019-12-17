@@ -21,6 +21,7 @@
             <b-nav-item :to="localePath('registration')" v-if="!isLoggedIn">
               {{ $t('Registratie') }}
             </b-nav-item>
+<<<<<<< HEAD
             <b-nav-item :to="localePath('login')" v-if="!isLoggedIn">
               <font-awesome-icon :icon="['fas', 'unlock']" /> Login
             </b-nav-item>
@@ -28,11 +29,24 @@
               <font-awesome-icon :icon="['fas', 'project-diagram']" /> Project
             </b-nav-item>
             <b-nav-item :to="localePath('user')" v-if="isLoggedIn">
+=======
+            <b-nav-item v-if="!loggedIn" :to="localePath('login')">
+              <font-awesome-icon :icon="['fas', 'unlock']" /> Login
+            </b-nav-item>
+            <b-nav-item v-if="loggedIn" :to="localePath('project')">
+              <font-awesome-icon :icon="['fas', 'project-diagram']" /> Project
+            </b-nav-item>
+            <b-nav-item v-if="loggedIn" :to="localePath('user')">
+>>>>>>> ce691dcf6045e6bf14d39c9d4f6e3425445abce8
               <font-awesome-icon :icon="['fas', 'user']" /> User
             </b-nav-item>
           </b-navbar-nav>
           <b-navbar-nav class="ml-auto">
+<<<<<<< HEAD
             <b-nav-item :to="localePath('logout')" v-if="isLoggedIn" @click="logout">
+=======
+            <b-nav-item v-if="loggedIn" :to="localePath('logout')">
+>>>>>>> ce691dcf6045e6bf14d39c9d4f6e3425445abce8
               <font-awesome-icon :icon="['fas', 'lock']" /> Logout
             </b-nav-item>
             <b-nav-form>
@@ -57,6 +71,7 @@ export default {
       langs: ['nl', 'fr', 'en']
     }
   },
+<<<<<<< HEAD
   mounted () {},
   computed: {
     ...mapGetters('auth', [
@@ -68,6 +83,13 @@ export default {
       'logout'
     ])
   }
+=======
+  computed: {},
+  mounted () {
+    this.loggedIn = new Date(this.$store.state.auth.expires) > new Date()
+  },
+  methods: {}
+>>>>>>> ce691dcf6045e6bf14d39c9d4f6e3425445abce8
 }
 </script>
 <style></style>
