@@ -2,7 +2,7 @@
   <b-row>
     <b-col>
       <h1>{{ $t('title') }}</h1>
-      {{ lastname }} - {{ firstname }}
+      {{ lastname }} - {{ firstname }} - {{ email }}
     </b-col>
   </b-row>
 </template>
@@ -20,14 +20,14 @@ export default {
   computed: {
     ...mapState('user', [
       'lastname',
-      'firstname'
+      'firstname',
+      'email'
     ])
   },
   async asyncData ({ store, query, app, redirect, route }) {
     // load userdata & store in userstore
     const userData = await axios.get('/api/userinfo', { headers: { api_key: store.state.auth.api_key } })
-    store.dispatch('user/firstname', userData.data.firstname)
-    store.dispatch('user/lastname', userData.data.lastname)
+    store.dispatch('user/updateUser', userData.data)
   }
 }
 </script>

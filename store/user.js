@@ -1,6 +1,7 @@
 export const state = {
   lastname: '',
-  firstname: ''
+  firstname: '',
+  email: ''
 }
 export const mutations = {
   lastname (state, lastname) {
@@ -8,6 +9,9 @@ export const mutations = {
   },
   firstname (state, firstname) {
     state.firstname = firstname
+  },
+  email (state, email) {
+    state.email = email
   }
 }
 export const actions = {
@@ -16,5 +20,10 @@ export const actions = {
   },
   firstname ({ commit }, firstname) {
     commit('firstname', firstname)
+  },
+  updateUser ({ commit }, user) {
+    commit('firstname', user.firstname)
+    commit('lastname', user.lastname)
+    commit('email', user.email)
   }
 }
