@@ -18,21 +18,21 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item :to="localePath('registration')" v-if="!isLoggedIn">
+            <b-nav-item v-if="!isLoggedIn" :to="localePath('registration')">
               {{ $t('Registratie') }}
             </b-nav-item>
-            <b-nav-item :to="localePath('login')" v-if="!isLoggedIn">
+            <b-nav-item v-if="!isLoggedIn" :to="localePath('login')">
               <font-awesome-icon :icon="['fas', 'unlock']" /> Login
             </b-nav-item>
-            <b-nav-item :to="localePath('project')" v-if="isLoggedIn">
+            <b-nav-item v-if="isLoggedIn" :to="localePath('project')">
               <font-awesome-icon :icon="['fas', 'project-diagram']" /> Project
             </b-nav-item>
-            <b-nav-item :to="localePath('user')" v-if="isLoggedIn">
+            <b-nav-item v-if="isLoggedIn" :to="localePath('user')">
               <font-awesome-icon :icon="['fas', 'user']" /> User
             </b-nav-item>
           </b-navbar-nav>
           <b-navbar-nav class="ml-auto">
-            <b-nav-item :to="localePath('logout')" v-if="isLoggedIn" @click="logout">
+            <b-nav-item v-if="isLoggedIn" :to="localePath('logout')" @click="logout">
               <font-awesome-icon :icon="['fas', 'lock']" /> Logout
             </b-nav-item>
             <b-nav-form>
@@ -57,12 +57,12 @@ export default {
       langs: ['nl', 'fr', 'en']
     }
   },
-  mounted () {},
   computed: {
     ...mapGetters('auth', [
       'isLoggedIn'
     ])
   },
+  mounted () {},
   methods: {
     ...mapActions('auth', [
       'logout'

@@ -375,25 +375,24 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" rules="required" name="ProjectQuestions">
+            <ValidationProvider v-slot="{ valid, errors }" name="Project_Type">
               <b-form-group
-                id="input-group-19"
-                :label="$t('Projecttype:')"
-                label-for="input-19"
-                :description="$t('Selecteer wat je project allemaal doet, nodig heeft')"
+                id="input-group-166"
+                :label="$t('Project_Type')"
+                label-for="input-166"
               >
-                <b-form-checkbox-group
-                  id="checkboxes-19"
-                  v-model="project_type"
-                  :options="project_types"
+                <b-form-textarea
+                  id="input-166"
+                  v-model="Project_Type"
                   :state="errors[0] ? false : (valid ? true : null)"
-                  aria-describedby="input-19-live-feedback"
+                  aria-describedby="input-166-live-feedback"
                 />
-                <b-form-invalid-feedback id="input-19-live-feedback">
+                <b-form-invalid-feedback id="input-16-live-feedback">
                   {{ errors[0] }}
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
+
             <ValidationProvider v-slot="{ valid, errors }" rules="required|max:100" name="ProjectName">
               <b-form-group
                 id="input-group-20"
@@ -520,7 +519,8 @@ export default {
         { value: 1, text: this.$i18n.t('februari') },
         { value: 2, text: this.$i18n.t('maart') },
         { value: 3, text: this.$i18n.t('april') },
-        { value: 4, text: this.$i18n.t('juni') },
+        { value: 4, text: this.$i18n.t('mei') },
+        { value: 5, text: this.$i18n.t('juni') },
         { value: 6, text: this.$i18n.t('juli') },
         { value: 7, text: this.$i18n.t('augustus') },
         { value: 8, text: this.$i18n.t('september') },
@@ -548,7 +548,7 @@ export default {
         { value: 'contact', text: 'Je mag me contacteren voor de volgende events' }
       ],
       mandatory_approvals_list: [
-        { value: 'ok', text: this.$i18n.t('Ik ben akkoord') }
+        { value: 'ok', text: this.$i18n.t('Ikbenakkoord') }
       ],
       shirtsize: [
         { text: this.$i18n.t('kiesmaat'), value: null },
@@ -566,13 +566,6 @@ export default {
         { value: 'male_xl', text: this.$i18n.t('jongen') + '...   XL' },
         { value: 'male_xxl', text: this.$i18n.t('jongen') + '...   XXL' },
         { value: 'male_3xl', text: this.$i18n.t('jongen') + '...   3XL' }
-      ],
-      project_types: [
-        { value: 'scratch', text: 'Scratch' },
-        { value: 'hardware', text: 'Hardware' },
-        { value: 'software', text: 'Software' },
-        { value: 'wifi', text: 'Wifi' },
-        { value: 'kabel', text: 'Kabelnetwerk' }
       ]
     }
   },
@@ -833,7 +826,7 @@ export default {
         // pass language to store
         this.$store.dispatch('registration/language', this.$i18n.locale)
         await this.$axios.$post('/api/register', this.$store.getters['registration/sanitizedJSON'])
-        // this.onReset(evt)
+        this.onReset(evt)
         this.variant = 'success'
         this.message = this.$i18n.t('successReg')
         this.show = true
@@ -861,25 +854,24 @@ export default {
   "en": {
     "title": "Registration",
     "personal_info": "Personal information",
-    "no_photo": "I allow to take pictures of me",
-    "no_contact": "I allow to contact me for future events",
+    "no_photo": "CoderDojo is fun so we like sharing that with the world. During our activities, we take pictures that may appear on social media afterwards so it could be the case that you get photographed or filmed during one of these CoderDojo activities. We don't use this footage on flyers or campaign without explicitly asking for permission. If you rather don't want your picture to be used, you can mention this at your registration.",
+    "no_contact": "You can contact me for future events",
     "YESp": "Yes",
     "NOp": "No",
     "YESc": "Yes",
     "NOc": "No",
-    "Informatie van je ouders/voogd": "Information from your parents / guardian",
+    "Informatie van je ouders/voogd": "Your parents / guardian info",
     "Algemene vragen": "General Questions",
     "Project": "Project",
     "eigenProject": "I have my own project",
     "medeProject": "I participate in an existing project",
     "taalJury": "In which language do you want to explain the project to the jury?",
-    "We delen dit met niemand": "We do not share this with anyone",
-    "Waar kunnen we jou bereiken in geval van nood": "Where can we reach you in an emergency?",
+    "We delen dit met niemand": "We don’t share this with anyone",
+    "Waar kunnen we jou bereiken in geval van nood": "Where can we reach you in case of an emergency?",
     "Selecteer wat je project allemaal doet, nodig heeft": "Select what your project does, needs",
     "Geef de code in die je van de projecteigenaar gekregen hebt": "Enter the code that you received from the project owner",
     "Je moet akkoord": "You must agree to the following question in order to register",
-    "Ik ben akkoord": "I agree with the terms and conditions",
-    "Email adres:": "E-mail address",
+    "E-mail adres:": "E-mail address",
     "Geboortejaar:": "Year of birth:",
     "Geboortemaand:": "Birth month:",
     "Voornaam:": "First Name:",
@@ -888,9 +880,9 @@ export default {
     "T-shirt maat:": "T-shirt size:",
     "Postcode:": "Postal Code:",
     "mobiel nummer (+32):": "mobile number (+32):",
-    "Van waar ken je ons:": "Where do you know us:",
+    "Van waar ken je ons:": "Where do you know us from:",
     "Zijn er aandoeningen": "Are there any conditions or allergies that we should take into account:",
-    "Email adres ouders/voogd:": "Email address parents / guardian:",
+    "E-mail adres ouders/voogd:": "E-mail address parents / guardian:",
     "mobiel nummer ouders/voogd": "mobile number parents / guardian",
     "Is er nog extra informatie": "Is there any additional information that we must take into account:",
     "Taal:": "Language:",
@@ -921,13 +913,15 @@ export default {
     "kiesmaat": "Choose a size",
     "Ik schrijf me in": "I register",
     "verwijder alles": "delete all",
-    "successReg": "Registration is successful, you will receive an email shortly with which you can log in to our website"
+    "successReg": "Registration is successful, you will receive an email shortly with which you can log in to our website",
+    "Ikbenakkoord": "I agree with the general conditions",
+    "Project_Type": "Wat zit er in jouw project aan hardwere, software, netwerk op wifi of op kabel,...."
   },
   "fr": {
     "title": "Enregistrement",
     "personal_info": "Informations personnelles",
-    "no_photo": "Je permets de prendre des photos",
-    "no_contact": "Je permets de me contacter pour de futurs événements",
+    "no_photo": "Nous aimons promotionner notre action à travers les réseaux sociaux et pour ce faire nous prenons des photos pendant nos événements.Sachez que tu pourrait être photographié ou filmé lors de sa participation à notre evenement. Ces photos sont ensuite postées et partagées sur nos réseaux sociaux. Celles-ci ne sont pas imprimées, et ne figurent pas sur nos brochures. Si toutes fois, quelques photos devaient servir à des fins de campagnes promotionnelles plus étendues, nous vous demanderons bien sûr votre accord avant diffusion. Si vous ne tenez pas à ce que les photos de vous soient utilisées, nous vous remercions de nous en faire part lors de votre enregistrement.",
+    "no_contact": "Nous respectons vos données personnelles ! Pour plus d’infos, consultez notre clause de confidentialité sur notre site web.Pouvons-nous vous informer des événements Coolest Projects ultérieurs par e-mail?",
     "YESp": "oui",
     "NOp": "non",
     "YESc": "oui",
@@ -943,7 +937,6 @@ export default {
     "Selecteer wat je project allemaal doet, nodig heeft": "Sélectionnez ce que votre projet fait, a besoin",
     "Geef de code in die je van de projecteigenaar gekregen hebt": "Entrez le code que vous avez reçu du propriétaire du projet",
     "Je moet akkoord": "Vous devez accepter la question suivante pour vous inscrire",
-    "Ik ben akkoord": "J'accepte les termes et conditions",
     "Email adres:": "Adresse e-mail",
     "Geboortejaar:": "Année de naissance:",
     "Geboortemaand:": "Mois de naissance:",
@@ -953,7 +946,7 @@ export default {
     "T-shirt maat:": "T-shirt taille:",
     "Postcode:": "Code postal:",
     "mobiel nummer (+32):": "numéro de portable (+32):",
-    "Van waar ken je ons:": "Où nous connaissez-vous?:",
+    "Van waar ken je ons:": "d’ Où vous connaissez nous?:",
     "Zijn er aandoeningen": "Y a-t-il des conditions ou des allergies dont nous devons tenir compte:",
     "Email adres ouders/voogd:": "Adresse e-mail parents / tuteur:",
     "mobiel nummer ouders/voogd": "parents / tuteurs du numéro de portable",
@@ -987,12 +980,14 @@ export default {
     "kiesmaat": "Choisissez une taille",
     "Ik schrijf me in": "Je m'inscris",
     "verwijder alles": "tout supprimer",
-    "successReg": "L'inscription est réussie, vous recevrez sous peu un e-mail avec lequel vous pourrez vous connecter à notre site Web"
+    "successReg": "L'inscription est réussie, vous recevrez sous peu un e-mail avec lequel vous pourrez vous connecter à notre site Web",
+    "Ikbenakkoord": "Vous devez accepter la question suivante pour vous inscrire",
+    "Project_Type": "Wat zit er in jouw project aan hardwere, software, netwerk op wifi of op kabel,...."
   },
   "nl": {
     "title": "Registratie",
     "personal_info": "Persoonlijke informatie",
-    "no_photo": "CoderDojo is leuk en daarom tonen wij graag waar we mee bezig zijn. Het is mogelijk dat de deelnemer tijdens een sessie gefotografeerd of gefilmd wordt.",
+    "no_photo": "CoderDojo is leuk en daarom tonen wij graag waar we mee bezig zijn. We nemen tijdens onze activiteiten foto’s van onze deelnemers en begeleiders die we daarna op sociale media plaatsen. Het kan gebeuren dat je gefotografeerd of gefilmd wordt tijdens ons event. Wij gebruiken dit beeldmateriaal niet op flyers of voor uitvoerige campagnes zonder hiervoor nog eens expliciet toestemming te vragen. Indien je liever geen foto’s van je gebruikt ziet worden, kan je dat tijdens het registreren aangeven.",
     "no_contact": "We respecteren je data. Bekijk daarom zeker even ons privacy statement op de website. Mogen we jou via mail op de hoogte brengen over volgende Coolest Projects evenementen?",
     "YESp": "Dat is geen probleem",
     "NOp": "Gelieve geen foto’s en filmpjes te gebruiken waarop de deelnemer herkenbaar is",
@@ -1009,8 +1004,7 @@ export default {
     "Selecteer wat je project allemaal doet, nodig heeft": "Selecteer wat je project allemaal doet, nodig heeft",
     "Geef de code in die je van de projecteigenaar gekregen hebt": "Geef de code in die je van de projecteigenaar gekregen hebt",
     "Je moet akkoord": "Je moet akkoord gaan met volgende vraag om je te kunnen inschrijven",
-    "Ik ben akkoord": "Ik ben akkord met de algemene voorwarden",
-    "Email adres:": "Email adres",
+    "Email adres:": "E-mail adres",
     "Geboortejaar:": "Geboortejaar:",
     "Geboortemaand:": "Geboortemaand:",
     "Voornaam:": "Voornaam:",
@@ -1021,7 +1015,7 @@ export default {
     "mobiel nummer (+32):": "mobiel nummer (+32):",
     "Van waar ken je ons:": "Van waar ken je ons:",
     "Zijn er aandoeningen": "Zijn er aandoeningen of allergieën waar we rekening mee moeten houden:",
-    "Email adres ouders/voogd:": "Email adres ouders/voogd:",
+    "Email adres ouders/voogd:": "E-mail adres ouders/voogd:",
     "mobiel nummer ouders/voogd": "mobiel nummer ouders/voogd",
     "Is er nog extra informatie": "Is er nog extra informatie waar we rekening mee moeten houden:",
     "Taal:": "Taal:",
@@ -1053,7 +1047,9 @@ export default {
     "kiesmaat": "Kies een maat",
     "Ik schrijf me in": "Ik schrijf me in",
     "verwijder alles": "VERWIJDER ALLES",
-    "successReg": "De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website"
+    "successReg": "De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website",
+    "Ikbenakkoord": "Ik ben akkoord met de algemene voorwarden",
+    "Project_Type": "Wat zit er in jouw project aan hardwere, software, netwerk via wifi of via kabel,...."
   }
 }
 </i18n>

@@ -1,9 +1,16 @@
 export const state = {
   lastname: '',
   firstname: '',
-  email: ''
+  email: '',
+  postalcode: '',
+  language: '',
+  birthmonth: '',
+  gsm: ''
 }
 export const mutations = {
+  language (state, language) {
+    state.language = language
+  },
   lastname (state, lastname) {
     state.lastname = lastname
   },
@@ -12,6 +19,15 @@ export const mutations = {
   },
   email (state, email) {
     state.email = email
+  },
+  postalcode (state, postalcode) {
+    state.postalcode = postalcode
+  },
+  birthmonth (state, birthmonth) {
+    state.birthmonth = birthmonth
+  },
+  gsm (state, gsm) {
+    state.gsm = gsm
   }
 }
 export const actions = {
@@ -25,5 +41,9 @@ export const actions = {
     commit('firstname', user.firstname)
     commit('lastname', user.lastname)
     commit('email', user.email)
+    commit('postalcode', user.postalcode)
+    commit('language', user.language)
+    commit('gsm', user.gsm)
+    commit('birthmonth', user.birthmonth)
   }
 }
