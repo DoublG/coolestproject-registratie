@@ -21,7 +21,7 @@ export default {
     ...mapState('user', [
       'lastname',
       'firstname',
-      'email'
+      'email',
     ])
   },
   async asyncData ({ store, query, app, redirect, route }) {
