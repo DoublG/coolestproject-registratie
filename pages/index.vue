@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-jumbotron class="bg-info"></b-jumbotron>
+    <b-jumbotron class="bg-info" />
     <b-container>
       <h1>Coolest projects Belgium</h1>
       <p>

@@ -16,7 +16,7 @@ const originalState = () => {
     extra: null,
     project_name: null,
     project_descr: null,
-    project_type: [],
+    project_type: null,
     project_code: null,
     project_lang: 'nl',
     gsm: null,

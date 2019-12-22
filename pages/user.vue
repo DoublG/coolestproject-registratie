@@ -3,6 +3,7 @@
     <b-col>
       <h1>{{ $t('title') }}</h1>
       {{ lastname }} - {{ firstname }} - {{ email }}
+      <p>postalcode: {{ postalcode }} language: {{ language }} gsm: {{ gsm }} birthmonth: {{ birthmonth }} </p>
     </b-col>
   </b-row>
 </template>
@@ -19,9 +20,13 @@ export default {
   },
   computed: {
     ...mapState('user', [
+      'language',
       'lastname',
       'firstname',
       'email',
+      'postalcode',
+      'birthmonth',
+      'gsm'
     ])
   },
   async asyncData ({ store, query, app, redirect, route }) {

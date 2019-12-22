@@ -12,9 +12,13 @@ export const state = {
   postalcode: '',
   extra: '',
   firstname: '',
-  email: ''
+  email: '',
+  language: ''
 }
 export const mutations = {
+  language (state, language) {
+    state.language = language
+  },
   lastname (state, lastname) {
     state.lastname = lastname
   },
