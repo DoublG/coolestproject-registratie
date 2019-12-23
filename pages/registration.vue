@@ -106,6 +106,17 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
+          <div>
+            <b-button
+              class="button-sm"
+              pill
+              variant="info"
+              href="https://www.kindermaten.com/pages/Maattabel.html/"
+              target="_blank"
+            >
+              INFO
+            </b-button>
+          </div>
           <ValidationProvider v-slot="{ valid, errors }" rules="required" name="T-shirtSize">
             <b-form-group
               id="input-group-9"
@@ -143,7 +154,7 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, regex: /^((\+|00)32\s?|0)4(60|[789]\d)(\s?\d{2}){3}$/ }" name="MobileNumber">
+          <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, regex: /^((\+|00)32\s?|0)([1-9][0-9]\d{6})\d?$/ }" name="MobileNumber">
             <b-form-group
               id="input-group-2"
               :label="$t('mobiel nummer (+32):')"
@@ -256,7 +267,7 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, regex: /^((\+|00)32\s?|0)4(60|[789]\d)(\s?\d{2}){3}$/ }" name="Phone">
+            <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, regex: /^((\+|00)32\s?|0)([1-9][0-9]\d{6})\d?$/ }" name="Phone">
               <b-form-group
                 id="input-group-14"
                 :label="$t('mobiel nummer ouders/voogd')"
@@ -375,7 +386,7 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" name="Project_Type">
+            <ValidationProvider v-slot="{ valid, errors }" name="ProjectType">
               <b-form-group
                 id="input-group-166"
                 :label="$t('Project_Type')"
@@ -383,16 +394,15 @@
               >
                 <b-form-textarea
                   id="input-166"
-                  v-model="Project_Type"
+                  v-model="project_type"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-166-live-feedback"
                 />
-                <b-form-invalid-feedback id="input-16-live-feedback">
+                <b-form-invalid-feedback id="input-166-live-feedback">
                   {{ errors[0] }}
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-
             <ValidationProvider v-slot="{ valid, errors }" rules="required|max:100" name="ProjectName">
               <b-form-group
                 id="input-group-20"
@@ -553,19 +563,39 @@ export default {
       shirtsize: [
         { text: this.$i18n.t('kiesmaat'), value: null },
         // Meisje/Fille/Girl
-        { value: 'female_small', text: this.$i18n.t('meisje') + ' ...S' },
-        { value: 'female_medium', text: this.$i18n.t('meisje') + '... M' },
-        { value: 'female_large', text: this.$i18n.t('meisje') + '... L' },
-        { value: 'female_xl', text: this.$i18n.t('meisje') + '... XL' },
-        { value: 'female_xxl', text: this.$i18n.t('meisje') + '... XXL' },
-        { value: 'female_3xl', text: this.$i18n.t('meisje') + '... 3XL' },
+        { value: 'female_M116', text: this.$i18n.t('meisje') + ' M116' },
+        { value: 'female_M122', text: this.$i18n.t('meisje') + ' M122' },
+        { value: 'female_M128', text: this.$i18n.t('meisje') + ' M128' },
+        { value: 'female_M134', text: this.$i18n.t('meisje') + ' M134' },
+        { value: 'female_M140', text: this.$i18n.t('meisje') + ' M140' },
+        { value: 'female_M146', text: this.$i18n.t('meisje') + ' M146' },
+        { value: 'female_M152', text: this.$i18n.t('meisje') + ' M152' },
+        { value: 'female_M158', text: this.$i18n.t('meisje') + ' M158' },
+        { value: 'female_M164', text: this.$i18n.t('meisje') + ' M164' },
+        { value: 'female_M170', text: this.$i18n.t('meisje') + ' M170' },
+        { value: 'female_M176', text: this.$i18n.t('meisje') + ' M176' },
+        { value: 'female_medium', text: this.$i18n.t('meisje') + ' 94 62.. Medium' },
+        { value: 'female_large', text: this.$i18n.t('meisje') + ' 100 64.. Large' },
+        { value: 'female_xl', text: this.$i18n.t('meisje') + ' 106 66.. XL extra large' },
         // Jongen/Garçon/Boy
-        { value: 'male_small', text: this.$i18n.t('jongen') + '...  S' },
-        { value: 'male_medium', text: this.$i18n.t('jongen') + '...   M' },
-        { value: 'male_large', text: this.$i18n.t('jongen') + '...   L' },
-        { value: 'male_xl', text: this.$i18n.t('jongen') + '...   XL' },
-        { value: 'male_xxl', text: this.$i18n.t('jongen') + '...   XXL' },
-        { value: 'male_3xl', text: this.$i18n.t('jongen') + '...   3XL' }
+        { value: 'male_M116', text: this.$i18n.t('jongen') + ' M116' },
+        { value: 'male_M122', text: this.$i18n.t('jongen') + ' M122' },
+        { value: 'male_M128', text: this.$i18n.t('jongen') + ' M128' },
+        { value: 'male_M134', text: this.$i18n.t('jongen') + ' M134' },
+        { value: 'male_M140', text: this.$i18n.t('jongen') + ' M140' },
+        { value: 'male_M146', text: this.$i18n.t('jongen') + ' M146' },
+        { value: 'male_M152', text: this.$i18n.t('jongen') + ' M152' },
+        { value: 'male_M158', text: this.$i18n.t('jongen') + ' M158' },
+        { value: 'male_M164', text: this.$i18n.t('jongen') + ' M164' },
+        { value: 'male_M170', text: this.$i18n.t('jongen') + ' M170' },
+        { value: 'male_M176', text: this.$i18n.t('jongen') + ' M176' },
+        { value: 'male_Xsmall', text: this.$i18n.t('jongen') + ' 90 68.. XS' },
+        { value: 'male_small', text: this.$i18n.t('jongen') + ' 96 70..  S' },
+        { value: 'male_medium', text: this.$i18n.t('jongen') + ' 102 72..   M' },
+        { value: 'male_large', text: this.$i18n.t('jongen') + ' 108 74..   L' },
+        { value: 'male_xl', text: this.$i18n.t('jongen') + ' 114 76..   XL' },
+        { value: 'male_xxl', text: this.$i18n.t('jongen') + ' 120 78..   XXL' },
+        { value: 'male_3xl', text: this.$i18n.t('jongen') + ' 126 80..   3XL' }
       ]
     }
   },
@@ -915,7 +945,7 @@ export default {
     "verwijder alles": "delete all",
     "successReg": "Registration is successful, you will receive an email shortly with which you can log in to our website",
     "Ikbenakkoord": "I agree with the general conditions",
-    "Project_Type": "Wat zit er in jouw project aan hardwere, software, netwerk op wifi of op kabel,...."
+    "Project_Type": "What is in your project about hardware, software, network on WiFi or on cable,...."
   },
   "fr": {
     "title": "Enregistrement",
@@ -982,7 +1012,7 @@ export default {
     "verwijder alles": "tout supprimer",
     "successReg": "L'inscription est réussie, vous recevrez sous peu un e-mail avec lequel vous pourrez vous connecter à notre site Web",
     "Ikbenakkoord": "Vous devez accepter la question suivante pour vous inscrire",
-    "Project_Type": "Wat zit er in jouw project aan hardwere, software, netwerk op wifi of op kabel,...."
+    "Project_Type": "Quel est dans votre projet matériel, logiciel, réseau sur WiFi ou sur câble,...."
   },
   "nl": {
     "title": "Registratie",
