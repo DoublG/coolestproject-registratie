@@ -114,7 +114,8 @@ module.exports = {
     extend (config, ctx) {
     },
     transpile: [
-      'vee-validate/dist/rules'
+      'vee-validate/dist/rules',
+      'nuxt-vuex-localstorage'
     ]
   },
   i18n: {
