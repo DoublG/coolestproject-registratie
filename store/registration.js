@@ -1,3 +1,5 @@
+import differenceInCalendarYears from 'date-fns/difference_in_calendar_years'
+
 const originalState = () => {
   return {
     language: 'nl',
@@ -179,7 +181,7 @@ export const actions = {
 }
 
 export const getters = {
-  sanitizedJSON: (state) => {
+  sanitizedJSON: (state, getter, rootState) => {
     // We need to cleanup the JSON a bit
     // 1) We don't want to send null values
     // 2) the local store stores everything as a string so we need to fix that before sending
@@ -222,6 +224,12 @@ export const getters = {
     } else {
       delete sanitizedJSON.project_code
     }
+    // no guardian information needed so don't send
+    if (differenceInCalendarYears(rootState.startDateEvent, sanitizedJSON.birthmonth) > rootState.guardianAge) {
+      delete sanitizedJSON.gsm_guardian
+      delete sanitizedJSON.email_guardian
+    }
+
     return sanitizedJSON
   }
 }

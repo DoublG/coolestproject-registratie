@@ -64,7 +64,7 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Birthyear">
+          <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, between_dates: { month: month, min: minAgeDate, max: maxAgeDate } }" name="Birthyear">
             <b-form-group
               id="input-group-4"
               :label="$t('Geboortejaar:')"
@@ -76,7 +76,7 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Birthmonth">
+          <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, between_dates: { year: year, min: minAgeDate, max: maxAgeDate } }" name="Birthmonth">
             <b-form-group
               id="input-group-24"
               :label="$t('Geboortemaand:')"
@@ -498,7 +498,7 @@
   </b-row>
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import addYears from 'date-fns/add_years'
 import differenceInCalendarYears from 'date-fns/difference_in_calendar_years'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
@@ -602,12 +602,12 @@ export default {
 
   computed: {
     year_list: (app) => {
-      const yearStart = 2002
-      const yearEnd = 2014
+      const yearStart = app.beginYear.getFullYear()
+      const yearEnd = app.endYear.getFullYear()
       const yearList = [
-        { text: app.$i18n.t('year'), value: null } // 'Kies een jaar/Choisissez une année/Choose a year'
+        { text: app.$i18n.t('year'), value: null }
       ]
-      for (let i = 0; i < yearEnd - yearStart; i++) {
+      for (let i = 0; i <= yearEnd - yearStart; i++) {
         yearList.push({ text: yearStart + i, value: yearStart + i })
       }
       return yearList
@@ -627,6 +627,10 @@ export default {
     endYear: (state) => {
       return addYears(state.startDateEvent, state.minAge * -1)
     },
+    ...mapGetters([
+      'minAgeDate',
+      'maxAgeDate'
+    ]),
     ...mapState([
       'startDateEvent',
       'maxAge',
@@ -862,7 +866,7 @@ export default {
         this.show = true
       } catch (error) {
         this.variant = 'danger'
-        this.message = 'error, later komt hier meer info in'
+        this.message = this.$i18n.t('failedReg')
         this.show = true
       }
       window.scrollTo(0, 0)
@@ -882,6 +886,7 @@ export default {
 <i18n>
 {
   "en": {
+    "failedReg": "Registration failed, try again later",
     "title": "Registration",
     "personal_info": "Personal information",
     "no_photo": "CoderDojo is fun so we like sharing that with the world. During our activities, we take pictures that may appear on social media afterwards so it could be the case that you get photographed or filmed during one of these CoderDojo activities. We don't use this footage on flyers or campaign without explicitly asking for permission. If you rather don't want your picture to be used, you can mention this at your registration.",
@@ -948,6 +953,7 @@ export default {
     "Project_Type": "What is in your project about hardware, software, network on WiFi or on cable,...."
   },
   "fr": {
+    "failedReg": "L'enregistrement a échoué, réessayez plus tard",
     "title": "Enregistrement",
     "personal_info": "Informations personnelles",
     "no_photo": "Nous aimons promotionner notre action à travers les réseaux sociaux et pour ce faire nous prenons des photos pendant nos événements.Sachez que tu pourrait être photographié ou filmé lors de sa participation à notre evenement. Ces photos sont ensuite postées et partagées sur nos réseaux sociaux. Celles-ci ne sont pas imprimées, et ne figurent pas sur nos brochures. Si toutes fois, quelques photos devaient servir à des fins de campagnes promotionnelles plus étendues, nous vous demanderons bien sûr votre accord avant diffusion. Si vous ne tenez pas à ce que les photos de vous soient utilisées, nous vous remercions de nous en faire part lors de votre enregistrement.",
@@ -1015,6 +1021,7 @@ export default {
     "Project_Type": "Quel est dans votre projet matériel, logiciel, réseau sur WiFi ou sur câble,...."
   },
   "nl": {
+    "failedReg": "Registratie mislukt, probeer later nog eens opnieuw",
     "title": "Registratie",
     "personal_info": "Persoonlijke informatie",
     "no_photo": "CoderDojo is leuk en daarom tonen wij graag waar we mee bezig zijn. We nemen tijdens onze activiteiten foto’s van onze deelnemers en begeleiders die we daarna op sociale media plaatsen. Het kan gebeuren dat je gefotografeerd of gefilmd wordt tijdens ons event. Wij gebruiken dit beeldmateriaal niet op flyers of voor uitvoerige campagnes zonder hiervoor nog eens expliciet toestemming te vragen. Indien je liever geen foto’s van je gebruikt ziet worden, kan je dat tijdens het registreren aangeven.",

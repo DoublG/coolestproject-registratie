@@ -86,7 +86,7 @@ export default {
         redirect('./user')
       } catch (ex) {
         return {
-          message: app.i18n.t('message'),
+          message: app.$i18n.t('message'),
           variant: 'danger',
           show: true
         }
@@ -99,9 +99,12 @@ export default {
         await this.$axios.$post('/api/mailToken', {
           email: this.email
         })
+        this.variant = 'success'
+        this.message = this.$i18n.t('successMessage')
+        this.show = true
       } catch (error) {
         this.variant = 'danger'
-        this.message = error
+        this.message = this.$i18n.t('failureMessage')
         this.show = true
       }
     },
@@ -117,17 +120,23 @@ export default {
   "en": {
     "title": "Login",
     "message": "Computer says no",
-    "Stuur me een logincode": "Please send me the login code"
+    "Stuur me een logincode": "Please send me the login code",
+    "successMessage": "We've sent a logincode, please check your mailbox",
+    "failureMessage": "Something went wrong please try again"
   },
   "fr": {
     "title": "Login",
     "message": "Er is iets missgelopen",
-    "Stuur me een logincode": "Envoyez-moi un code de connexione"
+    "Stuur me een logincode": "Envoyez-moi un code de connexione",
+    "successMessage": "We hebben een code opgestuurd, check je mailbox",
+    "failureMessage": "Er is iets misgelopen, probeer later opnieuw"
   },
   "nl": {
     "title": "Login",
     "message": "Er is iets missgelopen",
-    "Stuur me een logincode": "Stuur me een logincode"
+    "Stuur me een logincode": "Stuur me een logincode",
+    "successMessage": "We hebben een code opgestuurd, controleer je mailbox",
+    "failureMessage": "Er is iets misgelopen, probeer later opnieuw"
   }
 }
 </i18n>

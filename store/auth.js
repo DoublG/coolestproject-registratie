@@ -1,7 +1,7 @@
-export const state = {
+export const state = () => ({
   api_key: '',
   expires: ''
-}
+})
 
 export const mutations = {
   api_key (state, apiKey) {
