@@ -86,7 +86,7 @@ export default {
         redirect('./user')
       } catch (ex) {
         return {
-          message: app.$i18n.t('message'),
+          message: ex,
           variant: 'danger',
           show: true
         }
