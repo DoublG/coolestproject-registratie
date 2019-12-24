@@ -86,5 +86,6 @@ export const actions = {
     commit('birthmonth', user.birthmonth)
     commit('postalcode', user.postalcode)
     commit('extra', user.extra)
+    commit('language', user.language)
   }
 }
