@@ -103,15 +103,8 @@ export default {
   methods: {
     async onSubmit (evt) {
       try {
-        // pass language to store
-        /*
-        this.$store.dispatch('registration/language', this.$i18n.locale)
-        this.variant = 'success'
-        this.message = this.$i18n.t('successReg')
-        this.show = true */
-
-        // await this.$axios.$post('/api/register', this.$store.getters['registration/sanitizedJSON'])
-        await this.onReset(evt)
+        const userData = await this.$axios.$patch('/api/userinfo', this.$store.getters['user/userinfo'], { headers: { api_key: this.$store.state.auth.api_key } })
+        await this.$store.dispatch('user/updateUser', userData)
       } catch (error) {
         this.variant = 'danger'
         this.message = this.$i18n.t('failedReg')
@@ -127,7 +120,7 @@ export default {
   async asyncData ({ store, query, app, redirect, route }) {
     // load userdata & store in userstore
     const userData = await axios.get('/api/userinfo', { headers: { api_key: store.state.auth.api_key } })
-    store.dispatch('user/updateUser', userData.data)
+    await store.dispatch('user/updateUser', userData.data)
   }
 }
 </script>

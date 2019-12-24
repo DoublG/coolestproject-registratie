@@ -62,6 +62,14 @@ export const mutations = {
     state.extra = extra
   }
 }
+export const getters = {
+  userinfo: (state) => {
+    return {
+      firstname: state.firstname,
+      lastname: state.lastname
+    }
+  }
+}
 export const actions = {
   updateUser ({ commit }, user) {
     commit('firstname', user.firstname)
