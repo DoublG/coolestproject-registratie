@@ -511,6 +511,14 @@ export default {
       'minAge',
       'guardianAge'
     ]),
+    birthmonth: {
+      set (value) {
+        this.$store.dispatch('user/birthmonth', value)
+      },
+      get () {
+        return this.$store.state.user.birthmonth
+      }
+    },
     postalcode: {
       set (value) {
         this.$store.dispatch('user/postalcode', value)
