@@ -2,7 +2,7 @@
   <b-row>
     <b-col>
       <h1>{{ $t('title') }}</h1>
-      {{ lastname }} - {{ firstname }}
+      {{ project_name }} - {{ project_descr }}
     </b-col>
   </b-row>
 </template>
@@ -18,16 +18,17 @@ export default {
     return {}
   },
   computed: {
-    ...mapState('user', [
-      'lastname',
-      'firstname'
+    ...mapState('project', [
+      'project_name',
+      'project_descr',
+      'project_type',
+      'project_lang'
     ])
   },
   async asyncData ({ store, query, app, redirect, route }) {
-    // load userdata & store in userstore
-    const userData = await axios.get('/api/userinfo', { headers: { api_key: store.state.auth.api_key } })
-    store.dispatch('user/firstname', userData.data.firstname)
-    store.dispatch('user/lastname', userData.data.lastname)
+    // load projectData & store in userstore
+    const projectData = await axios.get('/api/projectinfo', { headers: { api_key: store.state.auth.api_key } })
+    await store.dispatch('project/updateProject', projectData.data)
   }
 }
 </script>

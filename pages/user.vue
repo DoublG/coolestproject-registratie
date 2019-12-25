@@ -350,11 +350,22 @@
             </b-button>
             <b-button
               type="reset"
-              variant="danger"
+              variant="warning"
               class="button-hero"
             >
-              <font-awesome-icon :icon="['fas', 'trash-alt']" />  {{ $t('Resetten') }}
+              <font-awesome-icon :icon="['fas', 'trash-restore']" />  {{ $t('Resetten') }}
             </b-button>
+            <b-button
+              type="button"
+              variant="danger"
+              class="button-hero"
+              @click="onDeleteInfo"
+            >
+              <font-awesome-icon :icon="['fas', 'user-minus']" />  {{ $t('Delete') }}
+            </b-button>
+            <b-modal v-model="deleteInfo" ok-title="Delete" @ok="onDelete">
+              Gebruiker wordt gedelete, alle informatie wordt verwijderd + je project is ook weg ...
+            </b-modal>
           </b-form-group>
         </b-form>
       </ValidationObserver>
@@ -363,7 +374,7 @@
 </template>
 <script>
 import axios from 'axios'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import addYears from 'date-fns/add_years'
 import differenceInCalendarYears from 'date-fns/difference_in_calendar_years'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
@@ -457,7 +468,8 @@ export default {
         { value: 'male_xl', text: this.$i18n.t('jongen') + ' 114 76..   XL' },
         { value: 'male_xxl', text: this.$i18n.t('jongen') + ' 120 78..   XXL' },
         { value: 'male_3xl', text: this.$i18n.t('jongen') + ' 126 80..   3XL' }
-      ]
+      ],
+      deleteInfo: false
     }
   },
   computed: {
@@ -630,6 +642,9 @@ export default {
     await store.dispatch('user/updateUser', userData.data)
   },
   methods: {
+    ...mapActions('auth', [
+      'logout'
+    ]),
     async onSubmit (evt) {
       try {
         const userData = await this.$axios.$patch('/api/userinfo', this.$store.getters['user/userinfo'], { headers: { api_key: this.$store.state.auth.api_key } })
@@ -644,6 +659,14 @@ export default {
     async onReset (evt) {
       const userData = await this.$axios.$get('/api/userinfo', { headers: { api_key: this.$store.state.auth.api_key } })
       await this.$store.dispatch('user/updateUser', userData)
+    },
+    onDeleteInfo (evt) {
+      this.deleteInfo = true
+    },
+    async onDelete (evt) {
+      await this.$axios.$delete('/api/userinfo', { headers: { api_key: this.$store.state.auth.api_key } })
+      this.logout()
+      this.$router.go({ path: './login' })
     }
   }
 }
