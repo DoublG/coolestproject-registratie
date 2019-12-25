@@ -139,6 +139,7 @@ export default {
     async onDelete (evt) {
       await this.$axios.$delete('/api/userinfo', { headers: { api_key: this.$store.state.auth.api_key } })
       this.logout()
+      this.$router.go({ path: './login' })
     }
   },
   async asyncData ({ store, query, app, redirect, route }) {
