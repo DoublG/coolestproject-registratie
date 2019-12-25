@@ -13,32 +13,122 @@
           </b-form-group>
           <ValidationProvider v-slot="{ valid, errors }" rules="required" name="FirstName">
             <b-form-group
-              id="input-group-2"
+              id="input-group-5"
               :label="$t('Voornaam:')"
-              label-for="input-2"
+              label-for="input-5"
             >
               <b-form-input
-                id="input-2"
+                id="input-5"
                 v-model="firstname"
                 :placeholder="$t('GeefVoornaam:')"
                 :state="errors[0] ? false : (valid ? true : null)"
-                aria-describedby="input-2-live-feedback"
+                aria-describedby="input-5-live-feedback"
               />
-              <b-form-invalid-feedback id="input-2-live-feedback">
+              <b-form-invalid-feedback id="input-5-live-feedback">
                 {{ errors[0] }}
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
           <ValidationProvider v-slot="{ valid, errors }" rules="required" name="LastName">
             <b-form-group
-              id="input-group-1"
+              id="input-group-6"
               :label="$t('Achternaam:')"
+              label-for="input-6"
+            >
+              <b-form-input
+                id="input-6"
+                v-model="lastname"
+                :placeholder="$t('GeefAchternaam:')"
+                :state="errors[0] ? false : (valid ? true : null)"
+                aria-describedby="input-6-live-feedback"
+              />
+              <b-form-invalid-feedback id="input-6-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
+          <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, between_dates: { month: month, min: minAgeDate, max: maxAgeDate } }" name="Birthyear">
+            <b-form-group
+              id="input-group-4"
+              :label="$t('Geboortejaar:')"
+              label-for="input-4"
+            >
+              <b-form-select v-model="year" :options="year_list" :state="errors[0] ? false : (valid ? true : null)" />
+              <b-form-invalid-feedback id="input-4-live-feedback" :style="{ display: 'inline' }">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
+          <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, between_dates: { year: year, min: minAgeDate, max: maxAgeDate } }" name="Birthmonth">
+            <b-form-group
+              id="input-group-24"
+              :label="$t('Geboortemaand:')"
+              label-for="input-24"
+            >
+              <b-form-select v-model="month" :options="month_list" :state="errors[0] ? false : (valid ? true : null)" />
+              <b-form-invalid-feedback id="input-24-live-feedback" :style="{ display: 'inline' }">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
+          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Sex">
+            <b-form-group
+              id="input-group-7"
+              :label="$t('Geslacht:')"
+              label-for="input-7"
+            >
+              <b-form-select
+                id="input-7"
+                v-model="sex"
+                :options="geslacht"
+                :state="errors[0] ? false : (valid ? true : null)"
+                aria-describedby="input-7-live-feedback"
+              />
+              <b-form-invalid-feedback id="input-7-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
+          <div>
+            <b-button
+              class="button-sm"
+              pill
+              variant="info"
+              href="https://www.kindermaten.com/pages/Maattabel.html/"
+              target="_blank"
+            >
+              INFO
+            </b-button>
+          </div>
+          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="T-shirtSize">
+            <b-form-group
+              id="input-group-9"
+              :label="$t('T-shirt maat:')"
+              label-for="input-9"
+            >
+              <b-form-select
+                id="input-9"
+                v-model="t_size"
+                :options="shirtsize"
+                :state="errors[0] ? false : (valid ? true : null)"
+                aria-describedby="input-9-live-feedback"
+              />
+              <b-form-invalid-feedback id="input-9-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
+          <ValidationProvider v-slot="{ valid, errors }" rules="required|digits:4" name="PostalCode">
+            <b-form-group
+              id="input-group-1"
+              :label="$t('Postcode:')"
               label-for="input-1"
             >
               <b-form-input
                 id="input-1"
-                v-model="lastname"
-                :placeholder="$t('GeefAchternaam:')"
+                v-model="postalcode"
+                :placeholder="$t('Postcode:')"
+                type="number"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-1-live-feedback"
               />
@@ -47,27 +137,209 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-          <b-form-group
-            id="input-group-1"
-            :label="$t('Taal:')"
-            label-for="input-1"
-          >
-            {{ language }}
-          </b-form-group>
-          <b-form-group
-            id="input-group-1"
-            :label="$t('mobiel nummer (+32):')"
-            label-for="input-1"
-          >
-            {{ gsm }}
-          </b-form-group>
-          <b-form-group
-            id="input-group-1"
-            :label="$t('Postcode:')"
-            label-for="input-1"
-          >
-            {{ postalcode }}
-          </b-form-group>
+          <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, regex: /^((\+|00)32\s?|0)([1-9][0-9]\d{6})\d?$/ }" name="MobileNumber">
+            <b-form-group
+              id="input-group-2"
+              :label="$t('mobiel nummer (+32):')"
+              label-for="input-2"
+            >
+              <b-form-input
+                id="input-2"
+                v-model="gsm"
+                type="tel"
+                :placeholder="$t('mobiel nummer (+32):')"
+                :state="errors[0] ? false : (valid ? true : null)"
+                aria-describedby="input-2-live-feedback"
+              />
+              <b-form-invalid-feedback id="input-2-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
+          <ValidationProvider v-slot="{ valid, errors }" name="Via">
+            <b-form-group
+              id="input-group-10"
+              :label="$t('Van waar ken je ons:')"
+              label-for="input-10"
+            >
+              <b-form-input
+                id="input-10"
+                v-model="via"
+                :placeholder="$t('Geef je dojo, school')"
+                :state="errors[0] ? false : (valid ? true : null)"
+                aria-describedby="input-10-live-feedback"
+              />
+              <b-form-invalid-feedback id="input-10-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
+          <div v-if="!isGuardianNeeded">
+            <ValidationProvider v-slot="{ valid, errors }" name="MedicalInfo">
+              <b-form-group
+                id="input-group-11"
+                :label="$t('Zijn er aandoeningen')"
+                label-for="input-11"
+              >
+                <b-form-textarea
+                  id="input-11"
+                  v-model="medical"
+                  :state="errors[0] ? false : (valid ? true : null)"
+                  aria-describedby="input-11-live-feedback"
+                />
+                <b-form-invalid-feedback id="input-11-live-feedback">
+                  {{ errors[0] }}
+                </b-form-invalid-feedback>
+              </b-form-group>
+            </ValidationProvider>
+            <h2> {{ $t('Algemene vragen') }}</h2>
+            <ValidationProvider v-slot="{ valid, errors }" rules="required" name="GeneralQuestions">
+              <b-form-group
+                id="input-group-12"
+                :label="$t('no_photo')"
+              >
+                <b-form-radio-group
+                  v-model="general_questions"
+                  :state="errors[0] ? false : (valid ? true : null)"
+                  :options="photo_options"
+                  stacked
+                >
+                  <b-form-invalid-feedback id="input-12-live-feedback">
+                    {{ errors[0] }}
+                  </b-form-invalid-feedback>
+                </b-form-radio-group>
+              </b-form-group>
+            </ValidationProvider>
+            <ValidationProvider v-slot="{ valid, errors }" rules="required" name="GeneralQuestions2">
+              <b-form-group
+                id="input-group-122"
+                :label="$t('no_contact')"
+              >
+                <b-form-radio-group
+                  v-model="general_questions2"
+                  :state="errors[0] ? false : (valid ? true : null)"
+                  :options="contact_options"
+                  stacked
+                >
+                  <b-form-invalid-feedback id="input-122-live-feedback">
+                    {{ errors[0] }}
+                  </b-form-invalid-feedback>
+                </b-form-radio-group>
+              </b-form-group>
+            </ValidationProvider>
+          </div>
+          <div v-else>
+            <h2>{{ $t('Informatie van je ouders/voogd') }}</h2>
+            <ValidationProvider v-slot="{ valid, errors }" rules="required|email" name="Email">
+              <b-form-group
+                id="input-group-13"
+                :label="$t('Email adres ouders/voogd:')"
+                label-for="input-13"
+                de:description="$t('We delen dit met niemand')"
+              >
+                <b-form-input
+                  id="input-13"
+                  v-model="email_guardian"
+                  type="email"
+                  :placeholder="$t('Email adres ouders/voogd:')"
+                  :state="errors[0] ? false : (valid ? true : null)"
+                  aria-describedby="input-13-live-feedback"
+                />
+                <b-form-invalid-feedback id="input-13-live-feedback">
+                  {{ errors[0] }}
+                </b-form-invalid-feedback>
+              </b-form-group>
+            </ValidationProvider>
+            <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, regex: /^((\+|00)32\s?|0)([1-9][0-9]\d{6})\d?$/ }" name="Phone">
+              <b-form-group
+                id="input-group-14"
+                :label="$t('mobiel nummer ouders/voogd')"
+                label-for="input-14"
+                :description="$t('Waar kunnen we jou bereiken in geval van nood')"
+              >
+                <b-form-input
+                  id="input-14"
+                  v-model="gsm_guardian"
+                  type="tel"
+                  :placeholder="$t('mobiel nummer ouders/voogd')"
+                  :state="errors[0] ? false : (valid ? true : null)"
+                  aria-describedby="input-14-live-feedback"
+                />
+              </b-form-group>
+              <b-form-invalid-feedback id="input-14-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </ValidationProvider>
+            <ValidationProvider v-slot="{ valid, errors }" name="Medical">
+              <b-form-group
+                id="input-group-15"
+                :label="$t('Zijn er aandoeningen')"
+                label-for="input-15"
+              >
+                <b-form-textarea
+                  id="input-15"
+                  v-model="medical"
+                  :state="errors[0] ? false : (valid ? true : null)"
+                  aria-describedby="input-15-live-feedback"
+                />
+                <b-form-invalid-feedback id="input-15-live-feedback">
+                  {{ errors[0] }}
+                </b-form-invalid-feedback>
+              </b-form-group>
+            </ValidationProvider>
+            <ValidationProvider v-slot="{ valid, errors }" name="Extra">
+              <b-form-group
+                id="input-group-16"
+                :label="$t('Is er nog extra informatie')"
+                label-for="input-16"
+              >
+                <b-form-textarea
+                  id="input-16"
+                  v-model="extra"
+                  :state="errors[0] ? false : (valid ? true : null)"
+                  aria-describedby="input-16-live-feedback"
+                />
+                <b-form-invalid-feedback id="input-16-live-feedback">
+                  {{ errors[0] }}
+                </b-form-invalid-feedback>
+              </b-form-group>
+            </ValidationProvider>
+            <h2> {{ $t('Algemene vragen') }}</h2>
+            <ValidationProvider v-slot="{ valid, errors }" rules="required" name="GeneralQuestions">
+              <b-form-group
+                id="input-group-12"
+                :label="$t('no_photo')"
+              >
+                <b-form-radio-group
+                  v-model="general_questions"
+                  :state="errors[0] ? false : (valid ? true : null)"
+                  :options="photo_options"
+                  stacked
+                >
+                  <b-form-invalid-feedback id="input-12-live-feedback">
+                    {{ errors[0] }}
+                  </b-form-invalid-feedback>
+                </b-form-radio-group>
+              </b-form-group>
+            </ValidationProvider>
+            <ValidationProvider v-slot="{ valid, errors }" rules="required" name="GeneralQuestions2">
+              <b-form-group
+                id="input-group-122"
+                :label="$t('no_contact')"
+              >
+                <b-form-radio-group
+                  v-model="general_questions2"
+                  :state="errors[0] ? false : (valid ? true : null)"
+                  :options="contact_options"
+                  stacked
+                >
+                  <b-form-invalid-feedback id="input-122-live-feedback">
+                    {{ errors[0] }}
+                  </b-form-invalid-feedback>
+                </b-form-radio-group>
+              </b-form-group>
+            </ValidationProvider>
+          </div>
           <b-form-group>
             <b-button
               type="submit"
@@ -92,6 +364,8 @@
 <script>
 import axios from 'axios'
 import { mapState } from 'vuex'
+import addYears from 'date-fns/add_years'
+import differenceInCalendarYears from 'date-fns/difference_in_calendar_years'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 
 export default {
@@ -101,7 +375,90 @@ export default {
     ValidationProvider
   },
   data () {
-    return {}
+    return {
+      photo_options: [
+        { value: 'photo', text: this.$i18n.t('YESp') },
+        { value: 'no_photo', text: this.$i18n.t('NOp') }
+      ],
+      contact_options: [
+        { value: 'contact', text: this.$i18n.t('YESc') },
+        { value: 'no_contact', text: this.$i18n.t('NOc') }
+      ],
+      show: false,
+      variant: 'success',
+      message: this.$i18n.t('successReg'),
+      month_list: [
+        { text: this.$i18n.t('Kiesmaand'), value: null },
+        { value: 0, text: this.$i18n.t('januari') },
+        { value: 1, text: this.$i18n.t('februari') },
+        { value: 2, text: this.$i18n.t('maart') },
+        { value: 3, text: this.$i18n.t('april') },
+        { value: 4, text: this.$i18n.t('mei') },
+        { value: 5, text: this.$i18n.t('juni') },
+        { value: 6, text: this.$i18n.t('juli') },
+        { value: 7, text: this.$i18n.t('augustus') },
+        { value: 8, text: this.$i18n.t('september') },
+        { value: 9, text: this.$i18n.t('october') },
+        { value: 10, text: this.$i18n.t('november') },
+        { value: 11, text: this.$i18n.t('december') }
+      ],
+      year: null,
+      month: null,
+      geslacht: [
+        { text: this.$i18n.t('Ik ben een'), value: null },
+        { value: 'f', text: this.$i18n.t('meisje') },
+        { value: 'm', text: this.$i18n.t('jongen') },
+        { value: 'x', text: 'X' }
+      ],
+      languages: [
+        { value: 'nl', text: 'Nederlands' },
+        { value: 'fr', text: 'Frans' },
+        { value: 'en', text: 'Engels' }
+      ],
+      general_questions_fotos: [
+        { value: 'photo', text: 'Ik ben akkoord dat er fotos genomen worden' }
+      ],
+      general_questions_contact: [
+        { value: 'contact', text: 'Je mag me contacteren voor de volgende events' }
+      ],
+      shirtsize: [
+        { text: this.$i18n.t('kiesmaat'), value: null },
+        // Meisje/Fille/Girl
+        { value: 'female_M116', text: this.$i18n.t('meisje') + ' M116' },
+        { value: 'female_M122', text: this.$i18n.t('meisje') + ' M122' },
+        { value: 'female_M128', text: this.$i18n.t('meisje') + ' M128' },
+        { value: 'female_M134', text: this.$i18n.t('meisje') + ' M134' },
+        { value: 'female_M140', text: this.$i18n.t('meisje') + ' M140' },
+        { value: 'female_M146', text: this.$i18n.t('meisje') + ' M146' },
+        { value: 'female_M152', text: this.$i18n.t('meisje') + ' M152' },
+        { value: 'female_M158', text: this.$i18n.t('meisje') + ' M158' },
+        { value: 'female_M164', text: this.$i18n.t('meisje') + ' M164' },
+        { value: 'female_M170', text: this.$i18n.t('meisje') + ' M170' },
+        { value: 'female_M176', text: this.$i18n.t('meisje') + ' M176' },
+        { value: 'female_medium', text: this.$i18n.t('meisje') + ' 94 62.. Medium' },
+        { value: 'female_large', text: this.$i18n.t('meisje') + ' 100 64.. Large' },
+        { value: 'female_xl', text: this.$i18n.t('meisje') + ' 106 66.. XL extra large' },
+        // Jongen/Garçon/Boy
+        { value: 'male_M116', text: this.$i18n.t('jongen') + ' M116' },
+        { value: 'male_M122', text: this.$i18n.t('jongen') + ' M122' },
+        { value: 'male_M128', text: this.$i18n.t('jongen') + ' M128' },
+        { value: 'male_M134', text: this.$i18n.t('jongen') + ' M134' },
+        { value: 'male_M140', text: this.$i18n.t('jongen') + ' M140' },
+        { value: 'male_M146', text: this.$i18n.t('jongen') + ' M146' },
+        { value: 'male_M152', text: this.$i18n.t('jongen') + ' M152' },
+        { value: 'male_M158', text: this.$i18n.t('jongen') + ' M158' },
+        { value: 'male_M164', text: this.$i18n.t('jongen') + ' M164' },
+        { value: 'male_M170', text: this.$i18n.t('jongen') + ' M170' },
+        { value: 'male_M176', text: this.$i18n.t('jongen') + ' M176' },
+        { value: 'male_Xsmall', text: this.$i18n.t('jongen') + ' 90 68.. XS' },
+        { value: 'male_small', text: this.$i18n.t('jongen') + ' 96 70..  S' },
+        { value: 'male_medium', text: this.$i18n.t('jongen') + ' 102 72..   M' },
+        { value: 'male_large', text: this.$i18n.t('jongen') + ' 108 74..   L' },
+        { value: 'male_xl', text: this.$i18n.t('jongen') + ' 114 76..   XL' },
+        { value: 'male_xxl', text: this.$i18n.t('jongen') + ' 120 78..   XXL' },
+        { value: 'male_3xl', text: this.$i18n.t('jongen') + ' 126 80..   3XL' }
+      ]
+    }
   },
   computed: {
     firstname: {
@@ -120,13 +477,144 @@ export default {
         return this.$store.state.user.lastname
       }
     },
+    year_list: (app) => {
+      const yearStart = app.beginYear.getFullYear()
+      const yearEnd = app.endYear.getFullYear()
+      const yearList = [
+        { text: app.$i18n.t('year'), value: null }
+      ]
+      for (let i = 0; i <= yearEnd - yearStart; i++) {
+        yearList.push({ text: yearStart + i, value: yearStart + i })
+      }
+      return yearList
+    },
+    endDate: (state) => {
+      return addYears(state.startDateEvent, -5)
+    },
+    isGuardianNeeded: (state) => {
+      return differenceInCalendarYears(state.startDateEvent, new Date(state.year, state.month, 1)) < state.guardianAge
+    },
+    beginYear: (state) => {
+      return addYears(state.startDateEvent, state.maxAge * -1)
+    },
+    endYear: (state) => {
+      return addYears(state.startDateEvent, state.minAge * -1)
+    },
     ...mapState('user', [
       'language',
       'email',
       'postalcode',
       'birthmonth',
-      'gsm'
-    ])
+      'gsm',
+      'startDateEvent',
+      'maxAge',
+      'minAge',
+      'guardianAge'
+    ]),
+    postalcode: {
+      set (value) {
+        this.$store.dispatch('user/postalcode', value)
+      },
+      get () {
+        return this.$store.state.user.postalcode
+      }
+    },
+    email: {
+      set (value) {
+        this.$store.dispatch('user/email', value)
+      },
+      get () {
+        return this.$store.state.user.email
+      }
+    },
+    sex: {
+      set (value) {
+        this.$store.dispatch('user/sex', value)
+      },
+      get () {
+        return this.$store.state.user.sex
+      }
+    },
+    general_questions: {
+      set (value) {
+        this.$store.dispatch('user/general_questions', value)
+      },
+      get () {
+        return this.$store.state.user.general_questions
+      }
+    },
+    general_questions2: {
+      set (value) {
+        this.$store.dispatch('user/general_questions2', value)
+      },
+      get () {
+        return this.$store.state.user.general_questions2
+      }
+    },
+    mandatory_approvals: {
+      set (value) {
+        this.$store.dispatch('user/mandatory_approvals', value)
+      },
+      get () {
+        return this.$store.state.user.mandatory_approvals
+      }
+    },
+    t_size: {
+      set (value) {
+        this.$store.dispatch('user/t_size', value)
+      },
+      get () {
+        return this.$store.state.user.t_size
+      }
+    },
+    via: {
+      set (value) {
+        this.$store.dispatch('user/via', value)
+      },
+      get () {
+        return this.$store.state.user.via
+      }
+    },
+    medical: {
+      set (value) {
+        this.$store.dispatch('user/medical', value)
+      },
+      get () {
+        return this.$store.state.user.medical
+      }
+    },
+    extra: {
+      set (value) {
+        this.$store.dispatch('registration/extra', value)
+      },
+      get () {
+        return this.$store.state.user.extra
+      }
+    },
+    gsm: {
+      set (value) {
+        this.$store.dispatch('registration/gsm', value)
+      },
+      get () {
+        return this.$store.state.registration.gsm
+      }
+    },
+    gsm_guardian: {
+      set (value) {
+        this.$store.dispatch('registration/gsm_guardian', value)
+      },
+      get () {
+        return this.$store.state.registration.gsm_guardian
+      }
+    },
+    email_guardian: {
+      set (value) {
+        this.$store.dispatch('registration/email_guardian', value)
+      },
+      get () {
+        return this.$store.state.registration.email_guardian
+      }
+    }
   },
   async asyncData ({ store, query, app, redirect, route }) {
     // load userdata & store in userstore
