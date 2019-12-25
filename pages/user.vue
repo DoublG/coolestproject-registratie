@@ -50,11 +50,22 @@
             </b-button>
             <b-button
               type="reset"
-              variant="danger"
+              variant="warning"
               class="button-hero"
             >
-              <font-awesome-icon :icon="['fas', 'trash-alt']" />  {{ $t('Resetten') }}
+              <font-awesome-icon :icon="['fas', 'trash-restore']" />  {{ $t('Resetten') }}
             </b-button>
+            <b-button
+              type="button"
+              variant="danger"
+              class="button-hero"
+              @click="onDeleteInfo"
+            >
+              <font-awesome-icon :icon="['fas', 'user-minus']" />  {{ $t('Delete') }}
+            </b-button>
+            <b-modal v-model="deleteInfo" @ok="onDelete" okTitle="Delete">
+              Gebruiker wordt gedelete, alle informatie wordt verwijderd + je project is ook weg ...
+            </b-modal>
           </b-form-group>
          </b-form>
       </ValidationObserver>
@@ -65,6 +76,7 @@
 import axios from 'axios'
 import { mapState } from 'vuex'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
+import { mapActions } from 'vuex'
 
 export default {
   middleware: 'authenticated',
@@ -73,7 +85,9 @@ export default {
     ValidationProvider
   },
   data () {
-    return {}
+    return {
+      deleteInfo: false
+    }
   },
   computed: {
     firstname: {
@@ -101,6 +115,9 @@ export default {
     ])
   },
   methods: {
+    ...mapActions('auth', [
+      'logout'
+    ]),
     async onSubmit (evt) {
       try {
         const userData = await this.$axios.$patch('/api/userinfo', this.$store.getters['user/userinfo'], { headers: { api_key: this.$store.state.auth.api_key } })
@@ -115,6 +132,13 @@ export default {
     async onReset (evt) {
       const userData = await this.$axios.$get('/api/userinfo', { headers: { api_key: this.$store.state.auth.api_key } })
       await this.$store.dispatch('user/updateUser', userData)
+    },
+    onDeleteInfo (evt) {
+      this.deleteInfo = true
+    },
+    async onDelete (evt) {
+      await this.$axios.$delete('/api/userinfo', { headers: { api_key: this.$store.state.auth.api_key } })
+      this.logout()
     }
   },
   async asyncData ({ store, query, app, redirect, route }) {
