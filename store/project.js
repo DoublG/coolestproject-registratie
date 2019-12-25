@@ -4,7 +4,14 @@ export const state = () => ({
   project_type: '',
   project_lang: ''
 })
-
+export const getters = {
+  projectinfo: (state) => {
+    return {
+      project_name: state.project_name,
+      project_descr: state.project_descr
+    }
+  }
+}
 export const mutations = {
   project_name (state, projectName) {
     state.project_name = projectName
