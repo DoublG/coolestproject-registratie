@@ -2,6 +2,9 @@
   <b-row>
     <b-col>
       <h1>{{ $t('title') }}</h1>
+      <b-alert dismissible :show="show" :variant="variant">
+        {{ message }}
+      </b-alert>
       <div v-if="hasProject || createState">
         <ValidationObserver ref="observer" v-slot="{ passes }">
           <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
@@ -116,6 +119,16 @@
             </b-form-group>
           </b-form>
         </ValidationObserver>
+        <h1>{{ $t('participants') }}</h1>
+        <b-table striped hover :items="participants"></b-table>
+        <b-button
+          type="button"
+          variant="success"
+          class="button-hero"
+          @click="onAddToken"
+        >
+          <font-awesome-icon :icon="['fas', 'plus']" />  {{ $t('AddToken') }}
+        </b-button>
       </div>
       <div v-else>
         <b-button
@@ -141,6 +154,7 @@
 <script>
 import axios from 'axios'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
+import { mapState } from 'vuex'
 
 export default {
   middleware: 'authenticated',
@@ -150,6 +164,9 @@ export default {
   },
   data () {
     return {
+      show: false,
+      variant: 'success',
+      message: this.$i18n.t('successReg'),
       deleteInfo: false,
       createState: false,
       languages: [
@@ -160,6 +177,9 @@ export default {
     }
   },
   computed: {
+    ...mapState('project', [
+      'participants'
+    ]),
     project_name: {
       set (value) {
         this.$store.commit('project/project_name', value)
@@ -201,6 +221,9 @@ export default {
     try {
       const projectData = await axios.get('/api/projectinfo', { headers: { api_key: store.state.auth.api_key } })
       if (projectData.data !== '') {
+        // load participants
+        const participantsData = await axios.get('/api/participants', { headers: { api_key: store.state.auth.api_key } })
+        projectData.data.participants = participantsData.data
         await store.dispatch('project/updateProject', projectData.data)
       }
     } catch (error) {}
@@ -224,8 +247,16 @@ export default {
       window.scrollTo(0, 0)
     },
     async onReset (evt) {
-      const projectData = await this.$axios.$get('/api/projectinfo', { headers: { api_key: this.$store.state.auth.api_key } })
-      await this.$store.dispatch('project/updateProject', projectData)
+      // load projectData & store in userstore
+      try {
+        const projectData = await axios.get('/api/projectinfo', { headers: { api_key: this.$store.state.auth.api_key } })
+        if (projectData.data !== '') {
+          // load participants
+          const participantsData = await axios.get('/api/participants', { headers: { api_key: this.$store.state.auth.api_key } })
+          projectData.data.participants = participantsData.data
+          await this.$store.dispatch('project/updateProject', projectData.data)
+        }
+      } catch (error) {}
     },
     onDeleteInfo (evt) {
       this.deleteInfo = true
@@ -238,7 +269,19 @@ export default {
       this.project_lang = this.$i18n.locale
       this.createState = true
     },
-    onEnterToken (evt) {}
+    onEnterToken (evt) {},
+    async onAddToken (evt) {
+      try {
+        await this.$axios.$post('/api/participants', null, { headers: { api_key: this.$store.state.auth.api_key } })
+        this.variant = 'success'
+        this.message = this.$i18n.t('AddToken')
+        this.show = true
+      } catch (error) {
+        this.variant = 'danger'
+        this.message = error
+        this.show = true
+      }
+    }
   }
 }
 </script>
@@ -246,8 +289,10 @@ export default {
 <i18n>
 {
   "en": {
+    "AddToken": "Add Participant",
     "failedReg": "Registration failed, try again later",
     "title": "Project",
+    "participants": "Participants",
     "personal_info": "Personal information",
     "no_photo": "CoderDojo is fun so we like sharing that with the world. During our activities, we take pictures that may appear on social media afterwards so it could be the case that you get photographed or filmed during one of these CoderDojo activities. We don't use this footage on flyers or campaign without explicitly asking for permission. If you rather don't want your picture to be used, you can mention this at your registration.",
     "no_contact": "You can contact me for future events",
@@ -313,6 +358,8 @@ export default {
     "Project_Type": "What is in your project about hardware, software, network on WiFi or on cable,...."
   },
   "fr": {
+    "AddToken": "Add Participant",
+    "participants": "Participants",
     "failedReg": "L'enregistrement a échoué, réessayez plus tard",
     "title": "Projet",
     "personal_info": "Informations personnelles",
@@ -381,6 +428,8 @@ export default {
     "Project_Type": "Quel est dans votre projet matériel, logiciel, réseau sur WiFi ou sur câble,...."
   },
   "nl": {
+    "AddToken": "Add Participant",
+    "participants": "Participants",
     "failedReg": "Registratie mislukt, probeer later nog eens opnieuw",
     "title": "Project",
     "personal_info": "Persoonlijke informatie",
