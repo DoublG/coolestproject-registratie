@@ -30,6 +30,9 @@ export const mutations = {
   },
   project_lang (state, projectLang) {
     state.project_lang = projectLang
+  },
+  project_code (state, projectCode) {
+    state.project_code = projectCode
   }
 }
 
