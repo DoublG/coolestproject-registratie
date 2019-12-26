@@ -531,14 +531,6 @@ export default {
       'postalcode',
       'gsm'
     ]),
-    birthmonth: {
-      set (value) {
-        this.$store.dispatch('user/birthmonth', value)
-      },
-      get () {
-        return this.$store.state.user.birthmonth
-      }
-    },
     postalcode: {
       set (value) {
         this.$store.dispatch('user/postalcode', value)
@@ -624,7 +616,7 @@ export default {
         this.$store.dispatch('user/gsm', value)
       },
       get () {
-        return this.$store.state.registration.gsm
+        return this.$store.state.user.gsm
       }
     },
     gsm_guardian: {
@@ -632,7 +624,7 @@ export default {
         this.$store.dispatch('user/gsm_guardian', value)
       },
       get () {
-        return this.$store.state.registration.gsm_guardian
+        return this.$store.state.user.gsm_guardian
       }
     },
     email_guardian: {
