@@ -364,7 +364,8 @@
               <font-awesome-icon :icon="['fas', 'user-minus']" />  {{ $t('Delete') }}
             </b-button>
             <b-modal v-model="deleteInfo" ok-title="Delete" @ok="onDelete">
-              Gebruiker wordt gedelete, alle informatie wordt verwijderd + je project is ook weg ...
+              Opgelet: als je bevestigt wordt jouw gebruiker verwijderd dat will zeggen dat al jouw Personlijke en Project informatie worden verwijderd
+              ...Als je toch nog wilt meedoen dan kan je via Registratie een nieuw project aanmaken of bij een andere project meedoen.
             </b-modal>
           </b-form-group>
         </b-form>

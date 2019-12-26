@@ -3,7 +3,7 @@
     <b-col>
       <h1>{{ $t('title') }}</h1>
       <ValidationObserver ref="observer" v-slot="{ passes }">
-         <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
+        <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
           <ValidationProvider v-slot="{ valid, errors }" rules="required" name="ProjectName">
             <b-form-group
               id="input-group-2"
@@ -63,11 +63,11 @@
             >
               <font-awesome-icon :icon="['fas', 'user-minus']" />  {{ $t('Delete') }}
             </b-button>
-            <b-modal v-model="deleteInfo" @ok="onDelete" okTitle="Delete">
+            <b-modal v-model="deleteInfo" ok-title="Delete" @ok="onDelete">
               Project wordt gedelete
             </b-modal>
           </b-form-group>
-         </b-form>
+        </b-form>
       </ValidationObserver>
     </b-col>
   </b-row>
