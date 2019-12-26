@@ -375,7 +375,7 @@
 </template>
 <script>
 import axios from 'axios'
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 import addYears from 'date-fns/add_years'
 import differenceInCalendarYears from 'date-fns/difference_in_calendar_years'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
@@ -513,6 +513,10 @@ export default {
     endYear: (state) => {
       return addYears(state.startDateEvent, state.minAge * -1)
     },
+    ...mapGetters([
+      'minAgeDate',
+      'maxAgeDate'
+    ]),
     ...mapState('user', [
       'language',
       'email',
