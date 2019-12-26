@@ -1,21 +1,20 @@
-import differenceInCalendarYears from 'date-fns/difference_in_calendar_years'
-
 export const state = {
-  gsm: '',
-  general_questions: '',
-  email_guardian: '',
-  gsm_guardian: '',
-  medical: '',
-  sex: '',
-  t_size: '',
-  lastname: '',
-  via: '',
-  birthmonth: '',
-  postalcode: '',
-  extra: '',
-  firstname: '',
-  email: '',
-  language: ''
+  gsm: null,
+  general_questions: null,
+  general_questions2: null,
+  email_guardian: null,
+  gsm_guardian: null,
+  medical: null,
+  sex: null,
+  t_size: null,
+  lastname: null,
+  via: null,
+  birthmonth: null,
+  postalcode: null,
+  extra: null,
+  firstname: null,
+  email: null,
+  language: null
 }
 export const mutations = {
   language (state, language) {
@@ -35,6 +34,9 @@ export const mutations = {
   },
   general_questions (state, generalQuestions) {
     state.general_questions = generalQuestions
+  },
+  general_questions2 (state, generalQuestions2) {
+    state.general_questions2 = generalQuestions2
   },
   email_guardian (state, emailGuardian) {
     state.email_guardian = emailGuardian
@@ -71,7 +73,8 @@ export const actions = {
     commit('lastname', user.lastname)
     commit('email', user.email)
     commit('gsm', user.gsm)
-    commit('general_questions', user.general_questions)
+    commit('general_questions', user.general_questions[0])
+    commit('general_questions2', user.general_questions[1])
     commit('email_guardian', user.email_guardian)
     commit('gsm_guardian', user.gsm_guardian)
     commit('medical', user.medical)
@@ -86,60 +89,28 @@ export const actions = {
 }
 export const getters = {
   userinfo: (state) => {
-    return {
+    const user = {
       firstname: state.firstname,
-      lastname: state.lastname
+      lastname: state.lastname,
+      email: state.email,
+      gsm: state.gsm,
+      general_questions: [
+        state.general_questions,
+        state.general_questions2
+      ],
+      medical: state.medical,
+      sex: state.sex,
+      t_size: state.t_size,
+      via: state.via,
+      birthmonth: state.birthmonth,
+      postalcode: state.postalcode,
+      extra: state.extra,
+      language: state.language
     }
-  },
-  sanitizedJSON: (state, getter, rootState) => {
-    // We need to cleanup the JSON a bit
-    // 1) We don't want to send null values
-    // 2) the local store stores everything as a string so we need to fix that before sending
-    // 3) we only want to send the date not the time
-    const sanitizedJSON = {
-      general_questions: [],
-      language: 'en'
+    if (state.gsm_guardian !== null) {
+      user.gsm_guardian = state.gsm_guardian
+      user.email_guardian = state.email_guardian
     }
-    Object.keys(state).forEach(function (key) {
-      if (state[key] !== null) {
-        switch (key) {
-          case 'birthmonth':
-            const date = typeof state[key] === typeof Date ? state[key] : new Date(state[key])
-            sanitizedJSON[key] = date.toISOString().substr(0, 10)
-            break
-          case 'postalcode':
-            const postalcode = typeof state[key] === typeof Number ? state[key] : Number.parseInt(state[key])
-            sanitizedJSON[key] = postalcode
-            break
-          case 'general_questions':
-            sanitizedJSON.general_questions[0] = state[key]
-            break
-          case 'general_questions2':
-            sanitizedJSON.general_questions[1] = state[key]
-            break
-          default:
-            sanitizedJSON[key] = state[key]
-            break
-        }
-      }
-    })
-    // we have 2 scenarios, the service doesn't allow any extra fields
-    // 1) registration with project
-    // 2) registration without project
-    if (sanitizedJSON.project_code) {
-      delete sanitizedJSON.project_name
-      delete sanitizedJSON.project_descr
-      delete sanitizedJSON.project_type
-      delete sanitizedJSON.project_lang
-    } else {
-      delete sanitizedJSON.project_code
-    }
-    // no guardian information needed so don't send
-    if (differenceInCalendarYears(rootState.startDateEvent, sanitizedJSON.birthmonth) > rootState.guardianAge) {
-      delete sanitizedJSON.gsm_guardian
-      delete sanitizedJSON.email_guardian
-    }
-
-    return sanitizedJSON
+    return user
   }
 }

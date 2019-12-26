@@ -2,6 +2,9 @@
   <b-row>
     <b-col>
       <h1>{{ $t('title') }}</h1>
+      <b-alert dismissible :show="show" :variant="variant">
+        {{ message }}
+      </b-alert>
       <ValidationObserver ref="observer" v-slot="{ passes }">
         <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
           <b-form-group
@@ -516,15 +519,17 @@ export default {
     endYear: (state) => {
       return addYears(state.startDateEvent, state.minAge * -1)
     },
-    ...mapGetters('user', [
+    ...mapGetters([
       'minAgeDate',
       'maxAgeDate'
     ]),
-    ...mapState('user', [
+    ...mapState([
       'startDateEvent',
       'maxAge',
       'minAge',
-      'guardianAge',
+      'guardianAge'
+    ]),
+    ...mapState('user', [
       'birthmonth',
       'language',
       'email',
@@ -533,7 +538,7 @@ export default {
     ]),
     postalcode: {
       set (value) {
-        this.$store.dispatch('user/postalcode', value)
+        this.$store.commit('user/postalcode', value)
       },
       get () {
         return this.$store.state.user.postalcode
@@ -541,7 +546,7 @@ export default {
     },
     email: {
       set (value) {
-        this.$store.dispatch('user/email', value)
+        this.$store.commit('user/email', value)
       },
       get () {
         return this.$store.state.user.email
@@ -549,7 +554,7 @@ export default {
     },
     sex: {
       set (value) {
-        this.$store.dispatch('user/sex', value)
+        this.$store.commit('user/sex', value)
       },
       get () {
         return this.$store.state.user.sex
@@ -557,7 +562,7 @@ export default {
     },
     general_questions: {
       set (value) {
-        this.$store.dispatch('user/general_questions', value)
+        this.$store.commit('user/general_questions', value)
       },
       get () {
         return this.$store.state.user.general_questions
@@ -565,7 +570,7 @@ export default {
     },
     general_questions2: {
       set (value) {
-        this.$store.dispatch('user/general_questions2', value)
+        this.$store.commit('user/general_questions2', value)
       },
       get () {
         return this.$store.state.user.general_questions2
@@ -573,7 +578,7 @@ export default {
     },
     mandatory_approvals: {
       set (value) {
-        this.$store.dispatch('user/mandatory_approvals', value)
+        this.$store.commit('user/mandatory_approvals', value)
       },
       get () {
         return this.$store.state.user.mandatory_approvals
@@ -581,7 +586,7 @@ export default {
     },
     t_size: {
       set (value) {
-        this.$store.dispatch('user/t_size', value)
+        this.$store.commit('user/t_size', value)
       },
       get () {
         return this.$store.state.user.t_size
@@ -589,7 +594,7 @@ export default {
     },
     via: {
       set (value) {
-        this.$store.dispatch('user/via', value)
+        this.$store.commit('user/via', value)
       },
       get () {
         return this.$store.state.user.via
@@ -597,7 +602,7 @@ export default {
     },
     medical: {
       set (value) {
-        this.$store.dispatch('user/medical', value)
+        this.$store.commit('user/medical', value)
       },
       get () {
         return this.$store.state.user.medical
@@ -605,7 +610,7 @@ export default {
     },
     extra: {
       set (value) {
-        this.$store.dispatch('user/extra', value)
+        this.$store.commit('user/extra', value)
       },
       get () {
         return this.$store.state.user.extra
@@ -613,7 +618,7 @@ export default {
     },
     gsm: {
       set (value) {
-        this.$store.dispatch('user/gsm', value)
+        this.$store.commit('user/gsm', value)
       },
       get () {
         return this.$store.state.user.gsm
@@ -621,7 +626,7 @@ export default {
     },
     gsm_guardian: {
       set (value) {
-        this.$store.dispatch('user/gsm_guardian', value)
+        this.$store.commit('user/gsm_guardian', value)
       },
       get () {
         return this.$store.state.user.gsm_guardian
@@ -629,7 +634,7 @@ export default {
     },
     email_guardian: {
       set (value) {
-        this.$store.dispatch('user/email_guardian', value)
+        this.$store.commit('user/email_guardian', value)
       },
       get () {
         return this.$store.state.user.email_guardian
@@ -700,9 +705,12 @@ export default {
       try {
         const userData = await this.$axios.$patch('/api/userinfo', this.$store.getters['user/userinfo'], { headers: { api_key: this.$store.state.auth.api_key } })
         await this.$store.dispatch('user/updateUser', userData)
+        this.variant = 'success'
+        this.message = this.$i18n.t('successUpdate')
+        this.show = true
       } catch (error) {
         this.variant = 'danger'
-        this.message = this.$i18n.t('failedReg')
+        this.message = this.$i18n.t('failedUpdate')
         this.show = true
       }
       window.scrollTo(0, 0)
@@ -726,7 +734,7 @@ export default {
 <i18n>
 {
   "en": {
-    "failedReg": "Registration failed, try again later",
+    "failedUpdate": "Update failed, try again",
     "title": "User",
     "personal_info": "Personal information",
     "no_photo": "CoderDojo is fun so we like sharing that with the world. During our activities, we take pictures that may appear on social media afterwards so it could be the case that you get photographed or filmed during one of these CoderDojo activities. We don't use this footage on flyers or campaign without explicitly asking for permission. If you rather don't want your picture to be used, you can mention this at your registration.",
@@ -788,12 +796,12 @@ export default {
     "kiesmaat": "Choose a size",
     "Ik schrijf me in": "I register",
     "verwijder alles": "delete all",
-    "successReg": "Registration is successful, you will receive an email shortly with which you can log in to our website",
+    "successUpdate": "User updated",
     "Ikbenakkoord": "I agree with the general conditions",
     "Project_Type": "What is in your project about hardware, software, network on WiFi or on cable,...."
   },
   "fr": {
-    "failedReg": "L'enregistrement a échoué, réessayez plus tard",
+    "failedUpdate": "Error",
     "title": "Utilisateur",
     "personal_info": "Informations personnelles",
     "no_photo": "Nous aimons promotionner notre action à travers les réseaux sociaux et pour ce faire nous prenons des photos pendant nos événements.Sachez que tu pourrait être photographié ou filmé lors de sa participation à notre evenement. Ces photos sont ensuite postées et partagées sur nos réseaux sociaux. Celles-ci ne sont pas imprimées, et ne figurent pas sur nos brochures. Si toutes fois, quelques photos devaient servir à des fins de campagnes promotionnelles plus étendues, nous vous demanderons bien sûr votre accord avant diffusion. Si vous ne tenez pas à ce que les photos de vous soient utilisées, nous vous remercions de nous en faire part lors de votre enregistrement.",
@@ -856,12 +864,12 @@ export default {
     "kiesmaat": "Choisissez une taille",
     "Ik schrijf me in": "Je m'inscris",
     "verwijder alles": "tout supprimer",
-    "successReg": "L'inscription est réussie, vous recevrez sous peu un e-mail avec lequel vous pourrez vous connecter à notre site Web",
+    "successUpdate": "Success",
     "Ikbenakkoord": "Vous devez accepter la question suivante pour vous inscrire",
     "Project_Type": "Quel est dans votre projet matériel, logiciel, réseau sur WiFi ou sur câble,...."
   },
   "nl": {
-    "failedReg": "Registratie mislukt, probeer later nog eens opnieuw",
+    "failedUpdate": "Aanpassing misslukt",
     "title": "Gebruiker",
     "personal_info": "Persoonlijke informatie",
     "no_photo": "CoderDojo is leuk en daarom tonen wij graag waar we mee bezig zijn. We nemen tijdens onze activiteiten foto’s van onze deelnemers en begeleiders die we daarna op sociale media plaatsen. Het kan gebeuren dat je gefotografeerd of gefilmd wordt tijdens ons event. Wij gebruiken dit beeldmateriaal niet op flyers of voor uitvoerige campagnes zonder hiervoor nog eens expliciet toestemming te vragen. Indien je liever geen foto’s van je gebruikt ziet worden, kan je dat tijdens het registreren aangeven.",
@@ -924,7 +932,7 @@ export default {
     "kiesmaat": "Kies een maat",
     "Ik schrijf me in": "Ik schrijf me in",
     "verwijder alles": "VERWIJDER ALLES",
-    "successReg": "De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website",
+    "successUpdate": "Aanpassing gelukt",
     "Ikbenakkoord": "Ik ben akkoord met de algemene voorwarden",
     "Project_Type": "Wat zit er in jouw project aan hardwere, software, netwerk via wifi of via kabel,...."
   }
