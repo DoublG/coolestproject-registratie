@@ -507,26 +507,29 @@ export default {
     isGuardianNeeded: (state) => {
       return differenceInCalendarYears(state.startDateEvent, new Date(state.year, state.month, 1)) < state.guardianAge
     },
+    isOwnProject: (state) => {
+      return state.own_project === 'own'
+    },
     beginYear: (state) => {
       return addYears(state.startDateEvent, state.maxAge * -1)
     },
     endYear: (state) => {
       return addYears(state.startDateEvent, state.minAge * -1)
     },
-    ...mapGetters([
+    ...mapGetters('user', [
       'minAgeDate',
       'maxAgeDate'
     ]),
     ...mapState('user', [
-      'language',
-      'email',
-      'postalcode',
-      'birthmonth',
-      'gsm',
       'startDateEvent',
       'maxAge',
       'minAge',
-      'guardianAge'
+      'guardianAge',
+      'birthmonth',
+      'language',
+      'email',
+      'postalcode',
+      'gsm'
     ]),
     birthmonth: {
       set (value) {
@@ -610,7 +613,7 @@ export default {
     },
     extra: {
       set (value) {
-        this.$store.dispatch('registration/extra', value)
+        this.$store.dispatch('user/extra', value)
       },
       get () {
         return this.$store.state.user.extra
@@ -618,7 +621,7 @@ export default {
     },
     gsm: {
       set (value) {
-        this.$store.dispatch('registration/gsm', value)
+        this.$store.dispatch('user/gsm', value)
       },
       get () {
         return this.$store.state.registration.gsm
@@ -626,7 +629,7 @@ export default {
     },
     gsm_guardian: {
       set (value) {
-        this.$store.dispatch('registration/gsm_guardian', value)
+        this.$store.dispatch('user/gsm_guardian', value)
       },
       get () {
         return this.$store.state.registration.gsm_guardian
@@ -634,10 +637,47 @@ export default {
     },
     email_guardian: {
       set (value) {
-        this.$store.dispatch('registration/email_guardian', value)
+        this.$store.dispatch('user/email_guardian', value)
       },
       get () {
-        return this.$store.state.registration.email_guardian
+        return this.$store.state.user.email_guardian
+      }
+    }
+  },
+  watch: {
+    year (val) {
+      let date = this.$store.state.user.birthmonth
+      if (date === null) {
+        date = new Date()
+      }
+      if (typeof date === 'string') {
+        date = new Date(date)
+      }
+      date.setDate(1)
+      date.setFullYear(val)
+      this.$store.dispatch('user/birthmonth', date)
+    },
+    month (val) {
+      let date = this.$store.state.user.birthmonth
+      if (date === null) {
+        date = new Date()
+      }
+      if (typeof date === 'string') {
+        date = new Date(date)
+      }
+      date.setDate(1)
+      date.setMonth(val)
+      this.$store.dispatch('user/birthmonth', date)
+    },
+    own_project (val) {
+      // cleanup data
+      if (val === 'own') {
+        this.project_code = null
+      } else {
+        this.project_name = null
+        this.project_descr = null
+        this.project_type = null
+        this.project_lang = null
       }
     }
   },
@@ -645,6 +685,20 @@ export default {
     // load userdata & store in userstore
     const userData = await axios.get('/api/userinfo', { headers: { api_key: store.state.auth.api_key } })
     await store.dispatch('user/updateUser', userData.data)
+    let date = store.state.user.birthmonth
+    let year = null
+    let month = null
+    if (date instanceof Date === false && date !== null) {
+      date = new Date(date)
+    }
+    if (date !== null) {
+      year = date.getFullYear()
+      month = date.getMonth()
+    }
+    return {
+      year,
+      month
+    }
   },
   methods: {
     ...mapActions('auth', [
