@@ -141,6 +141,16 @@
             <font-awesome-icon :icon="['fas', 'plus']" />  {{ $t('AddToken') }}
           </b-button>
         </div>
+        <div v-else>
+          <b-button
+            type="button"
+            variant="danger"
+            class="button-hero"
+            @click="onDelete"
+          >
+            <font-awesome-icon :icon="['fas', 'minus']" />  {{ $t('Delete') }}
+          </b-button>
+        </div>
       </div>
       <div v-else>
         <b-button
@@ -190,8 +200,7 @@ export default {
   },
   computed: {
     ...mapState('project', [
-      'participants',
-      'own_project'
+      'participants'
     ]),
     project_name: {
       set (value) {
@@ -199,6 +208,14 @@ export default {
       },
       get () {
         return this.$store.state.project.project_name
+      }
+    },
+    own_project: {
+      set (value) {
+        this.$store.commit('project/own_project', value)
+      },
+      get () {
+        return this.$store.state.project.own_project
       }
     },
     project_descr: {
@@ -280,6 +297,7 @@ export default {
     },
     onCreateProject (evt) {
       this.project_lang = this.$i18n.locale
+      this.own_project = true
       this.createState = true
     },
     onEnterToken (evt) {},

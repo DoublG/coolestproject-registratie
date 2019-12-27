@@ -4,7 +4,8 @@ export const state = () => ({
   project_descr: null,
   project_type: null,
   project_lang: null,
-  participants: null
+  participants: null,
+  own_project: null
 })
 export const getters = {
   projectinfo: (state) => {
@@ -17,6 +18,9 @@ export const getters = {
   }
 }
 export const mutations = {
+  own_project (state, ownProject) {
+    state.own_project = ownProject
+  },
   project_id (state, projectId) {
     state.project_id = projectId
   },
@@ -49,6 +53,7 @@ export const actions = {
       commit('project_type', project.project_type)
       commit('project_lang', project.project_lang)
       commit('participants', project.participants)
+      commit('own_project', project.own_project)
     } else {
       commit('project_id', null)
       commit('project_name', null)
@@ -56,6 +61,7 @@ export const actions = {
       commit('project_type', null)
       commit('project_lang', null)
       commit('participants', null)
+      commit('own_project', null)
     }
   }
 }
