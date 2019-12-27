@@ -21,6 +21,7 @@
                   :options="languages"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-18-live-feedback"
+                  :disabled="!own_project"
                 />
                 <b-form-invalid-feedback id="input-18-live-feedback">
                   {{ errors[0] }}
@@ -38,6 +39,7 @@
                   v-model="project_type"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-166-live-feedback"
+                  :disabled="!own_project"
                 />
                 <b-form-invalid-feedback id="input-166-live-feedback">
                   {{ errors[0] }}
@@ -56,6 +58,7 @@
                   :placeholder="$t('GeefProjectnaam:')"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-20-live-feedback"
+                  :disabled="!own_project"
                 />
                 <b-form-invalid-feedback id="input-20-live-feedback">
                   {{ errors[0] }}
@@ -73,20 +76,21 @@
                   v-model="project_descr"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-21-live-feedback"
+                  :disabled="!own_project"
                 />
                 <b-form-invalid-feedback id="input-21-live-feedback">
                   {{ errors[0] }}
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <b-form-group>
+            <b-form-group v-if="own_project">
               <b-button
                 v-if="createState"
                 type="submit"
                 variant="info"
                 class="button-hero"
               >
-                <font-awesome-icon :icon="['fas', 'user-edit']" /> {{ $t('Create') }}
+                <font-awesome-icon :icon="['fas', 'plus']" /> {{ $t('Create') }}
               </b-button>
               <b-button
                 v-else
@@ -94,7 +98,7 @@
                 variant="info"
                 class="button-hero"
               >
-                <font-awesome-icon :icon="['fas', 'user-edit']" /> {{ $t('Aanpassen') }}
+                <font-awesome-icon :icon="['fas', 'edit']" /> {{ $t('Aanpassen') }}
               </b-button>
               <b-button
                 v-if="!createState"
@@ -111,7 +115,7 @@
                 class="button-hero"
                 @click="onDeleteInfo"
               >
-                <font-awesome-icon :icon="['fas', 'user-minus']" />  {{ $t('Delete') }}
+                <font-awesome-icon :icon="['fas', 'minus']" />  {{ $t('Delete') }}
               </b-button>
               <b-modal v-model="deleteInfo" @ok="onDelete" okTitle="Delete">
                 Project wordt gedelete
@@ -119,16 +123,24 @@
             </b-form-group>
           </b-form>
         </ValidationObserver>
-        <h1>{{ $t('participants') }}</h1>
-        <b-table striped hover :items="participants"></b-table>
-        <b-button
-          type="button"
-          variant="success"
-          class="button-hero"
-          @click="onAddToken"
-        >
-          <font-awesome-icon :icon="['fas', 'plus']" />  {{ $t('AddToken') }}
-        </b-button>
+        <div v-if="own_project">
+          <h2>{{ $t('participants') }}</h2>
+          <b-table
+            striped
+            hover
+            :items="participants"
+            :fields="[{ key: 'id', label: 'Token' }, { key: 'participant.firstname', label: 'Firstname' }, { key: 'participant.lastname', label: 'Lastname' }]"
+          >
+          </b-table>
+          <b-button
+            type="button"
+            variant="success"
+            class="button-hero"
+            @click="onAddToken"
+          >
+            <font-awesome-icon :icon="['fas', 'plus']" />  {{ $t('AddToken') }}
+          </b-button>
+        </div>
       </div>
       <div v-else>
         <b-button
@@ -137,7 +149,7 @@
           class="button-hero"
           @click="onCreateProject"
         >
-          <font-awesome-icon :icon="['fas', 'project-diagram']" />  {{ $t('CreateProject') }}
+          <font-awesome-icon :icon="['fas', 'plus']" />  {{ $t('CreateProject') }}
         </b-button>
         <b-button
           type="button"
@@ -145,7 +157,7 @@
           class="button-hero"
           @click="onEnterToken"
         >
-          <font-awesome-icon :icon="['fas', 'user-minus']" />  {{ $t('EnterToken') }}
+          <font-awesome-icon :icon="['fas', 'minus']" />  {{ $t('EnterToken') }}
         </b-button>
       </div>
     </b-col>
@@ -178,7 +190,8 @@ export default {
   },
   computed: {
     ...mapState('project', [
-      'participants'
+      'participants',
+      'own_project'
     ]),
     project_name: {
       set (value) {

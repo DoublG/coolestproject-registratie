@@ -106,17 +106,16 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-          <div>
+          <b-form-group>
             <b-button
-              class="button-sm"
-              pill
+              class="button-hero"
               variant="info"
               href="https://www.kindermaten.com/pages/Maattabel.html/"
               target="_blank"
             >
-              INFO
+              <font-awesome-icon :icon="['fas', 'tshirt']" /> {{ $t('Info') }}
             </b-button>
-          </div>
+          </b-form-group>
           <ValidationProvider v-slot="{ valid, errors }" rules="required" name="T-shirtSize">
             <b-form-group
               id="input-group-9"
@@ -886,6 +885,7 @@ export default {
 <i18n>
 {
   "en": {
+    "Info": "Info",
     "failedReg": "Registration failed, try again later",
     "title": "Registration",
     "personal_info": "Personal information",
@@ -953,6 +953,7 @@ export default {
     "Project_Type": "What is in your project about hardware, software, network on WiFi or on cable,...."
   },
   "fr": {
+    "Info": "Info",
     "failedReg": "L'enregistrement a échoué, réessayez plus tard",
     "title": "Enregistrement",
     "personal_info": "Informations personnelles",
@@ -1021,6 +1022,7 @@ export default {
     "Project_Type": "Quel est dans votre projet matériel, logiciel, réseau sur WiFi ou sur câble,...."
   },
   "nl": {
+    "Info": "Info",
     "failedReg": "Registratie mislukt, probeer later nog eens opnieuw",
     "title": "Registratie",
     "personal_info": "Persoonlijke informatie",
