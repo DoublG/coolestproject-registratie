@@ -268,10 +268,16 @@ export default {
         } else {
           projectData = await this.$axios.$patch('/api/projectinfo', this.$store.getters['project/projectinfo'], { headers: { api_key: this.$store.state.auth.api_key } })
         }
+        // load participants
+        const participantsData = await axios.get('/api/participants', { headers: { api_key: this.$store.state.auth.api_key } })
+        projectData.participants = participantsData.data
         await this.$store.dispatch('project/updateProject', projectData)
+        this.variant = 'success'
+        this.message = this.$i18n.t('successChange')
+        this.show = true
       } catch (error) {
         this.variant = 'danger'
-        this.message = this.$i18n.t('failedReg')
+        this.message = this.$i18n.t('failedChange')
         this.show = true
       }
       window.scrollTo(0, 0)
@@ -304,6 +310,7 @@ export default {
     async onAddToken (evt) {
       try {
         await this.$axios.$post('/api/participants', null, { headers: { api_key: this.$store.state.auth.api_key } })
+        await this.onReset()
         this.variant = 'success'
         this.message = this.$i18n.t('AddToken')
         this.show = true
