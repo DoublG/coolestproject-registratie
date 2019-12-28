@@ -1,8 +1,10 @@
 <template>
   <b-row>
     <b-col>
-      <h1 v-if="own_project">{{ $t('title') }}</h1>
-      <h1 v-else>{{ $t('titleOther', { owner: project_owner }) }}</h1>
+      <div v-if="project_visible">
+        <h1 v-if="own_project">{{ $t('title') }}</h1>
+        <h1 v-else>{{ $t('titleOther', { owner: project_owner }) }}</h1>
+      </div>
       <b-alert dismissible :show="show" :variant="variant">
         {{ message }}
       </b-alert>
@@ -133,6 +135,7 @@
         </ValidationObserver>
       </div>
       <div v-if="!project_visible && !createTokenState">
+        <h1>{{ $t('MakeChoice') }}</h1>
         <ActionBarProject
           :noProjectMode="true"
           @createProject="onCreateProject"
@@ -141,6 +144,7 @@
         />
       </div>
       <div v-if="!project_visible && createTokenState">
+        <h1>{{ $t('CreateViaToken') }}</h1>
         <ValidationObserver ref="observer" v-slot="{ passes }">
           <b-form @submit.prevent="passes(onTokenSubmit)" @reset.prevent="onTokenReset">
             <ValidationProvider v-slot="{ valid, errors }" rules="required|max:36|min:36" name="ProjectCode">
@@ -363,6 +367,8 @@ export default {
 <i18n>
 {
   "en": {
+    "MakeChoice": "Make a choice",
+    "CreateViaToken": "Link to project",
     "titleOther": "Project van {owner}",
     "tokenInUse": "Voucher in use",
     "AddToken": "Add Participant",
@@ -434,6 +440,8 @@ export default {
     "Project_Type": "What is in your project about hardware, software, network on WiFi or on cable,...."
   },
   "fr": {
+    "MakeChoice": "Make a choice",
+    "CreateViaToken": "Link to project",
     "titleOther": "Project van {owner}",
     "tokenInUse": "Voucher in use",
     "AddToken": "Add Participant",
@@ -506,6 +514,8 @@ export default {
     "Project_Type": "Quel est dans votre projet matériel, logiciel, réseau sur WiFi ou sur câble,...."
   },
   "nl": {
+    "MakeChoice": "Make a choice",
+    "CreateViaToken": "Link to project",
     "titleOther": "Project van {owner}",
     "tokenInUse": "Voucher in use",
     "AddToken": "Add Participant",
