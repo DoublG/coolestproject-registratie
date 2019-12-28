@@ -5,7 +5,10 @@ export const state = () => ({
   project_type: null,
   project_lang: null,
   participants: null,
-  own_project: null
+  own_project: null,
+  remaining_tokens: null,
+  project_code: null,
+  project_owner: null
 })
 export const getters = {
   projectinfo: (state) => {
@@ -15,9 +18,20 @@ export const getters = {
       project_type: state.project_type,
       project_lang: state.project_lang
     }
+  },
+  tokeninfo: (state) => {
+    return {
+      project_code: state.project_code
+    }
   }
 }
 export const mutations = {
+  remaining_tokens (state, remainingTokens) {
+    state.remaining_tokens = remainingTokens
+  },
+  project_code (state, projectCode) {
+    state.project_code = projectCode
+  },
   own_project (state, ownProject) {
     state.own_project = ownProject
   },
@@ -36,11 +50,11 @@ export const mutations = {
   project_lang (state, projectLang) {
     state.project_lang = projectLang
   },
-  project_code (state, projectCode) {
-    state.project_code = projectCode
-  },
   participants (state, participants) {
     state.participants = participants
+  },
+  project_owner (state, projectOwner) {
+    state.project_owner = projectOwner
   }
 }
 
@@ -54,6 +68,8 @@ export const actions = {
       commit('project_lang', project.project_lang)
       commit('participants', project.participants)
       commit('own_project', project.own_project)
+      commit('remaining_tokens', project.remaining_tokens)
+      commit('project_owner', project.project_owner)
     } else {
       commit('project_id', null)
       commit('project_name', null)
@@ -62,6 +78,8 @@ export const actions = {
       commit('project_lang', null)
       commit('participants', null)
       commit('own_project', null)
+      commit('remaining_tokens', null)
+      commit('project_owner', null)
     }
   }
 }

@@ -1,11 +1,12 @@
 <template>
   <b-row>
     <b-col>
-      <h1>{{ $t('title') }}</h1>
+      <h1 v-if="own_project">{{ $t('title') }}</h1>
+      <h1 v-else>{{ $t('titleOther', { owner: project_owner }) }}</h1>
       <b-alert dismissible :show="show" :variant="variant">
         {{ message }}
       </b-alert>
-      <div v-if="hasProject || createState">
+      <div v-if="project_visible">
         <ValidationObserver ref="observer" v-slot="{ passes }">
           <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
             <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Language">
@@ -21,7 +22,7 @@
                   :options="languages"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-18-live-feedback"
-                  :disabled="!own_project"
+                  :disabled="disabled"
                 />
                 <b-form-invalid-feedback id="input-18-live-feedback">
                   {{ errors[0] }}
@@ -39,7 +40,7 @@
                   v-model="project_type"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-166-live-feedback"
-                  :disabled="!own_project"
+                  :disabled="disabled"
                 />
                 <b-form-invalid-feedback id="input-166-live-feedback">
                   {{ errors[0] }}
@@ -58,7 +59,7 @@
                   :placeholder="$t('GeefProjectnaam:')"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-20-live-feedback"
-                  :disabled="!own_project"
+                  :disabled="disabled"
                 />
                 <b-form-invalid-feedback id="input-20-live-feedback">
                   {{ errors[0] }}
@@ -76,99 +77,97 @@
                   v-model="project_descr"
                   :state="errors[0] ? false : (valid ? true : null)"
                   aria-describedby="input-21-live-feedback"
-                  :disabled="!own_project"
+                  :disabled="disabled"
                 />
                 <b-form-invalid-feedback id="input-21-live-feedback">
                   {{ errors[0] }}
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <b-form-group v-if="own_project">
-              <b-button
-                v-if="createState"
-                type="submit"
-                variant="info"
-                class="button-hero"
+            <div v-if="own_project">
+              <h2>{{ $t('participants') }}</h2>
+              <b-table
+                striped
+                hover
+                :items="participants"
+                :fields="[{ key: 'used', label: 'In Use' }, { key: 'id', label: 'Token' }, { key: 'name', label: 'Name' }]"
               >
-                <font-awesome-icon :icon="['fas', 'plus']" /> {{ $t('Create') }}
-              </b-button>
-              <b-button
-                v-else
-                type="submit"
-                variant="info"
-                class="button-hero"
+                <template v-slot:cell(used)="data">
+                  <font-awesome-icon :icon="['fas', 'check']" v-if="data.item.name !== undefined" />
+                </template>
+                <template v-slot:cell(id)="data">
+                  <span v-if="data.item.name === undefined">
+                    {{ data.item.id }}
+                  </span>
+                  <span v-else>
+                    {{ $t('tokenInUse') }}
+                  </span>
+                </template>
+              </b-table>
+            </div>
+            <div v-else>
+              <h2>{{ $t('participants') }}</h2>
+              <b-table
+                striped
+                hover
+                :items="participants"
+                :fields="[{ key: 'name', label: 'Name' }]"
               >
-                <font-awesome-icon :icon="['fas', 'edit']" /> {{ $t('Aanpassen') }}
-              </b-button>
-              <b-button
-                v-if="!createState"
-                type="reset"
-                variant="warning"
-                class="button-hero"
-              >
-                <font-awesome-icon :icon="['fas', 'trash-restore']" />  {{ $t('Resetten') }}
-              </b-button>
-              <b-button
-                v-if="!createState"
-                type="button"
-                variant="danger"
-                class="button-hero"
-                @click="onDeleteInfo"
-              >
-                <font-awesome-icon :icon="['fas', 'minus']" />  {{ $t('Delete') }}
-              </b-button>
-              <b-modal v-model="deleteInfo" @ok="onDelete" okTitle="Delete">
-                Project wordt gedelete
-              </b-modal>
-            </b-form-group>
+                <template v-slot:cell(id)="data">
+                  <span v-if="data.item.name === undefined">
+                    {{ data.item.id }}
+                  </span>
+                </template>
+              </b-table>
+            </div>
+            <ActionBarProject
+              :createMode="createState"
+              :displayMode="!own_project"
+              :editMode="!createState && own_project"
+              :addPossible="remaining_tokens > 0"
+              @deleteProject="onDelete"
+              @createToken="onAddToken"
+              @cancel="onCancel"
+            />
           </b-form>
         </ValidationObserver>
-        <div v-if="own_project">
-          <h2>{{ $t('participants') }}</h2>
-          <b-table
-            striped
-            hover
-            :items="participants"
-            :fields="[{ key: 'id', label: 'Token' }, { key: 'participant.firstname', label: 'Firstname' }, { key: 'participant.lastname', label: 'Lastname' }]"
-          >
-          </b-table>
-          <b-button
-            type="button"
-            variant="success"
-            class="button-hero"
-            @click="onAddToken"
-          >
-            <font-awesome-icon :icon="['fas', 'plus']" />  {{ $t('AddToken') }}
-          </b-button>
-        </div>
-        <div v-else>
-          <b-button
-            type="button"
-            variant="danger"
-            class="button-hero"
-            @click="onDelete"
-          >
-            <font-awesome-icon :icon="['fas', 'minus']" />  {{ $t('Delete') }}
-          </b-button>
-        </div>
       </div>
-      <div v-else>
-        <b-button
-          type="button"
-          variant="success"
-          class="button-hero"
-          @click="onCreateProject"
-        >
-          <font-awesome-icon :icon="['fas', 'plus']" />  {{ $t('CreateProject') }}
-        </b-button>
-        <b-button
-          type="button"
-          variant="success"
-          class="button-hero"
-          @click="onEnterToken"
-        >
-          <font-awesome-icon :icon="['fas', 'minus']" />  {{ $t('EnterToken') }}
-        </b-button>
+      <div v-if="!project_visible && !createTokenState">
+        <ActionBarProject
+          :noProjectMode="true"
+          @createProject="onCreateProject"
+          @enterToken="onEnterToken"
+          @cancel="onCancel"
+        />
+      </div>
+      <div v-if="!project_visible && createTokenState">
+        <ValidationObserver ref="observer" v-slot="{ passes }">
+          <b-form @submit.prevent="passes(onTokenSubmit)" @reset.prevent="onTokenReset">
+            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:36|min:36" name="ProjectCode">
+              <b-form-group
+                id="input-group-22"
+                :label="$t('Projectcode:')"
+                label-for="input-22"
+                :description="$t('Geef de code in die je van de projecteigenaar gekregen hebt')"
+              >
+                <b-form-input
+                  id="input-22"
+                  v-model="project_code"
+                  placeholder="Code"
+                  :state="errors[0] ? false : (valid ? true : null)"
+                  aria-describedby="input-22-live-feedback"
+                />
+                <b-form-invalid-feedback id="input-22-live-feedback">
+                  {{ errors[0] }}
+                </b-form-invalid-feedback>
+              </b-form-group>
+            </ValidationProvider>
+            <ActionBarProject
+              :createMode="true"
+              @cancel="onCancel"
+            />
+          </b-form>
+        </ValidationObserver>
       </div>
     </b-col>
   </b-row>
@@ -177,19 +176,21 @@
 import axios from 'axios'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { mapState } from 'vuex'
+import ActionBarProject from '~/components/ActionBarProject.vue'
 
 export default {
   middleware: 'authenticated',
   components: {
     ValidationObserver,
-    ValidationProvider
+    ValidationProvider,
+    ActionBarProject
   },
   data () {
     return {
       show: false,
+      createTokenState: false,
       variant: 'success',
       message: this.$i18n.t('successReg'),
-      deleteInfo: false,
       createState: false,
       languages: [
         { value: 'nl', text: 'Nederlands' },
@@ -200,8 +201,16 @@ export default {
   },
   computed: {
     ...mapState('project', [
-      'participants'
+      'participants',
+      'remaining_tokens',
+      'project_owner'
     ]),
+    project_visible () {
+      return this.hasProject || this.createState
+    },
+    disabled () {
+      return !this.own_project
+    },
     project_name: {
       set (value) {
         this.$store.commit('project/project_name', value)
@@ -242,6 +251,14 @@ export default {
         return this.$store.state.project.project_lang
       }
     },
+    project_code: {
+      set (value) {
+        this.$store.commit('project/project_code', value)
+      },
+      get () {
+        return this.$store.state.project.project_code
+      }
+    },
     hasProject () {
       return this.$store.state.project.project_id !== null
     }
@@ -251,32 +268,49 @@ export default {
     try {
       const projectData = await axios.get('/api/projectinfo', { headers: { api_key: store.state.auth.api_key } })
       if (projectData.data !== '') {
-        // load participants
-        const participantsData = await axios.get('/api/participants', { headers: { api_key: store.state.auth.api_key } })
-        projectData.data.participants = participantsData.data
         await store.dispatch('project/updateProject', projectData.data)
       }
     } catch (error) {}
   },
   methods: {
-    async onSubmit (evt) {
+    async onTokenSubmit (evt) {
       try {
-        let projectData = null
-        if (this.createState) {
-          projectData = await this.$axios.$post('/api/projectinfo', this.$store.getters['project/projectinfo'], { headers: { api_key: this.$store.state.auth.api_key } })
-          this.createState = false
-        } else {
-          projectData = await this.$axios.$patch('/api/projectinfo', this.$store.getters['project/projectinfo'], { headers: { api_key: this.$store.state.auth.api_key } })
-        }
-        // load participants
-        const participantsData = await axios.get('/api/participants', { headers: { api_key: this.$store.state.auth.api_key } })
-        projectData.participants = participantsData.data
-        await this.$store.dispatch('project/updateProject', projectData)
+        // link to project
+        const projectData = await this.$axios.$post('/api/projectinfo', this.$store.getters['project/tokeninfo'], { headers: { api_key: this.$store.state.auth.api_key } })
+        this.onCancel(evt)
         this.variant = 'success'
         this.message = this.$i18n.t('successChange')
         this.show = true
+        if (projectData !== '') {
+          await this.$store.dispatch('project/updateProject', projectData)
+        }
       } catch (error) {
         this.variant = 'danger'
+        console.error(error)
+        this.message = this.$i18n.t('failedChange')
+        this.show = true
+      }
+    },
+    async onSubmit (evt) {
+      try {
+        let projectData = null
+        if (this.createState && !this.createTokenState) {
+          // create new project
+          projectData = await this.$axios.$post('/api/projectinfo', this.$store.getters['project/projectinfo'], { headers: { api_key: this.$store.state.auth.api_key } })
+          this.onCancel(evt)
+        } else {
+          // update existing project
+          projectData = await this.$axios.$patch('/api/projectinfo', this.$store.getters['project/projectinfo'], { headers: { api_key: this.$store.state.auth.api_key } })
+        }
+        this.variant = 'success'
+        this.message = this.$i18n.t('successChange')
+        this.show = true
+        if (projectData !== '') {
+          await this.$store.dispatch('project/updateProject', projectData)
+        }
+      } catch (error) {
+        this.variant = 'danger'
+        console.error(error)
         this.message = this.$i18n.t('failedChange')
         this.show = true
       }
@@ -287,15 +321,9 @@ export default {
       try {
         const projectData = await axios.get('/api/projectinfo', { headers: { api_key: this.$store.state.auth.api_key } })
         if (projectData.data !== '') {
-          // load participants
-          const participantsData = await axios.get('/api/participants', { headers: { api_key: this.$store.state.auth.api_key } })
-          projectData.data.participants = participantsData.data
           await this.$store.dispatch('project/updateProject', projectData.data)
         }
       } catch (error) {}
-    },
-    onDeleteInfo (evt) {
-      this.deleteInfo = true
     },
     async onDelete (evt) {
       await this.$axios.$delete('/api/projectinfo', { headers: { api_key: this.$store.state.auth.api_key } })
@@ -306,7 +334,9 @@ export default {
       this.own_project = true
       this.createState = true
     },
-    onEnterToken (evt) {},
+    onEnterToken (evt) {
+      this.createTokenState = true
+    },
     async onAddToken (evt) {
       try {
         await this.$axios.$post('/api/participants', null, { headers: { api_key: this.$store.state.auth.api_key } })
@@ -319,6 +349,12 @@ export default {
         this.message = error
         this.show = true
       }
+    },
+    onCancel (evt) {
+      this.project_lang = null
+      this.own_project = false
+      this.createState = false
+      this.createTokenState = false
     }
   }
 }
@@ -327,6 +363,8 @@ export default {
 <i18n>
 {
   "en": {
+    "titleOther": "Project van {owner}",
+    "tokenInUse": "Voucher in use",
     "AddToken": "Add Participant",
     "failedReg": "Registration failed, try again later",
     "title": "Project",
@@ -396,6 +434,8 @@ export default {
     "Project_Type": "What is in your project about hardware, software, network on WiFi or on cable,...."
   },
   "fr": {
+    "titleOther": "Project van {owner}",
+    "tokenInUse": "Voucher in use",
     "AddToken": "Add Participant",
     "participants": "Participants",
     "failedReg": "L'enregistrement a échoué, réessayez plus tard",
@@ -466,6 +506,8 @@ export default {
     "Project_Type": "Quel est dans votre projet matériel, logiciel, réseau sur WiFi ou sur câble,...."
   },
   "nl": {
+    "titleOther": "Project van {owner}",
+    "tokenInUse": "Voucher in use",
     "AddToken": "Add Participant",
     "participants": "Participants",
     "failedReg": "Registratie mislukt, probeer later nog eens opnieuw",
