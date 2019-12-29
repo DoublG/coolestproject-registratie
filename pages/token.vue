@@ -1,14 +1,10 @@
 <template>
   <b-row>
     <b-col>
-      <div v-if="project_visible">
-        <h1 v-if="own_project">{{ $t('title') }}</h1>
-        <h1 v-else>{{ $t('titleOther', { owner: project_owner }) }}</h1>
-      </div>
-      <b-alert dismissible :show="show" :variant="variant">
-        {{ message }}
-      </b-alert>
         <h1>{{ $t('CreateViaToken') }}</h1>
+        <b-alert dismissible :show="show" :variant="variant">
+          {{ message }}
+        </b-alert>
         <ValidationObserver ref="observer" v-slot="{ passes }">
           <b-form @submit.prevent="passes(onTokenSubmit)" @reset.prevent="onTokenReset">
             <ValidationProvider v-slot="{ valid, errors }" rules="required|max:36|min:36" name="ProjectCode">
@@ -76,19 +72,22 @@ export default {
       try {
         // link to project
         const projectData = await this.$axios.$post('/api/projectinfo', this.$store.getters['project/tokeninfo'], { headers: { api_key: this.$store.state.auth.api_key } })
-        this.onCancel(evt)
         this.variant = 'success'
         this.message = this.$i18n.t('successChange')
         this.show = true
         if (projectData !== '') {
           await this.$store.dispatch('project/updateProject', projectData)
         }
+        this.$router.push('project')
       } catch (error) {
         this.variant = 'danger'
         console.error(error)
         this.message = this.$i18n.t('failedChange')
         this.show = true
       }
+    },
+    onCancel (evt) {
+      this.$router.push('no_project')
     }
   }
 }
