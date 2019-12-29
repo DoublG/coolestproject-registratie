@@ -72,7 +72,7 @@
     <font-awesome-icon :icon="['fas', 'eject']" />  {{ $t('Cancel') }}
   </b-button>
   <b-modal v-model="showPopup" @ok="onDelete" okTitle="Delete" title="Delete Project">
-    <span v-if="displayMode">
+    <span v-if="!own">
       Link tussen project en gebruiker wordt gedelete
     </span>
     <span v-else>
@@ -84,23 +84,39 @@
 <script>
 export default {
   props: {
-    createMode: {
+    project: {
       type: Boolean,
       default: false
     },
-    editMode: {
+    token: {
       type: Boolean,
       default: false
     },
-    displayMode: {
+    update: {
       type: Boolean,
       default: false
     },
-    addPossible: {
+    create: {
       type: Boolean,
       default: false
     },
-    noProjectMode: {
+    reset: {
+      type: Boolean,
+      default: false
+    },
+    del: {
+      type: Boolean,
+      default: false
+    },
+    add: {
+      type: Boolean,
+      default: false
+    },
+    cancel: {
+      type: Boolean,
+      default: false
+    },
+    own: {
       type: Boolean,
       default: false
     }
@@ -111,30 +127,6 @@ export default {
     }
   },
   computed: {
-    project () {
-      return this.noProjectMode
-    },
-    token () {
-      return this.noProjectMode
-    },
-    update () {
-      return this.editMode
-    },
-    create () {
-      return this.createMode
-    },
-    reset () {
-      return this.editMode
-    },
-    del () {
-      return (this.editMode || this.displayMode) && !this.createMode
-    },
-    add () {
-      return this.editMode && this.addPossible
-    },
-    cancel () {
-      return this.createMode
-    }
   },
   mounted () {},
   methods: {

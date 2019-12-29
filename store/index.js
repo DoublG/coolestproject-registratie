@@ -13,8 +13,15 @@ export const state = () => ({
   startDateEvent: new Date(2020, 5, 16),
   maxAge: 18,
   minAge: 5,
-  guardianAge: 16
+  guardianAge: 16,
+  create_project: false
 })
+
+export const mutations = {
+  create_project (state, createProject) {
+    state.create_project = createProject
+  }
+}
 
 export const getters = ({
   maxAgeDate: (state) => {
