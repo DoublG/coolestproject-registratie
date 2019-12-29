@@ -2,8 +2,12 @@
   <b-row>
     <b-col>
       <div v-if="project_visible">
-        <h1 v-if="own_project">{{ $t('title') }}</h1>
-        <h1 v-else>{{ $t('titleOther', { owner: project_owner }) }}</h1>
+        <h1 v-if="own_project">
+          {{ $t('title') }}
+        </h1>
+        <h1 v-else>
+          {{ $t('titleOther', { owner: project_owner }) }}
+        </h1>
       </div>
       <b-alert dismissible :show="show" :variant="variant">
         {{ message }}
@@ -95,7 +99,7 @@
                 :fields="[{ key: 'used', label: 'In Use' }, { key: 'id', label: 'Token' }, { key: 'name', label: 'Name' }]"
               >
                 <template v-slot:cell(used)="data">
-                  <font-awesome-icon :icon="['fas', 'check']" v-if="data.item.name !== undefined" />
+                  <font-awesome-icon v-if="data.item.name !== undefined" :icon="['fas', 'check']" />
                 </template>
                 <template v-slot:cell(id)="data">
                   <span v-if="data.item.name === undefined">
@@ -123,10 +127,10 @@
               </b-table>
             </div>
             <ActionBarProject
-              :createMode="createState"
-              :displayMode="!own_project"
-              :editMode="!createState && own_project"
-              :addPossible="remaining_tokens > 0"
+              :create-mode="createState"
+              :display-mode="!own_project"
+              :edit-mode="!createState && own_project"
+              :add-possible="remaining_tokens > 0"
               @deleteProject="onDelete"
               @createToken="onAddToken"
               @cancel="onCancel"
@@ -137,7 +141,7 @@
       <div v-if="!project_visible && !createTokenState">
         <h1>{{ $t('MakeChoice') }}</h1>
         <ActionBarProject
-          :noProjectMode="true"
+          :no-project-mode="true"
           @createProject="onCreateProject"
           @enterToken="onEnterToken"
           @cancel="onCancel"
@@ -167,7 +171,7 @@
               </b-form-group>
             </ValidationProvider>
             <ActionBarProject
-              :createMode="true"
+              :create-mode="true"
               @cancel="onCancel"
             />
           </b-form>
@@ -290,6 +294,7 @@ export default {
         }
       } catch (error) {
         this.variant = 'danger'
+        // eslint-disable-next-line no-console
         console.error(error)
         this.message = this.$i18n.t('failedChange')
         this.show = true
@@ -314,6 +319,7 @@ export default {
         }
       } catch (error) {
         this.variant = 'danger'
+        // eslint-disable-next-line no-console
         console.error(error)
         this.message = this.$i18n.t('failedChange')
         this.show = true
