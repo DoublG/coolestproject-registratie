@@ -15,7 +15,7 @@
             <b-form-input
               id="input-1"
               v-model="email"
-              disabled="true"
+              disabled
             />
           </b-form-group>
           <ValidationProvider v-slot="{ valid, errors }" rules="required" name="FirstName">

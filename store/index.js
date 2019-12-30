@@ -18,6 +18,27 @@ export const state = () => ({
   settingsLoaded: false
 })
 
+export const mutations = {
+  startDateEvent (state, startDateEvent) {
+    state.startDateEvent = startDateEvent
+  },
+  maxAge (state, maxAge) {
+    state.maxAge = maxAge
+  },
+  minAge (state, minAge) {
+    state.minAge = minAge
+  },
+  guardianAge (state, guardianAge) {
+    state.guardianAge = guardianAge
+  },
+  tshirtDate (state, tshirtDate) {
+    state.tshirtDate = tshirtDate
+  },
+  settingsLoaded (state, settingsLoaded) {
+    state.settingsLoaded = settingsLoaded
+  }
+}
+
 export const actions = {
   updateSettings ({ commit }, settings) {
     commit('startDateEvent', settings.startDateEvent)

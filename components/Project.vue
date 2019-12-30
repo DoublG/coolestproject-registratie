@@ -114,10 +114,8 @@
                   :items="participants"
                   :fields="[{ key: 'name', label: 'Name' }]"
                 >
-                  <template v-slot:cell(id)="data">
-                    <span v-if="data.item.name === undefined">
-                      {{ data.item.id }}
-                    </span>
+                  <template v-slot:cell(name)="data">
+                    <font-awesome-icon v-if="data.item.self" :icon="['fas', 'user-circle']" /> {{ data.item.name }}
                   </template>
                 </b-table>
               </div>
