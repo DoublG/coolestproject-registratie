@@ -12,7 +12,11 @@
             :label="$t('Email adress:')"
             label-for="input-1"
           >
-            {{ email }}
+            <b-form-input
+              id="input-1"
+              v-model="email"
+              disabled="true"
+            />
           </b-form-group>
           <ValidationProvider v-slot="{ valid, errors }" rules="required" name="FirstName">
             <b-form-group
@@ -114,6 +118,7 @@
                 :options="shirtsize"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-9-live-feedback"
+                :disabled="tshirtDisabled"
               />
               <b-form-invalid-feedback id="input-9-live-feedback">
                 {{ errors[0] }}
@@ -476,6 +481,9 @@ export default {
     }
   },
   computed: {
+    tshirtDisabled () {
+      return this.tshirtDate < new Date()
+    },
     firstname: {
       set (value) {
         this.$store.commit('user/firstname', value)
@@ -526,7 +534,8 @@ export default {
       'startDateEvent',
       'maxAge',
       'minAge',
-      'guardianAge'
+      'guardianAge',
+      'tshirtDate'
     ]),
     ...mapState('user', [
       'birthmonth',
