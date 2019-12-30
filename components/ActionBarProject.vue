@@ -73,10 +73,10 @@
     </b-button>
     <b-modal v-model="showPopup" title="Delete Project" ok-title="Delete" @ok="onDelete">
       <span v-if="displayMode">
-        Link tussen project en gebruiker wordt gedelete
+        LinkProject: Link tussen project en gebruiker wordt gedelete
       </span>
       <span v-else>
-        Project wordt gedelete
+        DeleteProject: Project wordt gedelete
       </span>
     </b-modal>
   </b-form-group>
@@ -84,23 +84,39 @@
 <script>
 export default {
   props: {
-    createMode: {
+    project: {
       type: Boolean,
       default: false
     },
-    editMode: {
+    token: {
       type: Boolean,
       default: false
     },
-    displayMode: {
+    update: {
       type: Boolean,
       default: false
     },
-    addPossible: {
+    create: {
       type: Boolean,
       default: false
     },
-    noProjectMode: {
+    reset: {
+      type: Boolean,
+      default: false
+    },
+    del: {
+      type: Boolean,
+      default: false
+    },
+    add: {
+      type: Boolean,
+      default: false
+    },
+    cancel: {
+      type: Boolean,
+      default: false
+    },
+    own: {
       type: Boolean,
       default: false
     }
@@ -111,30 +127,6 @@ export default {
     }
   },
   computed: {
-    project () {
-      return this.noProjectMode
-    },
-    token () {
-      return this.noProjectMode
-    },
-    update () {
-      return this.editMode
-    },
-    create () {
-      return this.createMode
-    },
-    reset () {
-      return this.editMode
-    },
-    del () {
-      return (this.editMode || this.displayMode) && !this.createMode
-    },
-    add () {
-      return this.editMode && this.addPossible
-    },
-    cancel () {
-      return this.createMode
-    }
   },
   mounted () {},
   methods: {
@@ -163,5 +155,39 @@ export default {
 
 <i18n>
 {
+  "en": {
+    "createProject": "Create project",
+    "MakeChoice": "Make a choice",
+    "CreateViaToken": "Link to project",
+    "titleOther": "Project van {owner}",
+    "tokenInUse": "Voucher in use",
+    "Aanpassen": "Save Changes",
+    "AddToken": "Add Co-Worker",
+    "Resetten": "Reset data",
+    "Delete": "Delete project"
+   },
+  "fr": {
+    "createProject": "Create project",
+    "MakeChoice": "Make a choice",
+    "CreateViaToken": "Link to project",
+    "titleOther": "Project van {owner}",
+    "tokenInUse": "Bon en cours d'utilisation",
+    "Aanpassen": "Ajuster",
+    "AddToken": "Ajouter un employé",
+    "Resetten": "Remettre",
+    "Delete": "Effacer projet"
+
+  },
+  "nl": {
+    "createProject": "Create project",
+    "MakeChoice": "Make a choice",
+    "CreateViaToken": "Link to project",
+    "titleOther": "Project van {owner}",
+    "tokenInUse": "Voucher in gebruik",
+    "Aanpassen": "Aanpassen",
+    "AddToken": "Medewerker toevoegen",
+    "Resetten": "Terug zetten",
+    "Delete": "Project Verwijderen"
+  }
 }
 </i18n>

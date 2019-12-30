@@ -57,7 +57,7 @@ module.exports = {
   css: [
   ],
   router: {
-    // middleware: 'i18n'
+    middleware: ['settings']
   },
   /*
   ** Plugins to load before mounting the App

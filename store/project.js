@@ -70,6 +70,9 @@ export const actions = {
       commit('own_project', project.own_project)
       commit('remaining_tokens', project.remaining_tokens)
       commit('project_owner', project.project_owner)
+      if (!project.project_code) {
+        commit('project_code', null)
+      }
     } else {
       commit('project_id', null)
       commit('project_name', null)
@@ -80,6 +83,7 @@ export const actions = {
       commit('own_project', null)
       commit('remaining_tokens', null)
       commit('project_owner', null)
+      commit('project_code', null)
     }
   }
 }

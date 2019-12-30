@@ -12,7 +12,11 @@
             :label="$t('Email adress:')"
             label-for="input-1"
           >
-            {{ email }}
+            <b-form-input
+              id="input-1"
+              v-model="email"
+              disabled
+            />
           </b-form-group>
           <ValidationProvider v-slot="{ valid, errors }" rules="required" name="FirstName">
             <b-form-group
@@ -114,6 +118,7 @@
                 :options="shirtsize"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-9-live-feedback"
+                :disabled="tshirtDisabled"
               />
               <b-form-invalid-feedback id="input-9-live-feedback">
                 {{ errors[0] }}
@@ -476,6 +481,9 @@ export default {
     }
   },
   computed: {
+    tshirtDisabled () {
+      return this.tshirtDate < new Date()
+    },
     firstname: {
       set (value) {
         this.$store.commit('user/firstname', value)
@@ -526,7 +534,8 @@ export default {
       'startDateEvent',
       'maxAge',
       'minAge',
-      'guardianAge'
+      'guardianAge',
+      'tshirtDate'
     ]),
     ...mapState('user', [
       'birthmonth',
@@ -798,7 +807,10 @@ export default {
     "verwijder alles": "delete all",
     "successUpdate": "User updated",
     "Ikbenakkoord": "I agree with the general conditions",
-    "Project_Type": "What is in your project about hardware, software, network on WiFi or on cable,...."
+    "Project_Type": "What is in your project about hardware, software, network on WiFi or on cable,....",
+    "Aanpassen": "Change",
+    "Resetten": "Reset",
+    "Delete": "Delete"
   },
   "fr": {
     "Info": "Info",
@@ -867,7 +879,10 @@ export default {
     "verwijder alles": "tout supprimer",
     "successUpdate": "Success",
     "Ikbenakkoord": "Vous devez accepter la question suivante pour vous inscrire",
-    "Project_Type": "Quel est dans votre projet matériel, logiciel, réseau sur WiFi ou sur câble,...."
+    "Project_Type": "Quel est dans votre projet matériel, logiciel, réseau sur WiFi ou sur câble,....",
+    "Aanpassen": "Ajuster",
+    "Resetten": "Remettre",
+    "Delete": "Effacer"
   },
   "nl": {
     "Info": "Info",
@@ -936,7 +951,9 @@ export default {
     "verwijder alles": "VERWIJDER ALLES",
     "successUpdate": "Aanpassing gelukt",
     "Ikbenakkoord": "Ik ben akkoord met de algemene voorwarden",
-    "Project_Type": "Wat zit er in jouw project aan hardwere, software, netwerk via wifi of via kabel,...."
+    "Project_Type": "Wat zit er in jouw project aan hardwere, software, netwerk via wifi of via kabel,....",
+    "Resetten": "Terug zetten",
+    "Delete": "Verwijderen"
   }
 }
 </i18n>

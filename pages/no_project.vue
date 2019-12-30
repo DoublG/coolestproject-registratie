@@ -1,13 +1,44 @@
 <template>
-  <Project />
+  <b-row>
+    <b-col>
+      <h1>{{ $t('MakeChoice') }}</h1>
+      <ActionBarProject
+        project
+        token
+        @createProject="onCreateProject"
+        @enterToken="onEnterToken"
+      />
+    </b-col>
+  </b-row>
 </template>
 <script>
-import Project from '~/components/Project.vue'
+import ActionBarProject from '~/components/ActionBarProject.vue'
 
 export default {
-  middleware: ['authenticated', 'project'],
+  middleware: 'authenticated',
   components: {
-    Project
+    ActionBarProject
+  },
+  data () {
+    return {}
+  },
+  computed: {
+    create_project: {
+      set (value) {
+        this.$store.commit('create_project', value)
+      },
+      get () {
+        return this.$store.state.create_project
+      }
+    }
+  },
+  methods: {
+    onCreateProject (evt) {
+      this.$router.push('new_project')
+    },
+    onEnterToken (evt) {
+      this.$router.push('token')
+    }
   }
 }
 </script>
@@ -15,9 +46,14 @@ export default {
 <i18n>
 {
   "en": {
-    "Info": "Info",
-    "failedUpdate": "Update failed, try again",
-    "title": "User",
+    "MakeChoice": "Make a choice",
+    "CreateViaToken": "Link to project",
+    "titleOther": "Project van {owner}",
+    "tokenInUse": "Voucher in use",
+    "AddToken": "Add Participant",
+    "failedReg": "Registration failed, try again later",
+    "title": "Project",
+    "participants": "Participants",
     "personal_info": "Personal information",
     "no_photo": "CoderDojo is fun so we like sharing that with the world. During our activities, we take pictures that may appear on social media afterwards so it could be the case that you get photographed or filmed during one of these CoderDojo activities. We don't use this footage on flyers or campaign without explicitly asking for permission. If you rather don't want your picture to be used, you can mention this at your registration.",
     "no_contact": "You can contact me for future events",
@@ -78,14 +114,19 @@ export default {
     "kiesmaat": "Choose a size",
     "Ik schrijf me in": "I register",
     "verwijder alles": "delete all",
-    "successUpdate": "User updated",
+    "successReg": "Registration is successful, you will receive an email shortly with which you can log in to our website",
     "Ikbenakkoord": "I agree with the general conditions",
     "Project_Type": "What is in your project about hardware, software, network on WiFi or on cable,...."
   },
   "fr": {
-    "Info": "Info",
-    "failedUpdate": "Error",
-    "title": "Utilisateur",
+    "MakeChoice": "Make a choice",
+    "CreateViaToken": "Link to project",
+    "titleOther": "Project van {owner}",
+    "tokenInUse": "Voucher in use",
+    "AddToken": "Add Participant",
+    "participants": "Participants",
+    "failedReg": "L'enregistrement a échoué, réessayez plus tard",
+    "title": "Projet",
     "personal_info": "Informations personnelles",
     "no_photo": "Nous aimons promotionner notre action à travers les réseaux sociaux et pour ce faire nous prenons des photos pendant nos événements.Sachez que tu pourrait être photographié ou filmé lors de sa participation à notre evenement. Ces photos sont ensuite postées et partagées sur nos réseaux sociaux. Celles-ci ne sont pas imprimées, et ne figurent pas sur nos brochures. Si toutes fois, quelques photos devaient servir à des fins de campagnes promotionnelles plus étendues, nous vous demanderons bien sûr votre accord avant diffusion. Si vous ne tenez pas à ce que les photos de vous soient utilisées, nous vous remercions de nous en faire part lors de votre enregistrement.",
     "no_contact": "Nous respectons vos données personnelles ! Pour plus d’infos, consultez notre clause de confidentialité sur notre site web.Pouvons-nous vous informer des événements Coolest Projects ultérieurs par e-mail?",
@@ -147,14 +188,19 @@ export default {
     "kiesmaat": "Choisissez une taille",
     "Ik schrijf me in": "Je m'inscris",
     "verwijder alles": "tout supprimer",
-    "successUpdate": "Success",
+    "successReg": "L'inscription est réussie, vous recevrez sous peu un e-mail avec lequel vous pourrez vous connecter à notre site Web",
     "Ikbenakkoord": "Vous devez accepter la question suivante pour vous inscrire",
     "Project_Type": "Quel est dans votre projet matériel, logiciel, réseau sur WiFi ou sur câble,...."
   },
   "nl": {
-    "Info": "Info",
-    "failedUpdate": "Aanpassing misslukt",
-    "title": "Gebruiker",
+    "MakeChoice": "Make a choice",
+    "CreateViaToken": "Link to project",
+    "titleOther": "Project van {owner}",
+    "tokenInUse": "Voucher in use",
+    "AddToken": "Add Participant",
+    "participants": "Participants",
+    "failedReg": "Registratie mislukt, probeer later nog eens opnieuw",
+    "title": "Project",
     "personal_info": "Persoonlijke informatie",
     "no_photo": "CoderDojo is leuk en daarom tonen wij graag waar we mee bezig zijn. We nemen tijdens onze activiteiten foto’s van onze deelnemers en begeleiders die we daarna op sociale media plaatsen. Het kan gebeuren dat je gefotografeerd of gefilmd wordt tijdens ons event. Wij gebruiken dit beeldmateriaal niet op flyers of voor uitvoerige campagnes zonder hiervoor nog eens expliciet toestemming te vragen. Indien je liever geen foto’s van je gebruikt ziet worden, kan je dat tijdens het registreren aangeven.",
     "no_contact": "We respecteren je data. Bekijk daarom zeker even ons privacy statement op de website. Mogen we jou via mail op de hoogte brengen over volgende Coolest Projects evenementen?",
@@ -189,8 +235,8 @@ export default {
     "Is er nog extra informatie": "Is er nog extra informatie waar we rekening mee moeten houden:",
     "Taal:": "Taal:",
     "Projecttype:": "Projecttype:",
-    "Projectnaam:": "Projectnaam:",
-    "Omschrijving:": "Omschrijving:",
+    "ProjectName:": "Projectnaam:",
+    "ProjectDescr:": "Omschrijving:",
     "Projectcode:": "Projectcode:",
     "GeefAchternaam:": "Geef je achternaam in",
     "GeefVoornaam:": "Geef je voornaam in:",
@@ -216,12 +262,9 @@ export default {
     "kiesmaat": "Kies een maat",
     "Ik schrijf me in": "Ik schrijf me in",
     "verwijder alles": "VERWIJDER ALLES",
-    "successUpdate": "Aanpassing gelukt",
+    "successReg": "De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website",
     "Ikbenakkoord": "Ik ben akkoord met de algemene voorwarden",
-    "Project_Type": "Wat zit er in jouw project aan hardwere, software, netwerk via wifi of via kabel,....",
-    "Resetten": "Terug zetten",
-    "Delete": "Verwijderen",
-    "Addtoken": "Medewerker toevoegen"
+    "Project_Type": "Wat zit er in jouw project aan hardwere, software, netwerk via wifi of via kabel,...."
   }
 }
 </i18n>
