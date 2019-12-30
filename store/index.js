@@ -14,7 +14,8 @@ export const state = () => ({
   maxAge: 18,
   minAge: 5,
   guardianAge: 16,
-  tshirtDate: new Date(2020, 5, 1)
+  tshirtDate: new Date(2020, 5, 1),
+  settingsLoaded: false
 })
 
 export const actions = {
@@ -23,6 +24,8 @@ export const actions = {
     commit('maxAge', settings.maxAge)
     commit('minAge', settings.minAge)
     commit('guardianAge', settings.guardianAge)
+    commit('tshirtDate', settings.tshirtDate)
+    commit('settingsLoaded', true)
   }
 }
 
