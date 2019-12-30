@@ -16,6 +16,15 @@ export const state = () => ({
   guardianAge: 16
 })
 
+export const actions = {
+  updateSettings ({ commit }, settings) {
+    commit('startDateEvent', settings.startDateEvent)
+    commit('maxAge', settings.maxAge)
+    commit('minAge', settings.minAge)
+    commit('guardianAge', settings.guardianAge)
+  }
+}
+
 export const getters = ({
   maxAgeDate: (state) => {
     return addDays(addYears(state.startDateEvent, -1 * state.minAge), -1)
