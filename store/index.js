@@ -13,7 +13,8 @@ export const state = () => ({
   startDateEvent: new Date(2020, 5, 16),
   maxAge: 18,
   minAge: 5,
-  guardianAge: 16
+  guardianAge: 16,
+  tshirtDate: new Date(2020, 5, 1)
 })
 
 export const getters = ({
