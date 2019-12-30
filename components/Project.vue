@@ -91,17 +91,14 @@
                   striped
                   hover
                   :items="participants"
-                  :fields="[{ key: 'used', label: 'In Use' }, { key: 'id', label: 'Token' }, { key: 'name', label: 'Name' }]"
+                  :fields="[{ key: 'id', label: 'Token' }, { key: 'name', label: 'Name' }]"
                 >
-                  <template v-slot:cell(used)="data">
-                    <font-awesome-icon :icon="['fas', 'check']" v-if="data.item.name !== undefined" />
-                  </template>
                   <template v-slot:cell(id)="data">
                     <span v-if="data.item.name === undefined">
                       {{ data.item.id }}
                     </span>
                     <span v-else>
-                      {{ $t('tokenInUse') }}
+                      <font-awesome-icon :icon="['fas', 'check']" /> {{ $t('tokenInUse') }}
                     </span>
                   </template>
                 </b-table>
@@ -286,6 +283,7 @@ export default {
 <i18n>
 {
   "en": {
+    "EmailTokenToParticipant": "Email token",
     "createProject": "Create project",
     "MakeChoice": "Make a choice",
     "CreateViaToken": "Link to project",
@@ -360,6 +358,7 @@ export default {
     "Project_Type": "What is in your project about hardware, software, network on WiFi or on cable,...."
   },
   "fr": {
+    "EmailTokenToParticipant": "Email token",
     "createProject": "Create project",
     "MakeChoice": "Make a choice",
     "CreateViaToken": "Link to project",
@@ -435,6 +434,7 @@ export default {
     "Project_Type": "Quel est dans votre projet matériel, logiciel, réseau sur WiFi ou sur câble,...."
   },
   "nl": {
+    "EmailTokenToParticipant": "Email token",
     "createProject": "Create project",
     "MakeChoice": "Make a choice",
     "CreateViaToken": "Link to project",
