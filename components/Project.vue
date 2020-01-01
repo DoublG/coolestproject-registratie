@@ -124,64 +124,64 @@
                   <font-awesome-icon v-if="data.item.self" :icon="['fas', 'user-circle']" /> {{ data.item.name }}
                 </template>
               </b-table>
-                <b-form-textarea
-                  id="input-21"
-                  v-model="project_descr"
-                  :state="errors[0] ? false : (valid ? true : null)"
-                  aria-describedby="input-21-live-feedback"
-                  :disabled="disabled"
-                />
-                <b-form-invalid-feedback id="input-21-live-feedback">
-                  {{ errors[0] }}
-                </b-form-invalid-feedback>
+              <b-form-textarea
+                id="input-21"
+                v-model="project_descr"
+                :state="errors[0] ? false : (valid ? true : null)"
+                aria-describedby="input-21-live-feedback"
+                :disabled="disabled"
+              />
+              <b-form-invalid-feedback id="input-21-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
               </b-form-group>
-            </ValidationProvider>
-            <div v-if="!create">
-              <div v-if="own_project">
-                <h2>{{ $t('participants') }}</h2>
-                <b-table
-                  striped
-                  hover
-                  :items="participants"
-                  :fields="[{ key: 'id', label: 'Token' }, { key: 'name', label: 'Name' }]"
-                >
-                  <template v-slot:cell(id)="data">
-                    <span v-if="data.item.name === undefined">
-                      {{ data.item.id }}
-                    </span>
-                    <span v-else>
-                      <font-awesome-icon :icon="['fas', 'check']" /> {{ $t('tokenInUse') }}
-                    </span>
-                  </template>
-                </b-table>
-              </div>
-              <div v-else>
-                <h2>{{ $t('participants') }}</h2>
-                <b-table
-                  striped
-                  hover
-                  :items="participants"
-                  :fields="[{ key: 'name', label: 'Name' }]"
-                >
-                  <template v-slot:cell(name)="data">
-                    <font-awesome-icon v-if="data.item.self" :icon="['fas', 'user-circle']" /> {{ data.item.name }}
-                  </template>
-                </b-table>
+              </ValidationProvider>
+              <div v-if="!create">
+                <div v-if="own_project">
+                  <h2>{{ $t('participants') }}</h2>
+                  <b-table
+                    striped
+                    hover
+                    :items="participants"
+                    :fields="[{ key: 'id', label: 'Token' }, { key: 'name', label: 'Name' }]"
+                  >
+                    <template v-slot:cell(id)="data">
+                      <span v-if="data.item.name === undefined">
+                        {{ data.item.id }}
+                      </span>
+                      <span v-else>
+                        <font-awesome-icon :icon="['fas', 'check']" /> {{ $t('tokenInUse') }}
+                      </span>
+                    </template>
+                  </b-table>
+                </div>
+                <div v-else>
+                  <h2>{{ $t('participants') }}</h2>
+                  <b-table
+                    striped
+                    hover
+                    :items="participants"
+                    :fields="[{ key: 'name', label: 'Name' }]"
+                  >
+                    <template v-slot:cell(name)="data">
+                      <font-awesome-icon v-if="data.item.self" :icon="['fas', 'user-circle']" /> {{ data.item.name }}
+                    </template>
+                  </b-table>
+                </div>
               </div>
             </div>
-          </div>
-          <ActionBarProject
-            :create="create"
-            :cancel="create"
-            :update="!create && own_project"
-            :reset="!create && own_project"
-            :add="!create && remaining_tokens > 0 && own_project"
-            :del="!create"
-            :own="own_project"
-            @deleteProject="onDelete"
-            @createToken="onAddToken"
-            @cancel="onCancel"
-          />
+            <ActionBarProject
+              :create="create"
+              :cancel="create"
+              :update="!create && own_project"
+              :reset="!create && own_project"
+              :add="!create && remaining_tokens > 0 && own_project"
+              :del="!create"
+              :own="own_project"
+              @deleteProject="onDelete"
+              @createToken="onAddToken"
+              @cancel="onCancel"
+            />
         </b-form>
       </ValidationObserver>
     </b-col>
