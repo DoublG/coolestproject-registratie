@@ -95,7 +95,7 @@
                 >
                   <template v-slot:cell(id)="data">
                     <span v-if="data.item.name === undefined">
-                      {{ data.item.id }}
+                      {{ data.item.id }} <b-button :href="mailToken(data.item.id)"><font-awesome-icon :icon="['fas', 'envelope']" /> Mail</b-button>
                     </span>
                     <span v-else>
                       <font-awesome-icon :icon="['fas', 'check']" /> {{ $t('tokenInUse') }}
@@ -224,6 +224,9 @@ export default {
     }
   },
   methods: {
+    mailToken (token) {
+      return this.$i18n.t('mail', { token })
+    },
     async onSubmit (evt) {
       try {
         let projectData = null
@@ -284,6 +287,7 @@ export default {
 <i18n>
 {
   "en": {
+    "mail": "mailto:?subject=Wil je meedoen aan mijn project ?&body= gebruik dan deze token '{token}' bij de registratie van coolest project !!!",
     "EmailTokenToParticipant": "Email token",
     "createProject": "Create project",
     "MakeChoice": "Make a choice",
@@ -359,6 +363,7 @@ export default {
     "Project_Type": "What is in your project about hardware, software, network on WiFi or on cable,...."
   },
   "fr": {
+    "mail": "mailto:?subject=Wil je meedoen aan mijn project ?&body= gebruik dan deze token '{token}' bij de registratie van coolest project !!!",
     "EmailTokenToParticipant": "Email token",
     "createProject": "Create project",
     "MakeChoice": "Make a choice",
@@ -435,6 +440,7 @@ export default {
     "Project_Type": "Quel est dans votre projet matériel, logiciel, réseau sur WiFi ou sur câble,...."
   },
   "nl": {
+    "mail": "mailto:?subject=Wil je meedoen aan mijn project ?&body= gebruik dan deze token '{token}' bij de registratie van coolest project !!!",
     "EmailTokenToParticipant": "Email token",
     "createProject": "Create project",
     "MakeChoice": "Make a choice",
