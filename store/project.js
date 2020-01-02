@@ -8,7 +8,8 @@ export const state = () => ({
   own_project: null,
   remaining_tokens: null,
   project_code: null,
-  project_owner: null
+  project_owner: null,
+  delete_possible: null
 })
 export const getters = {
   projectinfo: (state) => {
@@ -26,6 +27,9 @@ export const getters = {
   }
 }
 export const mutations = {
+  delete_possible (state, deletePossible) {
+    state.delete_possible = deletePossible
+  },
   remaining_tokens (state, remainingTokens) {
     state.remaining_tokens = remainingTokens
   },
@@ -70,6 +74,7 @@ export const actions = {
       commit('own_project', project.own_project)
       commit('remaining_tokens', project.remaining_tokens)
       commit('project_owner', project.project_owner)
+      commit('delete_possible', project.delete_possible)
       if (!project.project_code) {
         commit('project_code', null)
       }
@@ -84,6 +89,7 @@ export const actions = {
       commit('remaining_tokens', null)
       commit('project_owner', null)
       commit('project_code', null)
+      commit('delete_possible', null)
     }
   }
 }

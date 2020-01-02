@@ -123,7 +123,7 @@
               :update="!create && own_project"
               :reset="!create && own_project"
               :add="!create && remaining_tokens > 0 && own_project"
-              :del="!create"
+              :del="!create && delete_possible"
               :own="own_project"
               @deleteProject="onDelete"
               @createToken="onAddToken"
@@ -168,7 +168,8 @@ export default {
     ...mapState('project', [
       'participants',
       'remaining_tokens',
-      'project_owner'
+      'project_owner',
+      'delete_possible'
     ]),
     project_name: {
       set (value) {

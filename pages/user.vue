@@ -363,6 +363,7 @@
               <font-awesome-icon :icon="['fas', 'trash-restore']" />  {{ $t('Resetten') }}
             </b-button>
             <b-button
+              v-if="delete_possible"
               type="button"
               variant="danger"
               class="button-hero"
@@ -542,7 +543,8 @@ export default {
       'language',
       'email',
       'postalcode',
-      'gsm'
+      'gsm',
+      'delete_possible'
     ]),
     postalcode: {
       set (value) {
@@ -660,7 +662,7 @@ export default {
       }
       date.setDate(1)
       date.setFullYear(val)
-      this.$store.dispatch('user/birthmonth', date)
+      this.$store.commit('user/birthmonth', date)
     },
     month (val) {
       let date = this.$store.state.user.birthmonth
@@ -672,7 +674,7 @@ export default {
       }
       date.setDate(1)
       date.setMonth(val)
-      this.$store.dispatch('user/birthmonth', date)
+      this.$store.commit('user/birthmonth', date)
     },
     own_project (val) {
       // cleanup data
@@ -717,6 +719,7 @@ export default {
         this.message = this.$i18n.t('successUpdate')
         this.show = true
       } catch (error) {
+        console.log(error)
         this.variant = 'danger'
         this.message = this.$i18n.t('failedUpdate')
         this.show = true
