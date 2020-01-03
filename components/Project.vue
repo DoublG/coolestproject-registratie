@@ -95,7 +95,9 @@
                 >
                   <template v-slot:cell(id)="data">
                     <span v-if="data.item.name === undefined">
-                      {{ data.item.id }} <b-button :href="mailToken(data.item.id)"><font-awesome-icon :icon="['fas', 'envelope']" /> Mail</b-button>
+                      {{ data.item.id }}
+                      <b-button :href="mailToken(data.item.id)"><font-awesome-icon :icon="['fas', 'envelope']" /> Mail</b-button>
+                      <b-button @click="copyToClipboard(data.item.id)"><font-awesome-icon :icon="['fas', 'copy']" /> Copy</b-button>
                     </span>
                     <span v-else>
                       <font-awesome-icon :icon="['fas', 'check']" /> {{ $t('tokenInUse') }}
@@ -224,6 +226,9 @@ export default {
     }
   },
   methods: {
+    copyToClipboard (token) {
+      navigator.clipboard.writeText(token)
+    },
     mailToken (token) {
       return this.$i18n.t('mail', { token })
     },
