@@ -1,63 +1,63 @@
 <template>
 <b-form-group>
     <b-button
+      v-if="create"
       type="submit"
       variant="info"
       class="button-hero"
-      v-if="create"
     >
       <font-awesome-icon :icon="['fas', 'plus']" /> {{ $t('Create') }}
     </b-button>
     <b-button
+      v-if="update"
       type="submit"
       variant="info"
       class="button-hero"
-      v-if="update"
     >
       <font-awesome-icon :icon="['fas', 'edit']" /> {{ $t('Aanpassen') }}
     </b-button>
     <b-button
+      v-if="reset"
       type="reset"
       variant="warning"
       class="button-hero"
-      v-if="reset"
     >
       <font-awesome-icon :icon="['fas', 'trash-restore']" />  {{ $t('Resetten') }}
     </b-button>
     <b-button
+      v-if="del"
       type="button"
       variant="danger"
       class="button-hero"
       @click="onDeleteInfo"
-      v-if="del"
     >
       <font-awesome-icon :icon="['fas', 'minus']" />  {{ $t('Delete') }}
     </b-button>
     <b-button
+      v-if="add"
       type="button"
       variant="success"
       class="button-hero"
       @click="onCreateToken"
-      v-if="add"
     >
       <font-awesome-icon :icon="['fas', 'plus']" />  {{ $t('AddToken') }}
     </b-button>
     <!-- begin project not yet created -->
     <b-button
+      v-if="project"
       type="button"
       variant="success"
       class="button-hero"
       @click="onCreateProject"
-      v-if="project"
     >
       <font-awesome-icon :icon="['fas', 'plus']" />  {{ $t('CreateProject') }}
     </b-button>
     <b-button
+      v-if="token"
       type="button"
       variant="success"
       class="button-hero"
       @click="onEnterToken"
-      v-if="token"
     >
       <font-awesome-icon :icon="['fas', 'minus']" />  {{ $t('EnterToken') }}
     </b-button>

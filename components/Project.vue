@@ -301,7 +301,7 @@ export default {
     "createProject": "Create project",
     "MakeChoice": "Make a choice",
     "CreateViaToken": "Link to project",
-    "titleOther": "Project van {owner}",
+    "titleOther": "Project of {owner}",
     "tokenInUse": "Voucher in use",
     "AddToken": "Add Participant",
     "failedReg": "Registration failed, try again later",
