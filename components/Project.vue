@@ -1,138 +1,144 @@
 <template>
   <b-row>
     <b-col>
-      <h1 v-if="own_project">{{ $t('title') }}</h1>
-      <h1 v-if="own_project === false">{{ $t('titleOther', { owner: project_owner }) }}</h1>
-      <h1 v-if="create">{{ $t('createProject') }}</h1>
+      <h1 v-if="own_project">
+        {{ $t('title') }}
+      </h1>
+      <h1 v-if="own_project === false">
+        {{ $t('titleOther', { owner: project_owner }) }}
+      </h1>
+      <h1 v-if="create">
+        {{ $t('createProject') }}
+      </h1>
       <b-alert dismissible :show="show" :variant="variant">
         {{ message }}
       </b-alert>
-        <ValidationObserver ref="observer" v-slot="{ passes }">
-          <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
-            <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Language">
-              <b-form-group
-                id="input-group-18"
-                :label="$t('Taal:')"
-                label-for="select-18"
-                :description="$t('taalJury')"
+      <ValidationObserver ref="observer" v-slot="{ passes }">
+        <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
+          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Language">
+            <b-form-group
+              id="input-group-18"
+              :label="$t('Taal:')"
+              label-for="select-18"
+              :description="$t('taalJury')"
+            >
+              <b-form-select
+                id="select-18"
+                v-model="project_lang"
+                :options="languages"
+                :state="errors[0] ? false : (valid ? true : null)"
+                aria-describedby="input-18-live-feedback"
+                :disabled="disabled"
+              />
+              <b-form-invalid-feedback id="input-18-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
+          <ValidationProvider v-slot="{ valid, errors }" name="ProjectType">
+            <b-form-group
+              id="input-group-166"
+              :label="$t('Project_Type')"
+              label-for="input-166"
+            >
+              <b-form-textarea
+                id="input-166"
+                v-model="project_type"
+                :state="errors[0] ? false : (valid ? true : null)"
+                aria-describedby="input-166-live-feedback"
+                :disabled="disabled"
+              />
+              <b-form-invalid-feedback id="input-166-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
+          <ValidationProvider v-slot="{ valid, errors }" rules="required|max:100" name="ProjectName">
+            <b-form-group
+              id="input-group-20"
+              :label="$t('Projectnaam:')"
+              label-for="input-20"
+            >
+              <b-form-input
+                id="input-20"
+                v-model="project_name"
+                :placeholder="$t('GeefProjectnaam:')"
+                :state="errors[0] ? false : (valid ? true : null)"
+                aria-describedby="input-20-live-feedback"
+                :disabled="disabled"
+              />
+              <b-form-invalid-feedback id="input-20-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
+          <ValidationProvider v-slot="{ valid, errors }" rules="required|max:4000" name="ProjectDescription">
+            <b-form-group
+              id="input-group-21"
+              :label="$t('Omschrijving:')"
+              label-for="input-21"
+            >
+              <b-form-textarea
+                id="input-21"
+                v-model="project_descr"
+                :state="errors[0] ? false : (valid ? true : null)"
+                aria-describedby="input-21-live-feedback"
+                :disabled="disabled"
+              />
+              <b-form-invalid-feedback id="input-21-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
+          <div v-if="!create">
+            <div v-if="own_project">
+              <h2>{{ $t('participants') }}</h2>
+              <b-table
+                striped
+                hover
+                :items="participants"
+                :fields="[{ key: 'id', label: 'Medewerker Token' }, { key: 'name', label: 'Medewerker Name' }]"
               >
-                <b-form-select
-                  id="select-18"
-                  v-model="project_lang"
-                  :options="languages"
-                  :state="errors[0] ? false : (valid ? true : null)"
-                  aria-describedby="input-18-live-feedback"
-                  :disabled="disabled"
-                />
-                <b-form-invalid-feedback id="input-18-live-feedback">
-                  {{ errors[0] }}
-                </b-form-invalid-feedback>
-              </b-form-group>
-            </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" name="ProjectType">
-              <b-form-group
-                id="input-group-166"
-                :label="$t('Project_Type')"
-                label-for="input-166"
-              >
-                <b-form-textarea
-                  id="input-166"
-                  v-model="project_type"
-                  :state="errors[0] ? false : (valid ? true : null)"
-                  aria-describedby="input-166-live-feedback"
-                  :disabled="disabled"
-                />
-                <b-form-invalid-feedback id="input-166-live-feedback">
-                  {{ errors[0] }}
-                </b-form-invalid-feedback>
-              </b-form-group>
-            </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:100" name="ProjectName">
-              <b-form-group
-                id="input-group-20"
-                :label="$t('Projectnaam:')"
-                label-for="input-20"
-              >
-                <b-form-input
-                  id="input-20"
-                  v-model="project_name"
-                  :placeholder="$t('GeefProjectnaam:')"
-                  :state="errors[0] ? false : (valid ? true : null)"
-                  aria-describedby="input-20-live-feedback"
-                  :disabled="disabled"
-                />
-                <b-form-invalid-feedback id="input-20-live-feedback">
-                  {{ errors[0] }}
-                </b-form-invalid-feedback>
-              </b-form-group>
-            </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:4000" name="ProjectDescription">
-              <b-form-group
-                id="input-group-21"
-                :label="$t('Omschrijving:')"
-                label-for="input-21"
-              >
-                <b-form-textarea
-                  id="input-21"
-                  v-model="project_descr"
-                  :state="errors[0] ? false : (valid ? true : null)"
-                  aria-describedby="input-21-live-feedback"
-                  :disabled="disabled"
-                />
-                <b-form-invalid-feedback id="input-21-live-feedback">
-                  {{ errors[0] }}
-                </b-form-invalid-feedback>
-              </b-form-group>
-            </ValidationProvider>
-            <div v-if="!create">
-              <div v-if="own_project">
-                <h2>{{ $t('participants') }}</h2>
-                <b-table
-                  striped
-                  hover
-                  :items="participants"
-                  :fields="[{ key: 'id', label: 'Token' }, { key: 'name', label: 'Name' }]"
-                >
-                  <template v-slot:cell(id)="data">
-                    <span v-if="data.item.name === undefined">
-                      {{ data.item.id }}
-                      <b-button :href="mailToken(data.item.id)"><font-awesome-icon :icon="['fas', 'envelope']" /> Mail</b-button>
-                      <b-button @click="copyToClipboard(data.item.id)"><font-awesome-icon :icon="['fas', 'copy']" /> Copy</b-button>
-                    </span>
-                    <span v-else>
-                      <font-awesome-icon :icon="['fas', 'check']" /> {{ $t('tokenInUse') }}
-                    </span>
-                  </template>
-                </b-table>
-              </div>
-              <div v-else>
-                <h2>{{ $t('participants') }}</h2>
-                <b-table
-                  striped
-                  hover
-                  :items="participants"
-                  :fields="[{ key: 'name', label: 'Name' }]"
-                >
-                  <template v-slot:cell(name)="data">
-                    <font-awesome-icon v-if="data.item.self" :icon="['fas', 'user-circle']" /> {{ data.item.name }}
-                  </template>
-                </b-table>
-              </div>
+                <template v-slot:cell(id)="data">
+                  <span v-if="data.item.name === undefined">
+                    {{ data.item.id }}
+                    <b-button :href="mailToken(data.item.id)"><font-awesome-icon :icon="['fas', 'envelope']" /> Mail</b-button>
+                    <b-button @click="copyToClipboard(data.item.id)"><font-awesome-icon :icon="['fas', 'copy']" /> Copy</b-button>
+                  </span>
+                  <span v-else>
+                    <font-awesome-icon :icon="['fas', 'check']" /> {{ $t('tokenInUse') }}
+                  </span>
+                </template>
+              </b-table>
             </div>
-            <ActionBarProject
-              :create="create"
-              :cancel="create"
-              :update="!create && own_project"
-              :reset="!create && own_project"
-              :add="!create && remaining_tokens > 0 && own_project"
-              :del="!create && delete_possible"
-              :own="own_project"
-              @deleteProject="onDelete"
-              @createToken="onAddToken"
-              @cancel="onCancel"
-            />
-          </b-form>
-        </ValidationObserver>
+            <div v-else>
+              <h2>{{ $t('participants') }}</h2>
+              <b-table
+                striped
+                hover
+                :items="participants"
+                :fields="[{ key: 'name', label: 'Name' }]"
+              >
+                <template v-slot:cell(name)="data">
+                  <font-awesome-icon v-if="data.item.self" :icon="['fas', 'user-circle']" /> {{ data.item.name }}
+                </template>
+              </b-table>
+            </div>
+          </div>
+          <ActionBarProject
+            :create="create"
+            :cancel="create"
+            :update="!create && own_project"
+            :reset="!create && own_project"
+            :add="!create && remaining_tokens > 0 && own_project"
+            :del="!create && delete_possible"
+            :own="own_project"
+            @deleteProject="onDelete"
+            @createToken="onAddToken"
+            @cancel="onCancel"
+          />
+        </b-form>
+      </ValidationObserver>
     </b-col>
   </b-row>
 </template>
@@ -142,16 +148,16 @@ import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { mapState } from 'vuex'
 import ActionBarProject from '~/components/ActionBarProject.vue'
 export default {
+  components: {
+    ValidationObserver,
+    ValidationProvider,
+    ActionBarProject
+  },
   props: {
     create: {
       type: Boolean,
       default: false
     }
-  },
-  components: {
-    ValidationObserver,
-    ValidationProvider,
-    ActionBarProject
   },
   data () {
     return {
@@ -300,7 +306,7 @@ export default {
     "AddToken": "Add Participant",
     "failedReg": "Registration failed, try again later",
     "title": "Project",
-    "participants": "Participants",
+    "participants": "Participant",
     "personal_info": "Personal information",
     "no_photo": "CoderDojo is fun so we like sharing that with the world. During our activities, we take pictures that may appear on social media afterwards so it could be the case that you get photographed or filmed during one of these CoderDojo activities. We don't use this footage on flyers or campaign without explicitly asking for permission. If you rather don't want your picture to be used, you can mention this at your registration.",
     "no_contact": "You can contact me for future events",
@@ -367,14 +373,14 @@ export default {
   },
   "fr": {
     "mail": "mailto:?subject=Wil je meedoen aan mijn project ?&body= gebruik dan deze token '{token}' bij de registratie van coolest project !!!",
-    "EmailTokenToParticipant": "Email token",
-    "createProject": "Create project",
+    "EmailTokenToParticipant": "jeton de courrier électronique",
+    "createProject": "Créer un projet",
     "MakeChoice": "Make a choice",
-    "CreateViaToken": "Link to project",
-    "titleOther": "Project van {owner}",
-    "tokenInUse": "Voucher in use",
-    "AddToken": "Add Participant",
-    "participants": "Participants",
+    "CreateViaToken": "Connecter un projet",
+    "titleOther": "Projet de {owner}",
+    "tokenInUse": "Bon en cours d'utilisation",
+    "AddToken": "ajouter participant",
+    "participants": "Participant",
     "failedReg": "L'enregistrement a échoué, réessayez plus tard",
     "title": "Projet",
     "personal_info": "Informations personnelles",
@@ -450,8 +456,8 @@ export default {
     "CreateViaToken": "Link to project",
     "titleOther": "Project van {owner}",
     "tokenInUse": "Voucher in use",
-    "AddToken": "Add Participant",
-    "participants": "Participants",
+    "AddToken": "Medewerker toevoegen",
+    "participants": "Medewerker",
     "failedReg": "Registratie mislukt, probeer later nog eens opnieuw",
     "title": "Project",
     "personal_info": "Persoonlijke informatie",
