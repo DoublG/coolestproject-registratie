@@ -1,5 +1,5 @@
 <template>
-<b-form-group>
+  <b-form-group>
     <b-button
       v-if="create"
       type="submit"
@@ -164,7 +164,8 @@ export default {
     "AddToken":   "Add token",
     "Cancel":     "Cancel",
     "EnterToken": "Enter Token",
-    "Project wordt verwijderd": "Project will be deleted"
+    "Project wordt verwijderd": "Project will be deleted",
+    "CreateProject": "Create my own Project"
   },
 "fr" :{
     "LinkDelete": "Ma connexion au projet sera suppriméee",
@@ -174,8 +175,9 @@ export default {
     "Delete":     "le retirer",
     "AddToken":   "Ajouter participant",
     "Cancel":     "arrêter",
-    "EnterToken": "Medewerker toevoegen",
-    "Project wordt verwijderd": "Le projet est supprimé"
+    "EnterToken": "entrez le jeton",
+    "Project wordt verwijderd": "Le projet est supprimé",
+    "CreateProject": "Créer mon propre projet"
 
   },
   "nl" :{
@@ -186,8 +188,9 @@ export default {
     "Delete":     "Verwijderen",
     "AddToken":   "Medewerker toevoegen",
     "Cancel":     "Afbreken",
-    "EnterToken": "Medewerker toevoegen",
-    "Project wordt verwijderd": "Project wordt verwijderd"
+    "EnterToken": "Token gebruiken",
+    "Project wordt verwijderd": "Project wordt verwijderd",
+    "CreateProject": "Mij eigen Project aanleggen"
 
   }
 }

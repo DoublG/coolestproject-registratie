@@ -119,7 +119,7 @@ export default {
     "Project_Type": "What is in your project about hardware, software, network on WiFi or on cable,...."
   },
   "fr": {
-    "MakeChoice": "Make a choice",
+    "MakeChoice": "Faites un choix",
     "CreateViaToken": "Link to project",
     "titleOther": "Project van {owner}",
     "tokenInUse": "Voucher in use",
@@ -193,8 +193,8 @@ export default {
     "Project_Type": "Quel est dans votre projet matériel, logiciel, réseau sur WiFi ou sur câble,...."
   },
   "nl": {
-    "MakeChoice": "Make a choice",
-    "CreateViaToken": "Link to project",
+    "MakeChoice": "Maak een keuze",
+    "CreateViaToken": "Mij aan een andere project toevoegen",
     "titleOther": "Project van {owner}",
     "tokenInUse": "Voucher in use",
     "AddToken": "Add Participant",

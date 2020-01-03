@@ -296,9 +296,9 @@ export default {
 <i18n>
 {
   "en": {
-    "mail": "mailto:?subject=Wil je meedoen aan mijn project ?&body= gebruik dan deze token '{token}' bij de registratie van coolest project !!!",
+    "mail": "mailto:?subject=Do you want to participate in my project?&body= then use this token'{token}' when registering at coolest project !!!",
     "EmailTokenToParticipant": "Email token",
-    "createProject": "Create project",
+    "createProject": "Create your own project",
     "MakeChoice": "Make a choice",
     "CreateViaToken": "Link to project",
     "titleOther": "Project of {owner}",
@@ -372,10 +372,10 @@ export default {
     "Project_Type": "What is in your project about hardware, software, network on WiFi or on cable,...."
   },
   "fr": {
-    "mail": "mailto:?subject=Wil je meedoen aan mijn project ?&body= gebruik dan deze token '{token}' bij de registratie van coolest project !!!",
+    "mail": "mailto:?subject=Voulez-vous participer à mon projet?&body= puis utilisez ce jeton '{token}'lors de l'enregistrement du projet le plus cool !!!",
     "EmailTokenToParticipant": "jeton de courrier électronique",
-    "createProject": "Créer un projet",
-    "MakeChoice": "Make a choice",
+    "createProject": "Créez votre propre projet",
+    "MakeChoice": "Faites un choix",
     "CreateViaToken": "Connecter un projet",
     "titleOther": "Projet de {owner}",
     "tokenInUse": "Bon en cours d'utilisation",
@@ -451,9 +451,9 @@ export default {
   "nl": {
     "mail": "mailto:?subject=Wil je meedoen aan mijn project ?&body= gebruik dan deze token '{token}' bij de registratie van coolest project !!!",
     "EmailTokenToParticipant": "Email token",
-    "createProject": "Create project",
-    "MakeChoice": "Make a choice",
-    "CreateViaToken": "Link to project",
+    "createProject": "Eigen project aanmaken",
+    "MakeChoice": "Maak een keuze",
+    "CreateViaToken": "Mij aan een andere project toevoegen",
     "titleOther": "Project van {owner}",
     "tokenInUse": "Voucher in use",
     "AddToken": "Medewerker toevoegen",

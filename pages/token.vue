@@ -98,7 +98,7 @@ export default {
 {
   "en": {
     "MakeChoice": "Make a choice",
-    "CreateViaToken": "Link to project",
+    "CreateViaToken": "Add me to another project",
     "titleOther": "Project van {owner}",
     "tokenInUse": "Voucher in use",
     "AddToken": "Add Participant",
@@ -141,7 +141,7 @@ export default {
     "Projecttype:": "Project type:",
     "Projectnaam:": "Project name:",
     "Omschrijving:": "Description:",
-    "Projectcode:": "Project code:",
+    "Projectcode:": "Project token:",
     "GeefVoornaam:": "Enter your first name",
     "GeefAchternaam:": "Enter your last name",
     "Geef je dojo, school": "Give your dojo, school, ..",
@@ -170,8 +170,8 @@ export default {
     "Project_Type": "What is in your project about hardware, software, network on WiFi or on cable,...."
   },
   "fr": {
-    "MakeChoice": "Make a choice",
-    "CreateViaToken": "Link to project",
+    "MakeChoice": "Faites un choix",
+    "CreateViaToken": "Ajoutez-moi à un autre projet",
     "titleOther": "Project van {owner}",
     "tokenInUse": "Voucher in use",
     "AddToken": "Add Participant",
@@ -214,7 +214,7 @@ export default {
     "Projecttype:": "Type de projet:",
     "Projectnaam:": "Nom du projet:",
     "Omschrijving:": "Description:",
-    "Projectcode:": "Code de projet:",
+    "Projectcode:": "Jeton de projet:",
     "GeefVoornaam:": "Entrez votre prénom",
     "GeefAchternaam:": "Entrez votre nom de famille",
     "Geef je dojo, school": "Donnez votre dojo, école, ..",
@@ -245,7 +245,7 @@ export default {
   },
   "nl": {
     "MakeChoice": "Make a choice",
-    "CreateViaToken": "Link to project",
+    "CreateViaToken": "Mij aan een andere project toevoegen",
     "titleOther": "Project van {owner}",
     "tokenInUse": "Voucher in use",
     "AddToken": "Add Participant",
@@ -288,7 +288,7 @@ export default {
     "Projecttype:": "Projecttype:",
     "ProjectName:": "Projectnaam:",
     "ProjectDescr:": "Omschrijving:",
-    "Projectcode:": "Projectcode:",
+    "Projectcode:": "Project token:",
     "GeefAchternaam:": "Geef je achternaam in",
     "GeefVoornaam:": "Geef je voornaam in:",
     "Geef je dojo, school": "Geef je dojo, school, ..",
