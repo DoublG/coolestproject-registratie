@@ -96,6 +96,8 @@
                   <template v-slot:cell(id)="data">
                     <span v-if="data.item.name === undefined">
                       {{ data.item.id }}
+                      <b-button :href="mailToken(data.item.id)"><font-awesome-icon :icon="['fas', 'envelope']" /> Mail</b-button>
+                      <b-button @click="copyToClipboard(data.item.id)"><font-awesome-icon :icon="['fas', 'copy']" /> Copy</b-button>
                     </span>
                     <span v-else>
                       <font-awesome-icon :icon="['fas', 'check']" /> {{ $t('tokenInUse') }}
@@ -123,7 +125,7 @@
               :update="!create && own_project"
               :reset="!create && own_project"
               :add="!create && remaining_tokens > 0 && own_project"
-              :del="!create"
+              :del="!create && delete_possible"
               :own="own_project"
               @deleteProject="onDelete"
               @createToken="onAddToken"
@@ -167,7 +169,8 @@ export default {
     ...mapState('project', [
       'participants',
       'remaining_tokens',
-      'project_owner'
+      'project_owner',
+      'delete_possible'
     ]),
     project_name: {
       set (value) {
@@ -222,6 +225,12 @@ export default {
     }
   },
   methods: {
+    copyToClipboard (token) {
+      navigator.clipboard.writeText(token)
+    },
+    mailToken (token) {
+      return this.$i18n.t('mail', { token })
+    },
     async onSubmit (evt) {
       try {
         let projectData = null
@@ -281,6 +290,7 @@ export default {
 <i18n>
 {
   "en": {
+    "mail": "mailto:?subject=Wil je meedoen aan mijn project ?&body= gebruik dan deze token '{token}' bij de registratie van coolest project !!!",
     "EmailTokenToParticipant": "Email token",
     "createProject": "Create project",
     "MakeChoice": "Make a choice",
@@ -356,6 +366,7 @@ export default {
     "Project_Type": "What is in your project about hardware, software, network on WiFi or on cable,...."
   },
   "fr": {
+    "mail": "mailto:?subject=Wil je meedoen aan mijn project ?&body= gebruik dan deze token '{token}' bij de registratie van coolest project !!!",
     "EmailTokenToParticipant": "Email token",
     "createProject": "Create project",
     "MakeChoice": "Make a choice",
@@ -432,6 +443,7 @@ export default {
     "Project_Type": "Quel est dans votre projet matériel, logiciel, réseau sur WiFi ou sur câble,...."
   },
   "nl": {
+    "mail": "mailto:?subject=Wil je meedoen aan mijn project ?&body= gebruik dan deze token '{token}' bij de registratie van coolest project !!!",
     "EmailTokenToParticipant": "Email token",
     "createProject": "Create project",
     "MakeChoice": "Make a choice",

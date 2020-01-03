@@ -1,4 +1,4 @@
-export const state = {
+export const state = () => ({
   gsm: null,
   general_questions: null,
   general_questions2: null,
@@ -14,9 +14,14 @@ export const state = {
   extra: null,
   firstname: null,
   email: null,
-  language: null
-}
+  language: null,
+  delete_possible: null
+})
+
 export const mutations = {
+  delete_possible (state, deletePossible) {
+    state.delete_possible = deletePossible
+  },
   language (state, language) {
     state.language = language
   },
@@ -81,10 +86,11 @@ export const actions = {
     commit('sex', user.sex)
     commit('t_size', user.t_size)
     commit('via', user.via)
-    commit('birthmonth', user.birthmonth)
+    commit('birthmonth', new Date(user.birthmonth))
     commit('postalcode', user.postalcode)
     commit('extra', user.extra)
     commit('language', user.language)
+    commit('delete_possible', user.delete_possible)
   }
 }
 export const getters = {
@@ -92,7 +98,7 @@ export const getters = {
     const user = {
       firstname: state.firstname,
       lastname: state.lastname,
-      email: state.email,
+      // email: state.email,
       gsm: state.gsm,
       general_questions: [
         state.general_questions,
@@ -102,7 +108,7 @@ export const getters = {
       sex: state.sex,
       t_size: state.t_size,
       via: state.via,
-      birthmonth: state.birthmonth,
+      birthmonth: state.birthmonth.toISOString().substr(0, 10),
       postalcode: state.postalcode,
       extra: state.extra,
       language: state.language
