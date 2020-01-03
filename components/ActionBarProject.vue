@@ -1,85 +1,85 @@
 <template>
-  <b-form-group>
-    <b-button
-      v-if="create"
-      type="submit"
-      variant="info"
-      class="button-hero"
-    >
-      <font-awesome-icon :icon="['fas', 'plus']" /> {{ $t('Create') }}
-    </b-button>
-    <b-button
-      v-if="update"
-      type="submit"
-      variant="info"
-      class="button-hero"
-    >
-      <font-awesome-icon :icon="['fas', 'edit']" /> {{ $t('Aanpassen') }}
-    </b-button>
-    <b-button
-      v-if="reset"
-      type="reset"
-      variant="warning"
-      class="button-hero"
-    >
-      <font-awesome-icon :icon="['fas', 'trash-restore']" />  {{ $t('Resetten') }}
-    </b-button>
-    <b-button
-      v-if="del"
-      type="button"
-      variant="danger"
-      class="button-hero"
-      @click="onDeleteInfo"
-    >
-      <font-awesome-icon :icon="['fas', 'minus']" />  {{ $t('Delete') }}
-    </b-button>
-    <b-button
-      v-if="add"
-      type="button"
-      variant="success"
-      class="button-hero"
-      @click="onCreateToken"
-    >
-      <font-awesome-icon :icon="['fas', 'plus']" />  {{ $t('AddToken') }}
-    </b-button>
-    <!-- begin project not yet created -->
-    <b-button
-      v-if="project"
-      type="button"
-      variant="success"
-      class="button-hero"
-      @click="onCreateProject"
-    >
-      <font-awesome-icon :icon="['fas', 'plus']" />  {{ $t('CreateProject') }}
-    </b-button>
-    <b-button
-      v-if="token"
-      type="button"
-      variant="success"
-      class="button-hero"
-      @click="onEnterToken"
-    >
-      <font-awesome-icon :icon="['fas', 'minus']" />  {{ $t('EnterToken') }}
-    </b-button>
-    <!-- end project not yet created -->
-    <b-button
-      v-if="cancel"
-      type="button"
-      variant="success"
-      class="button-hero"
-      @click="onCancel"
-    >
-      <font-awesome-icon :icon="['fas', 'eject']" />  {{ $t('Cancel') }}
-    </b-button>
-    <b-modal v-model="showPopup" title="Delete Project" ok-title="Delete" @ok="onDelete">
-      <span v-if="displayMode">
-        LinkProject: Link tussen project en gebruiker wordt gedelete
-      </span>
-      <span v-else>
-        DeleteProject: Project wordt gedelete
-      </span>
-    </b-modal>
-  </b-form-group>
+<b-form-group>
+  <b-button
+    type="submit"
+    variant="info"
+    class="button-hero"
+    v-if="create"
+  >
+    <font-awesome-icon :icon="['fas', 'plus']" /> {{ $t('Create') }}
+  </b-button>
+  <b-button
+    type="submit"
+    variant="info"
+    class="button-hero"
+    v-if="update"
+  >
+    <font-awesome-icon :icon="['fas', 'edit']" /> {{ $t('Aanpassen') }}
+  </b-button>
+  <b-button
+    type="reset"
+    variant="warning"
+    class="button-hero"
+    v-if="reset"
+  >
+    <font-awesome-icon :icon="['fas', 'trash-restore']" />  {{ $t('Resetten') }}
+  </b-button>
+  <b-button
+    type="button"
+    variant="danger"
+    class="button-hero"
+    @click="onDeleteInfo"
+    v-if="del"
+  >
+    <font-awesome-icon :icon="['fas', 'minus']" />  {{ $t('Delete') }}
+  </b-button>
+  <b-button
+    type="button"
+    variant="success"
+    class="button-hero"
+    @click="onCreateToken"
+    v-if="add"
+  >
+    <font-awesome-icon :icon="['fas', 'plus']" />  {{ $t('AddToken') }}
+  </b-button>
+  <!-- begin project not yet created -->
+  <b-button
+    type="button"
+    variant="success"
+    class="button-hero"
+    @click="onCreateProject"
+    v-if="project"
+  >
+    <font-awesome-icon :icon="['fas', 'plus']" />  {{ $t('CreateProject') }}
+  </b-button>
+  <b-button
+    type="button"
+    variant="success"
+    class="button-hero"
+    @click="onEnterToken"
+    v-if="token"
+  >
+    <font-awesome-icon :icon="['fas', 'minus']" />  {{ $t('EnterToken') }}
+  </b-button>
+  <!-- end project not yet created -->
+  <b-button
+    type="button"
+    variant="success"
+    class="button-hero"
+    @click="onCancel"
+    v-if="cancel"
+  >
+    <font-awesome-icon :icon="['fas', 'eject']" />  {{ $t('Cancel') }}
+  </b-button>
+  <b-modal v-model="showPopup" @ok="onDelete" okTitle="Delete" title="Delete Project">
+    <span v-if="!own">
+      Link tussen project en gebruiker wordt gedelete {{ $t('LinkDelete') }}
+    </span>
+    <span v-else>
+      Project wordt gedelete
+    </span>
+  </b-modal>
+</b-form-group>
 </template>
 <script>
 export default {
@@ -155,39 +155,8 @@ export default {
 
 <i18n>
 {
-  "en": {
-    "createProject": "Create project",
-    "MakeChoice": "Make a choice",
-    "CreateViaToken": "Link to project",
-    "titleOther": "Project van {owner}",
-    "tokenInUse": "Voucher in use",
-    "Aanpassen": "Save Changes",
-    "AddToken": "Add Co-Worker",
-    "Resetten": "Reset data",
-    "Delete": "Delete project"
-   },
-  "fr": {
-    "createProject": "Create project",
-    "MakeChoice": "Make a choice",
-    "CreateViaToken": "Link to project",
-    "titleOther": "Project van {owner}",
-    "tokenInUse": "Bon en cours d'utilisation",
-    "Aanpassen": "Ajuster",
-    "AddToken": "Ajouter un employé",
-    "Resetten": "Remettre",
-    "Delete": "Effacer projet"
-
-  },
-  "nl": {
-    "createProject": "Create project",
-    "MakeChoice": "Make a choice",
-    "CreateViaToken": "Link to project",
-    "titleOther": "Project van {owner}",
-    "tokenInUse": "Voucher in gebruik",
-    "Aanpassen": "Aanpassen",
-    "AddToken": "Medewerker toevoegen",
-    "Resetten": "Terug zetten",
-    "Delete": "Project Verwijderen"
+  "en" :{
+    "LinkDelete" : ""
   }
 }
 </i18n>

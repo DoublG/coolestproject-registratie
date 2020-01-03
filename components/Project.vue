@@ -1,173 +1,120 @@
 <template>
   <b-row>
     <b-col>
-      <h1 v-if="own_project">
-        {{ $t('title') }}
-      </h1>
-      <h1 v-if="own_project === false">
-        {{ $t('titleOther', { owner: project_owner }) }}
-      </h1>
-      <h1 v-if="create">
-        {{ $t('createProject') }}
-      </h1>
+      <h1 v-if="own_project">{{ $t('title') }}</h1>
+      <h1 v-if="own_project === false">{{ $t('titleOther', { owner: project_owner }) }}</h1>
+      <h1 v-if="create">{{ $t('createProject') }}</h1>
       <b-alert dismissible :show="show" :variant="variant">
         {{ message }}
       </b-alert>
-      <ValidationObserver ref="observer" v-slot="{ passes }">
-        <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
-          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Language">
-            <b-form-group
-              id="input-group-18"
-              :label="$t('Taal:')"
-              label-for="select-18"
-              :description="$t('taalJury')"
-            >
-              <b-form-select
-                id="select-18"
-                v-model="project_lang"
-                :options="languages"
-                :state="errors[0] ? false : (valid ? true : null)"
-                aria-describedby="input-18-live-feedback"
-                :disabled="disabled"
-              />
-              <b-form-invalid-feedback id="input-18-live-feedback">
-                {{ errors[0] }}
-              </b-form-invalid-feedback>
-            </b-form-group>
-          </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" name="ProjectType">
-            <b-form-group
-              id="input-group-166"
-              :label="$t('Project_Type')"
-              label-for="input-166"
-            >
-              <b-form-textarea
-                id="input-166"
-                v-model="project_type"
-                :state="errors[0] ? false : (valid ? true : null)"
-                aria-describedby="input-166-live-feedback"
-                :disabled="disabled"
-              />
-              <b-form-invalid-feedback id="input-166-live-feedback">
-                {{ errors[0] }}
-              </b-form-invalid-feedback>
-            </b-form-group>
-          </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" rules="required|max:100" name="ProjectName">
-            <b-form-group
-              id="input-group-20"
-              :label="$t('Projectnaam:')"
-              label-for="input-20"
-            >
-              <b-form-input
-                id="input-20"
-                v-model="project_name"
-                :placeholder="$t('GeefProjectnaam:')"
-                :state="errors[0] ? false : (valid ? true : null)"
-                aria-describedby="input-20-live-feedback"
-                :disabled="disabled"
-              />
-              <b-form-invalid-feedback id="input-20-live-feedback">
-                {{ errors[0] }}
-              </b-form-invalid-feedback>
-            </b-form-group>
-          </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" rules="required|max:4000" name="ProjectDescription">
-            <b-form-group
-              id="input-group-21"
-              :label="$t('Omschrijving:')"
-              label-for="input-21"
-            >
-              <b-form-textarea
-                id="input-21"
-                v-model="project_descr"
-                :state="errors[0] ? false : (valid ? true : null)"
-                aria-describedby="input-21-live-feedback"
-                :disabled="disabled"
-              />
-              <b-form-invalid-feedback id="input-21-live-feedback">
-                {{ errors[0] }}
-              </b-form-invalid-feedback>
-            </b-form-group>
-          </ValidationProvider>
-          <div v-if="!create">
-            <div v-if="own_project">
-              <h2>{{ $t('participants') }}</h2>
-              <b-table
-                striped
-                hover
-                :items="participants"
-                :fields="[{ key: 'used', label: 'In Use' }, { key: 'id', label: 'Token' }, { key: 'name', label: 'Name' }]"
+        <ValidationObserver ref="observer" v-slot="{ passes }">
+          <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
+            <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Language">
+              <b-form-group
+                id="input-group-18"
+                :label="$t('Taal:')"
+                label-for="select-18"
+                :description="$t('taalJury')"
               >
-                <template v-slot:cell(used)="data">
-                  <font-awesome-icon v-if="data.item.name !== undefined" :icon="['fas', 'check']" />
-                </template>
-                <template v-slot:cell(id)="data">
-                  <span v-if="data.item.name === undefined">
-                    {{ data.item.id }}
-                  </span>
-                  <span v-else>
-                    {{ $t('tokenInUse') }}
-                  </span>
-                </template>
-              </b-table>
-            </div>
-            <div v-else>
-              <h2>{{ $t('participants') }}</h2>
-              <b-table
-                striped
-                hover
-                :items="participants"
-                :fields="[{ key: 'name', label: 'Name' }]"
-              >
-                <template v-slot:cell(name)="data">
-                  <font-awesome-icon v-if="data.item.self" :icon="['fas', 'user-circle']" /> {{ data.item.name }}
-                </template>
-              </b-table>
-              <b-form-textarea
-                id="input-21"
-                v-model="project_descr"
-                :state="errors[0] ? false : (valid ? true : null)"
-                aria-describedby="input-21-live-feedback"
-                :disabled="disabled"
-              />
-              <b-form-invalid-feedback id="input-21-live-feedback">
-                {{ errors[0] }}
-              </b-form-invalid-feedback>
+                <b-form-select
+                  id="select-18"
+                  v-model="project_lang"
+                  :options="languages"
+                  :state="errors[0] ? false : (valid ? true : null)"
+                  aria-describedby="input-18-live-feedback"
+                  :disabled="disabled"
+                />
+                <b-form-invalid-feedback id="input-18-live-feedback">
+                  {{ errors[0] }}
+                </b-form-invalid-feedback>
               </b-form-group>
-              </ValidationProvider>
-              <div v-if="!create">
-                <div v-if="own_project">
-                  <h2>{{ $t('participants') }}</h2>
-                  <b-table
-                    striped
-                    hover
-                    :items="participants"
-                    :fields="[{ key: 'id', label: 'Token' }, { key: 'name', label: 'Name' }]"
-                  >
-                    <template v-slot:cell(id)="data">
-                      <span v-if="data.item.name === undefined">
-                        {{ data.item.id }}
-                      </span>
-                      <span v-else>
-                        <font-awesome-icon :icon="['fas', 'check']" /> {{ $t('tokenInUse') }}
-                      </span>
-                    </template>
-                  </b-table>
-                </div>
-                <div v-else>
-                  <h2>{{ $t('participants') }}</h2>
-                  <b-table
-                    striped
-                    hover
-                    :items="participants"
-                    :fields="[{ key: 'name', label: 'Name' }]"
-                  >
-                    <template v-slot:cell(name)="data">
-                      <font-awesome-icon v-if="data.item.self" :icon="['fas', 'user-circle']" /> {{ data.item.name }}
-                    </template>
-                  </b-table>
-                </div>
+            </ValidationProvider>
+            <ValidationProvider v-slot="{ valid, errors }" name="ProjectType">
+              <b-form-group
+                id="input-group-166"
+                :label="$t('Project_Type')"
+                label-for="input-166"
+              >
+                <b-form-textarea
+                  id="input-166"
+                  v-model="project_type"
+                  :state="errors[0] ? false : (valid ? true : null)"
+                  aria-describedby="input-166-live-feedback"
+                  :disabled="disabled"
+                />
+                <b-form-invalid-feedback id="input-166-live-feedback">
+                  {{ errors[0] }}
+                </b-form-invalid-feedback>
+              </b-form-group>
+            </ValidationProvider>
+            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:100" name="ProjectName">
+              <b-form-group
+                id="input-group-20"
+                :label="$t('Projectnaam:')"
+                label-for="input-20"
+              >
+                <b-form-input
+                  id="input-20"
+                  v-model="project_name"
+                  :placeholder="$t('GeefProjectnaam:')"
+                  :state="errors[0] ? false : (valid ? true : null)"
+                  aria-describedby="input-20-live-feedback"
+                  :disabled="disabled"
+                />
+                <b-form-invalid-feedback id="input-20-live-feedback">
+                  {{ errors[0] }}
+                </b-form-invalid-feedback>
+              </b-form-group>
+            </ValidationProvider>
+            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:4000" name="ProjectDescription">
+              <b-form-group
+                id="input-group-21"
+                :label="$t('Omschrijving:')"
+                label-for="input-21"
+              >
+                <b-form-textarea
+                  id="input-21"
+                  v-model="project_descr"
+                  :state="errors[0] ? false : (valid ? true : null)"
+                  aria-describedby="input-21-live-feedback"
+                  :disabled="disabled"
+                />
+                <b-form-invalid-feedback id="input-21-live-feedback">
+                  {{ errors[0] }}
+                </b-form-invalid-feedback>
+              </b-form-group>
+            </ValidationProvider>
+            <div v-if="!create">
+              <div v-if="own_project">
+                <h2>{{ $t('participants') }}</h2>
+                <b-table
+                  striped
+                  hover
+                  :items="participants"
+                  :fields="[{ key: 'id', label: 'Token' }, { key: 'name', label: 'Name' }]"
+                >
+                  <template v-slot:cell(id)="data">
+                    <span v-if="data.item.name === undefined">
+                      {{ data.item.id }}
+                    </span>
+                    <span v-else>
+                      <font-awesome-icon :icon="['fas', 'check']" /> {{ $t('tokenInUse') }}
+                    </span>
+                  </template>
+                </b-table>
+              </div>
+              <div v-else>
+                <h2>{{ $t('participants') }}</h2>
+                <b-table
+                  striped
+                  hover
+                  :items="participants"
+                  :fields="[{ key: 'name', label: 'Name' }]"
+                >
+                  <template v-slot:cell(name)="data">
+                    <font-awesome-icon v-if="data.item.self" :icon="['fas', 'user-circle']" /> {{ data.item.name }}
+                  </template>
+                </b-table>
               </div>
             </div>
             <ActionBarProject
@@ -182,8 +129,8 @@
               @createToken="onAddToken"
               @cancel="onCancel"
             />
-        </b-form>
-      </ValidationObserver>
+          </b-form>
+        </ValidationObserver>
     </b-col>
   </b-row>
 </template>
@@ -192,18 +139,17 @@ import axios from 'axios'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { mapState } from 'vuex'
 import ActionBarProject from '~/components/ActionBarProject.vue'
-
 export default {
-  components: {
-    ValidationObserver,
-    ValidationProvider,
-    ActionBarProject
-  },
   props: {
     create: {
       type: Boolean,
       default: false
     }
+  },
+  components: {
+    ValidationObserver,
+    ValidationProvider,
+    ActionBarProject
   },
   data () {
     return {
@@ -293,8 +239,6 @@ export default {
         this.show = true
       } catch (error) {
         this.variant = 'danger'
-        // eslint-disable-next-line no-console
-        console.error(error)
         this.message = this.$i18n.t('failedChange')
         this.show = true
         window.scrollTo(0, 0)
@@ -494,7 +438,7 @@ export default {
     "CreateViaToken": "Link to project",
     "titleOther": "Project van {owner}",
     "tokenInUse": "Voucher in use",
-    "AddToken": "Medewerker toevoegen",
+    "AddToken": "Add Participant",
     "participants": "Participants",
     "failedReg": "Registratie mislukt, probeer later nog eens opnieuw",
     "title": "Project",
@@ -561,9 +505,7 @@ export default {
     "verwijder alles": "VERWIJDER ALLES",
     "successReg": "De registratie is gelukt, je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website",
     "Ikbenakkoord": "Ik ben akkoord met de algemene voorwarden",
-    "Project_Type": "Wat zit er in jouw project aan hardwere, software, netwerk via wifi of via kabel,....",
-    "Resetten": "Terug zetten",
-    "Delete": "Verwijderen"
+    "Project_Type": "Wat zit er in jouw project aan hardwere, software, netwerk via wifi of via kabel,...."
   }
 }
 </i18n>
