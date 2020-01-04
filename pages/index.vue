@@ -20,7 +20,7 @@
           <li v-html="$t('rule9')" />
         </ol>
         <b> {{ $t('problems') }}
-          <A HREF="mailto:info@coolestproject.be?SUBJECT=CoolestProjectsRegistration">
+          <A href="mailto:info@coolestproject.be?SUBJECT=CoolestProjectsRegistration">
             Webmaster
           </A>
         </b>
@@ -49,7 +49,7 @@ export default {
 {
   "en": {
     "start": "Start registration",
-    "rules": "Coolest projects Belgium- English",
+    "rules": "Coolest projects Belgium",
     "intro": "At Coolest Projects Belgium, young makers showcase their digital creativity. Will you join us?",
     "agree": "By registering you agree to the following rules:",
     "problems": "Still unclear or you have more questions or problems with the registration, please contact our",
@@ -65,7 +65,7 @@ export default {
   },
   "fr": {
     "start": "Commencer l'enregistrement",
-    "rules": "Coolest projects Belgium- French",
+    "rules": "Coolest projects Belgium",
     "intro": "Chez Coolest Projects Belgium, les jeunes créateurs présentent leur créativité numérique. Voulez-vous vous joindre à nous?",
     "agree": "En vous inscrivant, vous acceptez les règles suivantes:",
     "problems": "Vous n'êtes toujours pas clair ou vous avez d'autres questions ou problèmes avec l'inscription, veuillez contacter notre",
@@ -81,17 +81,17 @@ export default {
   },
   "nl": {
     "start": "Start registratie",
-    "rules": "Coolest projects Belgium- Dutch",
+    "rules": "Coolest projects Belgium",
     "intro": "Bij Coolest Projects Belgium tonen jonge makers hun digitale creativiteit. Doe je mee?",
     "agree": "Door u te registreren gaat u akkoord met de volgende regels:",
     "problems": "Nog steeds onduidelijk of heeft u nog vragen of problemen met de registratie, neem dan contact op met onze",
     "rule1": "Inschrijvingen zijn open tussen <b>13 januari en 20 april</b> of tot de maximale capaciteit van 64 projecten is bereikt.",
-    "rule2": "Een deelnemer is <b>tussen 7 en 18 jaar oud.</b>",
-    "rule3": "Alle projecten zijn welkom, van beginner tot gevorderd. Alle technologieën worden geaccepteerd (ook onafgemaakte projecten)",
-    "rule4": "<b>Na registratie ontvangt de deelnemer een bevestigingsmail. Ze moeten op de link klikken om te controleren of de registratie geldig is.</b>",
-    "rule5": "U kunt samenwerken met <b> maximaal 4 deelnemers </b> voor één project. Alle deelnemers moeten zich registreren. Eerst moet de projecteigenaar het project registreren. Na bevestiging kunnen alle andere deelnemers deelnemen aan dit project na ontvangst van een uitnodigingsmail van de projecteigenaar met een registratietoken. ",
-    "rule6": "Na registratie kunnen de deelnemers de <b> gebruiker </b> informatie over het project wijzigen. Alleen de projecteigenaar kan zijn <b>project</b> informatie wijzigen. Alle wijzigingen moeten <b>definitief zijn op 3 mei</b>",
-    "rule7": "We bieden alleen een t-shirt en een goodiebag aan geregistreerde deelnemers.</b>",
+    "rule2": "Een deelnemer moet <b>tussen 7 en 18 jaar oud zijn op de dag van Coolest Project.</b>",
+    "rule3": "Alle projecten zijn welkom, van beginner tot expert. Alle technologieën worden geaccepteerd (ook onafgewerkte projecten)",
+    "rule4": "<b>Na registratie ontvang je een bevestigingsmail. Je moeten op de link klikken om de registratie af te ronden.</b>",
+    "rule5": "Je kunt met <b>maximaal 4 vrienden</b> deelnemen voor één project. Alle deelnemers moeten zich zelf registreren na dat de projecteigenaar zijn project heeft aangemeld. Na ontvangst van een uitnodigingsmail van de projecteigenaar met een registratietoken kunnen jullie ook registreren met deze token",
+    "rule6": "Na registratie kunnen jullie de <b>persoonlijke</b> informatie wijzigen. Alleen de projecteigenaar kan zijn <b>project</b> informatie wijzigen. Alle wijzigingen moeten <b>op 3 mei definitief zijn.</b>",
+    "rule7": "<b>We bieden alleen een t-shirt en een goodiebag aan geregistreerde deelnemers.</b>",
     "rule8": "Er zullen enkele prijzen zijn. Een lijst daarvan zal vóór het evenement op onze website worden getoond. Beoordeling voor de projecten gebeurd op de dag zelf in de tijdens de registratie gekozen taal. Alle beslissingen van de juryleden zijn definitief.",
     "rule9": "Wij respecteren uw gegevens. U kunt de privacyverklaring lezen op de website van CoderDojo België."
   }
