@@ -11,7 +11,6 @@ export const state = () => ({
   via: null,
   birthmonth: null,
   postalcode: null,
-  extra: null,
   firstname: null,
   email: null,
   language: null,
@@ -66,9 +65,6 @@ export const mutations = {
   },
   postalcode (state, postalcode) {
     state.postalcode = postalcode
-  },
-  extra (state, extra) {
-    state.extra = extra
   }
 }
 
@@ -88,7 +84,6 @@ export const actions = {
     commit('via', user.via)
     commit('birthmonth', new Date(user.birthmonth))
     commit('postalcode', user.postalcode)
-    commit('extra', user.extra)
     commit('language', user.language)
     commit('delete_possible', user.delete_possible)
   }
@@ -110,7 +105,6 @@ export const getters = {
       via: state.via,
       birthmonth: state.birthmonth.toISOString().substr(0, 10),
       postalcode: state.postalcode,
-      extra: state.extra,
       language: state.language
     }
     if (state.gsm_guardian !== null) {

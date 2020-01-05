@@ -601,14 +601,6 @@ export default {
         return this.$store.state.user.medical
       }
     },
-    extra: {
-      set (value) {
-        this.$store.commit('user/extra', value)
-      },
-      get () {
-        return this.$store.state.user.extra
-      }
-    },
     gsm: {
       set (value) {
         this.$store.commit('user/gsm', value)

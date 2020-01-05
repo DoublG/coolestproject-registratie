@@ -15,7 +15,6 @@ const originalState = () => {
     t_size: null,
     via: null,
     medical: null,
-    extra: null,
     project_name: null,
     project_descr: null,
     project_type: null,
@@ -80,9 +79,6 @@ export const mutations = {
   },
   medical (state, medical) {
     state.medical = medical
-  },
-  extra (state, extra) {
-    state.extra = extra
   },
   project_name (state, projectName) {
     state.project_name = projectName
@@ -152,9 +148,6 @@ export const actions = {
   },
   medical ({ commit }, medical) {
     commit('medical', medical)
-  },
-  extra ({ commit }, extra) {
-    commit('extra', extra)
   },
   project_name ({ commit }, projectName) {
     commit('project_name', projectName)

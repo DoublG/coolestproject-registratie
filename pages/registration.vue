@@ -710,14 +710,6 @@ export default {
         return this.$store.state.registration.medical
       }
     },
-    extra: {
-      set (value) {
-        this.$store.dispatch('registration/extra', value)
-      },
-      get () {
-        return this.$store.state.registration.extra
-      }
-    },
     project_name: {
       set (value) {
         this.$store.dispatch('registration/project_name', value)
