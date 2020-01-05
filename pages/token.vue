@@ -12,7 +12,7 @@
               id="input-group-22"
               :label="$t('Projectcode:')"
               label-for="input-22"
-              :description="$t('Geef de code in die je van de projecteigenaar gekregen hebt')"
+              :description="$t('Geefcode')"
             >
               <b-form-input
                 id="input-22"
@@ -121,7 +121,7 @@ export default {
     "We delen dit met niemand": "We don’t share this with anyone",
     "Waar kunnen we jou bereiken in geval van nood": "Where can we reach you in case of an emergency?",
     "Selecteer wat je project allemaal doet, nodig heeft": "Select what your project does, needs",
-    "Geef de code in die je van de projecteigenaar gekregen hebt": "Enter the code that you received from the project owner",
+    "Geefcode": "Enter the code that you received from the project owner",
     "Je moet akkoord": "You must agree to the following question in order to register",
     "E-mail adres:": "E-mail address",
     "Geboortejaar:": "Year of birth:",
@@ -194,7 +194,7 @@ export default {
     "We delen dit met niemand": "Nous ne partageons cela avec personne",
     "Waar kunnen we jou bereiken in geval van nood": "Où pouvons-nous vous joindre en cas d'urgence?",
     "Selecteer wat je project allemaal doet, nodig heeft": "Sélectionnez ce que votre projet fait, a besoin",
-    "Geef de code in die je van de projecteigenaar gekregen hebt": "Entrez le code que vous avez reçu du propriétaire du projet",
+    "Geefcode": "Entrez le code que vous avez reçu du propriétaire du projet",
     "Je moet akkoord": "Vous devez accepter la question suivante pour vous inscrire",
     "Email adres:": "Adresse e-mail",
     "Geboortejaar:": "Année de naissance:",
@@ -268,7 +268,7 @@ export default {
     "We delen dit met niemand": "We delen dit met niemand",
     "Waar kunnen we jou bereiken in geval van nood": "Waar kunnen we jou bereiken in geval van nood?",
     "Selecteer wat je project allemaal doet, nodig heeft": "Selecteer wat je project allemaal doet, nodig heeft",
-    "Geef de code in die je van de projecteigenaar gekregen hebt": "Geef de code in die je van de projecteigenaar gekregen hebt",
+    "Geefcode": "Geef de code in die je van de projecteigenaar gekregen hebt",
     "Je moet akkoord": "Je moet akkoord gaan met volgende vraag om je te kunnen inschrijven",
     "Email adres:": "E-mail adres",
     "Geboortejaar:": "Geboortejaar:",

@@ -119,23 +119,23 @@ export default {
 {
   "en": {
     "title": "Login",
-    "message": "Computer says no",
+    "message": "Something went wrong",
     "Stuur me een logincode": "Please send me the login code",
     "successMessage": "We've sent a logincode, please check your mailbox",
     "failureMessage": "Something went wrong please try again"
   },
   "fr": {
     "title": "Login",
-    "message": "Er is iets missgelopen",
+    "message": "Quelque chose a mal tourné",
     "Stuur me een logincode": "Envoyez-moi un code de connexione",
-    "successMessage": "We hebben een code opgestuurd, check je mailbox",
-    "failureMessage": "Er is iets misgelopen, probeer later opnieuw"
+    "successMessage": "Nous avons envoyé un code de connexion, veuillez vérifier votre boîte aux lettres",
+    "failureMessage": "Une erreur s'est produite. Veuillez réessayer"
   },
   "nl": {
     "title": "Login",
     "message": "Er is iets missgelopen",
     "Stuur me een logincode": "Stuur me een logincode",
-    "successMessage": "We hebben een code opgestuurd, controleer je mailbox",
+    "successMessage": "We hebben een logincode verzonden, controleer je mailbox",
     "failureMessage": "Er is iets misgelopen, probeer later opnieuw"
   }
 }
