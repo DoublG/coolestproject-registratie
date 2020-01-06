@@ -1,9 +1,21 @@
-import { extend } from 'vee-validate'
+import { extend, localize } from 'vee-validate'
+
+import en from 'vee-validate/dist/locale/en.json'
+import nl from 'vee-validate/dist/locale/nl.json'
+import fr from 'vee-validate/dist/locale/fr.json'
+
 import { required, digits, regex, email, alpha_spaces as AlphaSpaces, oneOf, required_if as requiredIf, max, min } from 'vee-validate/dist/rules'
 import isWithinRange from 'date-fns/is_within_range'
 // import addYears from 'date-fns/add_years'
 import addDays from 'date-fns/add_days'
 // install the 'required' rule.
+
+localize({
+  en,
+  nl,
+  fr
+})
+
 extend('required', {
   ...required
 })
