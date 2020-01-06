@@ -125,10 +125,23 @@
               <b-form-select
                 id="input-9"
                 v-model="t_size"
-                :options="shirtsize"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-9-live-feedback"
-              />
+              >
+                <option :value="null">
+                  {{ $t('T-shirt maat:') }}
+                </option>
+                <optgroup :label="$t('Female')" :options="shirtsize_female">
+                  <option v-for="shirt in shirtsize_female" :key="shirt.value" :value="shirt.value">
+                    {{ shirt.text }}
+                  </option>
+                </optgroup>
+                <optgroup :label="$t('Male')">
+                  <option v-for="shirt in shirtsize_male" :key="shirt.value" :value="shirt.value">
+                    {{ shirt.text }}
+                  </option>
+                </optgroup>
+              </b-form-select>
               <b-form-invalid-feedback id="input-9-live-feedback">
                 {{ errors[0] }}
               </b-form-invalid-feedback>
@@ -368,7 +381,7 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" name="ProjectType">
+            <ValidationProvider v-slot="{ valid, errors }" rules="max:100" name="ProjectType">
               <b-form-group
                 id="input-group-166"
                 :label="$t('Project_Type')"
@@ -542,23 +555,7 @@ export default {
       mandatory_approvals_list: [
         { value: 'ok', text: this.$i18n.t('Ikbenakkoord') }
       ],
-      shirtsize: [
-        { text: this.$i18n.t('kiesmaat'), value: null },
-        // Meisje/Fille/Girl
-        { value: 'female_M116', text: this.$i18n.t('meisje') + ' M116' },
-        { value: 'female_M122', text: this.$i18n.t('meisje') + ' M122' },
-        { value: 'female_M128', text: this.$i18n.t('meisje') + ' M128' },
-        { value: 'female_M134', text: this.$i18n.t('meisje') + ' M134' },
-        { value: 'female_M140', text: this.$i18n.t('meisje') + ' M140' },
-        { value: 'female_M146', text: this.$i18n.t('meisje') + ' M146' },
-        { value: 'female_M152', text: this.$i18n.t('meisje') + ' M152' },
-        { value: 'female_M158', text: this.$i18n.t('meisje') + ' M158' },
-        { value: 'female_M164', text: this.$i18n.t('meisje') + ' M164' },
-        { value: 'female_M170', text: this.$i18n.t('meisje') + ' M170' },
-        { value: 'female_M176', text: this.$i18n.t('meisje') + ' M176' },
-        { value: 'female_medium', text: this.$i18n.t('meisje') + ' 94 62.. Medium' },
-        { value: 'female_large', text: this.$i18n.t('meisje') + ' 100 64.. Large' },
-        { value: 'female_xl', text: this.$i18n.t('meisje') + ' 106 66.. XL extra large' },
+      shirtsize_male: [
         // Jongen/Garçon/Boy
         { value: 'male_M116', text: this.$i18n.t('jongen') + ' M116' },
         { value: 'male_M122', text: this.$i18n.t('jongen') + ' M122' },
@@ -571,13 +568,30 @@ export default {
         { value: 'male_M164', text: this.$i18n.t('jongen') + ' M164' },
         { value: 'male_M170', text: this.$i18n.t('jongen') + ' M170' },
         { value: 'male_M176', text: this.$i18n.t('jongen') + ' M176' },
-        { value: 'male_Xsmall', text: this.$i18n.t('jongen') + ' 90 68.. XS' },
-        { value: 'male_small', text: this.$i18n.t('jongen') + ' 96 70..  S' },
-        { value: 'male_medium', text: this.$i18n.t('jongen') + ' 102 72..   M' },
-        { value: 'male_large', text: this.$i18n.t('jongen') + ' 108 74..   L' },
-        { value: 'male_xl', text: this.$i18n.t('jongen') + ' 114 76..   XL' },
-        { value: 'male_xxl', text: this.$i18n.t('jongen') + ' 120 78..   XXL' },
-        { value: 'male_3xl', text: this.$i18n.t('jongen') + ' 126 80..   3XL' }
+        { value: 'male_Xsmall', text: this.$i18n.t('jongen') + ' XS_____(90cm 68cm)' },
+        { value: 'male_small', text: this.$i18n.t('jongen') + ' S______(96cm 70cm)' },
+        { value: 'male_medium', text: this.$i18n.t('jongen') + ' M_____(102cm 72cm)' },
+        { value: 'male_large', text: this.$i18n.t('jongen') + ' L______(108cm 74cm)' },
+        { value: 'male_xl', text: this.$i18n.t('jongen') + ' XL_____(114cm 76cm)' },
+        { value: 'male_xxl', text: this.$i18n.t('jongen') + ' XXL____(120cm 78cm)' },
+        { value: 'male_3xl', text: this.$i18n.t('jongen') + ' 3XL____(126cm 80cm)' }
+      ],
+      shirtsize_female: [
+        // Meisje/Fille/Girl
+        { value: 'female_M116', text: this.$i18n.t('meisje') + ' M116' },
+        { value: 'female_M122', text: this.$i18n.t('meisje') + ' M122' },
+        { value: 'female_M128', text: this.$i18n.t('meisje') + ' M128' },
+        { value: 'female_M134', text: this.$i18n.t('meisje') + ' M134' },
+        { value: 'female_M140', text: this.$i18n.t('meisje') + ' M140' },
+        { value: 'female_M146', text: this.$i18n.t('meisje') + ' M146' },
+        { value: 'female_M152', text: this.$i18n.t('meisje') + ' M152' },
+        { value: 'female_M158', text: this.$i18n.t('meisje') + ' M158' },
+        { value: 'female_M164', text: this.$i18n.t('meisje') + ' M164' },
+        { value: 'female_M170', text: this.$i18n.t('meisje') + ' M170' },
+        { value: 'female_M176', text: this.$i18n.t('meisje') + ' M176' },
+        { value: 'female_medium', text: this.$i18n.t('meisje') + ' Medium (94cm 62cm)' },
+        { value: 'female_large', text: this.$i18n.t('meisje') + ' Large___ (100cm 64cm)' },
+        { value: 'female_xl', text: this.$i18n.t('meisje') + ' XL ______(106cm 66cm)' }
       ]
     }
   },
