@@ -20,8 +20,8 @@
           <li v-html="$t('rule9')" />
         </ol>
         <b> {{ $t('problems') }}
-          <A href="mailto:info@coolestproject.be?SUBJECT=CoolestProjectsRegistration">
-            Webmaster
+          <A href="mailto:info@coolestprojects.be?SUBJECT=CoolestProjectsRegistration">
+            HELPDESK
           </A>
         </b>
       </p>
