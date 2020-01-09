@@ -118,25 +118,26 @@ export default {
 <i18n>
 {
   "en": {
-    "title": "Login",
+    "failureMessage": "Something went wrong please try again",
     "message": "Something went wrong",
     "Stuur me een logincode": "Please send me the login code",
-    "successMessage": "We've sent a logincode, please check your mailbox",
-    "failureMessage": "Something went wrong please try again"
+    "successMessage": "We've sent a logincode please check your mailbox",
+    "title": "Login"
   },
   "fr": {
-    "title": "Login",
-    "message": "Quelque chose a mal tourné",
-    "Stuur me een logincode": "Envoyez-moi un code de connexione",
-    "successMessage": "Nous avons envoyé un code de connexion, veuillez vérifier votre boîte aux lettres",
-    "failureMessage": "Une erreur s'est produite. Veuillez réessayer"
+
+    "failureMessage": "Une erreur s'est produite. Merci d'essayer à nouveau",
+    "message": "Il semblerait que cela n'a pas fonctionné",
+    "Stuur me een logincode": "Pourriez-vous m'envoyer un code de connexion ?",
+    "successMessage": "Nous avons envoyé un code de connexion - merci de bien vouloir vérifier votre boîte mail",
+    "title": "Login"
   },
   "nl": {
-    "title": "Login",
-    "message": "Er is iets missgelopen",
-    "Stuur me een logincode": "Stuur me een logincode",
-    "successMessage": "We hebben een logincode verzonden, controleer je mailbox",
-    "failureMessage": "Er is iets misgelopen, probeer later opnieuw"
+    "failureMessage": "Er is iets misgelopen probeer later opnieuw",
+    "message": "Er is iets misgelopen",
+    "Stuur me een logincode": "Stuur me een logincode aub",
+    "successMessage": "We hebben een logincode verzonden check je mailbox",
+    "title": "Login"
   }
 }
 </i18n>

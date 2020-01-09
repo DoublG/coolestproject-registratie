@@ -156,42 +156,40 @@ export default {
 <i18n>
 {
   "en" :{
-    "LinkDelete": "My connection to the project will be removed",
-    "Resetten":   "Reset",
-    "Create":     "Create",
-    "Aanpassen":  "Change",
-    "Delete":     "Delete",
-    "AddToken":   "Add token",
-    "Cancel":     "Cancel",
+    "Aanpassen": "Change",
+    "AddToken": "Add Participant",
+    "Cancel": "Cancel",
+    "Create": "Create",
+    "CreateProject": "Create your own project",
+    "Delete": "Delete",
     "EnterToken": "Enter Token",
+    "LinkDelete": "My connection to the project will be removed",
     "Project wordt verwijderd": "Project will be deleted",
-    "CreateProject": "Create my own Project"
+    "Resetten": "Reset"
   },
 "fr" :{
-    "LinkDelete": "Ma connexion au projet sera suppriméee",
-    "Resetten":   "restaurer",
-    "Create":     "ajouter",
-    "Aanpassen":  "Ajuster",
-    "Delete":     "le retirer",
-    "AddToken":   "Ajouter participant",
-    "Cancel":     "arrêter",
-    "EnterToken": "entrez le jeton",
+    "Aanpassen": "Modifier",
+    "AddToken": "Add Participant",
+    "Cancel": "Annuler",
+    "Create": "Créer",
+    "CreateProject": "Crée ton propre projet",
+    "Delete": "Supprimer",
+    "EnterToken": "Entre le jeton",
+    "LinkDelete": "Ma connexion au projet sera supprimée",
     "Project wordt verwijderd": "Le projet est supprimé",
-    "CreateProject": "Créer mon propre projet"
-
+    "Resetten": "Restaurer"
   },
   "nl" :{
-    "LinkDelete": "Mijn verbinding met het project zal verwijderd worden",
-    "Resetten":   "Terugzetten",
-    "Create":     "Toevoegen",
-    "Aanpassen":  "Aanpassen",
-    "Delete":     "Verwijderen",
-    "AddToken":   "Medewerker toevoegen",
-    "Cancel":     "Afbreken",
+    "Aanpassen": "Aanpassen",
+    "AddToken": "Deelnemer toevoegen",
+    "Cancel": "Annuleren",
+    "Create": "Toevoegen",
+    "CreateProject": "Zelf een project starten",
+    "Delete": "Verwijderen",
     "EnterToken": "Token gebruiken",
+    "LinkDelete": "Mijn verbinding met het project zal verwijderd worden",
     "Project wordt verwijderd": "Project wordt verwijderd",
-    "CreateProject": "Mij eigen Project aanleggen"
-
+    "Resetten": "Resetten"
   }
 }
 </i18n>
