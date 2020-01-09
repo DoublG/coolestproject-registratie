@@ -75,10 +75,10 @@ export default {
 <i18n>
 {
   "en": {
-      "Registratie": "Registration"
+      "Registratie": "Enrollment"
       },
   "fr": {
-    "Registratie": "Inscriptione"
+    "Registratie": "Inscription"
      },
   "nl": {
     "Registratie": "Registratie"
