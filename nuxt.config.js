@@ -1,9 +1,20 @@
+function baseURL () {
+  return process.env.BASE_URL
+}
+function useProxy () {
+  return !(process.env.BASE_URL)
+}
 
 module.exports = {
   mode: 'spa',
   /*
   ** Headers of the page
   */
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000/api'
+  },
+  dotenv: {
+  },
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -63,14 +74,16 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/vee-validate.js'
+    '~/plugins/vee-validate.js',
+    '~/plugins/services.js'
   ],
   /*
   ** Nuxt.js dev-modules
   */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/dotenv'
   ],
   /*
   ** Nuxt.js modules
@@ -126,7 +139,9 @@ module.exports = {
     }
   },
   axios: {
-    proxy: true
+    baseURL: baseURL(), // process.env.BASE_URL || 'http://localhost:3000/api', // 'https://coolestjury.azurewebsites.net/',
+    proxy: useProxy(),
+    prefix: '/api'
   },
   proxy: {
     '/api/': { target: 'http://localhost:8080', pathRewrite: { '^/api/': '' } }

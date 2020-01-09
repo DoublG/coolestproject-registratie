@@ -665,7 +665,7 @@ export default {
   },
   async asyncData ({ store, query, app, redirect, route }) {
     // load userdata & store in userstore
-    const userData = await axios.get('/api/userinfo', { headers: { api_key: store.state.auth.api_key } })
+    const userData = await axios.get('/userinfo', { headers: { api_key: store.state.auth.api_key } })
     await store.dispatch('user/updateUser', userData.data)
     let date = store.state.user.birthmonth
     let year = null
@@ -688,7 +688,7 @@ export default {
     ]),
     async onSubmit (evt) {
       try {
-        const userData = await this.$axios.$patch('/api/userinfo', this.$store.getters['user/userinfo'], { headers: { api_key: this.$store.state.auth.api_key } })
+        const userData = await this.$axios.$patch('/userinfo', this.$store.getters['user/userinfo'], { headers: { api_key: this.$store.state.auth.api_key } })
         await this.$store.dispatch('user/updateUser', userData)
         this.variant = 'success'
         this.message = this.$i18n.t('successUpdate')
@@ -702,14 +702,14 @@ export default {
       window.scrollTo(0, 0)
     },
     async onReset (evt) {
-      const userData = await this.$axios.$get('/api/userinfo', { headers: { api_key: this.$store.state.auth.api_key } })
+      const userData = await this.$axios.$get('/userinfo', { headers: { api_key: this.$store.state.auth.api_key } })
       await this.$store.dispatch('user/updateUser', userData)
     },
     onDeleteInfo (evt) {
       this.deleteInfo = true
     },
     async onDelete (evt) {
-      await this.$axios.$delete('/api/userinfo', { headers: { api_key: this.$store.state.auth.api_key } })
+      await this.$axios.$delete('/userinfo', { headers: { api_key: this.$store.state.auth.api_key } })
       this.logout()
       this.$router.go({ path: './login' })
     }

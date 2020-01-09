@@ -147,12 +147,16 @@ import axios from 'axios'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { mapState } from 'vuex'
 import ActionBarProject from '~/components/ActionBarProject.vue'
+import messageMixin from '~/mixins/messages.js'
 export default {
   components: {
     ValidationObserver,
     ValidationProvider,
     ActionBarProject
   },
+  mixins: [
+    messageMixin
+  ],
   props: {
     create: {
       type: Boolean,
@@ -242,12 +246,12 @@ export default {
         let projectData = null
         if (this.create) {
           // create new project
-          projectData = await this.$axios.$post('/api/projectinfo', this.$store.getters['project/projectinfo'], { headers: { api_key: this.$store.state.auth.api_key } })
+          projectData = await this.$axios.$post('/projectinfo', this.$store.getters['project/projectinfo'], { headers: { api_key: this.$store.state.auth.api_key } })
           await this.$store.dispatch('project/updateProject', projectData)
           this.$router.push('project')
         } else {
           // update existing project
-          projectData = await this.$axios.$patch('/api/projectinfo', this.$store.getters['project/projectinfo'], { headers: { api_key: this.$store.state.auth.api_key } })
+          projectData = await this.$axios.$patch('/projectinfo', this.$store.getters['project/projectinfo'], { headers: { api_key: this.$store.state.auth.api_key } })
         }
         this.variant = 'success'
         this.message = this.$i18n.t('successChange')
@@ -261,7 +265,7 @@ export default {
     },
     async onAddToken (evt) {
       try {
-        await this.$axios.$post('/api/participants', null, { headers: { api_key: this.$store.state.auth.api_key } })
+        await this.$axios.$post('/participants', null, { headers: { api_key: this.$store.state.auth.api_key } })
         await this.onReset()
         this.variant = 'success'
         this.message = this.$i18n.t('AddToken')
@@ -275,14 +279,14 @@ export default {
     async onReset (evt) {
       // load projectData & store in userstore
       try {
-        const projectData = await axios.get('/api/projectinfo', { headers: { api_key: this.$store.state.auth.api_key } })
+        const projectData = await axios.get('/projectinfo', { headers: { api_key: this.$store.state.auth.api_key } })
         if (projectData.data !== '') {
           await this.$store.dispatch('project/updateProject', projectData.data)
         }
       } catch (error) {}
     },
     async onDelete (evt) {
-      await this.$axios.$delete('/api/projectinfo', { headers: { api_key: this.$store.state.auth.api_key } })
+      await this.$axios.$delete('/projectinfo', { headers: { api_key: this.$store.state.auth.api_key } })
       await this.$store.dispatch('project/updateProject', null)
       this.$router.push('no_project')
     },

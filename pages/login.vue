@@ -79,7 +79,7 @@ export default {
   async asyncData ({ store, query, app, redirect }) {
     if (query.token) {
       try {
-        const loginToken = await axios.post('/api/login', { jwt: query.token })
+        const loginToken = await axios.post('/login', { jwt: query.token })
         // store the login token
         store.commit('auth/api_key', loginToken.data.api_key)
         store.commit('auth/expires', loginToken.data.expires)
@@ -96,7 +96,7 @@ export default {
   methods: {
     async onSubmit (evt) {
       try {
-        await this.$axios.$post('/api/mailToken', {
+        await this.$axios.$post('/mailToken', {
           email: this.email
         })
         this.variant = 'success'
