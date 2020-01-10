@@ -78,8 +78,7 @@ export default {
     "start": "Commencer l'inscription"
   },
   "nl": {
-    "href": "<a href='mailto: &#105;&#110;&#102;o&#64;&#99;&#111;&#111;&#108;&#101;&#115;&#116;&#112;&#114;&#111;&#106;&#101;&#99;&#116;s&#46;&#98;&#101;?SUBJECT=CoolestProjectsRegistration'><b>HELPDESK</b></a>",
-    "agree": "Door u te registreren gaat u akkoord met de volgende regels",
+   "agree": "Door u te registreren gaat u akkoord met de volgende regels",
     "intro": "Bij Coolest Projects Belgium tonen jonge makers hun digitale creativiteit. Doe je mee?",
     "problems": "Nog steeds onduidelijk of heeft u nog vragen of problemen met de registratie neem dan contact op met onze",
     "rule1": "Inschrijvingen zijn open tussen <b>13 januari en 20 april</b> of tot de maximale capaciteit van 64 projecten is bereikt.",
@@ -92,7 +91,8 @@ export default {
     "rule8": "Er zullen enkele prijzen te winnen zijn. Een lijst daarvan zal vóór het evenement op onze website worden getoond. Beoordeling voor de projecten gebeurt op de dag zelf in de gekozen taal tijdens de registratie. Alle beslissingen van de juryleden zijn definitief.",
     "rule9": "Wij respecteren uw gegevens. U kunt de privacyverklaring lezen op de website van CoderDojo België.",
     "rules": "Coolest Projects Belgium",
-    "start": "Start registratie"
-  }
+    "start": "Start registratie",
+    "href": "<a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#105;&#110;&#102;o&#64;&#99;&#111;&#111;&#108;&#101;&#115;&#116;&#112;&#114;&#111;&#106;&#101;&#99;&#116;s&#46;&#98;&#101;?SUBJECT=CoolestProjectsRegistration'><b>HELPDESK</b></a>"
+ }
 }
 </i18n>
