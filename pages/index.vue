@@ -92,7 +92,7 @@ export default {
     "rule9": "Wij respecteren uw gegevens. U kunt de privacyverklaring lezen op de website van CoderDojo België.",
     "rules": "Coolest Projects Belgium",
     "start": "Start registratie",
-    "href": "<a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#105;&#110;&#102;o&#64;&#99;&#111;&#111;&#108;&#101;&#115;&#116;&#112;&#114;&#111;&#106;&#101;&#99;&#116;s&#46;&#98;&#101;?SUBJECT=CoolestProjectsRegistration'><b>HELPDESK</b></a>"
+    "href": "<a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#105;&#110;&#102;o&#64;&#99;&#111;&#111;&#108;&#101;&#115;&#116;&#112;&#114;&#111;&#106;&#101;&#99;&#116;s&#46;&#98;&#101;&quest;&#x53;&#x55;&#x42;&#x4a;&#x45;&#x43;&#x54;&equals;CoolestProjectsRegistration'><b>HELPDESK</b></a>"
  }
 }
 </i18n>
