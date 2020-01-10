@@ -20,10 +20,8 @@
           <li v-html="$t('rule9')" />
         </ol>
         <b> {{ $t('problems') }}
-          <A href="mailto:info@coolestprojects.be?SUBJECT=CoolestProjectsRegistration">
-            HELPDESK
-          </A>
         </b>
+        <span v-html="$t('href')" />
       </p>
       <b-button variant="dark" class="button-hero" href="/registration">
         <font-awesome-icon :icon="['fas', 'paper-plane']" /> {{ $t('start') }}
@@ -80,6 +78,7 @@ export default {
     "start": "Commencer l'inscription"
   },
   "nl": {
+    "href": "<a href='mailto: &#105;&#110;&#102;o&#64;&#99;&#111;&#111;&#108;&#101;&#115;&#116;&#112;&#114;&#111;&#106;&#101;&#99;&#116;s&#46;&#98;&#101;?SUBJECT=CoolestProjectsRegistration'><b>HELPDESK</b></a>",
     "agree": "Door u te registreren gaat u akkoord met de volgende regels",
     "intro": "Bij Coolest Projects Belgium tonen jonge makers hun digitale creativiteit. Doe je mee?",
     "problems": "Nog steeds onduidelijk of heeft u nog vragen of problemen met de registratie neem dan contact op met onze",
