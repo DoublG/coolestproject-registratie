@@ -92,7 +92,6 @@ export const actions = {
 }
 export const getters = {
   isGuardianNeeded: (state, getters, rootState) => {
-    debugger
     return differenceInYears(rootState.startDateEvent, state.birthmonth) < rootState.guardianAge
   },
   userinfo: (state, getters) => {

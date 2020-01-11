@@ -696,7 +696,6 @@ export default {
         this.variant = 'danger'
         this.message = this.$i18n.t('failedUpdate')
         this.show = true
-        console.log(error)
       }
       window.scrollTo(0, 0)
     },
