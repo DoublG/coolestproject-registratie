@@ -139,8 +139,8 @@ module.exports = {
     }
   },
   axios: {
-    baseURL: baseURL(), // process.env.BASE_URL || 'http://localhost:3000/api', // 'https://coolestjury.azurewebsites.net/',
-    proxy: useProxy(),
+    //baseURL: 'http://localhost:3000/', // baseURL(), process.env.BASE_URL || 'http://localhost:3000/api', // 'https://coolestjury.azurewebsites.net/',
+    proxy: true,
     prefix: '/api'
   },
   proxy: {

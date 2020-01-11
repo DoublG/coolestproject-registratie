@@ -41,7 +41,6 @@
   </b-row>
 </template>
 <script>
-import axios from 'axios'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 
 export default {
@@ -79,7 +78,7 @@ export default {
   async asyncData ({ store, query, app, redirect }) {
     if (query.token) {
       try {
-        const loginToken = await axios.post('/login', { jwt: query.token })
+        const loginToken = await app.$axios.post('/login', { jwt: query.token })
         // store the login token
         store.commit('auth/api_key', loginToken.data.api_key)
         store.commit('auth/expires', loginToken.data.expires)

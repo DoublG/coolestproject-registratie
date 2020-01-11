@@ -2,7 +2,7 @@
   <b-row>
     <b-col>
       <h1>{{ $t('title') }}</h1>
-      <b-alert dismissible :show="show" :variant="variant">
+      <b-alert :show="show" :variant="variant" dismissible>
         {{ message }}
       </b-alert>
       <ValidationObserver ref="observer" v-slot="{ passes }">
@@ -153,9 +153,9 @@
               <b-form-input
                 id="input-2"
                 v-model="gsm"
-                type="tel"
                 :placeholder="$t('mobiel nummer (+32):')"
                 :state="errors[0] ? false : (valid ? true : null)"
+                type="tel"
                 aria-describedby="input-2-live-feedback"
               />
               <b-form-invalid-feedback id="input-2-live-feedback">
@@ -365,10 +365,9 @@
   </b-row>
 </template>
 <script>
-import axios from 'axios'
 import { mapState, mapActions, mapGetters } from 'vuex'
 import addYears from 'date-fns/add_years'
-import differenceInCalendarYears from 'date-fns/difference_in_calendar_years'
+import differenceInYears from 'date-fns/difference_in_years'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 
 export default {
@@ -499,7 +498,7 @@ export default {
       return addYears(state.startDateEvent, -5)
     },
     isGuardianNeeded: (state) => {
-      return differenceInCalendarYears(state.startDateEvent, new Date(state.year, state.month, 1)) < state.guardianAge
+      return differenceInYears(state.startDateEvent, new Date(state.year, state.month, 1)) < state.guardianAge
     },
     isOwnProject: (state) => {
       return state.own_project === 'own'
@@ -665,7 +664,7 @@ export default {
   },
   async asyncData ({ store, query, app, redirect, route }) {
     // load userdata & store in userstore
-    const userData = await axios.get('/userinfo', { headers: { api_key: store.state.auth.api_key } })
+    const userData = await app.$axios.get('/userinfo', { headers: { api_key: store.state.auth.api_key } })
     await store.dispatch('user/updateUser', userData.data)
     let date = store.state.user.birthmonth
     let year = null
@@ -697,6 +696,7 @@ export default {
         this.variant = 'danger'
         this.message = this.$i18n.t('failedUpdate')
         this.show = true
+        console.log(error)
       }
       window.scrollTo(0, 0)
     },
