@@ -9,7 +9,7 @@ export default async function ({ app, store, redirect }) {
     // no project found
     if (store.state.project.project_name === null || store.state.project.project_name === undefined) {
       app.router.push({ path: '/no_project' })
-    }    
+    }
   } catch (error) {
     app.router.push({ path: '/index' })
   }
