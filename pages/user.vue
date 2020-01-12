@@ -1,7 +1,7 @@
 <template>
   <b-row>
     <b-col>
-      <h1>{{ $t('title') }}</h1>
+      <h1>{{ $t('titleUser') }}</h1>
       <b-alert :show="show" :variant="variant" dismissible>
         {{ message }}
       </b-alert>
@@ -778,7 +778,7 @@ export default {
     "T-shirt maat:": "T-shirt size",
     "Taal:": "Language",
     "taalJury": "In which language do you want to explain the project to the jury?",
-    "title": "User",
+    "titleUser": "User",
     "Van waar ken je ons:": "Where do you know us from",
     "verwijder alles": "delete all",
     "Voornaam:": "First Name",
@@ -850,7 +850,7 @@ export default {
     "T-shirt maat:": "Taille de T-shirt",
     "Taal:": "Langue",
     "taalJury": "Dans quelle langue souhaitez-vous présenter le projet au jury?",
-    "title": "Utilisateur",
+    "titleUser": "Utilisateur",
     "Van waar ken je ons:": "Où avez-vous entendu parlé de CoderDojo pour la première fois?",
     "verwijder alles": "tout supprimer",
     "Voornaam:": "Prénom",
@@ -921,7 +921,7 @@ export default {
     "T-shirt maat:": "T-shirt maat",
     "Taal:": "Taal",
     "taalJury": "In welke taal wil je het project uitleggen aan de jury?",
-    "title": "Gebruiker",
+    "titleUser": "Gebruiker",
     "Van waar ken je ons:": "Van waar ken je ons",
     "verwijder alles": "VERWIJDER ALLES",
     "Voornaam:": "Voornaam",
