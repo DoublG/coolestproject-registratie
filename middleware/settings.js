@@ -6,5 +6,7 @@ export default async function ({ app, store, redirect }) {
         await store.dispatch('updateSettings', settings.data)
       }
     }
-  } catch (error) {}
+  } catch (error) {
+    // using default settings
+  }
 }
