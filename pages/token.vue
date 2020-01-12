@@ -71,7 +71,7 @@ export default {
     async onTokenSubmit (evt) {
       try {
         // link to project
-        const projectData = await this.$axios.$post('/projectinfo', this.$store.getters['project/tokeninfo'], { headers: { api_key: this.$store.state.auth.api_key } })
+        const projectData = await this.$services.projectinfo.post_token()
         this.variant = 'success'
         this.message = this.$i18n.t('successChange')
         this.show = true

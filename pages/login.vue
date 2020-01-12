@@ -41,7 +41,7 @@
   </b-row>
 </template>
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 
 export default {
@@ -76,14 +76,13 @@ export default {
       }
     }
   },
-  async asyncData ({ store, query, app, redirect }) {
+  async asyncData ({ query, app, store, route }) {
     if (query.token) {
       try {
-        const loginToken = await axios.post('/login', { jwt: query.token })
-        // store the login token
-        store.commit('auth/api_key', loginToken.data.api_key)
-        store.commit('auth/expires', loginToken.data.expires)
-        redirect('./user')
+        const loginToken = await app.$services.login.post(query.token)
+        store.commit('auth/api_key', loginToken.api_key)
+        store.commit('auth/expires', loginToken.expires)
+        app.router.replace({ path: '/user' })
       } catch (ex) {
         return {
           message: ex,
@@ -96,9 +95,7 @@ export default {
   methods: {
     async onSubmit (evt) {
       try {
-        await this.$axios.$post('/mailToken', {
-          email: this.email
-        })
+        await this.$services.mail.post(this.email)
         this.variant = 'success'
         this.message = this.$i18n.t('successMessage')
         this.show = true

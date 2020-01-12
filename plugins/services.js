@@ -11,7 +11,7 @@ export default ({ app, store }, inject) => {
         return app.$axios.$patch('/projectinfo', store.getters['project/projectinfo'], { headers: { api_key: store.state.auth.api_key } })
       },
       get () {
-        return app.$axios.get('/projectinfo', { headers: { api_key: store.state.auth.api_key } })
+        return app.$axios.$get('/projectinfo', { headers: { api_key: store.state.auth.api_key } })
       },
       delete () {
         return app.$axios.$delete('/projectinfo', { headers: { api_key: store.state.auth.api_key } })
@@ -24,7 +24,7 @@ export default ({ app, store }, inject) => {
     },
     'settings': {
       get () {
-        return app.$axios.get('/settings')
+        return app.$axios.$get('/settings')
       }
     },
     'registration': {
@@ -44,8 +44,13 @@ export default ({ app, store }, inject) => {
       }
     },
     'login': {
-      post (query) {
-        return app.$axios.post('/login', { jwt: query.token })
+      post (token) {
+        return app.$axios.$post('/login', { jwt: token })
+      }
+    },
+    'mail': {
+      post (email) {
+        return app.$axios.$post('/mailToken', { email })
       }
     }
   }

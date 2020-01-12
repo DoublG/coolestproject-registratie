@@ -365,7 +365,6 @@
   </b-row>
 </template>
 <script>
-import axios from 'axios'
 import { mapState, mapActions, mapGetters } from 'vuex'
 import addYears from 'date-fns/add_years'
 import differenceInCalendarYears from 'date-fns/difference_in_calendar_years'
@@ -665,8 +664,8 @@ export default {
   },
   async asyncData ({ store, query, app, redirect, route }) {
     // load userdata & store in userstore
-    const userData = await axios.get('/userinfo', { headers: { api_key: store.state.auth.api_key } })
-    await store.dispatch('user/updateUser', userData.data)
+    const userData = await app.$services.userinfo.get()
+    await store.dispatch('user/updateUser', userData)
     let date = store.state.user.birthmonth
     let year = null
     let month = null
@@ -688,7 +687,7 @@ export default {
     ]),
     async onSubmit (evt) {
       try {
-        const userData = await this.$axios.$patch('/userinfo', this.$store.getters['user/userinfo'], { headers: { api_key: this.$store.state.auth.api_key } })
+        const userData = await this.$services.userinfo.patch()
         await this.$store.dispatch('user/updateUser', userData)
         this.variant = 'success'
         this.message = this.$i18n.t('successUpdate')
@@ -701,16 +700,16 @@ export default {
       window.scrollTo(0, 0)
     },
     async onReset (evt) {
-      const userData = await this.$axios.$get('/userinfo', { headers: { api_key: this.$store.state.auth.api_key } })
+      const userData = await this.$services.userinfo.get()
       await this.$store.dispatch('user/updateUser', userData)
     },
     onDeleteInfo (evt) {
       this.deleteInfo = true
     },
     async onDelete (evt) {
-      await this.$axios.$delete('/userinfo', { headers: { api_key: this.$store.state.auth.api_key } })
+      await this.$services.userinfo.delete()
       this.logout()
-      this.$router.go({ path: './login' })
+      this.$router.push({ path: 'login' })
     }
   }
 }

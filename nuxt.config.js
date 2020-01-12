@@ -1,10 +1,3 @@
-function baseURL () {
-  return process.env.BASE_URL
-}
-function useProxy () {
-  return !(process.env.BASE_URL)
-}
-
 module.exports = {
   mode: 'spa',
   /*
@@ -46,10 +39,6 @@ module.exports = {
         types: 'image/png',
         sizes: '16x16',
         href: 'favicon-16x16.png'
-      },
-      {
-        rel: 'manifest',
-        href: 'site.webmanifest'
       },
       {
         rel: 'mask-icon',
@@ -139,9 +128,10 @@ module.exports = {
     }
   },
   axios: {
-    baseURL: baseURL(), // process.env.BASE_URL || 'http://localhost:3000/api', // 'https://coolestjury.azurewebsites.net/',
-    proxy: useProxy(),
-    prefix: '/api'
+    // baseURL: process.env.BASE_URL || 'http://localhost:3000/api',
+    baseURL: 'https://coolestjury.azurewebsites.net/'
+    // proxy: process.env.USE_PROXY || true,
+    // prefix: '/api'
   },
   proxy: {
     '/api/': { target: 'http://localhost:8080', pathRewrite: { '^/api/': '' } }

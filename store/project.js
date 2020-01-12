@@ -64,7 +64,7 @@ export const mutations = {
 
 export const actions = {
   updateProject ({ commit }, project) {
-    if (project !== null) {
+    if (project) {
       commit('project_id', project.project_id)
       commit('project_name', project.project_name)
       commit('project_descr', project.project_descr)
