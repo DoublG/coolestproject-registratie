@@ -1,7 +1,7 @@
 <template>
   <b-row>
     <b-col>
-      <h1>{{ $t('title') }}</h1>
+      <h1>{{ $t('titleLogin') }}</h1>
       <b-alert dismissible :show="show" :variant="variant">
         {{ message }}
       </b-alert>
@@ -121,7 +121,7 @@ export default {
     "message": "Something went wrong",
     "Stuur me een logincode": "Please send me the login code",
     "successMessage": "We've sent a logincode please check your mailbox",
-    "title": "Login"
+    "titleLogin": "Login"
   },
   "fr": {
 
@@ -129,14 +129,14 @@ export default {
     "message": "Il semblerait que cela n'a pas fonctionné",
     "Stuur me een logincode": "Pourriez-vous m'envoyer un code de connexion ?",
     "successMessage": "Nous avons envoyé un code de connexion - merci de bien vouloir vérifier votre boîte mail",
-    "title": "Login"
+    "titleLogin": "Login"
   },
   "nl": {
     "failureMessage": "Er is iets misgelopen probeer later opnieuw",
     "message": "Er is iets misgelopen",
     "Stuur me een logincode": "Stuur me een logincode aub",
     "successMessage": "We hebben een logincode verzonden check je mailbox",
-    "title": "Login"
+    "titleLogin": "Login"
   }
 }
 </i18n>

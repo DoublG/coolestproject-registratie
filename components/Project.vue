@@ -2,7 +2,7 @@
   <b-row>
     <b-col>
       <h1 v-if="own_project">
-        {{ $t('title') }}
+        {{ $t('titleProject') }}
       </h1>
       <h1 v-if="own_project === false">
         {{ $t('titleOther', { owner: project_owner }) }}
@@ -94,10 +94,10 @@
             <div v-if="own_project">
               <h2>{{ $t('participants') }}</h2>
               <b-table
-                striped
-                hover
                 :items="participants"
                 :fields="[{ key: 'id', label: 'Medewerker Token' }, { key: 'name', label: 'Medewerker Name' }]"
+                striped
+                hover
               >
                 <template v-slot:cell(id)="data">
                   <span v-if="data.item.name === undefined">
@@ -363,7 +363,7 @@ export default {
     "T-shirt maat:": "T-shirt size",
     "Taal:": "Language",
     "taalJury": "In which language do you want to explain the project to the jury?",
-    "title": "User",
+    "titleProject": "Project",
     "titleOther": "Project of {owner}",
     "tokenInUse": "Voucher in use",
     "Van waar ken je ons:": "Where do you know us from",
@@ -440,7 +440,7 @@ export default {
     "T-shirt maat:": "Taille de T-shirt",
     "Taal:": "Langue",
     "taalJury": "Dans quelle langue souhaitez-vous présenter le projet au jury?",
-    "title": "Utilisateur",
+    "titleProject": "Projet",
     "titleOther": "Projet de {owner}",
     "tokenInUse": "Bon/Voucher en cours d'utilisation",
     "Van waar ken je ons:": "Où avez-vous entendu parlé de CoderDojo pour la première fois?",
@@ -517,7 +517,7 @@ export default {
     "T-shirt maat:": "T-shirt maat",
     "Taal:": "Taal",
     "taalJury": "In welke taal wil je het project uitleggen aan de jury?",
-    "title": "Gebruiker",
+    "titleProject": "Project",
     "titleOther": "Project van {owner}",
     "tokenInUse": "Voucher in gebruik",
     "Van waar ken je ons:": "Van waar ken je ons",
