@@ -495,7 +495,7 @@
 <script>
 import { mapState, mapGetters } from 'vuex'
 import addYears from 'date-fns/add_years'
-import differenceInCalendarYears from 'date-fns/difference_in_calendar_years'
+import differenceInYears from 'date-fns/difference_in_years'
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 
 export default {
@@ -612,7 +612,7 @@ export default {
       return addYears(state.startDateEvent, -5)
     },
     isGuardianNeeded: (state) => {
-      return differenceInCalendarYears(state.startDateEvent, new Date(state.year, state.month, 1)) < state.guardianAge
+      return differenceInYears(state.startDateEvent, new Date(state.year, state.month, 1)) < state.guardianAge
     },
     isOwnProject: (state) => {
       return state.own_project === 'own'

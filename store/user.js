@@ -1,3 +1,5 @@
+import differenceInYears from 'date-fns/difference_in_years'
+
 export const state = () => ({
   gsm: null,
   general_questions: null,
@@ -108,7 +110,10 @@ export const actions = {
   }
 }
 export const getters = {
-  userinfo: (state) => {
+  isGuardianNeeded: (state, getters, rootState) => {
+    return differenceInYears(rootState.startDateEvent, state.birthmonth) < rootState.guardianAge
+  },
+  userinfo: (state, getters) => {
     const user = {
       firstname: state.firstname,
       lastname: state.lastname,
@@ -122,10 +127,10 @@ export const getters = {
       t_size: state.t_size,
       via: state.via,
       birthmonth: state.birthmonth.toISOString().substr(0, 10),
-      postalcode: state.postalcode,
+      postalcode: Number.parseInt(state.postalcode),
       language: state.language
     }
-    if (state.gsm_guardian !== null) {
+    if (getters.isGuardianNeeded) {
       user.gsm_guardian = state.gsm_guardian
       user.email_guardian = state.email_guardian
     }
