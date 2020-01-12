@@ -72,22 +72,41 @@ export const mutations = {
 
 export const actions = {
   updateUser ({ commit }, user) {
-    commit('firstname', user.firstname)
-    commit('lastname', user.lastname)
-    commit('email', user.email)
-    commit('gsm', user.gsm)
-    commit('general_questions', user.general_questions[0])
-    commit('general_questions2', user.general_questions[1])
-    commit('email_guardian', user.email_guardian)
-    commit('gsm_guardian', user.gsm_guardian)
-    commit('medical', user.medical)
-    commit('sex', user.sex)
-    commit('t_size', user.t_size)
-    commit('via', user.via)
-    commit('birthmonth', new Date(user.birthmonth))
-    commit('postalcode', user.postalcode)
-    commit('language', user.language)
-    commit('delete_possible', user.delete_possible)
+    if (user) {
+      commit('firstname', user.firstname)
+      commit('lastname', user.lastname)
+      commit('email', user.email)
+      commit('gsm', user.gsm)
+      commit('general_questions', user.general_questions[0])
+      commit('general_questions2', user.general_questions[1])
+      commit('email_guardian', user.email_guardian)
+      commit('gsm_guardian', user.gsm_guardian)
+      commit('medical', user.medical)
+      commit('sex', user.sex)
+      commit('t_size', user.t_size)
+      commit('via', user.via)
+      commit('birthmonth', new Date(user.birthmonth))
+      commit('postalcode', user.postalcode)
+      commit('language', user.language)
+      commit('delete_possible', user.delete_possible)
+    } else {
+      commit('firstname', null)
+      commit('lastname', null)
+      commit('email', null)
+      commit('gsm', null)
+      commit('general_questions', null)
+      commit('general_questions2', null)
+      commit('email_guardian', null)
+      commit('gsm_guardian', null)
+      commit('medical', null)
+      commit('sex', null)
+      commit('t_size', null)
+      commit('via', null)
+      commit('birthmonth', null)
+      commit('postalcode', null)
+      commit('language', null)
+      commit('delete_possible', null)
+    }
   }
 }
 export const getters = {
@@ -98,7 +117,6 @@ export const getters = {
     const user = {
       firstname: state.firstname,
       lastname: state.lastname,
-      // email: state.email,
       gsm: state.gsm,
       general_questions: [
         state.general_questions,

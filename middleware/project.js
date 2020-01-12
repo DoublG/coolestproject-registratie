@@ -1,14 +1,16 @@
 export default async function ({ app, store, redirect }) {
   // load projectData
   try {
-    const projectData = await app.$axios.get('/projectinfo', { headers: { api_key: store.state.auth.api_key } })
-    if (projectData.data !== null) {
-      await store.dispatch('project/updateProject', projectData.data)
+    const projectData = await app.$services.projectinfo.get()
+    if (projectData !== null) {
+      await store.dispatch('project/updateProject', projectData)
     }
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 
   // no project found
   if (store.state.project.project_name === null || store.state.project.project_name === undefined) {
-    redirect('./no_project')
+    app.router.push({ path: 'no_project' })
   }
 }

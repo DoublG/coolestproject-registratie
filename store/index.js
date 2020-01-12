@@ -41,12 +41,21 @@ export const mutations = {
 
 export const actions = {
   updateSettings ({ commit }, settings) {
-    commit('startDateEvent', settings.startDateEvent)
-    commit('maxAge', settings.maxAge)
-    commit('minAge', settings.minAge)
-    commit('guardianAge', settings.guardianAge)
-    commit('tshirtDate', settings.tshirtDate)
-    commit('settingsLoaded', true)
+    if (settings) {
+      commit('startDateEvent', settings.startDateEvent)
+      commit('maxAge', settings.maxAge)
+      commit('minAge', settings.minAge)
+      commit('guardianAge', settings.guardianAge)
+      commit('tshirtDate', settings.tshirtDate)
+      commit('settingsLoaded', true)
+    } else {
+      commit('startDateEvent', null)
+      commit('maxAge', null)
+      commit('minAge', null)
+      commit('guardianAge', null)
+      commit('tshirtDate', null)
+      commit('settingsLoaded', false)
+    }
   }
 }
 

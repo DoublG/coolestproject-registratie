@@ -847,7 +847,7 @@ export default {
       try {
         // pass language to store
         this.$store.dispatch('registration/language', this.$i18n.locale)
-        await this.$axios.$post('/register', this.$store.getters['registration/sanitizedJSON'])
+        await this.$services.registration.post()
         this.onReset(evt)
         this.variant = 'success'
         this.message = this.$i18n.t('successReg')
