@@ -569,13 +569,13 @@ export default {
         { value: 'male_M164', text: this.$i18n.t('jongen') + ' M164' },
         { value: 'male_M170', text: this.$i18n.t('jongen') + ' M170' },
         { value: 'male_M176', text: this.$i18n.t('jongen') + ' M176' },
-        { value: 'male_Xsmall', text: this.$i18n.t('jongen') + ' XS_____(90cm 68cm)' },
-        { value: 'male_small', text: this.$i18n.t('jongen') + ' S______(96cm 70cm)' },
-        { value: 'male_medium', text: this.$i18n.t('jongen') + ' M_____(102cm 72cm)' },
-        { value: 'male_large', text: this.$i18n.t('jongen') + ' L______(108cm 74cm)' },
-        { value: 'male_xl', text: this.$i18n.t('jongen') + ' XL_____(114cm 76cm)' },
-        { value: 'male_xxl', text: this.$i18n.t('jongen') + ' XXL____(120cm 78cm)' },
-        { value: 'male_3xl', text: this.$i18n.t('jongen') + ' 3XL____(126cm 80cm)' }
+        { value: 'male_Xsmall', text: this.$i18n.t('jongen') + ' XS (90cm 68cm)' },
+        { value: 'male_small', text: this.$i18n.t('jongen') + ' S (96cm 70cm)' },
+        { value: 'male_medium', text: this.$i18n.t('jongen') + ' M (102cm 72cm)' },
+        { value: 'male_large', text: this.$i18n.t('jongen') + ' L (108cm 74cm)' },
+        { value: 'male_xl', text: this.$i18n.t('jongen') + ' XL (114cm 76cm)' },
+        { value: 'male_xxl', text: this.$i18n.t('jongen') + ' XXL (120cm 78cm)' },
+        { value: 'male_3xl', text: this.$i18n.t('jongen') + ' 3XL (126cm 80cm)' }
       ],
       shirtsize_female: [
         // Meisje/Fille/Girl
@@ -591,8 +591,8 @@ export default {
         { value: 'female_M170', text: this.$i18n.t('meisje') + ' M170' },
         { value: 'female_M176', text: this.$i18n.t('meisje') + ' M176' },
         { value: 'female_medium', text: this.$i18n.t('meisje') + ' Medium (94cm 62cm)' },
-        { value: 'female_large', text: this.$i18n.t('meisje') + ' Large___ (100cm 64cm)' },
-        { value: 'female_xl', text: this.$i18n.t('meisje') + ' XL ______(106cm 66cm)' }
+        { value: 'female_large', text: this.$i18n.t('meisje') + ' Large (100cm 64cm)' },
+        { value: 'female_xl', text: this.$i18n.t('meisje') + ' XL  (106cm 66cm)' }
       ]
     }
   },
@@ -940,7 +940,9 @@ export default {
     "We delen dit met niemand": "We don’t share this with anyone",
     "YESc": "Yes",
     "YESp": "Yes",
-    "Zijn er aandoeningen": "Are there any conditions or allergies that we should take into account"
+    "Zijn er aandoeningen": "Are there any conditions or allergies that we should take into account",
+    "Female": "Girl",
+    "Male": "Boy"
   },
   "fr": {
     "Achternaam:": "Nom de Famille",
@@ -1009,7 +1011,9 @@ export default {
     "We delen dit met niemand": "Nous ne divulguerons ceci à personne",
     "YESc": "Oui",
     "YESp": "Oui",
-    "Zijn er aandoeningen": "Y a-t-il des conditions ou des allergies dont nous devons tenir compte"
+    "Zijn er aandoeningen": "Y a-t-il des conditions ou des allergies dont nous devons tenir compte",
+    "Female": "Fille",
+    "Male": "Garçon"
   },
   "nl": {
     "Achternaam:": "Achternaam",
