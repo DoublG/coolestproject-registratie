@@ -26,52 +26,52 @@
     </b-button>
     <b-button
       v-if="del"
+      @click="onDeleteInfo"
       type="button"
       variant="danger"
       class="button-hero"
-      @click="onDeleteInfo"
     >
       <font-awesome-icon :icon="['fas', 'minus']" />  {{ $t('Delete') }}
     </b-button>
     <b-button
       v-if="add"
+      @click="onCreateToken"
       type="button"
       variant="success"
       class="button-hero"
-      @click="onCreateToken"
     >
       <font-awesome-icon :icon="['fas', 'plus']" />  {{ $t('AddToken') }}
     </b-button>
     <!-- begin project not yet created -->
     <b-button
       v-if="project"
+      @click="onCreateProject"
       type="button"
       variant="success"
       class="button-hero"
-      @click="onCreateProject"
     >
       <font-awesome-icon :icon="['fas', 'plus']" />  {{ $t('CreateProject') }}
     </b-button>
     <b-button
       v-if="token"
+      @click="onEnterToken"
       type="button"
       variant="success"
       class="button-hero"
-      @click="onEnterToken"
     >
       <font-awesome-icon :icon="['fas', 'minus']" />  {{ $t('EnterToken') }}
     </b-button>
     <!-- end project not yet created -->
     <b-button
       v-if="cancel"
+      @click="onCancel"
       type="button"
       variant="success"
       class="button-hero"
-      @click="onCancel"
     >
       <font-awesome-icon :icon="['fas', 'eject']" />  {{ $t('Cancel') }}
     </b-button>
-    <b-modal v-model="showPopup" title="Delete Project/Remove Link" ok-title="Delete" @ok="onDelete">
+    <b-modal v-model="showPopup" @ok="onDelete" title="Delete Project/Remove Link" ok-title="Delete">
       <span v-if="!own">
         {{ $t('LinkDelete') }}
       </span>

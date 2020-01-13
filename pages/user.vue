@@ -115,11 +115,23 @@
               <b-form-select
                 id="input-9"
                 v-model="t_size"
-                :options="shirtsize"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-9-live-feedback"
-                :disabled="tshirtDisabled"
-              />
+              >
+                <option :value="null">
+                  {{ $t('T-shirt maat:') }}
+                </option>
+                <optgroup :label="$t('Female')" :options="shirtsize_female">
+                  <option v-for="shirt in shirtsize_female" :key="shirt.value" :value="shirt.value">
+                    {{ shirt.text }}
+                  </option>
+                </optgroup>
+                <optgroup :label="$t('Male')">
+                  <option v-for="shirt in shirtsize_male" :key="shirt.value" :value="shirt.value">
+                    {{ shirt.text }}
+                  </option>
+                </optgroup>
+              </b-form-select>
               <b-form-invalid-feedback id="input-9-live-feedback">
                 {{ errors[0] }}
               </b-form-invalid-feedback>
@@ -135,8 +147,8 @@
                 id="input-1"
                 v-model="postalcode"
                 :placeholder="$t('Postcode:')"
-                type="number"
                 :state="errors[0] ? false : (valid ? true : null)"
+                type="number"
                 aria-describedby="input-1-live-feedback"
               />
               <b-form-invalid-feedback id="input-1-live-feedback">
@@ -154,6 +166,7 @@
                 id="input-2"
                 v-model="gsm"
                 :placeholder="$t('mobiel nummer (+32):')"
+                :description="$t('Waar kunnen we jou bereiken in geval van nood')"
                 :state="errors[0] ? false : (valid ? true : null)"
                 type="tel"
                 aria-describedby="input-2-live-feedback"
@@ -247,9 +260,9 @@
                 <b-form-input
                   id="input-13"
                   v-model="email_guardian"
-                  type="email"
                   :placeholder="$t('Email adres ouders/voogd:')"
                   :state="errors[0] ? false : (valid ? true : null)"
+                  type="email"
                   aria-describedby="input-13-live-feedback"
                 />
                 <b-form-invalid-feedback id="input-13-live-feedback">
@@ -261,15 +274,15 @@
               <b-form-group
                 id="input-group-14"
                 :label="$t('mobiel nummer ouders/voogd')"
-                label-for="input-14"
                 :description="$t('Waar kunnen we jou bereiken in geval van nood')"
+                label-for="input-14"
               >
                 <b-form-input
                   id="input-14"
                   v-model="gsm_guardian"
-                  type="tel"
                   :placeholder="$t('mobiel nummer ouders/voogd')"
                   :state="errors[0] ? false : (valid ? true : null)"
+                  type="tel"
                   aria-describedby="input-14-live-feedback"
                 />
               </b-form-group>
@@ -347,14 +360,14 @@
             </b-button>
             <b-button
               v-if="delete_possible"
+              @click="onDeleteInfo"
               type="button"
               variant="danger"
               class="button-hero"
-              @click="onDeleteInfo"
             >
               <font-awesome-icon :icon="['fas', 'user-minus']" />  {{ $t('Delete') }}
             </b-button>
-            <b-modal v-model="deleteInfo" ok-title="Delete" @ok="onDelete">
+            <b-modal v-model="deleteInfo" @ok="onDelete" ok-title="Delete">
               Opgelet: als je bevestigt wordt jouw gebruiker verwijderd dat will zeggen dat al jouw Personlijke en Project informatie worden verwijderd
               ...Als je toch nog wilt meedoen dan kan je via Registratie een nieuw project aanmaken of bij een andere project meedoen.
             </b-modal>
@@ -423,23 +436,7 @@ export default {
       general_questions_contact: [
         { value: 'contact', text: 'Je mag me contacteren voor de volgende events' }
       ],
-      shirtsize: [
-        { text: this.$i18n.t('kiesmaat'), value: null },
-        // Meisje/Fille/Girl
-        { value: 'female_M116', text: this.$i18n.t('meisje') + ' M116' },
-        { value: 'female_M122', text: this.$i18n.t('meisje') + ' M122' },
-        { value: 'female_M128', text: this.$i18n.t('meisje') + ' M128' },
-        { value: 'female_M134', text: this.$i18n.t('meisje') + ' M134' },
-        { value: 'female_M140', text: this.$i18n.t('meisje') + ' M140' },
-        { value: 'female_M146', text: this.$i18n.t('meisje') + ' M146' },
-        { value: 'female_M152', text: this.$i18n.t('meisje') + ' M152' },
-        { value: 'female_M158', text: this.$i18n.t('meisje') + ' M158' },
-        { value: 'female_M164', text: this.$i18n.t('meisje') + ' M164' },
-        { value: 'female_M170', text: this.$i18n.t('meisje') + ' M170' },
-        { value: 'female_M176', text: this.$i18n.t('meisje') + ' M176' },
-        { value: 'female_medium', text: this.$i18n.t('meisje') + ' 94 62.. Medium' },
-        { value: 'female_large', text: this.$i18n.t('meisje') + ' 100 64.. Large' },
-        { value: 'female_xl', text: this.$i18n.t('meisje') + ' 106 66.. XL extra large' },
+      shirtsize_male: [
         // Jongen/Garçon/Boy
         { value: 'male_M116', text: this.$i18n.t('jongen') + ' M116' },
         { value: 'male_M122', text: this.$i18n.t('jongen') + ' M122' },
@@ -452,13 +449,30 @@ export default {
         { value: 'male_M164', text: this.$i18n.t('jongen') + ' M164' },
         { value: 'male_M170', text: this.$i18n.t('jongen') + ' M170' },
         { value: 'male_M176', text: this.$i18n.t('jongen') + ' M176' },
-        { value: 'male_Xsmall', text: this.$i18n.t('jongen') + ' 90 68.. XS' },
-        { value: 'male_small', text: this.$i18n.t('jongen') + ' 96 70..  S' },
-        { value: 'male_medium', text: this.$i18n.t('jongen') + ' 102 72..   M' },
-        { value: 'male_large', text: this.$i18n.t('jongen') + ' 108 74..   L' },
-        { value: 'male_xl', text: this.$i18n.t('jongen') + ' 114 76..   XL' },
-        { value: 'male_xxl', text: this.$i18n.t('jongen') + ' 120 78..   XXL' },
-        { value: 'male_3xl', text: this.$i18n.t('jongen') + ' 126 80..   3XL' }
+        { value: 'male_Xsmall', text: this.$i18n.t('jongen') + ' XS (90cm 68cm)' },
+        { value: 'male_small', text: this.$i18n.t('jongen') + ' S (96cm 70cm)' },
+        { value: 'male_medium', text: this.$i18n.t('jongen') + ' M (102cm 72cm)' },
+        { value: 'male_large', text: this.$i18n.t('jongen') + ' L (108cm 74cm)' },
+        { value: 'male_xl', text: this.$i18n.t('jongen') + ' XL (114cm 76cm)' },
+        { value: 'male_xxl', text: this.$i18n.t('jongen') + ' XXL (120cm 78cm)' },
+        { value: 'male_3xl', text: this.$i18n.t('jongen') + ' 3XL (126cm 80cm)' }
+      ],
+      shirtsize_female: [
+        // Meisje/Fille/Girl
+        { value: 'female_M116', text: this.$i18n.t('meisje') + ' M116' },
+        { value: 'female_M122', text: this.$i18n.t('meisje') + ' M122' },
+        { value: 'female_M128', text: this.$i18n.t('meisje') + ' M128' },
+        { value: 'female_M134', text: this.$i18n.t('meisje') + ' M134' },
+        { value: 'female_M140', text: this.$i18n.t('meisje') + ' M140' },
+        { value: 'female_M146', text: this.$i18n.t('meisje') + ' M146' },
+        { value: 'female_M152', text: this.$i18n.t('meisje') + ' M152' },
+        { value: 'female_M158', text: this.$i18n.t('meisje') + ' M158' },
+        { value: 'female_M164', text: this.$i18n.t('meisje') + ' M164' },
+        { value: 'female_M170', text: this.$i18n.t('meisje') + ' M170' },
+        { value: 'female_M176', text: this.$i18n.t('meisje') + ' M176' },
+        { value: 'female_medium', text: this.$i18n.t('meisje') + ' Medium (94cm 62cm)' },
+        { value: 'female_large', text: this.$i18n.t('meisje') + ' Large (100cm 64cm)' },
+        { value: 'female_xl', text: this.$i18n.t('meisje') + ' XL (106cm 66cm)' }
       ],
       deleteInfo: false
     }
@@ -726,7 +740,7 @@ export default {
     "december": "December",
     "Delete": "Delete",
     "E-mail adres ouders/voogd:": "E-mail address parents / guardian",
-    "E-mail adres:": "E-mail address parents / guardian",
+    "E-mail adres:": "E-mail address",
     "eigenProject": "I have my own project",
     "failedUpdate": "Update failed try again",
     "februari": "February",
@@ -755,7 +769,7 @@ export default {
     "medeProject": "I participate in an existing project",
     "mei": "May",
     "meisje": "Girl",
-    "mobiel nummer (+32):": "mobile number (+32)",
+    "mobiel nummer (+32):": "mobile number or landline (+32)",
     "mobiel nummer ouders/voogd": "mobile number parents / guardian (+32)",
     "no_contact": "You can contact me for future events",
     "no_photo": "CoderDojo is fun so we like sharing that with the world. During our activities we take pictures that may appear on social media afterwards so it could be the case that you get photographed or filmed during one of these CoderDojo activities. We don't use this footage on flyers or campaign without explicitly asking for permission. If you rather don't want your picture to be used you can mention this at your registration.",
@@ -782,11 +796,13 @@ export default {
     "Van waar ken je ons:": "Where do you know us from",
     "verwijder alles": "delete all",
     "Voornaam:": "First Name",
-    "Waar kunnen we jou bereiken in geval van nood": "Where can we reach you in case of an emergency?",
+    "Waar kunnen we jou bereiken in geval van nood": "Which number do we use in case of emergency?",
     "We delen dit met niemand": "We don’t share this with anyone",
     "YESc": "Yes",
     "YESp": "Yes",
-    "Zijn er aandoeningen": "Are there any conditions or allergies that we should take into account"
+    "Zijn er aandoeningen": "Are there any conditions or allergies that we should take into account",
+    "Female": "Girl",
+    "Male": "Boy "
   },
   "fr": {
     "Aanpassen": "Modifier",
@@ -798,7 +814,7 @@ export default {
     "Delete": "Supprimer",
     "eigenProject": "J'ai mon propre projet",
     "Email adres ouders/voogd:": "Adresse mail des parents / tuteur",
-    "Email adres:": "Adresse mail des parents / tuteur",
+    "Email adres:": "Adresse mail",
     "failedUpdate": "Error",
     "februari": "février",
     "Geboortejaar:": "Année de naissance",
@@ -827,7 +843,7 @@ export default {
     "medeProject": "Je participe à un projet existant",
     "mei": "mai",
     "meisje": "Fille",
-    "mobiel nummer (+32):": "numéro de gsm (+32)",
+    "mobiel nummer (+32):": "numéro de gsm ou fixe",
     "mobiel nummer ouders/voogd": "parents / tuteurs du  (+32)",
     "no_contact": "Nous respectons vos données personnelles ! Pour plus d’infos consultez notre clause de confidentialité sur notre site web. Pouvons-nous vous informer des prochains événements Coolest Projects par e-mail?",
     "no_photo": "CoderDojo c'est tellement fun que nous aimons promotionner notre action à travers les réseaux sociaux et pour ce faire nous prenons des photos pendant nos événements. Chaque participant(e) pourrait être photographié ou filmé lors de sa participation à notre événement. Ces photos sont ensuite postées et partagées sur nos réseaux sociaux. Celles-ci ne sont pas imprimées et ne figurent pas sur nos brochures. Si toutes fois quelques photos devaient servir à des fins de campagnes promotionnelles plus étendues nous vous demanderons bien sûr votre accord avant diffusion. Si vous ne tenez pas à ce que ces photos soient utilisées nous vous remercions de nous en faire part lors de votre enregistrement.",
@@ -854,11 +870,13 @@ export default {
     "Van waar ken je ons:": "Où avez-vous entendu parlé de CoderDojo pour la première fois?",
     "verwijder alles": "tout supprimer",
     "Voornaam:": "Prénom",
-    "Waar kunnen we jou bereiken in geval van nood": "Où pouvons-nous vous joindre en cas d'urgence?",
+    "Waar kunnen we jou bereiken in geval van nood": "En cas d'urgence, quel numéro devons-nous appeler?",
     "We delen dit met niemand": "Nous ne divulguerons ceci à personne",
     "YESc": "Oui",
     "YESp": "Oui",
-    "Zijn er aandoeningen": "Y a-t-il des conditions ou des allergies dont nous devons tenir compte"
+    "Zijn er aandoeningen": "Y a-t-il des conditions ou des allergies dont nous devons tenir compte",
+    "Female": "Fille",
+    "Male": "Garçon"
   },
   "nl": {
     "Achternaam:": "Achternaam",
@@ -869,7 +887,7 @@ export default {
     "Delete": "Verwijderen",
     "eigenProject": "Ik heb mijn eigen project",
     "Email adres ouders/voogd:": "E-mail adres ouders/voogd",
-    "Email adres:": "E-mail adres ouders/voogd",
+    "Email adres:": "E-mail adres",
     "failedUpdate": "Aanpassing mislukt",
     "februari": "februari",
     "Geboortejaar:": "Geboortejaar",
@@ -898,8 +916,8 @@ export default {
     "medeProject": "Ik werk mee aan een bestaand project",
     "mei": "mei",
     "meisje": "Meisje",
-    "mobiel nummer (+32):": "mobiel nummer (+32)",
-    "mobiel nummer ouders/voogd": "mobiel nummer ouders/voogd (+32)",
+    "mobiel nummer (+32):": "mobiel nummer of vaste lijn (+32)",
+    "mobiel nummer ouders/voogd": "mobiel nummer of vaste lijn ouders/voogd (+32)",
     "no_contact": "We respecteren je data. Bekijk daarom zeker even ons privacy statement op de website. Mogen we jou via mail op de hoogte brengen over volgende Coolest Projects evenementen?",
     "no_photo": "CoderDojo is leuk en daarom tonen wij graag waar we mee bezig zijn. We nemen tijdens onze activiteiten foto’s van onze deelnemers en begeleiders die we daarna op sociale media plaatsen. Het kan gebeuren dat je gefotografeerd of gefilmd wordt tijdens ons event. Wij gebruiken dit beeldmateriaal niet op flyers of voor uitvoerige campagnes zonder hiervoor nog eens expliciet toestemming te vragen. Indien je liever geen foto’s van je gebruikt ziet worden kan je dat tijdens het registreren aangeven.",
     "NOc": "Bewaar mijn data niet en contacteer mij niet",
@@ -925,11 +943,13 @@ export default {
     "Van waar ken je ons:": "Van waar ken je ons",
     "verwijder alles": "VERWIJDER ALLES",
     "Voornaam:": "Voornaam",
-    "Waar kunnen we jou bereiken in geval van nood": "Waar kunnen we jou bereiken in geval van nood?",
+    "Waar kunnen we jou bereiken in geval van nood": "Welk nummer gebruiken we in geval van nood?",
     "We delen dit met niemand": "We delen dit met niemand",
     "YESc": "Je mag mij contacteren wanneer ik kan inschrijven voor een volgende evenement",
     "YESp": "Dat is geen probleem",
-    "Zijn er aandoeningen": "Zijn er aandoeningen of allergieën waar we rekening mee moeten houden"
+    "Zijn er aandoeningen": "Zijn er aandoeningen of allergieën waar we rekening mee moeten houden",
+    "Female": "Meisje",
+    "Male": "Jongen"
   }
 }
 </i18n>
