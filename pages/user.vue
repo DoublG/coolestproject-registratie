@@ -117,8 +117,8 @@
                 v-model="t_size"
                 :options="shirtsize"
                 :state="errors[0] ? false : (valid ? true : null)"
-                aria-describedby="input-9-live-feedback"
                 :disabled="tshirtDisabled"
+                aria-describedby="input-9-live-feedback"
               />
               <b-form-invalid-feedback id="input-9-live-feedback">
                 {{ errors[0] }}
@@ -135,8 +135,8 @@
                 id="input-1"
                 v-model="postalcode"
                 :placeholder="$t('Postcode:')"
-                type="number"
                 :state="errors[0] ? false : (valid ? true : null)"
+                type="number"
                 aria-describedby="input-1-live-feedback"
               />
               <b-form-invalid-feedback id="input-1-live-feedback">
@@ -248,9 +248,9 @@
                 <b-form-input
                   id="input-13"
                   v-model="email_guardian"
-                  type="email"
                   :placeholder="$t('Email adres ouders/voogd:')"
                   :state="errors[0] ? false : (valid ? true : null)"
+                  type="email"
                   aria-describedby="input-13-live-feedback"
                 />
                 <b-form-invalid-feedback id="input-13-live-feedback">
@@ -262,15 +262,15 @@
               <b-form-group
                 id="input-group-14"
                 :label="$t('mobiel nummer ouders/voogd')"
-                label-for="input-14"
                 :description="$t('Waar kunnen we jou bereiken in geval van nood')"
+                label-for="input-14"
               >
                 <b-form-input
                   id="input-14"
                   v-model="gsm_guardian"
-                  type="tel"
                   :placeholder="$t('mobiel nummer ouders/voogd')"
                   :state="errors[0] ? false : (valid ? true : null)"
+                  type="tel"
                   aria-describedby="input-14-live-feedback"
                 />
               </b-form-group>
@@ -348,14 +348,14 @@
             </b-button>
             <b-button
               v-if="delete_possible"
+              @click="onDeleteInfo"
               type="button"
               variant="danger"
               class="button-hero"
-              @click="onDeleteInfo"
             >
               <font-awesome-icon :icon="['fas', 'user-minus']" />  {{ $t('Delete') }}
             </b-button>
-            <b-modal v-model="deleteInfo" ok-title="Delete" @ok="onDelete">
+            <b-modal v-model="deleteInfo" @ok="onDelete" ok-title="Delete">
               Opgelet: als je bevestigt wordt jouw gebruiker verwijderd dat will zeggen dat al jouw Personlijke en Project informatie worden verwijderd
               ...Als je toch nog wilt meedoen dan kan je via Registratie een nieuw project aanmaken of bij een andere project meedoen.
             </b-modal>

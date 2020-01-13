@@ -10,7 +10,7 @@
       <h1 v-if="create">
         {{ $t('createProject') }}
       </h1>
-      <b-alert dismissible :show="show" :variant="variant">
+      <b-alert :show="show" :variant="variant" dismissible>
         {{ message }}
       </b-alert>
       <ValidationObserver ref="observer" v-slot="{ passes }">
@@ -19,16 +19,16 @@
             <b-form-group
               id="input-group-18"
               :label="$t('Taal:')"
-              label-for="select-18"
               :description="$t('taalJury')"
+              label-for="select-18"
             >
               <b-form-select
                 id="select-18"
                 v-model="project_lang"
                 :options="languages"
                 :state="errors[0] ? false : (valid ? true : null)"
-                aria-describedby="input-18-live-feedback"
                 :disabled="disabled"
+                aria-describedby="input-18-live-feedback"
               />
               <b-form-invalid-feedback id="input-18-live-feedback">
                 {{ errors[0] }}
@@ -45,8 +45,8 @@
                 id="input-166"
                 v-model="project_type"
                 :state="errors[0] ? false : (valid ? true : null)"
-                aria-describedby="input-166-live-feedback"
                 :disabled="disabled"
+                aria-describedby="input-166-live-feedback"
               />
               <b-form-invalid-feedback id="input-166-live-feedback">
                 {{ errors[0] }}
@@ -64,8 +64,8 @@
                 v-model="project_name"
                 :placeholder="$t('GeefProjectnaam:')"
                 :state="errors[0] ? false : (valid ? true : null)"
-                aria-describedby="input-20-live-feedback"
                 :disabled="disabled"
+                aria-describedby="input-20-live-feedback"
               />
               <b-form-invalid-feedback id="input-20-live-feedback">
                 {{ errors[0] }}
@@ -82,8 +82,8 @@
                 id="input-21"
                 v-model="project_descr"
                 :state="errors[0] ? false : (valid ? true : null)"
-                aria-describedby="input-21-live-feedback"
                 :disabled="disabled"
+                aria-describedby="input-21-live-feedback"
               />
               <b-form-invalid-feedback id="input-21-live-feedback">
                 {{ errors[0] }}
@@ -114,10 +114,10 @@
             <div v-else>
               <h2>{{ $t('participants') }}</h2>
               <b-table
-                striped
-                hover
                 :items="participants"
                 :fields="[{ key: 'name', label: 'Name' }]"
+                striped
+                hover
               >
                 <template v-slot:cell(name)="data">
                   <font-awesome-icon v-if="data.item.self" :icon="['fas', 'user-circle']" /> {{ data.item.name }}

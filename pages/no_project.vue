@@ -3,10 +3,10 @@
     <b-col>
       <h1>{{ $t('MakeChoice') }}</h1>
       <ActionBarProject
-        project
-        token
         @createProject="onCreateProject"
         @enterToken="onEnterToken"
+        project
+        token
       />
     </b-col>
   </b-row>

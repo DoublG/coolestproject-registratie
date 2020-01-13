@@ -2,7 +2,7 @@
   <b-row>
     <b-col>
       <h1>{{ $t('titleLogin') }}</h1>
-      <b-alert dismissible :show="show" :variant="variant">
+      <b-alert :show="show" :variant="variant" dismissible>
         {{ message }}
       </b-alert>
       <ValidationObserver ref="observer" v-slot="{ passes }">
@@ -16,10 +16,10 @@
               <b-form-input
                 id="input-1"
                 v-model="email"
+                :state="errors[0] ? false : (valid ? true : null)"
                 type="email"
                 placeholder="email adres"
                 aria-describedby="input-1-live-feedback"
-                :state="errors[0] ? false : (valid ? true : null)"
               />
               <b-form-invalid-feedback id="input-1-live-feedback">
                 {{ errors[0] }}
