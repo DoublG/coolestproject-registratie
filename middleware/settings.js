@@ -6,7 +6,5 @@ export default async function ({ app, store, redirect }) {
         await store.dispatch('updateSettings', settings)
       }
     }
-  } catch (error) {
-    app.router.push({ path: '/index' })
-  }
+  } catch (error) {}
 }

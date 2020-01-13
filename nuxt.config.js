@@ -5,7 +5,7 @@ module.exports = {
   */
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000/api',
-    useProxy: !process.env.BASE_URL
+    useProxy: process.env.USE_PROXY
   },
   dotenv: {
   },
@@ -117,7 +117,8 @@ module.exports = {
       'FormGroupPlugin',
       'AlertPlugin',
       'ModalPlugin',
-      'JumbotronPlugin'
+      'JumbotronPlugin',
+      'SpinnerPlugin'
     ]
   },
   generate: {},
@@ -143,9 +144,9 @@ module.exports = {
     }
   },
   axios: {
-    baseURL: process.env.baseUrl,
-    proxy: process.env.useProxy,
-    prefix: '/api'
+    baseURL: 'https://coolestjury.azurewebsites.net' // process.env.baseUrl,
+    //proxy: true,
+    //prefix: '/api'
   },
   proxy: {
     '/api/': { target: 'http://localhost:8080', pathRewrite: { '^/api/': '' } }

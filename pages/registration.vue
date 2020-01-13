@@ -474,13 +474,16 @@
           </ValidationProvider>
           <b-form-group>
             <b-button
+              :disabled="loading"
               type="submit"
               variant="info"
               class="button-hero"
             >
-              <font-awesome-icon :icon="['fas', 'paper-plane']" /> {{ $t('Ik schrijf me in') }}
+              <span v-if="loading"><b-spinner type="grow" /> {{ $t('pleaseWait') }}</span>
+              <span v-else><font-awesome-icon v-if="!loading" :icon="['fas', 'paper-plane']" /> {{ $t('Ik schrijf me in') }}</span>
             </b-button>
             <b-button
+              :disabled="loading"
               type="reset"
               variant="warning"
               class="button-hero"
@@ -507,6 +510,7 @@ export default {
   },
   data () {
     return {
+      loading: false,
       photo_options: [
         { value: 'photo', text: this.$i18n.t('YESp') },
         { value: 'no_photo', text: this.$i18n.t('NOp') }
@@ -845,6 +849,8 @@ export default {
   },
   methods: {
     async onSubmit (evt) {
+      this.show = false
+      this.loading = true
       try {
         // pass language to store
         this.$store.dispatch('registration/language', this.$i18n.locale)
@@ -858,6 +864,7 @@ export default {
         this.message = this.$i18n.t('failedReg')
         this.show = true
       }
+      this.loading = false
       window.scrollTo(0, 0)
     },
     onReset (evt) {
@@ -942,7 +949,8 @@ export default {
     "YESp": "Yes",
     "Zijn er aandoeningen": "Are there any conditions or allergies that we should take into account",
     "Female": "Girl",
-    "Male": "Boy"
+    "Male": "Boy",
+    "pleaseWait" : "Please Wait"
   },
   "fr": {
     "Achternaam:": "Nom de Famille",
@@ -1013,7 +1021,8 @@ export default {
     "YESp": "Oui",
     "Zijn er aandoeningen": "Y a-t-il des conditions ou des allergies dont nous devons tenir compte",
     "Female": "Fille",
-    "Male": "Garçon"
+    "Male": "Garçon",
+    "pleaseWait" : "Veuillez Patienter"
   },
   "nl": {
     "Achternaam:": "Achternaam",
@@ -1084,7 +1093,8 @@ export default {
     "YESp": "Dat is geen probleem",
     "Zijn er aandoeningen": "Zijn er aandoeningen of allergieën waar we rekening mee moeten houden",
     "Female": "Meisje",
-    "Male": "Jongen"
+    "Male": "Jongen",
+    "pleaseWait" : "Even geduld"
   }
 }
 </i18n>

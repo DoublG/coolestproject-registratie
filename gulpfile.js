@@ -7,8 +7,9 @@ gulp.task('production', function () {
     verbosity: 3,
     env: { ...process.env,
       ...{
-        BASE_URL: 'https://coolestjury.azurewebsites.net/',
-        NODE_ENV: 'production'
+        NUXT_ENV_BASE_URL: 'https://coolestjury.azurewebsites.net/',
+        NODE_ENV: 'production',
+        NUXT_ENV_USE_PROXY: false
       } }
   }).exec()
 })
