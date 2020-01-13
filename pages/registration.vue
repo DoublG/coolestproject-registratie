@@ -1083,8 +1083,8 @@ export default {
     "YESc": "Je mag mij contacteren wanneer ik kan inschrijven voor een volgende evenement",
     "YESp": "Dat is geen probleem",
     "Zijn er aandoeningen": "Zijn er aandoeningen of allergieën waar we rekening mee moeten houden",
-    "Female": "Meisje - Fille - Girl",
-    "Male": "Jongen - Garçon - Boy "
+    "Female": "Meisje",
+    "Male": "Jongen"
   }
 }
 </i18n>
