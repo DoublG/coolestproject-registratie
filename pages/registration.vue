@@ -482,10 +482,10 @@
             </b-button>
             <b-button
               type="reset"
-              variant="danger"
+              variant="warning"
               class="button-hero"
             >
-              <font-awesome-icon :icon="['fas', 'trash-alt']" />  {{ $t('verwijder alles') }}
+              <font-awesome-icon :icon="['fas', 'trash-restore']" />  {{ $t('verwijder alles') }}
             </b-button>
           </b-form-group>
         </b-form>
