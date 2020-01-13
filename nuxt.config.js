@@ -129,9 +129,9 @@ module.exports = {
   },
   axios: {
     // baseURL: process.env.BASE_URL || 'http://localhost:3000/api',
-    baseURL: 'https://coolestjury.azurewebsites.net/'
-    // proxy: process.env.USE_PROXY || true,
-    // prefix: '/api'
+    //baseURL: 'https://coolestjury.azurewebsites.net/'
+    proxy: true,
+    prefix: '/api'
   },
   proxy: {
     '/api/': { target: 'http://localhost:8080', pathRewrite: { '^/api/': '' } }

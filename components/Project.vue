@@ -339,7 +339,7 @@ export default {
     "medeProject": "I participate in an existing project",
     "mei": "May",
     "meisje": "Girl",
-    "mobiel nummer (+32):": "mobile number (+32)",
+    "mobiel nummer (+32):": "mobile number or landline (+32)",
     "mobiel nummer ouders/voogd": "mobile number parents / guardian (+32)",
     "no_contact": "You can contact me for future events",
     "no_photo": "CoderDojo is fun so we like sharing that with the world. During our activities we take pictures that may appear on social media afterwards so it could be the case that you get photographed or filmed during one of these CoderDojo activities. We don't use this footage on flyers or campaign without explicitly asking for permission. If you rather don't want your picture to be used you can mention this at your registration.",
@@ -368,11 +368,12 @@ export default {
     "Van waar ken je ons:": "Where do you know us from",
     "verwijder alles": "delete all",
     "Voornaam:": "First Name",
-    "Waar kunnen we jou bereiken in geval van nood": "Where can we reach you in case of an emergency?",
+    "Waar kunnen we jou bereiken in geval van nood": "Which number do we use in case of emergency?",
     "We delen dit met niemand": "We don’t share this with anyone",
     "YESc": "Yes",
     "YESp": "Yes",
-    "Zijn er aandoeningen": "Are there any conditions or allergies that we should take into account"
+    "Zijn er aandoeningen": "Are there any conditions or allergies that we should take into account",
+    "failedChange": "The change was unsuccessful, please LOGOUT and Login again"
   },
   "fr": {
     "Achternaam:": "Nom de Famille",
@@ -416,7 +417,7 @@ export default {
     "medeProject": "Je participe à un projet existant",
     "mei": "mai",
     "meisje": "Fille",
-    "mobiel nummer (+32):": "numéro de gsm (+32)",
+    "mobiel nummer (+32):": "numéro de gsm ou fixe (+32)(+32)",
     "mobiel nummer ouders/voogd": "parents / tuteurs du  (+32)",
     "no_contact": "Nous respectons vos données personnelles ! Pour plus d’infos consultez notre clause de confidentialité sur notre site web. Pouvons-nous vous informer des prochains événements Coolest Projects par e-mail?",
     "no_photo": "CoderDojo c'est tellement fun que nous aimons promotionner notre action à travers les réseaux sociaux et pour ce faire nous prenons des photos pendant nos événements. Chaque participant(e) pourrait être photographié ou filmé lors de sa participation à notre événement. Ces photos sont ensuite postées et partagées sur nos réseaux sociaux. Celles-ci ne sont pas imprimées et ne figurent pas sur nos brochures. Si toutes fois quelques photos devaient servir à des fins de campagnes promotionnelles plus étendues nous vous demanderons bien sûr votre accord avant diffusion. Si vous ne tenez pas à ce que ces photos soient utilisées nous vous remercions de nous en faire part lors de votre enregistrement.",
@@ -445,11 +446,12 @@ export default {
     "Van waar ken je ons:": "Où avez-vous entendu parlé de CoderDojo pour la première fois?",
     "verwijder alles": "tout supprimer",
     "Voornaam:": "Prénom",
-    "Waar kunnen we jou bereiken in geval van nood": "Où pouvons-nous vous joindre en cas d'urgence?",
+    "Waar kunnen we jou bereiken in geval van nood": "En cas d'urgence, quel numéro devons-nous appeler?",
     "We delen dit met niemand": "Nous ne divulguerons ceci à personne",
     "YESc": "Oui",
     "YESp": "Oui",
-    "Zijn er aandoeningen": "Y a-t-il des conditions ou des allergies dont nous devons tenir compte"
+    "Zijn er aandoeningen": "Y a-t-il des conditions ou des allergies dont nous devons tenir compte",
+    "failedChange": "Le changement a échoué, DÉCONNEXION et retour Connexion"
   },
   "nl": {
     "Achternaam:": "Achternaam",
@@ -493,7 +495,7 @@ export default {
     "medeProject": "Ik werk mee aan een bestaand project",
     "mei": "mei",
     "meisje": "Meisje",
-    "mobiel nummer (+32):": "mobiel nummer (+32)",
+    "mobiel nummer (+32):": "mobiel nummer (+32) of vaste lijn",
     "mobiel nummer ouders/voogd": "mobiel nummer ouders/voogd (+32)",
     "no_contact": "We respecteren je data. Bekijk daarom zeker even ons privacy statement op de website. Mogen we jou via mail op de hoogte brengen over volgende Coolest Projects evenementen?",
     "no_photo": "CoderDojo is leuk en daarom tonen wij graag waar we mee bezig zijn. We nemen tijdens onze activiteiten foto’s van onze deelnemers en begeleiders die we daarna op sociale media plaatsen. Het kan gebeuren dat je gefotografeerd of gefilmd wordt tijdens ons event. Wij gebruiken dit beeldmateriaal niet op flyers of voor uitvoerige campagnes zonder hiervoor nog eens expliciet toestemming te vragen. Indien je liever geen foto’s van je gebruikt ziet worden kan je dat tijdens het registreren aangeven.",
@@ -522,11 +524,12 @@ export default {
     "Van waar ken je ons:": "Van waar ken je ons",
     "verwijder alles": "VERWIJDER ALLES",
     "Voornaam:": "Voornaam",
-    "Waar kunnen we jou bereiken in geval van nood": "Waar kunnen we jou bereiken in geval van nood?",
+    "Waar kunnen we jou bereiken in geval van nood": "Welk nummer gebruiken we in geval van nood?",
     "We delen dit met niemand": "We delen dit met niemand",
     "YESc": "Je mag mij contacteren wanneer ik kan inschrijven voor een volgende evenement",
     "YESp": "Dat is geen probleem",
-    "Zijn er aandoeningen": "Zijn er aandoeningen of allergieën waar we rekening mee moeten houden"
+    "Zijn er aandoeningen": "Zijn er aandoeningen of allergieën waar we rekening mee moeten houden",
+    "failedChange": "De wijziging is niet gelukt, LOGOUT en do terug Login."
   }
 }
 </i18n>
