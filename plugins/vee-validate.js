@@ -63,6 +63,6 @@ extend('between_dates', {
 extend('all_true', {
   params: ['values'],
   validate (value, { values }) {
-    return true // (value + '') === (Array.isArray(values) ? values.map((item) => { return item.value }).join() : values.value)
+    return true
   }
 })

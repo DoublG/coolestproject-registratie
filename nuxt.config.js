@@ -91,11 +91,10 @@ module.exports = {
         imports: [
           {
             set: '@fortawesome/free-solid-svg-icons',
-            icons: ['fas']
-          },
-          {
-            set: '@fortawesome/free-brands-svg-icons',
-            icons: ['fab']
+            icons: ['faPlus', 'faEdit', 'faMinus',
+              'faEject', 'faUnlock', 'faProjectDiagram', 'faUser', 'faLock', 'faGlobeEurope', 'faCheck',
+              'faEnvelope', 'faCopy', 'faUserCircle', 'faPaperPlane', 'faTshirt', 'faTrashAlt', 'faUserEdit',
+              'faTrashRestore', 'faUserMinus']
           }
         ]
       }
@@ -104,7 +103,22 @@ module.exports = {
   ],
   bootstrapVue: {
     bootstrapCSS: false,
-    bootstrapVueCSS: false
+    bootstrapVueCSS: false,
+    componentPlugins: [
+      'LayoutPlugin',
+      'NavbarPlugin',
+      'ButtonPlugin',
+      'FormPlugin',
+      'FormSelectPlugin',
+      'FormTextareaPlugin',
+      'FormCheckboxPlugin',
+      'FormInputPlugin',
+      'FormRadioPlugin',
+      'FormGroupPlugin',
+      'AlertPlugin',
+      'ModalPlugin',
+      'JumbotronPlugin'
+    ]
   },
   generate: {},
   /*
