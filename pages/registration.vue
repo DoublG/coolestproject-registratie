@@ -881,7 +881,7 @@ export default {
     "augustus": "August",
     "december": "December",
     "E-mail adres ouders/voogd:": "E-mail address parents / guardian",
-    "E-mail adres:": "E-mail address parents / guardian",
+    "E-mail adres:": "E-mail address",
     "eigenProject": "I have my own project",
     "failedReg": "Registration failed try again later",
     "februari": "February",
@@ -950,7 +950,7 @@ export default {
     "december": "décembre",
     "eigenProject": "J'ai mon propre projet",
     "Email adres ouders/voogd:": "Adresse mail des parents / tuteur",
-    "Email adres:": "Adresse mail des parents / tuteur",
+    "Email adres:": "Adresse mail",
     "failedReg": "L'inscription a échoué - Essaie à nouveau",
     "februari": "février",
     "Geboortejaar:": "Année de naissance",
@@ -1019,7 +1019,7 @@ export default {
     "december": "december",
     "eigenProject": "Ik heb mijn eigen project",
     "Email adres ouders/voogd:": "E-mail adres ouders/voogd",
-    "Email adres:": "E-mail adres ouders/voogd",
+    "Email adres:": "E-mail",
     "failedReg": "Registratie mislukt probeer later nog eens opnieuw",
     "februari": "februari",
     "Geboortejaar:": "Geboortejaar",
@@ -1078,7 +1078,9 @@ export default {
     "We delen dit met niemand": "We delen dit met niemand",
     "YESc": "Je mag mij contacteren wanneer ik kan inschrijven voor een volgende evenement",
     "YESp": "Dat is geen probleem",
-    "Zijn er aandoeningen": "Zijn er aandoeningen of allergieën waar we rekening mee moeten houden"
+    "Zijn er aandoeningen": "Zijn er aandoeningen of allergieën waar we rekening mee moeten houden",
+    "Female": "Meisje - Fille - Girl",
+    "Male": "Jongen - Garçon - Boy "
   }
 }
 </i18n>
