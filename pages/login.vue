@@ -57,7 +57,7 @@ export default {
       message: null,
       variant: null,
       email: null,
-      loading: false
+      loading: true
     }
   },
   computed: {
@@ -89,10 +89,12 @@ export default {
         return {
           message: ex,
           variant: 'danger',
-          show: true
+          show: true,
+          loading: false
         }
       }
     }
+    return { loading: false }
   },
   methods: {
     async onSubmit (evt) {
