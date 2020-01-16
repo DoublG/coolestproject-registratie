@@ -100,7 +100,7 @@ export default {
     "failedChange": "The change was unsuccessful, please LOGOUT and Login again",
     "Geefcode": "Enter the code that you received from the project owner",
     "Projectcode:": "Project token",
-    "successReg": "Registration is successful you will receive an email shortly with which you can log in to our website",
+    "successReg": "The registration for the creation of your project is successful when you get a confirmation mail with further instructions to login and to see and/or change your data. Be aware: 1 registration per person.",
     "successChange": "The change was successful."
   },
   "fr": {
@@ -114,7 +114,7 @@ export default {
     "failedChange": "De wijziging is niet gelukt.",
     "Geefcode": "Geef de code in die je van de projecteigenaar gekregen hebt",
     "Projectcode:": "Project token",
-    "successReg": "De registratie is gelukt je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website",
+    "successReg": "De registratie voor het aanmaken van je project is gelukt als je een bevestigingsmail ontvangt met verdere instructies om in te loggen en je gegevens te bekijken en/of bij te werken. Let op: 1 registratie per projectowner.",
     "successChange": "De wijziging is niet gelukt, LOGOUT en do terug Login."
   }
 }
