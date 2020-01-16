@@ -28,11 +28,13 @@
           </ValidationProvider>
           <b-form-group>
             <b-button
+              :disabled="loading"
               type="submit"
               variant="info"
               class="button-hero"
             >
-              <font-awesome-icon :icon="['fas', 'envelope']" /> {{ $t('Stuur me een logincode') }}
+              <span v-if="loading"><b-spinner type="grow" /> {{ $t('pleaseWait') }}</span>
+              <span v-else><font-awesome-icon :icon="['fas', 'envelope']" /> {{ $t('Stuur me een logincode') }}</span>
             </b-button>
           </b-form-group>
         </b-form>
@@ -54,7 +56,8 @@ export default {
       show: false,
       message: null,
       variant: null,
-      email: null
+      email: null,
+      loading: false
     }
   },
   computed: {
@@ -93,6 +96,8 @@ export default {
   },
   methods: {
     async onSubmit (evt) {
+      this.show = false
+      this.loading = true
       try {
         await this.$services.mail.post(this.email)
         this.variant = 'success'
@@ -103,9 +108,11 @@ export default {
         this.message = this.$i18n.t('failureMessage')
         this.show = true
       }
+      this.loading = false
     },
     onReset (evt) {
       this.email = null
+      this.show = false
     }
   }
 }
@@ -118,7 +125,8 @@ export default {
     "message": "Something went wrong",
     "Stuur me een logincode": "Please send me the login code",
     "successMessage": "We've sent a logincode please check your mailbox",
-    "titleLogin": "Login"
+    "titleLogin": "Login",
+    "pleaseWait" : "Please Wait"
   },
   "fr": {
 
@@ -126,14 +134,16 @@ export default {
     "message": "Il semblerait que cela n'a pas fonctionné",
     "Stuur me een logincode": "Pourriez-vous m'envoyer un code de connexion ?",
     "successMessage": "Nous avons envoyé un code de connexion - merci de bien vouloir vérifier votre boîte mail",
-    "titleLogin": "Login"
+    "titleLogin": "Login",
+    "pleaseWait" : "Veuillez Patienter"
   },
   "nl": {
     "failureMessage": "Er is iets misgelopen probeer later opnieuw",
     "message": "Er is iets misgelopen",
     "Stuur me een logincode": "Stuur me een logincode aub",
     "successMessage": "We hebben een logincode verzonden check je mailbox",
-    "titleLogin": "Login"
+    "titleLogin": "Login",
+    "pleaseWait" : "Even geduld"
   }
 }
 </i18n>
