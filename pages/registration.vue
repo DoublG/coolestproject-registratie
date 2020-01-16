@@ -561,11 +561,11 @@ export default {
       ],
       shirtsize_male: [
         // Jongen/Garçon/Boy/KID
-        { value: 'male_M116', text: this.$i18n.t('kid') + ' 3/4' },
-        { value: 'male_M122', text: this.$i18n.t('kid') + ' 5/6' },
-        { value: 'male_M128', text: this.$i18n.t('kid') + ' 7/8' },
-        { value: 'male_M134', text: this.$i18n.t('kid') + ' 9/11' },
-        { value: 'male_M140', text: this.$i18n.t('kid') + ' 12/14' },
+        { value: 'kid_3/4', text: this.$i18n.t('kid') + ' 3/4' },
+        { value: 'kid_5/6', text: this.$i18n.t('kid') + ' 5/6' },
+        { value: 'kid_7/8', text: this.$i18n.t('kid') + ' 7/8' },
+        { value: 'kid_9/11', text: this.$i18n.t('kid') + ' 9/11' },
+        { value: 'kid_12/14', text: this.$i18n.t('kid') + ' 12/14' },
         { value: 'male_Xsmall', text: this.$i18n.t('men') + ' XS' },
         { value: 'male_small', text: this.$i18n.t('men') + ' S' },
         { value: 'male_medium', text: this.$i18n.t('men') + ' M' },
@@ -573,17 +573,17 @@ export default {
         { value: 'male_xl', text: this.$i18n.t('men') + ' XL' },
         { value: 'male_xxl', text: this.$i18n.t('men') + ' 2XL' },
         { value: 'male_3xl', text: this.$i18n.t('men') + ' 3XL' },
-        { value: 'male_M146', text: this.$i18n.t('men') + ' 4XL' },
-        { value: 'male_M152', text: this.$i18n.t('men') + ' 5XL' }
+        { value: 'male_4xl', text: this.$i18n.t('men') + ' 4XL' },
+        { value: 'male_5xl', text: this.$i18n.t('men') + ' 5XL' }
       ],
       shirtsize_female: [
         // Meisje/Fille/Girl
-        { value: 'female_M176', text: this.$i18n.t('women') + ' XS' },
+        { value: 'female_xs', text: this.$i18n.t('women') + ' XS' },
         { value: 'female_medium', text: this.$i18n.t('women') + ' M' },
         { value: 'female_large', text: this.$i18n.t('women') + ' L' },
         { value: 'female_xl', text: this.$i18n.t('women') + ' XL' },
-        { value: 'female_M146', text: this.$i18n.t('women') + ' 2XL' },
-        { value: 'female_M152', text: this.$i18n.t('women') + ' 3XL' }
+        { value: 'female_2xl', text: this.$i18n.t('women') + ' 2XL' },
+        { value: 'female_3xl', text: this.$i18n.t('women') + ' 3XL' }
       ]
     }
   },
