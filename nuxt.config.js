@@ -118,7 +118,8 @@ module.exports = {
       'AlertPlugin',
       'ModalPlugin',
       'JumbotronPlugin',
-      'SpinnerPlugin'
+      'SpinnerPlugin',
+      'TablePlugin'
     ]
   },
   generate: {},
@@ -144,9 +145,9 @@ module.exports = {
     }
   },
   axios: {
-    baseURL: 'https://coolestjury.azurewebsites.net' // process.env.baseUrl,
-    //proxy: true,
-    //prefix: '/api'
+    // baseURL: 'https://coolestjury.azurewebsites.net' // process.env.baseUrl,
+    proxy: true,
+    prefix: '/api'
   },
   proxy: {
     '/api/': { target: 'http://localhost:8080', pathRewrite: { '^/api/': '' } }

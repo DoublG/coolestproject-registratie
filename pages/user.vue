@@ -437,42 +437,30 @@ export default {
         { value: 'contact', text: 'Je mag me contacteren voor de volgende events' }
       ],
       shirtsize_male: [
-        // Jongen/Garçon/Boy
-        { value: 'male_M116', text: this.$i18n.t('jongen') + ' M116' },
-        { value: 'male_M122', text: this.$i18n.t('jongen') + ' M122' },
-        { value: 'male_M128', text: this.$i18n.t('jongen') + ' M128' },
-        { value: 'male_M134', text: this.$i18n.t('jongen') + ' M134' },
-        { value: 'male_M140', text: this.$i18n.t('jongen') + ' M140' },
-        { value: 'male_M146', text: this.$i18n.t('jongen') + ' M146' },
-        { value: 'male_M152', text: this.$i18n.t('jongen') + ' M152' },
-        { value: 'male_M158', text: this.$i18n.t('jongen') + ' M158' },
-        { value: 'male_M164', text: this.$i18n.t('jongen') + ' M164' },
-        { value: 'male_M170', text: this.$i18n.t('jongen') + ' M170' },
-        { value: 'male_M176', text: this.$i18n.t('jongen') + ' M176' },
-        { value: 'male_Xsmall', text: this.$i18n.t('jongen') + ' XS (90cm 68cm)' },
-        { value: 'male_small', text: this.$i18n.t('jongen') + ' S (96cm 70cm)' },
-        { value: 'male_medium', text: this.$i18n.t('jongen') + ' M (102cm 72cm)' },
-        { value: 'male_large', text: this.$i18n.t('jongen') + ' L (108cm 74cm)' },
-        { value: 'male_xl', text: this.$i18n.t('jongen') + ' XL (114cm 76cm)' },
-        { value: 'male_xxl', text: this.$i18n.t('jongen') + ' XXL (120cm 78cm)' },
-        { value: 'male_3xl', text: this.$i18n.t('jongen') + ' 3XL (126cm 80cm)' }
+        // Jongen/Garçon/Boy/KID
+        { value: 'male_M116', text: this.$i18n.t('kid') + ' 3/4' },
+        { value: 'male_M122', text: this.$i18n.t('kid') + ' 5/6' },
+        { value: 'male_M128', text: this.$i18n.t('kid') + ' 7/8' },
+        { value: 'male_M134', text: this.$i18n.t('kid') + ' 9/11' },
+        { value: 'male_M140', text: this.$i18n.t('kid') + ' 12/14' },
+        { value: 'male_Xsmall', text: this.$i18n.t('men') + ' XS' },
+        { value: 'male_small', text: this.$i18n.t('men') + ' S' },
+        { value: 'male_medium', text: this.$i18n.t('men') + ' M' },
+        { value: 'male_large', text: this.$i18n.t('men') + ' L' },
+        { value: 'male_xl', text: this.$i18n.t('men') + ' XL' },
+        { value: 'male_xxl', text: this.$i18n.t('men') + ' 2XL' },
+        { value: 'male_3xl', text: this.$i18n.t('men') + ' 3XL' },
+        { value: 'male_M146', text: this.$i18n.t('men') + ' 4XL' },
+        { value: 'male_M152', text: this.$i18n.t('men') + ' 5XL' }
       ],
       shirtsize_female: [
         // Meisje/Fille/Girl
-        { value: 'female_M116', text: this.$i18n.t('meisje') + ' M116' },
-        { value: 'female_M122', text: this.$i18n.t('meisje') + ' M122' },
-        { value: 'female_M128', text: this.$i18n.t('meisje') + ' M128' },
-        { value: 'female_M134', text: this.$i18n.t('meisje') + ' M134' },
-        { value: 'female_M140', text: this.$i18n.t('meisje') + ' M140' },
-        { value: 'female_M146', text: this.$i18n.t('meisje') + ' M146' },
-        { value: 'female_M152', text: this.$i18n.t('meisje') + ' M152' },
-        { value: 'female_M158', text: this.$i18n.t('meisje') + ' M158' },
-        { value: 'female_M164', text: this.$i18n.t('meisje') + ' M164' },
-        { value: 'female_M170', text: this.$i18n.t('meisje') + ' M170' },
-        { value: 'female_M176', text: this.$i18n.t('meisje') + ' M176' },
-        { value: 'female_medium', text: this.$i18n.t('meisje') + ' Medium (94cm 62cm)' },
-        { value: 'female_large', text: this.$i18n.t('meisje') + ' Large (100cm 64cm)' },
-        { value: 'female_xl', text: this.$i18n.t('meisje') + ' XL (106cm 66cm)' }
+        { value: 'female_M176', text: this.$i18n.t('women') + ' XS' },
+        { value: 'female_medium', text: this.$i18n.t('women') + ' M' },
+        { value: 'female_large', text: this.$i18n.t('women') + ' L' },
+        { value: 'female_xl', text: this.$i18n.t('women') + ' XL' },
+        { value: 'female_M146', text: this.$i18n.t('women') + ' 2XL' },
+        { value: 'female_M152', text: this.$i18n.t('women') + ' 3XL' }
       ],
       deleteInfo: false
     }
@@ -801,8 +789,12 @@ export default {
     "YESc": "Yes",
     "YESp": "Yes",
     "Zijn er aandoeningen": "Are there any conditions or allergies that we should take into account",
-    "Female": "Girl",
-    "Male": "Boy "
+    "Female": "Women",
+    "Male": "Kid/Men",
+    "pleaseWait" : "Please Wait",
+    "kid": "kid",
+    "men": "men",
+    "women": "women"
   },
   "fr": {
     "Aanpassen": "Modifier",
@@ -875,8 +867,12 @@ export default {
     "YESc": "Oui",
     "YESp": "Oui",
     "Zijn er aandoeningen": "Y a-t-il des conditions ou des allergies dont nous devons tenir compte",
-    "Female": "Fille",
-    "Male": "Garçon"
+    "Female": "Femmes",
+    "Male": "Enfants/Hommes",
+    "pleaseWait" : "Veuillez Patienter",
+    "kid": "enfant",
+    "men": "hommes",
+    "women": "femmes"
   },
   "nl": {
     "Achternaam:": "Achternaam",
@@ -948,8 +944,12 @@ export default {
     "YESc": "Je mag mij contacteren wanneer ik kan inschrijven voor een volgende evenement",
     "YESp": "Dat is geen probleem",
     "Zijn er aandoeningen": "Zijn er aandoeningen of allergieën waar we rekening mee moeten houden",
-    "Female": "Meisje",
-    "Male": "Jongen"
+    "Female": "Dames",
+    "Male": "Kind/Mannen",
+    "pleaseWait" : "Even geduld",
+    "kid": "kind",
+    "men": "mannen",
+    "women": "dames"
   }
 }
 </i18n>

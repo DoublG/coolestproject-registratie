@@ -95,9 +95,9 @@
               <h2>{{ $t('participants') }}</h2>
               <b-table
                 :items="participants"
-                :fields="[{ key: 'id', label: 'Medewerker Token' }, { key: 'name', label: 'Medewerker Name' }]"
-                striped
+                :fields="[{ key: 'id', label: $t('MedewToken') }, { key: 'name', label: $t('MedewNaam') }]"
                 hover
+                striped
               >
                 <template v-slot:cell(id)="data">
                   <span v-if="data.item.name === undefined">
@@ -115,7 +115,7 @@
               <h2>{{ $t('participants') }}</h2>
               <b-table
                 :items="participants"
-                :fields="[{ key: 'name', label: 'Name' }]"
+                :fields="[{ key: 'name', label: $t('MedewNaam') }]"
                 striped
                 hover
               >
@@ -358,7 +358,7 @@ export default {
     "Projecttype:": "Project type",
     "Selecteer wat je project allemaal doet, nodig heeft": "Select what your project needs",
     "september": "September",
-    "successReg": "Registration is successful you will receive an email shortly with which you can log in to our website",
+    "successReg": "The registration for the creation of your project is successful when you get a confirmation mail with further instructions to login and to see and/or change your data. Be aware: 1 registration per person.",
     "T-shirt maat:": "T-shirt size",
     "Taal:": "Language",
     "taalJury": "In which language do you want to explain the project to the jury?",
@@ -373,7 +373,9 @@ export default {
     "YESc": "Yes",
     "YESp": "Yes",
     "Zijn er aandoeningen": "Are there any conditions or allergies that we should take into account",
-    "failedChange": "The change was unsuccessful, please LOGOUT and Login again"
+    "failedChange": "The change was unsuccessful, please LOGOUT and Login again",
+    "MedewToken": "Participant Token",
+    "MedewNaam": "Participant Name"
   },
   "fr": {
     "Achternaam:": "Nom de Famille",
@@ -451,7 +453,9 @@ export default {
     "YESc": "Oui",
     "YESp": "Oui",
     "Zijn er aandoeningen": "Y a-t-il des conditions ou des allergies dont nous devons tenir compte",
-    "failedChange": "Le changement a échoué, DÉCONNEXION et retour Connexion"
+    "failedChange": "Le changement a échoué, DÉCONNEXION et retour Connexion",
+    "MedewToken": "Participant Token",
+    "MedewNaam": "Participant nom"
   },
   "nl": {
     "Achternaam:": "Achternaam",
@@ -504,6 +508,7 @@ export default {
     "november": "november",
     "oktober": "oktober",
     "participants": "Deelnemer",
+    "participantss": "Deelnemer2",
     "personal_info": "Persoonlijke informatie",
     "Postcode:": "Postcode",
     "Project": "Project",
@@ -514,7 +519,7 @@ export default {
     "Projecttype:": "Projecttype",
     "Selecteer wat je project allemaal doet, nodig heeft": "Selecteer wat je project allemaal nodig heeft",
     "september": "september",
-    "successReg": "De registratie is gelukt je ontvangt zo dadelijk een mailtje waarmee je kan inloggen op onze website",
+    "successReg": "De registratie voor het aanmaken van je project is gelukt als je een bevestigingsmail ontvangt met verdere instructies om in te loggen en je gegevens te bekijken en/of bij te werken. Let op: 1 registratie per projectowner.",
     "T-shirt maat:": "T-shirt maat",
     "Taal:": "Taal",
     "taalJury": "In welke taal wil je het project uitleggen aan de jury?",
@@ -529,7 +534,9 @@ export default {
     "YESc": "Je mag mij contacteren wanneer ik kan inschrijven voor een volgende evenement",
     "YESp": "Dat is geen probleem",
     "Zijn er aandoeningen": "Zijn er aandoeningen of allergieën waar we rekening mee moeten houden",
-    "failedChange": "De wijziging is niet gelukt, LOGOUT en do terug Login."
+    "failedChange": "De wijziging is niet gelukt, LOGOUT en do terug Login.",
+    "MedewToken": "Medewerker Token",
+    "MedewNaam": "Medewerker Naam"
   }
 }
 </i18n>
