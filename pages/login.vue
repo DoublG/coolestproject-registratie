@@ -57,7 +57,7 @@ export default {
       message: null,
       variant: null,
       email: null,
-      loading: true
+      loading: false
     }
   },
   computed: {
@@ -78,23 +78,23 @@ export default {
       }
     }
   },
-  async asyncData ({ query, app, store, route }) {
-    if (query.token) {
-      try {
-        const loginToken = await app.$services.login.post(query.token)
-        store.commit('auth/api_key', loginToken.api_key)
-        store.commit('auth/expires', loginToken.expires)
-        app.router.replace({ path: '/user' })
-      } catch (ex) {
-        return {
-          message: ex,
-          variant: 'danger',
-          show: true,
-          loading: false
+  mounted () {
+    this.$nextTick(async () => {
+      this.loading = true
+      if (this.$route.query.token) {
+        try {
+          const loginToken = await this.$services.login.post(this.$route.query.token)
+          this.$store.commit('auth/api_key', loginToken.api_key)
+          this.$store.commit('auth/expires', loginToken.expires)
+          this.$router.replace({ path: '/user' })
+        } catch (ex) {
+          this.message = ex
+          this.variant = 'danger'
+          this.show = true
         }
       }
-    }
-    return { loading: false }
+      this.loading = false
+    })
   },
   methods: {
     async onSubmit (evt) {
