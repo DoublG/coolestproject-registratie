@@ -119,7 +119,9 @@ module.exports = {
       'ModalPlugin',
       'JumbotronPlugin',
       'SpinnerPlugin',
-      'TablePlugin'
+      'TablePlugin',
+      'PopoverPlugin',
+      'ImagePlugin'
     ]
   },
   generate: {},

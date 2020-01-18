@@ -134,6 +134,9 @@ export const getters = {
       user.gsm_guardian = state.gsm_guardian
       user.email_guardian = state.email_guardian
     }
+    if (!user.medical) {
+      user.medical = ''
+    }
     return user
   }
 }
