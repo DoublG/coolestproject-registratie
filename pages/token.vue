@@ -107,7 +107,7 @@ export default {
     "failedChange": "Le changement a échoué, DÉCONNEXION et retour Connexion",
     "Geefcode": "Entre le code reçu via le propriétaire du projet",
     "Projectcode:": "Jeton du projet",
-    "successReg": "Inscription réussie ! Vous recevrez d'ici peu un e-mail avec lequel vous pourrez vous connecter à notre site Web",
+    "successReg": "L'inscription pour la création de votre projet est réussie, vous allez recevoir un e-mail de confirmation avec des instructions supplémentaires pour vous connecter et afficher et / ou mettre à jour vos données. Remarque : Une seule inscription par propriétaire de projet.",
     "successChange": "De wijziging is gelukt."
   },
   "nl": {
