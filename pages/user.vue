@@ -114,7 +114,7 @@
               />
             </b-popover>
           </b-form-group>
-          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="T-shirtSize">
+          <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, oneOf: shirt_list }" name="T-shirtSize">
             <b-form-group
               id="input-group-9"
               :label="$t('T-shirt maat:')"
@@ -474,6 +474,10 @@ export default {
     }
   },
   computed: {
+    shirt_list () {
+      const valuemap = (x) => { return x.value }
+      return this.shirtsize_male.map(valuemap).concat(this.shirtsize_female.map(valuemap))
+    },
     tshirtDisabled () {
       return this.tshirtDate < new Date()
     },
