@@ -108,12 +108,21 @@
           </ValidationProvider>
           <b-form-group>
             <b-button
+              id="popover"
+              :href="require('~/assets/b_c_maattabel_in_cm_720.png')"
               class="button-hero"
               variant="info"
-              href="~/assets/b_c_maattabel_in_cm_720.png"
             >
               <font-awesome-icon :icon="['fas', 'tshirt']" /> {{ $t('Info') }}
             </b-button>
+            <b-popover target="popover" triggers="hover focus" placement="buttom">
+              <b-img
+                src="~/assets/b_c_maattabel_in_cm_720.png"
+                height="auto"
+                width="600"
+                alt="Responsive image"
+              />
+            </b-popover>
           </b-form-group>
           <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, oneOf: shirt_list }" name="T-shirtSize">
             <b-form-group
@@ -1001,7 +1010,7 @@ export default {
     "Projecttype:": "Type de projet",
     "Selecteer wat je project allemaal doet, nodig heeft": "Sélectionnez les besoins de votre projet réalisé",
     "september": "septembre",
-    "successReg": "Inscription réussie ! Vous recevrez d'ici peu un e-mail avec lequel vous pourrez vous connecter à notre site Web",
+    "successReg": "L'inscription pour la création de votre projet est réussie, vous allez recevoir un e-mail de confirmation avec des instructions supplémentaires pour vous connecter et afficher et / ou mettre à jour vos données. Remarque : Une seule inscription par propriétaire de projet.",
     "T-shirt maat:": "Taille de T-shirt",
     "Taal:": "Langue",
     "taalJury": "Dans quelle langue souhaitez-vous présenter le projet au jury?",

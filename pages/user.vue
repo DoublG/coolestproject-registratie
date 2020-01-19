@@ -98,13 +98,21 @@
           </ValidationProvider>
           <b-form-group>
             <b-button
+              id="popover"
+              :href="require('~/assets/b_c_maattabel_in_cm_720.png')"
               class="button-hero"
               variant="info"
-              href="https://www.kindermaten.com/pages/Maattabel.html/"
-              target="_blank"
             >
               <font-awesome-icon :icon="['fas', 'tshirt']" /> {{ $t('Info') }}
             </b-button>
+            <b-popover target="popover" triggers="hover focus" placement="buttom">
+              <b-img
+                src="~/assets/b_c_maattabel_in_cm_720.png"
+                height="auto"
+                width="600"
+                alt="Responsive image"
+              />
+            </b-popover>
           </b-form-group>
           <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, oneOf: shirt_list }" name="T-shirtSize">
             <b-form-group
