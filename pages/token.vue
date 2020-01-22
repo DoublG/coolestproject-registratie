@@ -108,14 +108,14 @@ export default {
     "Geefcode": "Entre le code reçu via le propriétaire du projet",
     "Projectcode:": "Jeton du projet",
     "successReg": "L'inscription pour la création de votre projet est réussie, vous allez recevoir un e-mail de confirmation avec des instructions supplémentaires pour vous connecter et afficher et / ou mettre à jour vos données. Remarque : Une seule inscription par propriétaire de projet.",
-    "successChange": "De wijziging is gelukt."
+    "successChange": "Le changement a réussi."
   },
   "nl": {
-    "failedChange": "De wijziging is niet gelukt.",
+    "failedChange": "De wijziging is niet gelukt., LOGOUT en do terug Login.",
     "Geefcode": "Geef de code in die je van de projecteigenaar gekregen hebt",
     "Projectcode:": "Project token",
     "successReg": "De registratie voor het aanmaken van je project is gelukt als je een bevestigingsmail ontvangt met verdere instructies om in te loggen en je gegevens te bekijken en/of bij te werken. Let op: 1 registratie per projectowner.",
-    "successChange": "De wijziging is niet gelukt, LOGOUT en do terug Login."
+    "successChange": "De wijziging is gelukt."
   }
 }
 </i18n>
