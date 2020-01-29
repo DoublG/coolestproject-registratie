@@ -22,10 +22,10 @@ $ npm run generate
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
 
 ## Build Setup for production
+Please note that we are using NODE_ENV === production to decide to use the proxy or not  
 ``` bash
 # set following enviroment vars
-$ export BASE_URL = https://coolestjury.azurewebsites.net/
-$ export USE_PROXY = false
-
+$ export API_URL = https://coolestjury.azurewebsites.net/
+$ export API_PREFIX = false
 $ npm run generate
 ```
