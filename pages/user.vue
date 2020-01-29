@@ -203,7 +203,7 @@
             </b-form-group>
           </ValidationProvider>
           <div v-if="!isGuardianNeeded">
-            <ValidationProvider v-slot="{ valid, errors }" name="MedicalInfo">
+            <ValidationProvider v-slot="{ valid, errors }" rules="max:255" name="Medical">
               <b-form-group
                 id="input-group-11"
                 :label="$t('Zijn er aandoeningen')"
@@ -298,7 +298,7 @@
                 {{ errors[0] }}
               </b-form-invalid-feedback>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" name="Medical">
+            <ValidationProvider v-slot="{ valid, errors }" rules="max:255" name="Medical">
               <b-form-group
                 id="input-group-15"
                 :label="$t('Zijn er aandoeningen')"
