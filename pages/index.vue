@@ -25,7 +25,7 @@
         </b>
         <span v-html="$t('href')" />
       </p>
-      <b-button variant="dark" class="button-hero" href="/registration">
+      <b-button variant="dark" class="button-hero" to="registration">
         <font-awesome-icon :icon="['fas', 'paper-plane']" /> {{ $t('start') }}
       </b-button>
     </b-container>

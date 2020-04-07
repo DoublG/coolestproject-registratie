@@ -832,7 +832,10 @@ export default {
       }
     }
   },
-  asyncData ({ store }) {
+  asyncData ({ store, redirect }) {
+    if (new Date(store.state.auth.expires) > new Date()) {
+      redirect('/user')
+    }
     let date = store.state.registration.birthmonth
     let year = null
     let month = null

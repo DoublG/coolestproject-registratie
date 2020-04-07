@@ -1,11 +1,17 @@
+
+require('dotenv').config()
+
 module.exports = {
   mode: 'spa',
   /*
   ** Headers of the page
   */
   env: {
+<<<<<<< HEAD
     baseUrl: process.env.BASE_URL || 'http://localhost:8080/api',
     useProxy: process.env.USE_PROXY
+=======
+>>>>>>> bb82a69e7a8a0a3f4213a41f5f7c43c9273da56f
   },
   dotenv: {
   },
@@ -147,9 +153,15 @@ module.exports = {
     }
   },
   axios: {
+<<<<<<< HEAD
     //baseURL: 'https://coolestjury.azurewebsites.net', // process.env.baseUrl,
     proxy: true,
     prefix: '/api'
+=======
+    baseURL: process.env.NODE_ENV === 'production' ? process.env.API_URL : '',
+    proxy: process.env.NODE_ENV !== 'production',
+    debug: process.env.NODE_ENV !== 'production'
+>>>>>>> bb82a69e7a8a0a3f4213a41f5f7c43c9273da56f
   },
   proxy: {
     '/api/': { target: 'http://localhost:8080', pathRewrite: { '^/api/': '' } }
