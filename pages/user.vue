@@ -436,7 +436,8 @@ export default {
       languages: [
         { value: 'nl', text: 'Nederlands' },
         { value: 'fr', text: 'Frans' },
-        { value: 'en', text: 'Engels' }
+        { value: 'en', text: 'Engels' },
+        { value: 'niet bellen', text: 'Ik wens geen uitleg te geven' }
       ],
       general_questions_fotos: [
         { value: 'photo', text: 'Ik ben akkoord dat er fotos genomen worden' }

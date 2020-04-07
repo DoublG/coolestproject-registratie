@@ -170,7 +170,8 @@ export default {
       languages: [
         { value: 'nl', text: 'Nederlands' },
         { value: 'fr', text: 'Frans' },
-        { value: 'en', text: 'Engels' }
+        { value: 'en', text: 'Engels' },
+        { value: 'niet bellen', text: 'Ik wens geen uitleg te geven' }
       ]
     }
   },
@@ -524,8 +525,8 @@ export default {
     "successReg": "De registratie voor het aanmaken van je project is gelukt als je een bevestigingsmail ontvangt met verdere instructies om in te loggen en je gegevens te bekijken en/of bij te werken. Let op: 1 registratie per projectowner.",
     "successChange": "De wijziging is gelukt.",
     "T-shirt maat:": "T-shirt maat",
-    "Taal:": "Taal",
-    "taalJury": "In welke taal wil je het project uitleggen aan de jury?",
+    "Taal:": "Taal of Ik wens geen uitleg te geven.",
+    "taalJury": "Als het panel van coderdojo jou mag opbellen: In welke taal wil je het project uitleggen?",
     "titleProject": "Project",
     "titleOther": "Project van {owner}",
     "tokenInUse": "Voucher in gebruik",

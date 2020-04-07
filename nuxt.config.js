@@ -4,7 +4,7 @@ module.exports = {
   ** Headers of the page
   */
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:3000/api',
+    baseUrl: process.env.BASE_URL || 'http://localhost:8080/api',
     useProxy: process.env.USE_PROXY
   },
   dotenv: {
@@ -147,11 +147,11 @@ module.exports = {
     }
   },
   axios: {
-    // baseURL: 'https://coolestjury.azurewebsites.net' // process.env.baseUrl,
+    baseURL: 'https://coolestjury.azurewebsites.net', // process.env.baseUrl,
     proxy: true,
     prefix: '/api'
   },
   proxy: {
-    '/api/': { target: 'http://localhost:8080', pathRewrite: { '^/api/': '' } }
+    '/api/': { target: 'http://localhost:3000', pathRewrite: { '^/api/': '' } }
   }
 }

@@ -4,11 +4,13 @@
     <b-container>
       <h1> {{ $t('rules') }} </h1>
       <H3> {{ $t('intro') }} </H3>
+      <H2> {{ $t('intro2') }} </H2>
       <p>
         <b> {{ $t('agree') }} </b>
       </p>
       <p>
         <ol>
+          <li v-html="$t('rule0')" />
           <li v-html="$t('rule1')" />
           <li v-html="$t('rule2')" />
           <li v-html="$t('rule3')" />
@@ -80,15 +82,17 @@ export default {
   "nl": {
    "agree": "Door u te registreren gaat u akkoord met de volgende regels",
     "intro": "Bij Coolest Projects Belgium tonen jonge makers hun digitale creativiteit. Doe je mee?",
-    "problems": "Nog steeds onduidelijk of heeft u nog vragen of problemen met de registratie neem dan contact op met onze",
+    "intro2": "Het is nu een corona on-line live sessie op 17 mei 2020 met video clips van jullie projecten.",
+   "problems": "Nog steeds onduidelijk of heeft u nog vragen of problemen met de registratie neem dan contact op met onze",
+    "rule0": "<b>Maak en video clip met wat uitleg over jouw project en slaag het op. Stuur ons dan deze clip of slaag een link op bij de project beschrijving tijdens registratie of bij een latere login. Meer uitleg gaat volgen.",
     "rule1": "Inschrijvingen zijn open tussen <b>13 januari en 20 april</b> of tot de maximale capaciteit van 64 projecten is bereikt.",
     "rule2": "Een deelnemer moet <b>tussen 7 en 18 jaar oud zijn op de dag van Coolest Projects.</b>",
     "rule3": "Alle projecten zijn welkom van beginner tot expert. Alle technologieën worden geaccepteerd (ook onafgewerkte projecten)",
     "rule4": "<b>Na registratie ontvang je een bevestigingsmail. Je moeten op de link klikken om de registratie af te ronden.</b>",
-    "rule5": "Je kunt met <b>maximaal 4 vrienden</b> deelnemen aan één project. Alle deelnemers moeten zich zelf registreren nadat de projecteigenaar zijn project heeft aangemeld. Na ontvangst van een uitnodigingsmail van de projecteigenaar met een registratietoken kunnen jullie ook registreren met deze token",
+    "rule5": "Je kunt met <b>maximaal 4 vrienden</b> deelnemen aan één project. Alle deelnemers moeten zich zelf registreren nadat de projecteigenaar zijn project heeft aangemeld. Na ontvangst van een uitnodigingsmail van de projecteigenaar met een registratietoken kunnen jullie ook registreren met deze token.",
     "rule6": "Na registratie kunnen jullie de <b>persoonlijke</b> informatie wijzigen. Alleen de projecteigenaar kan zijn <b>project</b> informatie wijzigen. Alle wijzigingen moeten <b>op 3 mei definitief zijn.</b>",
-    "rule7": "<b>We geven enkel een t-shirt en een goodiebag aan geregistreerde deelnemers.</b>",
-    "rule8": "Er zullen enkele prijzen te winnen zijn. Een lijst daarvan zal vóór het evenement op onze website worden getoond. Beoordeling voor de projecten gebeurt op de dag zelf in de gekozen taal tijdens de registratie. Alle beslissingen van de juryleden zijn definitief.",
+    "rule7": "<b>We sturen enkel een t-shirt en een goodiebag aan geregistreerde deelnemers. Woonplaats zeker opgeven bij registratie</b>",
+    "rule8": "Er zullen <b>geen prijzen te winnen zijn</b> maar als je het project wilt voorstellen aan een panel van het coderdojo team voor een beoordeling verwacht je nog een verrassing. <b>Zeker bij de registratie mee opgeven of wij mogen bellen.",
     "rule9": "Wij respecteren uw gegevens. U kunt de privacyverklaring lezen op de website van CoderDojo België.",
     "rules": "Coolest Projects Belgium",
     "start": "Start registratie",
