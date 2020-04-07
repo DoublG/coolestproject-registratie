@@ -147,11 +147,11 @@ module.exports = {
     }
   },
   axios: {
-    baseURL: 'https://coolestjury.azurewebsites.net', // process.env.baseUrl,
+    //baseURL: 'https://coolestjury.azurewebsites.net', // process.env.baseUrl,
     proxy: true,
     prefix: '/api'
   },
   proxy: {
-    '/api/': { target: 'http://localhost:3000', pathRewrite: { '^/api/': '' } }
+    '/api/': { target: 'http://localhost:8080', pathRewrite: { '^/api/': '' } }
   }
 }
