@@ -557,8 +557,7 @@ export default {
       languages: [
         { value: 'nl', text: 'Nederlands' },
         { value: 'fr', text: 'Frans' },
-        { value: 'en', text: 'Engels' },
-        { value: 'niet bellen', text: 'Ik wens geen uitleg te geven' }
+        { value: 'en', text: 'Engels' }
       ],
       general_questions_fotos: [
         { value: 'photo', text: 'Ik ben akkoord dat er fotos genomen worden' }
@@ -1091,8 +1090,8 @@ export default {
     "september": "september",
     "successReg": "De registratie voor het aanmaken van je project is gelukt als je een bevestigingsmail ontvangt met verdere instructies om in te loggen en je gegevens te bekijken en/of bij te werken. Let op: 1 registratie per projectowner.",
     "T-shirt maat:": "T-shirt maat",
-    "Taal:": "Taal of 'Ik wens geen uitleg te geven.'",
-    "taalJury": "Als het panel van coderdojo jou mag opbellen: In welke taal wil je het project uitleggen?",
+    "Taal:": "Taal",
+    "taalJury": "In welke taal wil je het project uitleggen?",
     "titleReg": "Gebruiker",
     "Van waar ken je ons:": "Van waar ken je ons",
     "verwijder alles": "Resetten",

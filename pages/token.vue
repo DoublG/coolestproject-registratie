@@ -53,8 +53,7 @@ export default {
       languages: [
         { value: 'nl', text: 'Nederlands' },
         { value: 'fr', text: 'Frans' },
-        { value: 'en', text: 'Engels' },
-        { value: 'niet bellen', text: 'Ik wens geen uitleg te geven' }
+        { value: 'en', text: 'Engels' }
       ]
     }
   },

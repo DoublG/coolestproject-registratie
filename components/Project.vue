@@ -170,8 +170,7 @@ export default {
       languages: [
         { value: 'nl', text: 'Nederlands' },
         { value: 'fr', text: 'Frans' },
-        { value: 'en', text: 'Engels' },
-        { value: 'niet bellen', text: 'Ik wens geen uitleg te geven' }
+        { value: 'en', text: 'Engels' }
       ]
     }
   },
@@ -515,7 +514,7 @@ export default {
     "personal_info": "Persoonlijke informatie",
     "Postcode:": "Postcode",
     "Project": "Project",
-    "Project_Type": "Wat zit er in jouw project aan hardware software netwerk via wifi of via kabel....",
+    "Project_Type": "Wat zit er in jouw project? Link naar videoclip op youtube of dropbox of ...",
     "Projectcode:": "Project token",
     "ProjectDescr:": "Projectomschrijving",
     "ProjectName:": "Projectnaam",
