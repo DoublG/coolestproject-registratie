@@ -227,7 +227,7 @@
                 {{ errors[0] }}
               </b-form-invalid-feedback>
             </b-form-group>
-          </ValidationProvider>          
+          </ValidationProvider>
           <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, regex: /^((\+|00)32\s?|0)([1-9][0-9]\d{6})\d?$/ }" name="MobileNumber">
             <b-form-group
               id="input-group-2"
@@ -726,7 +726,7 @@ export default {
       get () {
         return this.$store.state.user.bus_number
       }
-    }, 
+    },
     email: {
       set (value) {
         this.$store.dispatch('registration/email', value)
