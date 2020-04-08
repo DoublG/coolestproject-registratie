@@ -16,7 +16,10 @@ export const state = () => ({
   firstname: null,
   email: null,
   language: null,
-  delete_possible: null
+  delete_possible: null,
+  street: null,
+  house_number: null,
+  bus_number: null
 })
 
 export const mutations = {
@@ -25,6 +28,15 @@ export const mutations = {
   },
   language (state, language) {
     state.language = language
+  },
+  street (state, street) {
+    state.street = street
+  },
+  house_number (state, houseNumber) {
+    state.house_number = houseNumber
+  },
+  bus_number (state, busNumber) {
+    state.bus_number = busNumber
   },
   lastname (state, lastname) {
     state.lastname = lastname
@@ -87,6 +99,9 @@ export const actions = {
       commit('via', user.via)
       commit('birthmonth', new Date(user.birthmonth))
       commit('postalcode', user.postalcode)
+      commit('street', user.street)
+      commit('bus_number', user.bus_number)
+      commit('house_number', user.house_number)
       commit('language', user.language)
       commit('delete_possible', user.delete_possible)
     } else {
@@ -106,6 +121,9 @@ export const actions = {
       commit('postalcode', null)
       commit('language', null)
       commit('delete_possible', null)
+      commit('street', null)
+      commit('bus_number', null)
+      commit('house_number', null)
     }
   }
 }
@@ -122,6 +140,9 @@ export const getters = {
         state.general_questions,
         state.general_questions2
       ],
+      street: state.street,
+      house_number: state.house_number,
+      bus_number: state.bus_number,
       medical: state.medical,
       sex: state.sex,
       t_size: state.t_size,
