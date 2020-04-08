@@ -4,6 +4,9 @@ const originalState = () => {
   return {
     language: 'nl',
     postalcode: null,
+    street: null,
+    house_number: null,
+    bus_number: null,
     email: null,
     firstname: null,
     lastname: null,
@@ -43,6 +46,15 @@ export const mutations = {
   },
   postalcode (state, postalcode) {
     state.postalcode = postalcode
+  },
+  street (state, street) {
+    state.street = street
+  },
+  house_number (state, houseNumber) {
+    state.house_number = houseNumber
+  },
+  bus_number (state, busNumber) {
+    state.house_number = busNumber
   },
   email (state, email) {
     state.email = email
@@ -115,6 +127,15 @@ export const actions = {
   },
   postalcode ({ commit }, postalcode) {
     commit('postalcode', postalcode)
+  },
+  street ({ commit }, street) {
+    commit('street', street)
+  },
+  house_number ({ commit }, houseNumber) {
+    commit('house_number', houseNumber)
+  },
+  bus_number ({ commit }, busNumber) {
+    commit('bus_number', busNumber)
   },
   email ({ commit }, email) {
     commit('email', email)
