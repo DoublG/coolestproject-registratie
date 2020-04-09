@@ -7,6 +7,8 @@ module.exports = {
   ** Headers of the page
   */
   env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:8080/api',
+    useProxy: process.env.USE_PROXY
   },
   dotenv: {
   },
@@ -149,9 +151,9 @@ module.exports = {
     }
   },
   axios: {
-    baseURL: process.env.NODE_ENV === 'production' ? process.env.API_URL : '',
-    proxy: process.env.NODE_ENV !== 'production',
-    debug: process.env.NODE_ENV !== 'production'
+    /* //baseURL: 'https://coolestjury.azurewebsites.net', // process.env.baseUrl, */
+    proxy: true,
+    prefix: '/api'
   },
   proxy: {
     '/api/': { target: 'http://localhost:8080', pathRewrite: { '^/api/': '' } }
