@@ -174,16 +174,16 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-<ValidationProvider v-slot="{ valid, errors }" rules="required" name="Street">
+          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Street">
             <b-form-group
               id="input-group-1z"
-              :label="$t('Street:')"
+              :label="$t('Street')"
               label-for="input-1z"
             >
               <b-form-input
                 id="input-1z"
                 v-model="street"
-                :placeholder="$t('Street:')"
+                :placeholder="$t('Street')"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-1z-live-feedback"
               />
@@ -195,13 +195,13 @@
           <ValidationProvider v-slot="{ valid, errors }" rules="required" name="HouseNumber">
             <b-form-group
               id="input-group-2z"
-              :label="$t('HouseNumber:')"
+              :label="$t('HouseNumber')"
               label-for="input-2z"
             >
               <b-form-input
                 id="input-2z"
                 v-model="house_number"
-                :placeholder="$t('HouseNumber:')"
+                :placeholder="$t('HouseNumber')"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-2z-live-feedback"
               />
@@ -213,13 +213,13 @@
           <ValidationProvider v-slot="{ valid, errors }" name="BusNumber">
             <b-form-group
               id="input-group-3z"
-              :label="$t('BusNumber:')"
+              :label="$t('BusNumber')"
               label-for="input-3z"
             >
               <b-form-input
                 id="input-3z"
                 v-model="bus_number"
-                :placeholder="$t('BusNumber:')"
+                :placeholder="$t('BusNumber')"
                 :state="errors[0] ? false : (valid ? true : null)"
                 aria-describedby="input-3z-live-feedback"
               />
