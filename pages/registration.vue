@@ -174,6 +174,60 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
+          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Street">
+            <b-form-group
+              id="input-group-1z"
+              :label="$t('Street')"
+              label-for="input-1z"
+            >
+              <b-form-input
+                id="input-1z"
+                v-model="street"
+                :placeholder="$t('Street')"
+                :state="errors[0] ? false : (valid ? true : null)"
+                aria-describedby="input-1z-live-feedback"
+              />
+              <b-form-invalid-feedback id="input-1z-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
+          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="HouseNumber">
+            <b-form-group
+              id="input-group-2z"
+              :label="$t('HouseNumber')"
+              label-for="input-2z"
+            >
+              <b-form-input
+                id="input-2z"
+                v-model="house_number"
+                :placeholder="$t('HouseNumber')"
+                :state="errors[0] ? false : (valid ? true : null)"
+                aria-describedby="input-2z-live-feedback"
+              />
+              <b-form-invalid-feedback id="input-2z-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
+          <ValidationProvider v-slot="{ valid, errors }" name="BusNumber">
+            <b-form-group
+              id="input-group-3z"
+              :label="$t('BusNumber')"
+              label-for="input-3z"
+            >
+              <b-form-input
+                id="input-3z"
+                v-model="bus_number"
+                :placeholder="$t('BusNumber')"
+                :state="errors[0] ? false : (valid ? true : null)"
+                aria-describedby="input-3z-live-feedback"
+              />
+              <b-form-invalid-feedback id="input-3z-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
           <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, regex: /^((\+|00)32\s?|0)([1-9][0-9]\d{6})\d?$/ }" name="MobileNumber">
             <b-form-group
               id="input-group-2"
@@ -649,6 +703,30 @@ export default {
         return this.$store.state.registration.postalcode
       }
     },
+    street: {
+      set (value) {
+        this.$store.commit('registration/street', value)
+      },
+      get () {
+        return this.$store.state.user.street
+      }
+    },
+    house_number: {
+      set (value) {
+        this.$store.commit('registration/house_number', value)
+      },
+      get () {
+        return this.$store.state.user.house_number
+      }
+    },
+    bus_number: {
+      set (value) {
+        this.$store.commit('registration/bus_number', value)
+      },
+      get () {
+        return this.$store.state.user.bus_number
+      }
+    },
     email: {
       set (value) {
         this.$store.dispatch('registration/email', value)
@@ -932,6 +1010,9 @@ export default {
     "personal_info": "Personal information",
     "Postcode:": "Postal Code",
     "Project": "Project",
+    "Street": "Street",
+    "HouseNumber": "House Number",
+    "BusNumber": "Box Number",
     "Project_Type": "What is in your project about hardware software network on WiFi or on cable....",
     "Projectcode:": "Project token",
     "Projectnaam:": "Project name",
@@ -959,6 +1040,9 @@ export default {
     "women": "women"
   },
   "fr": {
+    "Street": "Rue",
+    "HouseNumber": "Numéro de maison",
+    "BusNumber": "Numéro de boîte",
     "Achternaam:": "Nom de Famille",
     "Algemene vragen": "Questions d'ordre général",
     "april": "avril",
@@ -1034,6 +1118,9 @@ export default {
     "women": "femmes"
   },
   "nl": {
+    "Street": "Straat",
+    "HouseNumber": "Huisnummer",
+    "BusNumber": "Busnummer",
     "Achternaam:": "Achternaam",
     "Algemene vragen": "Algemene vragen",
     "april": "april",

@@ -10,6 +10,7 @@
       <h1 v-if="create">
         {{ $t('createProject') }}
       </h1>
+      <b-alert :show="info === 'movie_received'" variant="success">{{ $t('MovieRec') }}</b-alert>
       <b-alert :show="show" :variant="variant" dismissible>
         {{ message }}
       </b-alert>
@@ -90,6 +91,9 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
+          <b-alert variant="warning" show>
+            <span v-html="$t('SendMovie', { url: 'http://www.google.be' })" />
+          </b-alert>
           <div v-if="!create">
             <div v-if="own_project">
               <h2>{{ $t('participants') }}</h2>
@@ -179,7 +183,8 @@ export default {
       'participants',
       'remaining_tokens',
       'project_owner',
-      'delete_possible'
+      'delete_possible',
+      'info'
     ]),
     project_name: {
       set (value) {
@@ -299,6 +304,8 @@ export default {
 <i18n>
 {
   "en": {
+    "SendMovie": "Je moet je filmpje indienen op deze url <a href='{url}'>indienen</a> ",
+    "MovieRec": "We have recieved your movie",
     "Achternaam:": "Last Name",
     "AddToken": "Add Participant",
     "Algemene vragen": "General Questions",
@@ -379,6 +386,8 @@ export default {
     "MedewNaam": "Participant Name"
   },
   "fr": {
+    "SendMovie": "Je moet je filmpje indienen op deze url <a href='{url}'>indienen</a> ",
+    "MovieRec": "Nous avons reçu votre film",
     "Achternaam:": "Nom de Famille",
     "AddToken": "Add Participant",
     "Algemene vragen": "Questions d'ordre général",
@@ -460,6 +469,8 @@ export default {
     "MedewNaam": "Participant nom"
   },
   "nl": {
+    "SendMovie": "Je moet je filmpje indienen op deze url <a href='{url}'>indienen</a> ",
+    "MovieRec": "We hebben je filmpje goed ontvangen",
     "Achternaam:": "Achternaam",
     "AddToken": "Deelnemer toevoegen",
     "Algemene vragen": "Algemene vragen",
