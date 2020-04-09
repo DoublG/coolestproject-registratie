@@ -92,7 +92,7 @@
             </b-form-group>
           </ValidationProvider>
           <b-alert variant="warning" show>
-            <span v-html="$t('SendMovie', { url: 'http://www.google.be' })" />
+            <span v-html="$t('SendMovie', { url: submitUrl })" />
           </b-alert>
           <div v-if="!create">
             <div v-if="own_project">
@@ -186,6 +186,9 @@ export default {
       'delete_possible',
       'info'
     ]),
+    submitUrl () {
+      return process.env.submitURL
+    },
     project_name: {
       set (value) {
         this.$store.commit('project/project_name', value)
