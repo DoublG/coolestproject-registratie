@@ -1010,6 +1010,9 @@ export default {
     "personal_info": "Personal information",
     "Postcode:": "Postal Code",
     "Project": "Project",
+    "Street": "Street",
+    "HouseNumber": "House Number",
+    "BusNumber": "Box Number",
     "Project_Type": "What is in your project about hardware software network on WiFi or on cable....",
     "Projectcode:": "Project token",
     "Projectnaam:": "Project name",
@@ -1037,6 +1040,9 @@ export default {
     "women": "women"
   },
   "fr": {
+    "Street": "Rue",
+    "HouseNumber": "Numéro de maison",
+    "BusNumber": "Numéro de boîte",
     "Achternaam:": "Nom de Famille",
     "Algemene vragen": "Questions d'ordre général",
     "april": "avril",
@@ -1112,6 +1118,9 @@ export default {
     "women": "femmes"
   },
   "nl": {
+    "Street": "Straat",
+    "HouseNumber": "Huisnummer",
+    "BusNumber": "Busnummer",
     "Achternaam:": "Achternaam",
     "Algemene vragen": "Algemene vragen",
     "april": "april",

@@ -122,7 +122,8 @@ module.exports = {
       'SpinnerPlugin',
       'TablePlugin',
       'PopoverPlugin',
-      'ImagePlugin'
+      'ImagePlugin',
+      'CardPlugin'
     ]
   },
   generate: {},
