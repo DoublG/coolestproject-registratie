@@ -91,8 +91,8 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-          <b-alert variant="warning" show>
-            <span v-html="$t('SendMovie', { url: submitUrl })" />
+          <b-alert :show="submitURL !== null && info !== 'movie_received'" variant="warning">
+            <span v-html="$t('SendMovie', { url: submitURL })" />
           </b-alert>
           <div v-if="!create">
             <div v-if="own_project">
@@ -186,9 +186,9 @@ export default {
       'delete_possible',
       'info'
     ]),
-    submitUrl () {
-      return process.env.submitURL
-    },
+    ...mapState(
+      [ 'submitURL' ]
+    ),
     project_name: {
       set (value) {
         this.$store.commit('project/project_name', value)

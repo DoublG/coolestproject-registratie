@@ -15,7 +15,8 @@ export const state = () => ({
   minAge: 5,
   guardianAge: 16,
   tshirtDate: new Date(2020, 5, 1),
-  settingsLoaded: false
+  settingsLoaded: false,
+  submitURL: ''
 })
 
 export const mutations = {
@@ -36,6 +37,9 @@ export const mutations = {
   },
   settingsLoaded (state, settingsLoaded) {
     state.settingsLoaded = settingsLoaded
+  },
+  submitURL (state, submitURL) {
+    state.submitURL = submitURL
   }
 }
 
@@ -47,6 +51,7 @@ export const actions = {
       commit('minAge', settings.minAge)
       commit('guardianAge', settings.guardianAge)
       commit('tshirtDate', settings.tshirtDate)
+      commit('submitURL', settings.submitURL)
       commit('settingsLoaded', true)
     } else {
       commit('startDateEvent', null)
@@ -54,6 +59,7 @@ export const actions = {
       commit('minAge', null)
       commit('guardianAge', null)
       commit('tshirtDate', null)
+      commit('submitURL', null)
       commit('settingsLoaded', false)
     }
   }

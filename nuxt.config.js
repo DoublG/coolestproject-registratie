@@ -8,8 +8,7 @@ module.exports = {
   */
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:8080/api',
-    useProxy: process.env.USE_PROXY,
-    submitURL: process.env.SUBMIT_URL
+    useProxy: process.env.USE_PROXY
   },
   dotenv: {
   },
