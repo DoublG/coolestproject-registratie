@@ -92,7 +92,7 @@ export default {
     "rule4": "<b>Na registratie ontvang je een bevestigingsmail. Je moet op de link klikken om de registratie af te ronden.</b>",
     "rule5": "Je kunt met <b>maximaal 4 vrienden</b> deelnemen aan één project. Alle deelnemers moeten zich zelf registreren nadat de projecteigenaar zijn project heeft aangemeld. Na ontvangst van een uitnodigingsmail van de projecteigenaar met een registratietoken kunnen jullie ook registreren met deze token.",
     "rule6": "Na registratie kunnen jullie de <b>persoonlijke</b> informatie</b> wijzigen. Alleen de projecteigenaar kan zijn <b>project informatie</b> wijzigen. Alle wijzigingen moeten <b>op 7 mei definitief zijn.</b>",
-    "rule7": "Voor een geldige deelname, <b>moet je een video van je project inzenden</b> van minimaal 1 en maximaal 3 minuten. Deze video moeten we ontvangen hebben op <b>ten laatste 7 mei 23.59h.<b>",
+    "rule7": "Voor een geldige deelname, <b>moet je een video van je project inzenden</b> van minimaal 1 en maximaal 3 minuten. Deze video moeten we ontvangen hebben op <b>ten laatste 7 mei 23:59u.<b>",
     "rule8": "<b>Als je dat wil, kan je meer uitleg geven over je project, tijdens een video call met een panel. Dit zal opgezet worden vanaf 8 mei.</b>",
     "rule9": "We geven enkel goodie aan geregistreerde deelnemers die een video inzenden van hun project. Hiervoor hebben we dan uiteraard het <b>postadres</b> voor nodig.",
     "rule10": "Wij respecteren uw gegevens. U kunt de privacyverklaring lezen op de website van CoderDojo België.",
