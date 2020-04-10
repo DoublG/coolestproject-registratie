@@ -151,8 +151,8 @@ module.exports = {
     }
   },
   axios: {
-    /* //baseURL: 'https://coolestjury.azurewebsites.net', // process.env.baseUrl, */
-    proxy: true,
+    baseURL: 'https://coolestjury.azurewebsites.net',  // process.env.baseUrl,  
+    // proxy: true,
     prefix: '/api'
   },
   proxy: {
