@@ -14,6 +14,9 @@
       <b-alert :show="show" :variant="variant" dismissible>
         {{ message }}
       </b-alert>
+      <b-alert :show="submitURL !== null && info !== 'movie_received'" variant="warning">
+        <span v-html="$t('SendMovie', { url: submitURL })" />
+      </b-alert>
       <ValidationObserver ref="observer" v-slot="{ passes }">
         <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
           <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Language">
@@ -91,9 +94,6 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-          <b-alert :show="submitURL !== null && info !== 'movie_received'" variant="warning">
-            <span v-html="$t('SendMovie', { url: submitURL })" />
-          </b-alert>
           <div v-if="!create">
             <div v-if="own_project">
               <h2>{{ $t('participants') }}</h2>
