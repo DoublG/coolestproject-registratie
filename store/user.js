@@ -19,7 +19,8 @@ export const state = () => ({
   delete_possible: null,
   street: null,
   house_number: null,
-  bus_number: null
+  bus_number: null,
+  residence: null
 })
 
 export const mutations = {
@@ -28,6 +29,9 @@ export const mutations = {
   },
   language (state, language) {
     state.language = language
+  },
+  residence (state, residence) {
+    state.residence = residence
   },
   street (state, street) {
     state.street = street
@@ -104,6 +108,7 @@ export const actions = {
       commit('house_number', user.house_number)
       commit('language', user.language)
       commit('delete_possible', user.delete_possible)
+      commit('residence', user.residence)
     } else {
       commit('firstname', null)
       commit('lastname', null)
@@ -124,6 +129,7 @@ export const actions = {
       commit('street', null)
       commit('bus_number', null)
       commit('house_number', null)
+      commit('residence', null)
     }
   }
 }
@@ -141,6 +147,7 @@ export const getters = {
         state.general_questions2
       ],
       street: state.street,
+      residence: state.residence,
       house_number: state.house_number,
       bus_number: state.bus_number,
       medical: state.medical,

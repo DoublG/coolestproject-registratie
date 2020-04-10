@@ -25,7 +25,8 @@ const originalState = () => {
     project_lang: 'nl',
     gsm: null,
     gsm_guardian: null,
-    email_guardian: null
+    email_guardian: null,
+    residence: null
   }
 }
 
@@ -40,6 +41,9 @@ export const mutations = {
   },
   gsm (state, gsm) {
     state.gsm = gsm
+  },
+  residence (state, residence) {
+    state.residence = residence
   },
   gsm_guardian (state, gsmGuardian) {
     state.gsm_guardian = gsmGuardian
@@ -121,6 +125,9 @@ export const actions = {
   },
   gsm ({ commit }, gsm) {
     commit('gsm', gsm)
+  },
+  residence ({ commit }, residence) {
+    commit('residence', residence)
   },
   gsm_guardian ({ commit }, gsmGuardian) {
     commit('gsm_guardian', gsmGuardian)
