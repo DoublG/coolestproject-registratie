@@ -58,7 +58,7 @@ export const mutations = {
     state.house_number = houseNumber
   },
   bus_number (state, busNumber) {
-    state.house_number = busNumber
+    state.bus_number = busNumber
   },
   email (state, email) {
     state.email = email
