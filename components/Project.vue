@@ -307,7 +307,7 @@ export default {
 <i18n>
 {
   "en": {
-    "SendMovie": "Je moet je filmpje indienen op deze url <a href='{url}'>indienen</a> ",
+    "SendMovie": "You must submit your video on this url <a href='{url}'>Link</a> ",
     "MovieRec": "We have recieved your movie",
     "Achternaam:": "Last Name",
     "AddToken": "Add Participant",
@@ -389,7 +389,7 @@ export default {
     "MedewNaam": "Participant Name"
   },
   "fr": {
-    "SendMovie": "Je moet je filmpje indienen op deze url <a href='{url}'>indienen</a> ",
+    "SendMovie": "Vous devez soumettre votre vidéo sur ce url <a href='{url}'>Link</a> ",
     "MovieRec": "Nous avons reçu votre film",
     "Achternaam:": "Nom de Famille",
     "AddToken": "Add Participant",
@@ -472,7 +472,7 @@ export default {
     "MedewNaam": "Participant nom"
   },
   "nl": {
-    "SendMovie": "Je moet je filmpje indienen op deze url <a href='{url}'>indienen</a> ",
+    "SendMovie": "Je moet je filmpje indienen op deze url <a href='{url}'>Link</a> ",
     "MovieRec": "We hebben je filmpje goed ontvangen",
     "Achternaam:": "Achternaam",
     "AddToken": "Deelnemer toevoegen",
