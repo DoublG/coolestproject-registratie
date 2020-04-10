@@ -174,6 +174,24 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
+          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Residence">
+            <b-form-group
+              id="input-group-4z"
+              :label="$t('Residence')"
+              label-for="input-4z"
+            >
+              <b-form-input
+                id="input-4z"
+                v-model="residence"
+                :placeholder="$t('Residence')"
+                :state="errors[0] ? false : (valid ? true : null)"
+                aria-describedby="input-4z-live-feedback"
+              />
+              <b-form-invalid-feedback id="input-4z-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
           <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Street">
             <b-form-group
               id="input-group-1z"
@@ -708,7 +726,7 @@ export default {
         this.$store.commit('registration/street', value)
       },
       get () {
-        return this.$store.state.user.street
+        return this.$store.state.registration.street
       }
     },
     house_number: {
@@ -716,7 +734,7 @@ export default {
         this.$store.commit('registration/house_number', value)
       },
       get () {
-        return this.$store.state.user.house_number
+        return this.$store.state.registration.house_number
       }
     },
     bus_number: {
@@ -724,7 +742,7 @@ export default {
         this.$store.commit('registration/bus_number', value)
       },
       get () {
-        return this.$store.state.user.bus_number
+        return this.$store.state.registration.bus_number
       }
     },
     email: {
@@ -870,6 +888,14 @@ export default {
       get () {
         return this.$store.state.registration.email_guardian
       }
+    },
+    residence: {
+      set (value) {
+        this.$store.dispatch('registration/residence', value)
+      },
+      get () {
+        return this.$store.state.registration.residence
+      }
     }
   },
   watch: {
@@ -963,6 +989,7 @@ export default {
 <i18n>
 {
   "en": {
+    "Residence": "Residence",
     "Achternaam:": "Last Name",
     "Algemene vragen": "General Questions",
     "april": "April",
@@ -1040,6 +1067,7 @@ export default {
     "women": "women"
   },
   "fr": {
+    "Residence": "Residence",
     "Street": "Rue",
     "HouseNumber": "Numéro de maison",
     "BusNumber": "Numéro de boîte",
@@ -1118,6 +1146,7 @@ export default {
     "women": "femmes"
   },
   "nl": {
+    "Residence": "Woonplaats",
     "Street": "Straat",
     "HouseNumber": "Huisnummer",
     "BusNumber": "Busnummer",

@@ -164,6 +164,24 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
+          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Residence">
+            <b-form-group
+              id="input-group-4z"
+              :label="$t('Residence')"
+              label-for="input-4z"
+            >
+              <b-form-input
+                id="input-4z"
+                v-model="residence"
+                :placeholder="$t('Residence')"
+                :state="errors[0] ? false : (valid ? true : null)"
+                aria-describedby="input-4z-live-feedback"
+              />
+              <b-form-invalid-feedback id="input-4z-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
           <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Street">
             <b-form-group
               id="input-group-1z"
@@ -596,6 +614,14 @@ export default {
       'gsm',
       'delete_possible'
     ]),
+    residence: {
+      set (value) {
+        this.$store.commit('user/residence', value)
+      },
+      get () {
+        return this.$store.state.user.residence
+      }
+    },
     postalcode: {
       set (value) {
         this.$store.commit('user/postalcode', value)
@@ -810,6 +836,7 @@ export default {
 <i18n>
 {
   "en": {
+    "Residence": "Residence",
     "Street": "Street",
     "HouseNumber": "House Number",
     "BusNumber": "Box Number",
@@ -890,6 +917,7 @@ export default {
     "women": "women"
   },
   "fr": {
+    "Residence": "Residence",
     "Street": "Rue",
     "HouseNumber": "Numéro de maison",
     "BusNumber": "Numéro de boîte",
@@ -971,6 +999,7 @@ export default {
     "women": "femmes"
   },
   "nl": {
+    "Residence": "Woonplaats",
     "Street": "Straat",
     "HouseNumber": "Huisnummer",
     "BusNumber": "Busnummer",
