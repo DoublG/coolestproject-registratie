@@ -15,7 +15,7 @@
         {{ message }}
       </b-alert>
       <b-alert :show="submitURL !== null && info !== 'movie_received'" variant="warning">
-        <span v-html="$t('SendMovie', { url: submitURL })" />
+        <span v-html="$t('SendMovie', { url: submitURLComposed })" />
       </b-alert>
       <ValidationObserver ref="observer" v-slot="{ passes }">
         <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
@@ -148,7 +148,7 @@
 </template>
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import ActionBarProject from '~/components/ActionBarProject.vue'
 import messageMixin from '~/mixins/messages.js'
 export default {
@@ -189,6 +189,7 @@ export default {
     ...mapState(
       [ 'submitURL' ]
     ),
+    ...mapGetters('project', [ 'submitURLComposed' ]),
     project_name: {
       set (value) {
         this.$store.commit('project/project_name', value)
@@ -528,7 +529,7 @@ export default {
     "personal_info": "Persoonlijke informatie",
     "Postcode:": "Postcode",
     "Project": "Project",
-    "Project_Type": "Wat zit er in jouw project? Link naar videoclip op youtube of dropbox of ...",
+    "Project_Type": "Wat zit er in jouw project, Hardware, software, kabel, Wifi, ... ?",
     "Projectcode:": "Project token",
     "ProjectDescr:": "Projectomschrijving",
     "ProjectName:": "Projectnaam",

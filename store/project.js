@@ -10,7 +10,8 @@ export const state = () => ({
   project_code: null,
   project_owner: null,
   delete_possible: null,
-  info: null
+  info: null,
+  email: null
 })
 export const getters = {
   projectinfo: (state) => {
@@ -18,14 +19,16 @@ export const getters = {
       project_name: state.project_name,
       project_descr: state.project_descr,
       project_type: state.project_type,
-      project_lang: state.project_lang,
-      info: state.info
+      project_lang: state.project_lang
     }
   },
   tokeninfo: (state) => {
     return {
       project_code: state.project_code
     }
+  },
+  submitURLComposed: (state, getters, rootState) => {
+    return rootState.submitURL + '?usp=pp_url&entry.1817587909=' + state.email + '&entry.224968507=' + state.project_name
   }
 }
 export const mutations = {
@@ -64,6 +67,9 @@ export const mutations = {
   },
   info (state, info) {
     state.info = info
+  },
+  email (state, email) {
+    state.email = email
   }
 }
 
@@ -81,6 +87,7 @@ export const actions = {
       commit('project_owner', project.project_owner)
       commit('delete_possible', project.delete_possible)
       commit('info', project.info)
+      commit('email', project.email)
       if (!project.project_code) {
         commit('project_code', null)
       }
@@ -97,6 +104,7 @@ export const actions = {
       commit('project_code', null)
       commit('delete_possible', null)
       commit('info', null)
+      commit('email', null)
     }
   }
 }
