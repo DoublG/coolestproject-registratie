@@ -24,7 +24,7 @@
         </b>
         <span v-html="$t('href')" />
       </p>
-      <b-button variant="dark" class="button-hero" to="registration">
+      <b-button variant="dark" class="button-hero" to="login">
         <font-awesome-icon :icon="['fas', 'paper-plane']" /> {{ $t('start') }}
       </b-button>
     </b-container>
@@ -61,7 +61,7 @@ export default {
     "rule9": "We only provide a goodie to registered participants who send in a video to present their project. Obviously we <b>need your postal address</b> for this to work",
     "rule10": "We respect your data. You can read the privacy statement on the CoderDojo Belgium website.",
     "rules": "Coolest Projects Belgium",
-    "start": "Start registration"
+    "start": "Login Only"
   },
   "fr": {
     "agree": "En vous inscrivant vous acceptez les règles suivantes",
@@ -78,7 +78,7 @@ export default {
     "rule9": "Nous ne fournissons un goodie qu'aux inscrits qui envoient une vidéo pour présenter leur projet. Nous avons donc besoin d’une adresse postale pour procéder à l’envoi postal.",
     "rule10": "Nous respectons vos données personnelles. A lire, notre déclaration de confidentialité sur le site Web de CoderDojo Belgium.",
     "rules": "Coolest Projects Belgium",
-    "start": "Commencer l'inscription"
+    "start": "Connexion uniquement"
   },
   "nl": {
    "agree": "Door u te registreren gaat u akkoord met de volgende regels",
@@ -97,7 +97,7 @@ export default {
     "rule9": "We geven enkel goodie aan geregistreerde deelnemers die een video inzenden van hun project. Hiervoor hebben we dan uiteraard het <b>postadres</b> voor nodig.",
     "rule10": "Wij respecteren uw gegevens. U kunt de privacyverklaring lezen op de website van CoderDojo België.",
     "rules": "Coolest Projects België",
-    "start": "Start registratie",
+    "start": "Alleen Login",
     "href": "<a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#105;&#110;&#102;o&#64;&#99;&#111;&#111;&#108;&#101;&#115;&#116;&#112;&#114;&#111;&#106;&#101;&#99;&#116;s&#46;&#98;&#101;&quest;&#x53;&#x55;&#x42;&#x4a;&#x45;&#x43;&#x54;&equals;CoolestProjectsRegistration'><b>HELPDESK</b></a>"
  }
 }
