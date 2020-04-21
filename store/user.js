@@ -149,7 +149,7 @@ export const getters = {
       street: state.street,
       residence: state.residence,
       house_number: state.house_number,
-      bus_number: state.bus_number,
+      bus_number: ((state.bus_number) ? state.bus_number : ''),
       medical: state.medical,
       sex: state.sex,
       t_size: state.t_size,
