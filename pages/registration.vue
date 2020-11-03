@@ -1,14 +1,18 @@
 <template>
   <b-row>
     <b-col>
-      <h1>{{ $t('titleReg') }}</h1>
+      <h1>{{ $t("titleReg") }}</h1>
       <b-alert :show="show" :variant="variant" dismissible>
         {{ message }}
       </b-alert>
-      <h2>{{ $t('personal_info') }}</h2>
+      <h2>{{ $t("personal_info") }}</h2>
       <ValidationObserver ref="observer" v-slot="{ passes }">
         <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
-          <ValidationProvider v-slot="{ valid, errors }" rules="required|email" name="Email">
+          <ValidationProvider
+            v-slot="{ valid, errors }"
+            rules="required|email"
+            name="Email"
+          >
             <b-form-group
               id="input-group-3"
               :label="$t('Email adres:')"
@@ -19,7 +23,7 @@
                 id="input-3"
                 v-model="email"
                 :placeholder="$t('Email adres:')"
-                :state="errors[0] ? false : (valid ? true : null)"
+                :state="errors[0] ? false : valid ? true : null"
                 type="email"
                 aria-describedby="input-3-live-feedback"
               />
@@ -28,7 +32,11 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="FirstName">
+          <ValidationProvider
+            v-slot="{ valid, errors }"
+            rules="required"
+            name="FirstName"
+          >
             <b-form-group
               id="input-group-5"
               :label="$t('Voornaam:')"
@@ -38,7 +46,7 @@
                 id="input-5"
                 v-model="firstname"
                 :placeholder="$t('GeefVoornaam:')"
-                :state="errors[0] ? false : (valid ? true : null)"
+                :state="errors[0] ? false : valid ? true : null"
                 aria-describedby="input-5-live-feedback"
               />
               <b-form-invalid-feedback id="input-5-live-feedback">
@@ -46,7 +54,11 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="LastName">
+          <ValidationProvider
+            v-slot="{ valid, errors }"
+            rules="required"
+            name="LastName"
+          >
             <b-form-group
               id="input-group-6"
               :label="$t('Achternaam:')"
@@ -56,7 +68,7 @@
                 id="input-6"
                 v-model="lastname"
                 :placeholder="$t('GeefAchternaam:')"
-                :state="errors[0] ? false : (valid ? true : null)"
+                :state="errors[0] ? false : valid ? true : null"
                 aria-describedby="input-6-live-feedback"
               />
               <b-form-invalid-feedback id="input-6-live-feedback">
@@ -64,31 +76,63 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, between_dates: { month: month, min: minAgeDate, max: maxAgeDate } }" name="Birthyear">
+          <ValidationProvider
+            v-slot="{ valid, errors }"
+            :rules="{
+              required: true,
+              between_dates: { month: month, min: minAgeDate, max: maxAgeDate },
+            }"
+            name="Birthyear"
+          >
             <b-form-group
               id="input-group-4"
               :label="$t('Geboortejaar:')"
               label-for="input-4"
             >
-              <b-form-select v-model="year" :options="year_list" :state="errors[0] ? false : (valid ? true : null)" />
-              <b-form-invalid-feedback id="input-4-live-feedback" :style="{ display: 'inline' }">
+              <b-form-select
+                v-model="year"
+                :options="year_list"
+                :state="errors[0] ? false : valid ? true : null"
+              />
+              <b-form-invalid-feedback
+                id="input-4-live-feedback"
+                :style="{ display: 'inline' }"
+              >
                 {{ errors[0] }}
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, between_dates: { year: year, min: minAgeDate, max: maxAgeDate } }" name="Birthmonth">
+          <ValidationProvider
+            v-slot="{ valid, errors }"
+            :rules="{
+              required: true,
+              between_dates: { year: year, min: minAgeDate, max: maxAgeDate },
+            }"
+            name="Birthmonth"
+          >
             <b-form-group
               id="input-group-24"
               :label="$t('Geboortemaand:')"
               label-for="input-24"
             >
-              <b-form-select v-model="month" :options="month_list" :state="errors[0] ? false : (valid ? true : null)" />
-              <b-form-invalid-feedback id="input-24-live-feedback" :style="{ display: 'inline' }">
+              <b-form-select
+                v-model="month"
+                :options="month_list"
+                :state="errors[0] ? false : valid ? true : null"
+              />
+              <b-form-invalid-feedback
+                id="input-24-live-feedback"
+                :style="{ display: 'inline' }"
+              >
                 {{ errors[0] }}
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Sex">
+          <ValidationProvider
+            v-slot="{ valid, errors }"
+            rules="required"
+            name="Sex"
+          >
             <b-form-group
               id="input-group-7"
               :label="$t('Geslacht:')"
@@ -98,7 +142,7 @@
                 id="input-7"
                 v-model="sex"
                 :options="geslacht"
-                :state="errors[0] ? false : (valid ? true : null)"
+                :state="errors[0] ? false : valid ? true : null"
                 aria-describedby="input-7-live-feedback"
               />
               <b-form-invalid-feedback id="input-7-live-feedback">
@@ -113,9 +157,13 @@
               class="button-hero"
               variant="info"
             >
-              <font-awesome-icon :icon="['fas', 'tshirt']" /> {{ $t('Info') }}
+              <font-awesome-icon :icon="['fas', 'tshirt']" /> {{ $t("Info") }}
             </b-button>
-            <b-popover target="popover" triggers="hover focus" placement="buttom">
+            <b-popover
+              target="popover"
+              triggers="hover focus"
+              placement="buttom"
+            >
               <b-img
                 src="~/assets/b_c_maattabel_in_cm_720.png"
                 height="auto"
@@ -124,7 +172,11 @@
               />
             </b-popover>
           </b-form-group>
-          <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, oneOf: shirt_list }" name="T-shirtSize">
+          <ValidationProvider
+            v-slot="{ valid, errors }"
+            :rules="{ required: true, oneOf: shirt_list }"
+            name="T-shirtSize"
+          >
             <b-form-group
               id="input-group-9"
               :label="$t('T-shirt maat:')"
@@ -133,19 +185,27 @@
               <b-form-select
                 id="input-9"
                 v-model="t_size"
-                :state="errors[0] ? false : (valid ? true : null)"
+                :state="errors[0] ? false : valid ? true : null"
                 aria-describedby="input-9-live-feedback"
               >
                 <option :value="null">
-                  {{ $t('T-shirt maat:') }}
+                  {{ $t("T-shirt maat:") }}
                 </option>
                 <optgroup :label="$t('Female')" :options="shirtsize_female">
-                  <option v-for="shirt in shirtsize_female" :key="shirt.value" :value="shirt.value">
+                  <option
+                    v-for="shirt in shirtsize_female"
+                    :key="shirt.value"
+                    :value="shirt.value"
+                  >
                     {{ shirt.text }}
                   </option>
                 </optgroup>
                 <optgroup :label="$t('Male')">
-                  <option v-for="shirt in shirtsize_male" :key="shirt.value" :value="shirt.value">
+                  <option
+                    v-for="shirt in shirtsize_male"
+                    :key="shirt.value"
+                    :value="shirt.value"
+                  >
                     {{ shirt.text }}
                   </option>
                 </optgroup>
@@ -155,7 +215,11 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" rules="required|digits:4" name="PostalCode">
+          <ValidationProvider
+            v-slot="{ valid, errors }"
+            rules="required|digits:4"
+            name="PostalCode"
+          >
             <b-form-group
               id="input-group-1"
               :label="$t('Postcode:')"
@@ -165,7 +229,7 @@
                 id="input-1"
                 v-model="postalcode"
                 :placeholder="$t('Postcode:')"
-                :state="errors[0] ? false : (valid ? true : null)"
+                :state="errors[0] ? false : valid ? true : null"
                 type="number"
                 aria-describedby="input-1-live-feedback"
               />
@@ -174,7 +238,11 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Street">
+          <ValidationProvider
+            v-slot="{ valid, errors }"
+            rules="required"
+            name="Street"
+          >
             <b-form-group
               id="input-group-1z"
               :label="$t('Street')"
@@ -184,7 +252,7 @@
                 id="input-1z"
                 v-model="street"
                 :placeholder="$t('Street')"
-                :state="errors[0] ? false : (valid ? true : null)"
+                :state="errors[0] ? false : valid ? true : null"
                 aria-describedby="input-1z-live-feedback"
               />
               <b-form-invalid-feedback id="input-1z-live-feedback">
@@ -192,7 +260,11 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" rules="required" name="HouseNumber">
+          <ValidationProvider
+            v-slot="{ valid, errors }"
+            rules="required"
+            name="HouseNumber"
+          >
             <b-form-group
               id="input-group-2z"
               :label="$t('HouseNumber')"
@@ -202,7 +274,7 @@
                 id="input-2z"
                 v-model="house_number"
                 :placeholder="$t('HouseNumber')"
-                :state="errors[0] ? false : (valid ? true : null)"
+                :state="errors[0] ? false : valid ? true : null"
                 aria-describedby="input-2z-live-feedback"
               />
               <b-form-invalid-feedback id="input-2z-live-feedback">
@@ -220,7 +292,7 @@
                 id="input-3z"
                 v-model="bus_number"
                 :placeholder="$t('BusNumber')"
-                :state="errors[0] ? false : (valid ? true : null)"
+                :state="errors[0] ? false : valid ? true : null"
                 aria-describedby="input-3z-live-feedback"
               />
               <b-form-invalid-feedback id="input-3z-live-feedback">
@@ -228,7 +300,14 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
-          <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, regex: /^((\+|00)32\s?|0)([1-9][0-9]\d{6})\d?$/ }" name="MobileNumber">
+          <ValidationProvider
+            v-slot="{ valid, errors }"
+            :rules="{
+              required: true,
+              regex: /^((\+|00)32\s?|0)([1-9][0-9]\d{6})\d?$/,
+            }"
+            name="MobileNumber"
+          >
             <b-form-group
               id="input-group-2"
               :label="$t('mobiel nummer (+32):')"
@@ -239,7 +318,7 @@
                 id="input-2"
                 v-model="gsm"
                 :placeholder="$t('mobiel nummer (+32):')"
-                :state="errors[0] ? false : (valid ? true : null)"
+                :state="errors[0] ? false : valid ? true : null"
                 type="tel"
                 aria-describedby="input-2-live-feedback"
               />
@@ -258,7 +337,7 @@
                 id="input-10"
                 v-model="via"
                 :placeholder="$t('Geef je dojo, school')"
-                :state="errors[0] ? false : (valid ? true : null)"
+                :state="errors[0] ? false : valid ? true : null"
                 aria-describedby="input-10-live-feedback"
               />
               <b-form-invalid-feedback id="input-10-live-feedback">
@@ -267,7 +346,11 @@
             </b-form-group>
           </ValidationProvider>
           <div v-if="!isGuardianNeeded">
-            <ValidationProvider v-slot="{ valid, errors }" rules="max:255" name="Medical">
+            <ValidationProvider
+              v-slot="{ valid, errors }"
+              rules="max:255"
+              name="Medical"
+            >
               <b-form-group
                 id="input-group-11"
                 :label="$t('Zijn er aandoeningen')"
@@ -276,7 +359,7 @@
                 <b-form-textarea
                   id="input-11"
                   v-model="medical"
-                  :state="errors[0] ? false : (valid ? true : null)"
+                  :state="errors[0] ? false : valid ? true : null"
                   aria-describedby="input-11-live-feedback"
                 />
                 <b-form-invalid-feedback id="input-11-live-feedback">
@@ -284,15 +367,16 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <h2> {{ $t('Algemene vragen') }}</h2>
-            <ValidationProvider v-slot="{ valid, errors }" rules="required" name="GeneralQuestions">
-              <b-form-group
-                id="input-group-12"
-                :label="$t('no_photo')"
-              >
+            <h2>{{ $t("Algemene vragen") }}</h2>
+            <ValidationProvider
+              v-slot="{ valid, errors }"
+              rules="required"
+              name="GeneralQuestions"
+            >
+              <b-form-group id="input-group-12" :label="$t('no_photo')">
                 <b-form-radio-group
                   v-model="general_questions"
-                  :state="errors[0] ? false : (valid ? true : null)"
+                  :state="errors[0] ? false : valid ? true : null"
                   :options="photo_options"
                   stacked
                 >
@@ -302,14 +386,15 @@
                 </b-form-radio-group>
               </b-form-group>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" rules="required" name="GeneralQuestions2">
-              <b-form-group
-                id="input-group-122"
-                :label="$t('no_contact')"
-              >
+            <ValidationProvider
+              v-slot="{ valid, errors }"
+              rules="required"
+              name="GeneralQuestions2"
+            >
+              <b-form-group id="input-group-122" :label="$t('no_contact')">
                 <b-form-radio-group
                   v-model="general_questions2"
-                  :state="errors[0] ? false : (valid ? true : null)"
+                  :state="errors[0] ? false : valid ? true : null"
                   :options="contact_options"
                   stacked
                 >
@@ -321,8 +406,12 @@
             </ValidationProvider>
           </div>
           <div v-else>
-            <h2>{{ $t('Informatie van je ouders/voogd') }}</h2>
-            <ValidationProvider v-slot="{ valid, errors }" rules="required|email" name="Email">
+            <h2>{{ $t("Informatie van je ouders/voogd") }}</h2>
+            <ValidationProvider
+              v-slot="{ valid, errors }"
+              rules="required|email"
+              name="Email"
+            >
               <b-form-group
                 id="input-group-13"
                 :label="$t('Email adres ouders/voogd:')"
@@ -333,7 +422,7 @@
                   id="input-13"
                   v-model="email_guardian"
                   :placeholder="$t('Email adres ouders/voogd:')"
-                  :state="errors[0] ? false : (valid ? true : null)"
+                  :state="errors[0] ? false : valid ? true : null"
                   type="email"
                   aria-describedby="input-13-live-feedback"
                 />
@@ -342,18 +431,27 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" :rules="{ required: true, regex: /^((\+|00)32\s?|0)([1-9][0-9]\d{6})\d?$/ }" name="Phone">
+            <ValidationProvider
+              v-slot="{ valid, errors }"
+              :rules="{
+                required: true,
+                regex: /^((\+|00)32\s?|0)([1-9][0-9]\d{6})\d?$/,
+              }"
+              name="Phone"
+            >
               <b-form-group
                 id="input-group-14"
                 :label="$t('mobiel nummer ouders/voogd')"
-                :description="$t('Waar kunnen we jou bereiken in geval van nood')"
+                :description="
+                  $t('Waar kunnen we jou bereiken in geval van nood')
+                "
                 label-for="input-14"
               >
                 <b-form-input
                   id="input-14"
                   v-model="gsm_guardian"
                   :placeholder="$t('mobiel nummer ouders/voogd')"
-                  :state="errors[0] ? false : (valid ? true : null)"
+                  :state="errors[0] ? false : valid ? true : null"
                   type="tel"
                   aria-describedby="input-14-live-feedback"
                 />
@@ -362,7 +460,11 @@
                 {{ errors[0] }}
               </b-form-invalid-feedback>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" rules="max:255" name="Medical">
+            <ValidationProvider
+              v-slot="{ valid, errors }"
+              rules="max:255"
+              name="Medical"
+            >
               <b-form-group
                 id="input-group-15"
                 :label="$t('Zijn er aandoeningen')"
@@ -371,7 +473,7 @@
                 <b-form-textarea
                   id="input-15"
                   v-model="medical"
-                  :state="errors[0] ? false : (valid ? true : null)"
+                  :state="errors[0] ? false : valid ? true : null"
                   aria-describedby="input-15-live-feedback"
                 />
                 <b-form-invalid-feedback id="input-15-live-feedback">
@@ -379,15 +481,16 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <h2> {{ $t('Algemene vragen') }}</h2>
-            <ValidationProvider v-slot="{ valid, errors }" rules="required" name="GeneralQuestions">
-              <b-form-group
-                id="input-group-12"
-                :label="$t('no_photo')"
-              >
+            <h2>{{ $t("Algemene vragen") }}</h2>
+            <ValidationProvider
+              v-slot="{ valid, errors }"
+              rules="required"
+              name="GeneralQuestions"
+            >
+              <b-form-group id="input-group-12" :label="$t('no_photo')">
                 <b-form-radio-group
                   v-model="general_questions"
-                  :state="errors[0] ? false : (valid ? true : null)"
+                  :state="errors[0] ? false : valid ? true : null"
                   :options="photo_options"
                   stacked
                 >
@@ -397,14 +500,15 @@
                 </b-form-radio-group>
               </b-form-group>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" rules="required" name="GeneralQuestions2">
-              <b-form-group
-                id="input-group-122"
-                :label="$t('no_contact')"
-              >
+            <ValidationProvider
+              v-slot="{ valid, errors }"
+              rules="required"
+              name="GeneralQuestions2"
+            >
+              <b-form-group id="input-group-122" :label="$t('no_contact')">
                 <b-form-radio-group
                   v-model="general_questions2"
-                  :state="errors[0] ? false : (valid ? true : null)"
+                  :state="errors[0] ? false : valid ? true : null"
                   :options="contact_options"
                   stacked
                 >
@@ -415,17 +519,25 @@
               </b-form-group>
             </ValidationProvider>
           </div>
-          <h1> {{ $t('Project') }}</h1>
+          <h1>{{ $t("Project") }}</h1>
           <b-form-group>
             <b-form-radio v-model="own_project" name="own_project" value="own">
-              {{ $t('eigenProject') }}
+              {{ $t("eigenProject") }}
             </b-form-radio>
-            <b-form-radio v-model="own_project" name="own_project" value="other">
-              {{ $t('medeProject') }}
+            <b-form-radio
+              v-model="own_project"
+              name="own_project"
+              value="other"
+            >
+              {{ $t("medeProject") }}
             </b-form-radio>
           </b-form-group>
           <div v-if="isOwnProject">
-            <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Language">
+            <ValidationProvider
+              v-slot="{ valid, errors }"
+              rules="required"
+              name="Language"
+            >
               <b-form-group
                 id="input-group-18"
                 :label="$t('Taal:')"
@@ -436,7 +548,7 @@
                   id="select-18"
                   v-model="project_lang"
                   :options="languages"
-                  :state="errors[0] ? false : (valid ? true : null)"
+                  :state="errors[0] ? false : valid ? true : null"
                   aria-describedby="input-18-live-feedback"
                 />
                 <b-form-invalid-feedback id="input-18-live-feedback">
@@ -444,7 +556,11 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" rules="max:100" name="ProjectType">
+            <ValidationProvider
+              v-slot="{ valid, errors }"
+              rules="max:100"
+              name="ProjectType"
+            >
               <b-form-group
                 id="input-group-166"
                 :label="$t('Project_Type')"
@@ -453,7 +569,7 @@
                 <b-form-textarea
                   id="input-166"
                   v-model="project_type"
-                  :state="errors[0] ? false : (valid ? true : null)"
+                  :state="errors[0] ? false : valid ? true : null"
                   aria-describedby="input-166-live-feedback"
                 />
                 <b-form-invalid-feedback id="input-166-live-feedback">
@@ -461,7 +577,11 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:100" name="ProjectName">
+            <ValidationProvider
+              v-slot="{ valid, errors }"
+              rules="required|max:100"
+              name="ProjectName"
+            >
               <b-form-group
                 id="input-group-20"
                 :label="$t('Projectnaam:')"
@@ -471,7 +591,7 @@
                   id="input-20"
                   v-model="project_name"
                   :placeholder="$t('GeefProjectnaam:')"
-                  :state="errors[0] ? false : (valid ? true : null)"
+                  :state="errors[0] ? false : valid ? true : null"
                   aria-describedby="input-20-live-feedback"
                 />
                 <b-form-invalid-feedback id="input-20-live-feedback">
@@ -479,7 +599,11 @@
                 </b-form-invalid-feedback>
               </b-form-group>
             </ValidationProvider>
-            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:4000" name="ProjectDescription">
+            <ValidationProvider
+              v-slot="{ valid, errors }"
+              rules="required|max:4000"
+              name="ProjectDescription"
+            >
               <b-form-group
                 id="input-group-21"
                 :label="$t('Omschrijving:')"
@@ -488,7 +612,7 @@
                 <b-form-textarea
                   id="input-21"
                   v-model="project_descr"
-                  :state="errors[0] ? false : (valid ? true : null)"
+                  :state="errors[0] ? false : valid ? true : null"
                   aria-describedby="input-21-live-feedback"
                 />
                 <b-form-invalid-feedback id="input-21-live-feedback">
@@ -498,7 +622,11 @@
             </ValidationProvider>
           </div>
           <div v-else>
-            <ValidationProvider v-slot="{ valid, errors }" rules="required|max:36|min:36" name="ProjectCode">
+            <ValidationProvider
+              v-slot="{ valid, errors }"
+              rules="required|max:36|min:36"
+              name="ProjectCode"
+            >
               <b-form-group
                 id="input-group-22"
                 :label="$t('Projectcode:')"
@@ -508,7 +636,7 @@
                 <b-form-input
                   id="input-22"
                   v-model="project_code"
-                  :state="errors[0] ? false : (valid ? true : null)"
+                  :state="errors[0] ? false : valid ? true : null"
                   placeholder="Code"
                   aria-describedby="input-22-live-feedback"
                 />
@@ -518,15 +646,17 @@
               </b-form-group>
             </ValidationProvider>
           </div>
-          <ValidationProvider v-slot="{ valid, errors }" :rules="{required: true, all_true: mandatory_approvals}" name="ProjectName">
-            <b-form-group
-              :description="$t('Je moet akkoord')"
-            >
+          <ValidationProvider
+            v-slot="{ valid, errors }"
+            :rules="{ required: true, all_true: mandatory_approvals }"
+            name="ProjectName"
+          >
+            <b-form-group :description="$t('Je moet akkoord')">
               <b-form-checkbox-group
                 id="checkboxes-23"
                 v-model="mandatory_approvals"
                 :options="mandatory_approvals_list"
-                :state="errors[0] ? false : (valid ? true : null)"
+                :state="errors[0] ? false : valid ? true : null"
                 aria-describedby="input-23-live-feedback"
               />
               <b-form-invalid-feedback id="input-23-live-feedback">
@@ -541,8 +671,16 @@
               variant="info"
               class="button-hero"
             >
-              <span v-if="loading"><b-spinner type="grow" /> {{ $t('pleaseWait') }}</span>
-              <span v-else><font-awesome-icon v-if="!loading" :icon="['fas', 'paper-plane']" /> {{ $t('Ik schrijf me in') }}</span>
+              <span v-if="loading"
+                ><b-spinner type="grow" /> {{ $t("pleaseWait") }}</span
+              >
+              <span v-else
+                ><font-awesome-icon
+                  v-if="!loading"
+                  :icon="['fas', 'paper-plane']"
+                />
+                {{ $t("Ik schrijf me in") }}</span
+              >
             </b-button>
             <b-button
               :disabled="loading"
@@ -550,7 +688,8 @@
               variant="warning"
               class="button-hero"
             >
-              <font-awesome-icon :icon="['fas', 'trash-restore']" />  {{ $t('verwijder alles') }}
+              <font-awesome-icon :icon="['fas', 'trash-restore']" />
+              {{ $t("verwijder alles") }}
             </b-button>
           </b-form-group>
         </b-form>
@@ -559,404 +698,403 @@
   </b-row>
 </template>
 <script>
-import { mapState, mapGetters } from 'vuex'
-import addYears from 'date-fns/add_years'
-import differenceInYears from 'date-fns/difference_in_years'
-import { ValidationObserver, ValidationProvider } from 'vee-validate'
+import { mapState, mapGetters } from "vuex";
+import { addYears, differenceInYears } from "date-fns";
+import { ValidationObserver, ValidationProvider } from "vee-validate";
 
 export default {
-  middleware: 'notAuthenticated',
+  middleware: "notAuthenticated",
   components: {
     ValidationObserver,
-    ValidationProvider
+    ValidationProvider,
   },
-  data () {
+  data() {
     return {
       loading: false,
       photo_options: [
-        { value: 'photo', text: this.$i18n.t('YESp') },
-        { value: 'no_photo', text: this.$i18n.t('NOp') }
+        { value: "photo", text: this.$i18n.t("YESp") },
+        { value: "no_photo", text: this.$i18n.t("NOp") },
       ],
       contact_options: [
-        { value: 'contact', text: this.$i18n.t('YESc') },
-        { value: 'no_contact', text: this.$i18n.t('NOc') }
+        { value: "contact", text: this.$i18n.t("YESc") },
+        { value: "no_contact", text: this.$i18n.t("NOc") },
       ],
-      own_project: 'own',
+      own_project: "own",
       show: false,
-      variant: 'success',
-      message: this.$i18n.t('successReg'),
+      variant: "success",
+      message: this.$i18n.t("successReg"),
       month_list: [
-        { text: this.$i18n.t('Kiesmaand'), value: null },
-        { value: 0, text: this.$i18n.t('januari') },
-        { value: 1, text: this.$i18n.t('februari') },
-        { value: 2, text: this.$i18n.t('maart') },
-        { value: 3, text: this.$i18n.t('april') },
-        { value: 4, text: this.$i18n.t('mei') },
-        { value: 5, text: this.$i18n.t('juni') },
-        { value: 6, text: this.$i18n.t('juli') },
-        { value: 7, text: this.$i18n.t('augustus') },
-        { value: 8, text: this.$i18n.t('september') },
-        { value: 9, text: this.$i18n.t('october') },
-        { value: 10, text: this.$i18n.t('november') },
-        { value: 11, text: this.$i18n.t('december') }
+        { text: this.$i18n.t("Kiesmaand"), value: null },
+        { value: 0, text: this.$i18n.t("januari") },
+        { value: 1, text: this.$i18n.t("februari") },
+        { value: 2, text: this.$i18n.t("maart") },
+        { value: 3, text: this.$i18n.t("april") },
+        { value: 4, text: this.$i18n.t("mei") },
+        { value: 5, text: this.$i18n.t("juni") },
+        { value: 6, text: this.$i18n.t("juli") },
+        { value: 7, text: this.$i18n.t("augustus") },
+        { value: 8, text: this.$i18n.t("september") },
+        { value: 9, text: this.$i18n.t("october") },
+        { value: 10, text: this.$i18n.t("november") },
+        { value: 11, text: this.$i18n.t("december") },
       ],
       year: null,
       month: null,
       geslacht: [
-        { text: this.$i18n.t('Ik ben een'), value: null },
-        { value: 'f', text: this.$i18n.t('meisje') },
-        { value: 'm', text: this.$i18n.t('jongen') },
-        { value: 'x', text: 'X' }
+        { text: this.$i18n.t("Ik ben een"), value: null },
+        { value: "f", text: this.$i18n.t("meisje") },
+        { value: "m", text: this.$i18n.t("jongen") },
+        { value: "x", text: "X" },
       ],
       languages: [
-        { value: 'nl', text: 'Nederlands' },
-        { value: 'fr', text: 'Frans' },
-        { value: 'en', text: 'Engels' }
+        { value: "nl", text: "Nederlands" },
+        { value: "fr", text: "Frans" },
+        { value: "en", text: "Engels" },
       ],
       general_questions_fotos: [
-        { value: 'photo', text: 'Ik ben akkoord dat er fotos genomen worden' }
+        { value: "photo", text: "Ik ben akkoord dat er fotos genomen worden" },
       ],
       general_questions_contact: [
-        { value: 'contact', text: 'Je mag me contacteren voor de volgende events' }
+        {
+          value: "contact",
+          text: "Je mag me contacteren voor de volgende events",
+        },
       ],
       mandatory_approvals_list: [
-        { value: 'ok', text: this.$i18n.t('Ikbenakkoord') }
+        { value: "ok", text: this.$i18n.t("Ikbenakkoord") },
       ],
       shirtsize_male: [
         // Jongen/Garçon/Boy/KID
-        { value: 'kid_3/4', text: this.$i18n.t('kid') + ' 3/4' },
-        { value: 'kid_5/6', text: this.$i18n.t('kid') + ' 5/6' },
-        { value: 'kid_7/8', text: this.$i18n.t('kid') + ' 7/8' },
-        { value: 'kid_9/11', text: this.$i18n.t('kid') + ' 9/11' },
-        { value: 'kid_12/14', text: this.$i18n.t('kid') + ' 12/14' },
-        { value: 'male_Xsmall', text: this.$i18n.t('men') + ' XS' },
-        { value: 'male_small', text: this.$i18n.t('men') + ' S' },
-        { value: 'male_medium', text: this.$i18n.t('men') + ' M' },
-        { value: 'male_large', text: this.$i18n.t('men') + ' L' },
-        { value: 'male_xl', text: this.$i18n.t('men') + ' XL' },
-        { value: 'male_xxl', text: this.$i18n.t('men') + ' 2XL' },
-        { value: 'male_3xl', text: this.$i18n.t('men') + ' 3XL' },
-        { value: 'male_4xl', text: this.$i18n.t('men') + ' 4XL' },
-        { value: 'male_5xl', text: this.$i18n.t('men') + ' 5XL' }
+        { value: "kid_3/4", text: this.$i18n.t("kid") + " 3/4" },
+        { value: "kid_5/6", text: this.$i18n.t("kid") + " 5/6" },
+        { value: "kid_7/8", text: this.$i18n.t("kid") + " 7/8" },
+        { value: "kid_9/11", text: this.$i18n.t("kid") + " 9/11" },
+        { value: "kid_12/14", text: this.$i18n.t("kid") + " 12/14" },
+        { value: "male_Xsmall", text: this.$i18n.t("men") + " XS" },
+        { value: "male_small", text: this.$i18n.t("men") + " S" },
+        { value: "male_medium", text: this.$i18n.t("men") + " M" },
+        { value: "male_large", text: this.$i18n.t("men") + " L" },
+        { value: "male_xl", text: this.$i18n.t("men") + " XL" },
+        { value: "male_xxl", text: this.$i18n.t("men") + " 2XL" },
+        { value: "male_3xl", text: this.$i18n.t("men") + " 3XL" },
+        { value: "male_4xl", text: this.$i18n.t("men") + " 4XL" },
+        { value: "male_5xl", text: this.$i18n.t("men") + " 5XL" },
       ],
       shirtsize_female: [
         // Meisje/Fille/Girl
-        { value: 'female_xs', text: this.$i18n.t('women') + ' XS' },
-        { value: 'female_medium', text: this.$i18n.t('women') + ' M' },
-        { value: 'female_large', text: this.$i18n.t('women') + ' L' },
-        { value: 'female_xl', text: this.$i18n.t('women') + ' XL' },
-        { value: 'female_2xl', text: this.$i18n.t('women') + ' 2XL' },
-        { value: 'female_3xl', text: this.$i18n.t('women') + ' 3XL' }
-      ]
-    }
+        { value: "female_xs", text: this.$i18n.t("women") + " XS" },
+        { value: "female_medium", text: this.$i18n.t("women") + " M" },
+        { value: "female_large", text: this.$i18n.t("women") + " L" },
+        { value: "female_xl", text: this.$i18n.t("women") + " XL" },
+        { value: "female_2xl", text: this.$i18n.t("women") + " 2XL" },
+        { value: "female_3xl", text: this.$i18n.t("women") + " 3XL" },
+      ],
+    };
   },
 
   computed: {
-    shirt_list () {
-      const valuemap = (x) => { return x.value }
-      return this.shirtsize_male.map(valuemap).concat(this.shirtsize_female.map(valuemap))
+    shirt_list() {
+      const valuemap = (x) => {
+        return x.value;
+      };
+      return this.shirtsize_male
+        .map(valuemap)
+        .concat(this.shirtsize_female.map(valuemap));
     },
     year_list: (app) => {
-      const yearStart = app.beginYear.getFullYear()
-      const yearEnd = app.endYear.getFullYear()
-      const yearList = [
-        { text: app.$i18n.t('year'), value: null }
-      ]
+      const yearStart = app.beginYear.getFullYear();
+      const yearEnd = app.endYear.getFullYear();
+      const yearList = [{ text: app.$i18n.t("year"), value: null }];
       for (let i = 0; i <= yearEnd - yearStart; i++) {
-        yearList.push({ text: yearStart + i, value: yearStart + i })
+        yearList.push({ text: yearStart + i, value: yearStart + i });
       }
-      return yearList
+      return yearList;
     },
     endDate: (state) => {
-      return addYears(state.startDateEvent, -5)
+      return addYears(state.startDateEvent, -5);
     },
     isGuardianNeeded: (state) => {
-      return differenceInYears(state.startDateEvent, new Date(state.year, state.month, 1)) < state.guardianAge
+      return (
+        differenceInYears(
+          state.startDateEvent,
+          new Date(state.year, state.month, 1)
+        ) < state.guardianAge
+      );
     },
     isOwnProject: (state) => {
-      return state.own_project === 'own'
+      return state.own_project === "own";
     },
     beginYear: (state) => {
-      return addYears(state.startDateEvent, state.maxAge * -1)
+      return addYears(state.startDateEvent, state.maxAge * -1);
     },
     endYear: (state) => {
-      return addYears(state.startDateEvent, state.minAge * -1)
+      return addYears(state.startDateEvent, state.minAge * -1);
     },
-    ...mapGetters([
-      'minAgeDate',
-      'maxAgeDate'
-    ]),
-    ...mapState([
-      'startDateEvent',
-      'maxAge',
-      'minAge',
-      'guardianAge'
-    ]),
-    ...mapState('registration', [
-      'birthmonth'
-    ]),
+    ...mapGetters(["minAgeDate", "maxAgeDate"]),
+    ...mapState(["startDateEvent", "maxAge", "minAge", "guardianAge"]),
+    ...mapState("registration", ["birthmonth"]),
     postalcode: {
-      set (value) {
-        this.$store.dispatch('registration/postalcode', value)
+      set(value) {
+        this.$store.dispatch("registration/postalcode", value);
       },
-      get () {
-        return this.$store.state.registration.postalcode
-      }
+      get() {
+        return this.$store.state.registration.postalcode;
+      },
     },
     street: {
-      set (value) {
-        this.$store.commit('registration/street', value)
+      set(value) {
+        this.$store.commit("registration/street", value);
       },
-      get () {
-        return this.$store.state.user.street
-      }
+      get() {
+        return this.$store.state.user.street;
+      },
     },
     house_number: {
-      set (value) {
-        this.$store.commit('registration/house_number', value)
+      set(value) {
+        this.$store.commit("registration/house_number", value);
       },
-      get () {
-        return this.$store.state.user.house_number
-      }
+      get() {
+        return this.$store.state.user.house_number;
+      },
     },
     bus_number: {
-      set (value) {
-        this.$store.commit('registration/bus_number', value)
+      set(value) {
+        this.$store.commit("registration/bus_number", value);
       },
-      get () {
-        return this.$store.state.user.bus_number
-      }
+      get() {
+        return this.$store.state.user.bus_number;
+      },
     },
     email: {
-      set (value) {
-        this.$store.dispatch('registration/email', value)
+      set(value) {
+        this.$store.dispatch("registration/email", value);
       },
-      get () {
-        return this.$store.state.registration.email
-      }
+      get() {
+        return this.$store.state.registration.email;
+      },
     },
     firstname: {
-      set (value) {
-        this.$store.dispatch('registration/firstname', value)
+      set(value) {
+        this.$store.dispatch("registration/firstname", value);
       },
-      get () {
-        return this.$store.state.registration.firstname
-      }
+      get() {
+        return this.$store.state.registration.firstname;
+      },
     },
     lastname: {
-      set (value) {
-        this.$store.dispatch('registration/lastname', value)
+      set(value) {
+        this.$store.dispatch("registration/lastname", value);
       },
-      get () {
-        return this.$store.state.registration.lastname
-      }
+      get() {
+        return this.$store.state.registration.lastname;
+      },
     },
     sex: {
-      set (value) {
-        this.$store.dispatch('registration/sex', value)
+      set(value) {
+        this.$store.dispatch("registration/sex", value);
       },
-      get () {
-        return this.$store.state.registration.sex
-      }
+      get() {
+        return this.$store.state.registration.sex;
+      },
     },
     general_questions: {
-      set (value) {
-        this.$store.dispatch('registration/general_questions', value)
+      set(value) {
+        this.$store.dispatch("registration/general_questions", value);
       },
-      get () {
-        return this.$store.state.registration.general_questions
-      }
+      get() {
+        return this.$store.state.registration.general_questions;
+      },
     },
     general_questions2: {
-      set (value) {
-        this.$store.dispatch('registration/general_questions2', value)
+      set(value) {
+        this.$store.dispatch("registration/general_questions2", value);
       },
-      get () {
-        return this.$store.state.registration.general_questions2
-      }
+      get() {
+        return this.$store.state.registration.general_questions2;
+      },
     },
     mandatory_approvals: {
-      set (value) {
-        this.$store.dispatch('registration/mandatory_approvals', value)
+      set(value) {
+        this.$store.dispatch("registration/mandatory_approvals", value);
       },
-      get () {
-        return this.$store.state.registration.mandatory_approvals
-      }
+      get() {
+        return this.$store.state.registration.mandatory_approvals;
+      },
     },
     t_size: {
-      set (value) {
-        this.$store.dispatch('registration/t_size', value)
+      set(value) {
+        this.$store.dispatch("registration/t_size", value);
       },
-      get () {
-        return this.$store.state.registration.t_size
-      }
+      get() {
+        return this.$store.state.registration.t_size;
+      },
     },
     via: {
-      set (value) {
-        this.$store.dispatch('registration/via', value)
+      set(value) {
+        this.$store.dispatch("registration/via", value);
       },
-      get () {
-        return this.$store.state.registration.via
-      }
+      get() {
+        return this.$store.state.registration.via;
+      },
     },
     medical: {
-      set (value) {
-        this.$store.dispatch('registration/medical', value)
+      set(value) {
+        this.$store.dispatch("registration/medical", value);
       },
-      get () {
-        return this.$store.state.registration.medical
-      }
+      get() {
+        return this.$store.state.registration.medical;
+      },
     },
     project_name: {
-      set (value) {
-        this.$store.dispatch('registration/project_name', value)
+      set(value) {
+        this.$store.dispatch("registration/project_name", value);
       },
-      get () {
-        return this.$store.state.registration.project_name
-      }
+      get() {
+        return this.$store.state.registration.project_name;
+      },
     },
     project_descr: {
-      set (value) {
-        this.$store.dispatch('registration/project_descr', value)
+      set(value) {
+        this.$store.dispatch("registration/project_descr", value);
       },
-      get () {
-        return this.$store.state.registration.project_descr
-      }
+      get() {
+        return this.$store.state.registration.project_descr;
+      },
     },
     project_type: {
-      set (value) {
-        this.$store.dispatch('registration/project_type', value)
+      set(value) {
+        this.$store.dispatch("registration/project_type", value);
       },
-      get () {
-        return this.$store.state.registration.project_type
-      }
+      get() {
+        return this.$store.state.registration.project_type;
+      },
     },
     project_code: {
-      set (value) {
-        this.$store.dispatch('registration/project_code', value)
+      set(value) {
+        this.$store.dispatch("registration/project_code", value);
       },
-      get () {
-        return this.$store.state.registration.project_code
-      }
+      get() {
+        return this.$store.state.registration.project_code;
+      },
     },
     project_lang: {
-      set (value) {
-        this.$store.dispatch('registration/project_lang', value)
+      set(value) {
+        this.$store.dispatch("registration/project_lang", value);
       },
-      get () {
-        return this.$store.state.registration.project_lang
-      }
+      get() {
+        return this.$store.state.registration.project_lang;
+      },
     },
     gsm: {
-      set (value) {
-        this.$store.dispatch('registration/gsm', value)
+      set(value) {
+        this.$store.dispatch("registration/gsm", value);
       },
-      get () {
-        return this.$store.state.registration.gsm
-      }
+      get() {
+        return this.$store.state.registration.gsm;
+      },
     },
     gsm_guardian: {
-      set (value) {
-        this.$store.dispatch('registration/gsm_guardian', value)
+      set(value) {
+        this.$store.dispatch("registration/gsm_guardian", value);
       },
-      get () {
-        return this.$store.state.registration.gsm_guardian
-      }
+      get() {
+        return this.$store.state.registration.gsm_guardian;
+      },
     },
     email_guardian: {
-      set (value) {
-        this.$store.dispatch('registration/email_guardian', value)
+      set(value) {
+        this.$store.dispatch("registration/email_guardian", value);
       },
-      get () {
-        return this.$store.state.registration.email_guardian
-      }
-    }
+      get() {
+        return this.$store.state.registration.email_guardian;
+      },
+    },
   },
   watch: {
-    year (val) {
-      let date = this.$store.state.registration.birthmonth
+    year(val) {
+      let date = this.$store.state.registration.birthmonth;
       if (date === null) {
-        date = new Date()
+        date = new Date();
       }
-      if (typeof date === 'string') {
-        date = new Date(date)
+      if (typeof date === "string") {
+        date = new Date(date);
       }
-      date.setDate(1)
-      date.setFullYear(val)
-      this.$store.dispatch('registration/birthmonth', date)
+      date.setDate(1);
+      date.setFullYear(val);
+      this.$store.dispatch("registration/birthmonth", date);
     },
-    month (val) {
-      let date = this.$store.state.registration.birthmonth
+    month(val) {
+      let date = this.$store.state.registration.birthmonth;
       if (date === null) {
-        date = new Date()
+        date = new Date();
       }
-      if (typeof date === 'string') {
-        date = new Date(date)
+      if (typeof date === "string") {
+        date = new Date(date);
       }
-      date.setDate(1)
-      date.setMonth(val)
-      this.$store.dispatch('registration/birthmonth', date)
+      date.setDate(1);
+      date.setMonth(val);
+      this.$store.dispatch("registration/birthmonth", date);
     },
-    own_project (val) {
+    own_project(val) {
       // cleanup data
-      if (val === 'own') {
-        this.project_code = null
+      if (val === "own") {
+        this.project_code = null;
       } else {
-        this.project_name = null
-        this.project_descr = null
-        this.project_type = null
-        this.project_lang = null
+        this.project_name = null;
+        this.project_descr = null;
+        this.project_type = null;
+        this.project_lang = null;
       }
-    }
+    },
   },
-  asyncData ({ store, redirect }) {
+  asyncData({ store, redirect }) {
     if (new Date(store.state.auth.expires) > new Date()) {
-      redirect('/user')
+      redirect("/user");
     }
-    let date = store.state.registration.birthmonth
-    let year = null
-    let month = null
+    let date = store.state.registration.birthmonth;
+    let year = null;
+    let month = null;
     if (date instanceof Date === false && date !== null) {
-      date = new Date(date)
+      date = new Date(date);
     }
     if (date !== null) {
-      year = date.getFullYear()
-      month = date.getMonth()
+      year = date.getFullYear();
+      month = date.getMonth();
     }
     return {
       year,
-      month
-    }
+      month,
+    };
   },
   methods: {
-    async onSubmit (evt) {
-      this.show = false
-      this.loading = true
+    async onSubmit(evt) {
+      this.show = false;
+      this.loading = true;
       try {
         // pass language to store
-        this.$store.dispatch('registration/language', this.$i18n.locale)
-        await this.$services.registration.post()
-        this.onReset(evt)
-        this.variant = 'success'
-        this.message = this.$i18n.t('successReg')
-        this.show = true
+        this.$store.dispatch("registration/language", this.$i18n.locale);
+        await this.$services.registration.post();
+        this.onReset(evt);
+        this.variant = "success";
+        this.message = this.$i18n.t("successReg");
+        this.show = true;
       } catch (error) {
-        this.variant = 'danger'
-        this.message = this.$i18n.t('failedReg')
-        this.show = true
+        this.variant = "danger";
+        this.message = this.$i18n.t("failedReg");
+        this.show = true;
       }
-      this.loading = false
-      window.scrollTo(0, 0)
+      this.loading = false;
+      window.scrollTo(0, 0);
     },
-    onReset (evt) {
-      this.$store.dispatch('registration/clear_form')
-      this.year = this.month = null // clean temp fields
+    onReset(evt) {
+      this.$store.dispatch("registration/clear_form");
+      this.year = this.month = null; // clean temp fields
       requestAnimationFrame(() => {
-        this.$refs.observer.reset()
-      })
-    }
-  }
-}
+        this.$refs.observer.reset();
+      });
+    },
+  },
+};
 </script>
 
 <style></style>

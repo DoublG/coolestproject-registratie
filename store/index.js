@@ -1,7 +1,6 @@
 import VuexPersistence from 'vuex-persist'
 
-import addYears from 'date-fns/add_years'
-import addDays from 'date-fns/add_days'
+import { addYears, addDays } from 'date-fns'
 
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage,

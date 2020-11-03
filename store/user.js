@@ -1,4 +1,4 @@
-import differenceInYears from 'date-fns/difference_in_years'
+import { differenceInYears } from 'date-fns'
 
 export const state = () => ({
   gsm: null,
