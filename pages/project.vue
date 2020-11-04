@@ -28,16 +28,5 @@ export default {
 }
 </script>
 
-<i18n>
-{
-  "en": {
-  },
-  "fr": {
-  },
-  "nl": {
-  }
-}
-</i18n>
-
 <style>
 </style>

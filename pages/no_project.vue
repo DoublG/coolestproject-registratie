@@ -3,10 +3,10 @@
     <b-col>
       <h1>{{ $t('MakeChoice') }}</h1>
       <ActionBarProject
-        @createProject="onCreateProject"
-        @enterToken="onEnterToken"
         project
         token
+        @createProject="onCreateProject"
+        @enterToken="onEnterToken"
       />
     </b-col>
   </b-row>
@@ -42,20 +42,6 @@ export default {
   }
 }
 </script>
-
-<i18n>
-{
-  "en": {
-    "MakeChoice": "Make a choice"
-  },
-  "fr": {
-    "MakeChoice": "Faites un choix"
-  },
-  "nl": {
-    "MakeChoice": "Make a choice"
-  }
-}
-</i18n>
 
 <style>
 </style>

@@ -26,52 +26,52 @@
     </b-button>
     <b-button
       v-if="del"
-      @click="onDeleteInfo"
       type="button"
       variant="danger"
       class="button-hero"
+      @click="onDeleteInfo"
     >
       <font-awesome-icon :icon="['fas', 'minus']" />  {{ $t('Delete') }}
     </b-button>
     <b-button
       v-if="add"
-      @click="onCreateToken"
       type="button"
       variant="success"
       class="button-hero"
+      @click="onCreateToken"
     >
       <font-awesome-icon :icon="['fas', 'plus']" />  {{ $t('AddToken') }}
     </b-button>
     <!-- begin project not yet created -->
     <b-button
       v-if="project"
-      @click="onCreateProject"
       type="button"
       variant="success"
       class="button-hero"
+      @click="onCreateProject"
     >
       <font-awesome-icon :icon="['fas', 'plus']" />  {{ $t('CreateProject') }}
     </b-button>
     <b-button
       v-if="token"
-      @click="onEnterToken"
       type="button"
       variant="success"
       class="button-hero"
+      @click="onEnterToken"
     >
       <font-awesome-icon :icon="['fas', 'minus']" />  {{ $t('EnterToken') }}
     </b-button>
     <!-- end project not yet created -->
     <b-button
       v-if="cancel"
-      @click="onCancel"
       type="button"
       variant="success"
       class="button-hero"
+      @click="onCancel"
     >
       <font-awesome-icon :icon="['fas', 'eject']" />  {{ $t('Cancel') }}
     </b-button>
-    <b-modal v-model="showPopup" @ok="onDelete" title="Delete Project/Remove Link" ok-title="Delete">
+    <b-modal v-model="showPopup" title="Delete Project/Remove Link" ok-title="Delete" @ok="onDelete">
       <span v-if="!own">
         {{ $t('LinkDelete') }}
       </span>
@@ -152,44 +152,3 @@ export default {
 }
 </script>
 <style></style>
-
-<i18n>
-{
-  "en" :{
-    "Aanpassen": "Change",
-    "AddToken": "Add Participant",
-    "Cancel": "Cancel",
-    "Create": "Create",
-    "CreateProject": "Create your own project",
-    "Delete": "Delete",
-    "EnterToken": "Enter Token",
-    "LinkDelete": "My connection to the project will be removed",
-    "Project wordt verwijderd": "Project will be deleted",
-    "Resetten": "Reset"
-  },
-"fr" :{
-    "Aanpassen": "Modifier",
-    "AddToken": "Add Participant",
-    "Cancel": "Annuler",
-    "Create": "Créer",
-    "CreateProject": "Crée ton propre projet",
-    "Delete": "Supprimer",
-    "EnterToken": "Entre le jeton",
-    "LinkDelete": "Ma connexion au projet sera supprimée",
-    "Project wordt verwijderd": "Le projet est supprimé",
-    "Resetten": "Restaurer"
-  },
-  "nl" :{
-    "Aanpassen": "Aanpassen",
-    "AddToken": "Deelnemer toevoegen",
-    "Cancel": "Annuleren",
-    "Create": "Toevoegen",
-    "CreateProject": "Zelf een project starten",
-    "Delete": "Verwijderen",
-    "EnterToken": "Token gebruiken",
-    "LinkDelete": "Mijn verbinding met het project zal verwijderd worden",
-    "Project wordt verwijderd": "Project wordt verwijderd",
-    "Resetten": "Resetten"
-  }
-}
-</i18n>

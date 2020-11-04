@@ -27,9 +27,9 @@
             </b-form-group>
           </ValidationProvider>
           <ActionBarProject
-            @cancel="onCancel"
             create
             cancel
+            @cancel="onCancel"
           />
         </b-form>
       </ValidationObserver>
@@ -93,32 +93,6 @@ export default {
   }
 }
 </script>
-
-<i18n>
-{
-  "en": {
-    "failedChange": "The change was unsuccessful, please LOGOUT and Login again",
-    "Geefcode": "Enter the code that you received from the project owner",
-    "Projectcode:": "Project token",
-    "successReg": "The registration for the creation of your project is successful when you get a confirmation mail with further instructions to login and to see and/or change your data. Be aware: 1 registration per person.",
-    "successChange": "The change was successful."
-  },
-  "fr": {
-    "failedChange": "Le changement a échoué, DÉCONNEXION et retour Connexion",
-    "Geefcode": "Entre le code reçu via le propriétaire du projet",
-    "Projectcode:": "Jeton du projet",
-    "successReg": "L'inscription pour la création de votre projet est réussie, vous allez recevoir un e-mail de confirmation avec des instructions supplémentaires pour vous connecter et afficher et / ou mettre à jour vos données. Remarque : Une seule inscription par propriétaire de projet.",
-    "successChange": "Le changement a réussi."
-  },
-  "nl": {
-    "failedChange": "De wijziging is niet gelukt., LOGOUT en do terug Login.",
-    "Geefcode": "Geef de code in die je van de projecteigenaar gekregen hebt",
-    "Projectcode:": "Project token",
-    "successReg": "De registratie voor het aanmaken van je project is gelukt als je een bevestigingsmail ontvangt met verdere instructies om in te loggen en je gegevens te bekijken en/of bij te werken. Let op: 1 registratie per projectowner.",
-    "successChange": "De wijziging is gelukt."
-  }
-}
-</i18n>
 
 <style>
 </style>

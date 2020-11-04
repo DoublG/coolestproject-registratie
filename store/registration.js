@@ -207,23 +207,28 @@ export const getters = {
     Object.keys(state).forEach(function (key) {
       if (state[key] !== null) {
         switch (key) {
-          case 'birthmonth':
+          case 'birthmonth': {
             const date = typeof state[key] === typeof Date ? state[key] : new Date(state[key])
             sanitizedJSON[key] = date.toISOString().substr(0, 10)
             break
-          case 'postalcode':
+          }
+          case 'postalcode': {
             const postalcode = typeof state[key] === typeof Number ? state[key] : Number.parseInt(state[key])
             sanitizedJSON[key] = postalcode
             break
-          case 'general_questions':
+          }
+          case 'general_questions': {
             sanitizedJSON.general_questions[0] = state[key]
             break
-          case 'general_questions2':
+          }
+          case 'general_questions2': {
             sanitizedJSON.general_questions[1] = state[key]
             break
-          default:
+          }
+          default: {
             sanitizedJSON[key] = state[key]
             break
+          }
         }
       }
     })

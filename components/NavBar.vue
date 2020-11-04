@@ -71,17 +71,3 @@ export default {
 }
 </script>
 <style></style>
-
-<i18n>
-{
-  "en": {
-      "Registratie": "Enrollment"
-      },
-  "fr": {
-    "Registratie": "Inscription"
-     },
-  "nl": {
-    "Registratie": "Registratie"
-  }
-}
-</i18n>

@@ -7,8 +7,7 @@ module.exports = {
   ** Headers of the page
   */
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:8080/api',
-    useProxy: process.env.USE_PROXY
+    baseUrl: process.env.NUXT_ENV_BASE_URL
   },
   dotenv: {
   },
@@ -82,12 +81,10 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
+    'nuxt-i18n',
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
-    ['nuxt-i18n', {
-      vueI18nLoader: true
-    }],
     [
       'nuxt-fontawesome',
       {
@@ -136,26 +133,37 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
-    },
+    extend(config, ctx) { },
     transpile: [
       'vee-validate/dist/rules',
       'nuxt-vuex-localstorage'
     ]
   },
   i18n: {
-    locales: ['en', 'fr', 'nl'],
     defaultLocale: 'nl',
+    langDir: 'lang/',
     vueI18n: {
       fallbackLocale: 'nl'
+    },
+    locales: [
+      {
+        code: 'en',
+        file: 'en-US.js'
+      },
+      {
+        code: 'nl',
+        file: 'nl-BE.js'
+      },
+      {
+        code: 'fr',
+        file: 'fr-FR.js'
+      }
+    ],
+    lazy: true
+  },
+  publicRuntimeConfig: {
+    axios: {
+      browserBaseURL: process.env.NUXT_ENV_BASE_URL
     }
-  },
-  axios: {
-    baseURL: 'https://coolestjury.azurewebsites.net',  // process.env.baseUrl,  
-    // proxy: true,
-    prefix: '/api'
-  },
-  proxy: {
-    '/api/': { target: 'http://localhost:8080', pathRewrite: { '^/api/': '' } }
   }
 }

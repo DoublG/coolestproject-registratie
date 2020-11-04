@@ -12,9 +12,6 @@ export default {
 }
 </script>
 
-<i18n>
-{}
-</i18n>
 
 <style>
 </style>
