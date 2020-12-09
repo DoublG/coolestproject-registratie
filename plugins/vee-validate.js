@@ -52,15 +52,15 @@ extend('min', {
 
 extend('between_dates', {
   params: ['min', 'max', 'month', 'year'],
-  validate (value, { min, max, month, year }) {
+  validate(value, { min, max, month, year }) {
     const birthMonth = new Date(((year === undefined) ? value : year), ((month === undefined) ? value : month), 1)
-    return isWithinInterval(birthMonth, addDays(min, -1), addDays(max, 1))
+    return isWithinInterval(birthMonth, { start: addDays(min, -1), end: addDays(max, 1) })
   }
 })
 
 extend('all_true', {
   params: ['values'],
-  validate (value, { values }) {
+  validate(value, { values }) {
     return true
   }
 })

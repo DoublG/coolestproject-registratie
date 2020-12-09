@@ -80,7 +80,7 @@
             v-slot="{ valid, errors }"
             :rules="{
               required: true,
-              between_dates: { month: month, min: minAgeDate, max: maxAgeDate },
+              between_dates: { year: year, month: month, min: minAgeDate, max: maxAgeDate },
             }"
             name="Birthyear"
           >
@@ -865,7 +865,7 @@ export default {
         this.$store.commit('registration/street', value)
       },
       get () {
-        return this.$store.state.user.street
+        return this.$store.state.registration.street
       }
     },
     house_number: {
@@ -873,7 +873,7 @@ export default {
         this.$store.commit('registration/house_number', value)
       },
       get () {
-        return this.$store.state.user.house_number
+        return this.$store.state.registration.house_number
       }
     },
     bus_number: {
@@ -881,7 +881,7 @@ export default {
         this.$store.commit('registration/bus_number', value)
       },
       get () {
-        return this.$store.state.user.bus_number
+        return this.$store.state.registration.bus_number
       }
     },
     email: {
