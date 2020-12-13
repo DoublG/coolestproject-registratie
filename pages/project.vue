@@ -22,7 +22,7 @@ export default {
         app.router.push({ path: '/no_project' })
       }
     } catch (error) {
-      app.router.push({ path: '/index' })
+      app.router.push({ path: '/' })
     }
   }
 }
