@@ -23,74 +23,74 @@ export const state = () => ({
 })
 
 export const mutations = {
-  delete_possible (state, deletePossible) {
+  delete_possible(state, deletePossible) {
     state.delete_possible = deletePossible
   },
-  language (state, language) {
+  language(state, language) {
     state.language = language
   },
-  street (state, street) {
+  street(state, street) {
     state.street = street
   },
-  house_number (state, houseNumber) {
+  house_number(state, houseNumber) {
     state.house_number = houseNumber
   },
-  bus_number (state, busNumber) {
+  bus_number(state, busNumber) {
     state.bus_number = busNumber
   },
-  lastname (state, lastname) {
+  lastname(state, lastname) {
     state.lastname = lastname
   },
-  firstname (state, firstname) {
+  firstname(state, firstname) {
     state.firstname = firstname
   },
-  email (state, email) {
+  email(state, email) {
     state.email = email
   },
-  gsm (state, gsm) {
+  gsm(state, gsm) {
     state.gsm = gsm
   },
-  general_questions (state, generalQuestions) {
+  general_questions(state, generalQuestions) {
     state.general_questions = generalQuestions
   },
-  general_questions2 (state, generalQuestions2) {
+  general_questions2(state, generalQuestions2) {
     state.general_questions2 = generalQuestions2
   },
-  email_guardian (state, emailGuardian) {
+  email_guardian(state, emailGuardian) {
     state.email_guardian = emailGuardian
   },
-  gsm_guardian (state, gsmGuardian) {
+  gsm_guardian(state, gsmGuardian) {
     state.gsm_guardian = gsmGuardian
   },
-  medical (state, medical) {
+  medical(state, medical) {
     state.medical = medical
   },
-  sex (state, sex) {
+  sex(state, sex) {
     state.sex = sex
   },
-  t_size (state, tSize) {
+  t_size(state, tSize) {
     state.t_size = tSize
   },
-  via (state, via) {
+  via(state, via) {
     state.via = via
   },
-  birthmonth (state, birthmonth) {
+  birthmonth(state, birthmonth) {
     state.birthmonth = birthmonth
   },
-  postalcode (state, postalcode) {
+  postalcode(state, postalcode) {
     state.postalcode = postalcode
   }
 }
 
 export const actions = {
-  updateUser ({ commit }, user) {
+  updateUser({ commit }, user) {
     if (user) {
       commit('firstname', user.firstname)
       commit('lastname', user.lastname)
       commit('email', user.email)
       commit('gsm', user.gsm)
-      commit('general_questions', user.general_questions[0])
-      commit('general_questions2', user.general_questions[1])
+      // commit('general_questions', user.general_questions[0])
+      // commit('general_questions2', user.general_questions[1])
       commit('email_guardian', user.email_guardian)
       commit('gsm_guardian', user.gsm_guardian)
       commit('medical', user.medical)
