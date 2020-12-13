@@ -210,7 +210,7 @@ export default {
     'women': 'dames',
 
     // Project.vue
-    'SendMovie': "Je moet je filmpje indienen op deze url <a href='{url}'>indienen</a> ",
+    'SendMovie': "Je moogt een filmpje indienen op deze url <a href='{url}'>video</a> ",
     'MovieRec': 'We hebben je filmpje goed ontvangen',
     'Achternaam:': 'Achternaam',
     'AddToken': 'Deelnemer toevoegen',
