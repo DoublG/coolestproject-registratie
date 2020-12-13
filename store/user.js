@@ -13,6 +13,7 @@ export const state = () => ({
   via: null,
   birthmonth: null,
   postalcode: null,
+  municipality_name: null,
   firstname: null,
   email: null,
   language: null,
@@ -79,6 +80,9 @@ export const mutations = {
   },
   postalcode(state, postalcode) {
     state.postalcode = postalcode
+  },
+  municipality_name(state, municipalityName) {
+    state.municipality_name = municipalityName
   }
 }
 
@@ -99,6 +103,7 @@ export const actions = {
       commit('via', user.via)
       commit('birthmonth', new Date(user.birthmonth))
       commit('postalcode', user.postalcode)
+      commit('municipality_name', user.municipality_name)
       commit('street', user.street)
       commit('bus_number', user.bus_number)
       commit('house_number', user.house_number)
@@ -119,6 +124,7 @@ export const actions = {
       commit('via', null)
       commit('birthmonth', null)
       commit('postalcode', null)
+      commit('municipality_name', null)
       commit('language', null)
       commit('delete_possible', null)
       commit('street', null)
@@ -142,6 +148,7 @@ export const getters = {
       ],
       street: state.street,
       house_number: state.house_number,
+      municipality_name: state.municipality_name,
       bus_number: state.bus_number,
       medical: state.medical,
       sex: state.sex,

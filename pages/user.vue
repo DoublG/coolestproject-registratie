@@ -245,6 +245,28 @@
           <ValidationProvider
             v-slot="{ valid, errors }"
             rules="required"
+            name="MunicipalityName"
+          >
+            <b-form-group
+              id="input-group-1zz"
+              :label="$t('MunicipalityName')"
+              label-for="input-1zz"
+            >
+              <b-form-input
+                id="input-1zz"
+                v-model="municipality_name"
+                :placeholder="$t('MunicipalityName')"
+                :state="errors[0] ? false : valid ? true : null"
+                aria-describedby="input-1zz-live-feedback"
+              />
+              <b-form-invalid-feedback id="input-1zz-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
+          <ValidationProvider
+            v-slot="{ valid, errors }"
+            rules="required"
             name="HouseNumber"
           >
             <b-form-group
@@ -747,6 +769,14 @@ export default {
       },
       get () {
         return this.$store.state.user.bus_number
+      }
+    },
+    municipality_name: {
+      set (value) {
+        this.$store.commit('user/municipality_name', value)
+      },
+      get () {
+        return this.$store.state.user.municipality_name
       }
     },
     email: {

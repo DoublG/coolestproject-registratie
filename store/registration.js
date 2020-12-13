@@ -7,6 +7,7 @@ const originalState = () => {
     street: null,
     house_number: null,
     bus_number: null,
+    municipality_name: null,
     email: null,
     firstname: null,
     lastname: null,
@@ -32,161 +33,168 @@ const originalState = () => {
 export const state = originalState
 
 export const mutations = {
-  language (state, language) {
+  language(state, language) {
     state.language = language
   },
-  email_guardian (state, emailGuardian) {
+  email_guardian(state, emailGuardian) {
     state.email_guardian = emailGuardian
   },
-  gsm (state, gsm) {
+  gsm(state, gsm) {
     state.gsm = gsm
   },
-  gsm_guardian (state, gsmGuardian) {
+  gsm_guardian(state, gsmGuardian) {
     state.gsm_guardian = gsmGuardian
   },
-  postalcode (state, postalcode) {
+  postalcode(state, postalcode) {
     state.postalcode = postalcode
   },
-  street (state, street) {
+  street(state, street) {
     state.street = street
   },
-  house_number (state, houseNumber) {
+  house_number(state, houseNumber) {
     state.house_number = houseNumber
   },
-  bus_number (state, busNumber) {
+  bus_number(state, busNumber) {
     state.house_number = busNumber
   },
-  email (state, email) {
+  email(state, email) {
     state.email = email
   },
-  firstname (state, firstname) {
+  firstname(state, firstname) {
     state.firstname = firstname
   },
-  lastname (state, lastname) {
+  lastname(state, lastname) {
     state.lastname = lastname
   },
-  sex (state, sex) {
+  sex(state, sex) {
     state.sex = sex
   },
-  general_questions (state, generalQuestions) {
+  general_questions(state, generalQuestions) {
     state.general_questions = generalQuestions
   },
-  general_questions2 (state, generalQuestions2) {
+  general_questions2(state, generalQuestions2) {
     state.general_questions2 = generalQuestions2
   },
-  mandatory_approvals (state, mandatoryApprovals) {
+  mandatory_approvals(state, mandatoryApprovals) {
     state.mandatory_approvals = mandatoryApprovals
   },
-  birthmonth (state, birthmonth) {
+  birthmonth(state, birthmonth) {
     state.birthmonth = birthmonth
   },
-  size (state, size) {
+  size(state, size) {
     state.size = size
   },
-  type (state, type) {
+  type(state, type) {
     state.type = type
   },
-  via (state, via) {
+  via(state, via) {
     state.via = via
   },
-  medical (state, medical) {
+  medical(state, medical) {
     state.medical = medical
   },
-  project_name (state, projectName) {
+  project_name(state, projectName) {
     state.project_name = projectName
   },
-  project_descr (state, projectDescr) {
+  project_descr(state, projectDescr) {
     state.project_descr = projectDescr
   },
-  project_type (state, projectType) {
+  project_type(state, projectType) {
     state.project_type = projectType
   },
-  project_code (state, projectCode) {
+  project_code(state, projectCode) {
     state.project_code = projectCode
   },
-  project_lang (state, projectLang) {
+  project_lang(state, projectLang) {
     state.project_lang = projectLang
   },
-  t_size (state, tSize) {
+  t_size(state, tSize) {
     state.t_size = tSize
+  },
+  municipality_name(state, municipalityName) {
+    state.municipality_name = municipalityName
   }
 }
 
 export const actions = {
-  language ({ commit }, language) {
+  language({ commit }, language) {
     commit('language', language)
   },
-  email_guardian ({ commit }, emailGuardian) {
+  email_guardian({ commit }, emailGuardian) {
     commit('email_guardian', emailGuardian)
   },
-  gsm ({ commit }, gsm) {
+  gsm({ commit }, gsm) {
     commit('gsm', gsm)
   },
-  gsm_guardian ({ commit }, gsmGuardian) {
+  gsm_guardian({ commit }, gsmGuardian) {
     commit('gsm_guardian', gsmGuardian)
   },
-  postalcode ({ commit }, postalcode) {
+  postalcode({ commit }, postalcode) {
     commit('postalcode', postalcode)
   },
-  street ({ commit }, street) {
+  street({ commit }, street) {
     commit('street', street)
   },
-  house_number ({ commit }, houseNumber) {
+  house_number({ commit }, houseNumber) {
     commit('house_number', houseNumber)
   },
-  bus_number ({ commit }, busNumber) {
+  bus_number({ commit }, busNumber) {
     commit('bus_number', busNumber)
   },
-  email ({ commit }, email) {
+  email({ commit }, email) {
     commit('email', email)
   },
-  firstname ({ commit }, firstname) {
+  firstname({ commit }, firstname) {
     commit('firstname', firstname)
   },
-  lastname ({ commit }, lastname) {
+  lastname({ commit }, lastname) {
     commit('lastname', lastname)
   },
-  sex ({ commit }, sex) {
+  sex({ commit }, sex) {
     commit('sex', sex)
   },
-  general_questions ({ commit }, generalQuestions) {
+  general_questions({ commit }, generalQuestions) {
     commit('general_questions', generalQuestions)
   },
-  general_questions2 ({ commit }, generalQuestions2) {
+  general_questions2({ commit }, generalQuestions2) {
     commit('general_questions2', generalQuestions2)
   },
-  mandatory_approvals ({ commit }, mandatoryApprovals) {
+  mandatory_approvals({ commit }, mandatoryApprovals) {
     commit('mandatory_approvals', mandatoryApprovals)
   },
-  birthmonth ({ commit }, birthmonth) {
+  birthmonth({ commit }, birthmonth) {
     commit('birthmonth', birthmonth)
   },
-  t_size ({ commit }, tSize) {
+  t_size({ commit }, tSize) {
     commit('t_size', tSize)
   },
-  via ({ commit }, via) {
+  via({ commit }, via) {
     commit('via', via)
   },
-  medical ({ commit }, medical) {
+  medical({ commit }, medical) {
     commit('medical', medical)
   },
-  project_name ({ commit }, projectName) {
+  project_name({ commit }, projectName) {
     commit('project_name', projectName)
   },
-  project_descr ({ commit }, projectDescr) {
+  project_descr({ commit }, projectDescr) {
     commit('project_descr', projectDescr)
   },
-  project_type ({ commit }, projectType) {
+  project_type({ commit }, projectType) {
     commit('project_type', projectType)
   },
-  project_code ({ commit }, projectCode) {
+  project_code({ commit }, projectCode) {
     commit('project_code', projectCode)
   },
-  project_lang ({ commit }, projectLang) {
+  project_lang({ commit }, projectLang) {
     commit('project_lang', projectLang)
   },
+  municipality_name({ commit }, municipalityName) {
+    commit('municipality_name', municipalityName)
+  },
+
   // clear registration form
-  clear_form ({ commit }) {
+  clear_form({ commit }) {
     const origState = originalState()
     Object.keys(origState).forEach(function (key) {
       commit(key, origState[key])

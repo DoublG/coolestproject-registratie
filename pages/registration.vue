@@ -300,6 +300,24 @@
               </b-form-invalid-feedback>
             </b-form-group>
           </ValidationProvider>
+          <ValidationProvider v-slot="{ valid, errors }" name="MunicipalityName">
+            <b-form-group
+              id="input-group-3zz"
+              :label="$t('MunicipalityName')"
+              label-for="input-3zz"
+            >
+              <b-form-input
+                id="input-3zz"
+                v-model="municipality_name"
+                :placeholder="$t('MunicipalityName')"
+                :state="errors[0] ? false : valid ? true : null"
+                aria-describedby="input-3zz-live-feedback"
+              />
+              <b-form-invalid-feedback id="input-3zz-live-feedback">
+                {{ errors[0] }}
+              </b-form-invalid-feedback>
+            </b-form-group>
+          </ValidationProvider>
           <ValidationProvider
             v-slot="{ valid, errors }"
             :rules="{
@@ -874,6 +892,14 @@ export default {
       },
       get () {
         return this.$store.state.registration.house_number
+      }
+    },
+    municipality_name: {
+      set (value) {
+        this.$store.commit('registration/municipality_name', value)
+      },
+      get () {
+        return this.$store.state.registration.municipality_name
       }
     },
     bus_number: {
