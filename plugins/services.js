@@ -27,6 +27,16 @@ export default ({ app, store }, inject) => {
         return app.$axios.$get('/settings')
       }
     },
+    questions: {
+      get() {
+        return app.$axios.$get('/questions')
+      }
+    },
+    tshirts: {
+      get() {
+        return app.$axios.$get('/tshirts')
+      }
+    },
     registration: {
       post() {
         return app.$axios.$post('/register', store.getters['registration/sanitizedJSON'])

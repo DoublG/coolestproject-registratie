@@ -669,14 +669,11 @@ export default {
   computed: {
     shirt_list () {
       const valuemap = (x) => {
-        return x.value
+        return x.value 
       }
       return this.shirtsize_male
         .map(valuemap)
         .concat(this.shirtsize_female.map(valuemap))
-    },
-    tshirtDisabled () {
-      return this.tshirtDate < new Date()
     },
     firstname: {
       set (value) {

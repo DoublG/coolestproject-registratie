@@ -185,30 +185,15 @@
               <b-form-select
                 id="input-9"
                 v-model="t_size"
+                :options="tshirtsList"
                 :state="errors[0] ? false : valid ? true : null"
                 aria-describedby="input-9-live-feedback"
               >
-                <option :value="null">
-                  {{ $t("T-shirt maat:") }}
-                </option>
-                <optgroup :label="$t('Female')" :options="shirtsize_female">
-                  <option
-                    v-for="shirt in shirtsize_female"
-                    :key="shirt.value"
-                    :value="shirt.value"
-                  >
-                    {{ shirt.text }}
-                  </option>
-                </optgroup>
-                <optgroup :label="$t('Male')">
-                  <option
-                    v-for="shirt in shirtsize_male"
-                    :key="shirt.value"
-                    :value="shirt.value"
-                  >
-                    {{ shirt.text }}
-                  </option>
-                </optgroup>
+                <template #first>
+                  <b-form-select-option :value="null" disabled>
+                    {{ $t('Select Tshirt size') }}
+                  </b-form-select-option>
+                </template>
               </b-form-select>
               <b-form-invalid-feedback id="input-9-live-feedback">
                 {{ errors[0] }}
@@ -726,7 +711,7 @@ export default {
     ValidationObserver,
     ValidationProvider
   },
-  asyncData ({ store, redirect }) {
+  async asyncData ({ store, app, redirect }) {
     if (new Date(store.state.auth.expires) > new Date()) {
       redirect('/user')
     }
@@ -740,9 +725,18 @@ export default {
       year = date.getFullYear()
       month = date.getMonth()
     }
+    // load valuehelps
+    const tshirts = await app.$services.tshirts.get()
+    const tshirtsList = tshirts.map((element) => {
+      return { label: element.group, options: element.items.map((item) => { return { text: item.name, value: item.id } }) }
+    })
+
+    const questions = await app.$services.questions.get()
     return {
       year,
-      month
+      month,
+      tshirtsList,
+      questions
     }
   },
   data () {
@@ -799,7 +793,8 @@ export default {
       ],
       mandatory_approvals_list: [
         { value: 'ok', text: this.$i18n.t('Ikbenakkoord') }
-      ],
+      ]
+      /*
       shirtsize_male: [
         // Jongen/Garçon/Boy/KID
         { value: 'kid_3/4', text: this.$i18n.t('kid') + ' 3/4' },
@@ -826,10 +821,12 @@ export default {
         { value: 'female_2xl', text: this.$i18n.t('women') + ' 2XL' },
         { value: 'female_3xl', text: this.$i18n.t('women') + ' 3XL' }
       ]
+      */
     }
   },
 
   computed: {
+    /*
     shirt_list () {
       const valuemap = (x) => {
         return x.value
@@ -837,7 +834,7 @@ export default {
       return this.shirtsize_male
         .map(valuemap)
         .concat(this.shirtsize_female.map(valuemap))
-    },
+    }, */
     year_list: (app) => {
       const yearStart = app.beginYear.getFullYear()
       const yearEnd = app.endYear.getFullYear()
