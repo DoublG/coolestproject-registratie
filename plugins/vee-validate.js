@@ -59,8 +59,8 @@ extend('between_dates', {
 })
 
 extend('all_true', {
-  params: ['values'],
-  validate(value, { values }) {
-    return true
+  params: ['selected', 'all'],
+  validate(value, { selected, all }) {
+    return selected.length === all.length
   }
 })

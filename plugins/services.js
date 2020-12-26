@@ -32,6 +32,11 @@ export default ({ app, store }, inject) => {
         return app.$axios.$get('/questions')
       }
     },
+    approvals: {
+      get() {
+        return app.$axios.$get('/approvals')
+      }
+    },
     tshirts: {
       get() {
         return app.$axios.$get('/tshirts')

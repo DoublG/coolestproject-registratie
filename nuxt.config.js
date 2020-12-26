@@ -1,6 +1,3 @@
-
-require('dotenv').config()
-
 module.exports = {
   ssr: false,
   /*
@@ -125,6 +122,7 @@ module.exports = {
       'CardPlugin'
     ]
   },
+  components: true,
   generate: {},
   /*
   ** Build configuration

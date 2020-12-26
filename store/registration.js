@@ -12,8 +12,7 @@ const originalState = () => {
     firstname: null,
     lastname: null,
     sex: null,
-    general_questions: [],
-    general_questions2: [],
+    questions: [],
     mandatory_approvals: [],
     birthmonth: null,
     t_size: null,
@@ -69,11 +68,8 @@ export const mutations = {
   sex(state, sex) {
     state.sex = sex
   },
-  general_questions(state, generalQuestions) {
-    state.general_questions = generalQuestions
-  },
-  general_questions2(state, generalQuestions2) {
-    state.general_questions2 = generalQuestions2
+  questions(state, general) {
+    state.general = general
   },
   mandatory_approvals(state, mandatoryApprovals) {
     state.mandatory_approvals = mandatoryApprovals
@@ -153,11 +149,9 @@ export const actions = {
   sex({ commit }, sex) {
     commit('sex', sex)
   },
-  general_questions({ commit }, generalQuestions) {
-    commit('general_questions', generalQuestions)
-  },
-  general_questions2({ commit }, generalQuestions2) {
-    commit('general_questions2', generalQuestions2)
+  questions({ commit }, questions) {
+    commit('questions', questions
+    )
   },
   mandatory_approvals({ commit }, mandatoryApprovals) {
     commit('mandatory_approvals', mandatoryApprovals)
@@ -224,15 +218,16 @@ export const getters = {
             const postalcode = typeof state[key] === typeof Number ? state[key] : Number.parseInt(state[key])
             sanitizedJSON[key] = postalcode
             break
-          }
+          }/*
           case 'general_questions': {
-            sanitizedJSON.general_questions[0] = state[key]
+            sanitizedJSON.general_questions = []
+            // sanitizedJSON.general_questions[0] = sanitizedJSON.general_questions.filter(q => q !== '_')
             break
           }
           case 'general_questions2': {
             sanitizedJSON.general_questions[1] = state[key]
             break
-          }
+          } */
           default: {
             sanitizedJSON[key] = state[key]
             break
