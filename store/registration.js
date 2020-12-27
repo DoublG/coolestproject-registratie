@@ -68,6 +68,12 @@ export const mutations = {
     state.user_contact_house_number = user.contact.house_number
     state.user_contact_bus_number = user.contact.bus_number
     state.user_contact_municipality_name = user.contact.municipality_name
+  },
+  reset(state) {
+    const origState = originalState()
+    Object.keys(origState).forEach(function (key) {
+      state[key] = origState[key]
+    })
   }
 }
 
@@ -81,11 +87,8 @@ export const actions = {
   user({ commit }, user) {
     commit('user', user)
   },
-  clear_all({ commit }) {
-    const origState = originalState()
-    Object.keys(origState).forEach(function (key) {
-      commit(key, origState[key])
-    })
+  reset({ commit }) {
+    commit('reset')
   }
 }
 
@@ -118,6 +121,7 @@ export const getters = {
       email_guardian: state.user_email_guardian,
       gsm_guardian: state.user_gsm_guardian,
       t_size: state.user_t_size,
+      // copy before return
       general_questions: Object.assign({}, state.user_general_questions),
       mandatory_approvals: [...state.user_mandatory_approvals],
       contact: {
@@ -130,17 +134,17 @@ export const getters = {
     }
   },
   post_api: (state, getter, rootState) => {
-    return {
-      birthmonth: new Date(state.year, state.month, 1),
+    const base = {
+      postalcode: parseInt(state.user_contact_postalcode),
+      email: state.user_email,
       firstname: state.user_firstname,
       lastname: state.user_lastname,
-      mandatory_approvals: state.user_mandatory_approvals,
-      postalcode: state.user_contact_postalcode,
       sex: state.user_sex,
-      language: '',
-      email: state.user_email,
+      language: state.user_language,
       general_questions: state.user_general_questions,
-      t_size: state.user_t_size,
+      mandatory_approvals: state.user_mandatory_approvals,
+      birthmonth: new Date(state.user_year, state.user_month, 1, 12, 0, 0).toISOString().substring(0, 10),
+      t_size: parseInt(state.user_t_size),
       via: state.user_via,
       medical: state.user_medical,
       project_name: state.project_name,
@@ -154,7 +158,30 @@ export const getters = {
       project_lang: state.project_lang,
       gsm: state.user_gsm,
       gsm_guardian: state.user_gsm_guardian,
-      email_guardian: state.user_email_guardian,
+      email_guardian: state.user_email_guardian
     }
+    // cleanup api call (remove nulls & cleanup questions)
+    const cleanup = {}
+    Object.keys(base).forEach(function (key) {
+      // remove nulls
+      if (!base[key]) {
+        return
+      }
+      // cleanup questions
+      if (key === 'general_questions') {
+        const questions = base[key]
+        cleanup[key] = []
+        Object.keys(questions).forEach(function (element) {
+          if (questions[element] === '_') {
+            return
+          }
+          cleanup[key].push(parseInt(element))
+        })
+      } else {
+        // normal copy
+        cleanup[key] = base[key]
+      }
+    })
+    return cleanup
   }
 }

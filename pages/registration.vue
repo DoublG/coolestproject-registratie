@@ -91,7 +91,7 @@ export default {
     user: {
       set (value) {
         const u = this.$store.getters['registration/user']
-        u.language = this.$i18n.language
+        u.language = this.$i18n.locale
         this.$store.dispatch('registration/user', u)
       },
       get () {
@@ -125,7 +125,7 @@ export default {
       window.scrollTo(0, 0)
     },
     onReset (evt) {
-      this.$store.dispatch('registration/clear_all')
+      this.$store.dispatch('registration/reset')
       requestAnimationFrame(() => {
         this.$refs.observer.reset()
       })
