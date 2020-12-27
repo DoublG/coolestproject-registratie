@@ -426,8 +426,6 @@ export default {
       guardianAge: -1,
       tshirtsList: [],
       year_list: [],
-      year: null,
-      month: null,
       month_list: [
         { text: this.$i18n.t('Kiesmaand'), value: null },
         { value: 0, text: this.$i18n.t('januari') },
@@ -459,14 +457,6 @@ export default {
           new Date(state.year, state.month, 1)
         ) < state.guardianAge
       )
-    }
-  },
-  watch: {
-    year: (newYear, oldYear) => {
-      this.birthdate = new Date(newYear, this.month, 1)
-    },
-    month: (newMonth, oldMonth) => {
-      this.birthdate = new Date(this.year, newMonth, 1)
     }
   },
   methods: {

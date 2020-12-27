@@ -13,7 +13,7 @@
             :options="approvals"
             :state="errors[0] ? false : valid ? true : null"
             aria-describedby="mandatory-approvals-live-feedback"
-            @change="$emit('change', $event)"
+            @input="change_selection($event)"
           />
           <b-form-invalid-feedback id="mandatory-approvals-live-feedback">
             {{ errors[0] }}
@@ -46,7 +46,11 @@ export default {
     })
   },
   data () {
-    return {}
+    return {
+      change_selection (evt) {
+        this.$emit('change', evt)
+      }
+    }
   }
 }
 </script>

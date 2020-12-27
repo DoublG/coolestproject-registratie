@@ -1,194 +1,87 @@
-import { differenceInCalendarYears } from 'date-fns'
+import { nl } from "date-fns/locale"
 
 const originalState = () => {
   return {
-    language: 'nl',
-    postalcode: null,
-    street: null,
-    house_number: null,
-    bus_number: null,
-    municipality_name: null,
-    email: null,
-    firstname: null,
-    lastname: null,
-    sex: null,
-    questions: [],
-    mandatory_approvals: [],
-    birthmonth: null,
-    t_size: null,
-    via: null,
-    medical: null,
+    // own project
     project_name: null,
     project_descr: null,
     project_type: null,
+    project_lang: null,
+    // other project
     project_code: null,
-    project_lang: 'nl',
-    gsm: null,
-    gsm_guardian: null,
-    email_guardian: null
+    // user
+    user_language: 'nl',
+    user_year: null,
+    user_month: null,
+    user_email: null,
+    user_firstname: null,
+    user_lastname: null,
+    user_sex: null,
+    user_gsm: null,
+    user_via: null,
+    user_medical: null,
+    user_email_guardian: null,
+    user_gsm_guardian: null,
+    user_t_size: null,
+    user_general_questions: {},
+    user_mandatory_approvals: [],
+    // user contact
+    user_contact_postalcode: null,
+    user_contact_street: null,
+    user_contact_house_number: null,
+    user_contact_bus_number: null,
+    user_contact_municipality_name: null
   }
 }
 
 export const state = originalState
 
 export const mutations = {
-  language(state, language) {
-    state.language = language
+  own_project(state, ownProject) {
+    state.project_name = ownProject.project_name
+    state.project_descr = ownProject.project_descr
+    state.project_type = ownProject.project_type
+    state.project_lang = ownProject.project_lang
   },
-  email_guardian(state, emailGuardian) {
-    state.email_guardian = emailGuardian
+  other_project(state, otherProject) {
+    state.project_code = otherProject.project_code
   },
-  gsm(state, gsm) {
-    state.gsm = gsm
-  },
-  gsm_guardian(state, gsmGuardian) {
-    state.gsm_guardian = gsmGuardian
-  },
-  postalcode(state, postalcode) {
-    state.postalcode = postalcode
-  },
-  street(state, street) {
-    state.street = street
-  },
-  house_number(state, houseNumber) {
-    state.house_number = houseNumber
-  },
-  bus_number(state, busNumber) {
-    state.bus_number = busNumber
-  },
-  email(state, email) {
-    state.email = email
-  },
-  firstname(state, firstname) {
-    state.firstname = firstname
-  },
-  lastname(state, lastname) {
-    state.lastname = lastname
-  },
-  sex(state, sex) {
-    state.sex = sex
-  },
-  questions(state, general) {
-    state.general = general
-  },
-  mandatory_approvals(state, mandatoryApprovals) {
-    state.mandatory_approvals = mandatoryApprovals
-  },
-  birthmonth(state, birthmonth) {
-    state.birthmonth = birthmonth
-  },
-  size(state, size) {
-    state.size = size
-  },
-  type(state, type) {
-    state.type = type
-  },
-  via(state, via) {
-    state.via = via
-  },
-  medical(state, medical) {
-    state.medical = medical
-  },
-  project_name(state, projectName) {
-    state.project_name = projectName
-  },
-  project_descr(state, projectDescr) {
-    state.project_descr = projectDescr
-  },
-  project_type(state, projectType) {
-    state.project_type = projectType
-  },
-  project_code(state, projectCode) {
-    state.project_code = projectCode
-  },
-  project_lang(state, projectLang) {
-    state.project_lang = projectLang
-  },
-  t_size(state, tSize) {
-    state.t_size = tSize
-  },
-  municipality_name(state, municipalityName) {
-    state.municipality_name = municipalityName
+  user(state, user) {
+    state.user_language = user.language
+    state.user_year = user.year
+    state.user_month = user.month
+    state.user_email = user.email
+    state.user_firstname = user.firstname
+    state.user_lastname = user.lastname
+    state.user_sex = user.sex
+    state.user_gsm = user.gsm
+    state.user_via = user.via
+    state.user_medical = user.medical
+    state.user_email_guardian = user.email_guardian
+    state.user_gsm_guardian = user.gsm_guardian
+    state.user_t_size = user.t_size
+    state.user_general_questions = user.general_questions
+    state.user_mandatory_approvals = user.mandatory_approvals
+    // user contact
+    state.user_contact_postalcode = user.contact.postalcode
+    state.user_contact_street = user.contact.street
+    state.user_contact_house_number = user.contact.house_number
+    state.user_contact_bus_number = user.contact.bus_number
+    state.user_contact_municipality_name = user.contact.municipality_name
   }
 }
 
 export const actions = {
-  language({ commit }, language) {
-    commit('language', language)
+  own_project({ commit }, ownProject) {
+    commit('own_project', ownProject)
   },
-  email_guardian({ commit }, emailGuardian) {
-    commit('email_guardian', emailGuardian)
+  other_project({ commit }, otherProject) {
+    commit('other_project', otherProject)
   },
-  gsm({ commit }, gsm) {
-    commit('gsm', gsm)
+  user({ commit }, user) {
+    commit('user', user)
   },
-  gsm_guardian({ commit }, gsmGuardian) {
-    commit('gsm_guardian', gsmGuardian)
-  },
-  postalcode({ commit }, postalcode) {
-    commit('postalcode', postalcode)
-  },
-  street({ commit }, street) {
-    commit('street', street)
-  },
-  house_number({ commit }, houseNumber) {
-    commit('house_number', houseNumber)
-  },
-  bus_number({ commit }, busNumber) {
-    commit('bus_number', busNumber)
-  },
-  email({ commit }, email) {
-    commit('email', email)
-  },
-  firstname({ commit }, firstname) {
-    commit('firstname', firstname)
-  },
-  lastname({ commit }, lastname) {
-    commit('lastname', lastname)
-  },
-  sex({ commit }, sex) {
-    commit('sex', sex)
-  },
-  questions({ commit }, questions) {
-    commit('questions', questions
-    )
-  },
-  mandatory_approvals({ commit }, mandatoryApprovals) {
-    commit('mandatory_approvals', mandatoryApprovals)
-  },
-  birthmonth({ commit }, birthmonth) {
-    commit('birthmonth', birthmonth)
-  },
-  t_size({ commit }, tSize) {
-    commit('t_size', tSize)
-  },
-  via({ commit }, via) {
-    commit('via', via)
-  },
-  medical({ commit }, medical) {
-    commit('medical', medical)
-  },
-  project_name({ commit }, projectName) {
-    commit('project_name', projectName)
-  },
-  project_descr({ commit }, projectDescr) {
-    commit('project_descr', projectDescr)
-  },
-  project_type({ commit }, projectType) {
-    commit('project_type', projectType)
-  },
-  project_code({ commit }, projectCode) {
-    commit('project_code', projectCode)
-  },
-  project_lang({ commit }, projectLang) {
-    commit('project_lang', projectLang)
-  },
-  municipality_name({ commit }, municipalityName) {
-    commit('municipality_name', municipalityName)
-  },
-
-  // clear registration form
-  clear_form({ commit }) {
+  clear_all({ commit }) {
     const origState = originalState()
     Object.keys(origState).forEach(function (key) {
       commit(key, origState[key])
@@ -197,61 +90,71 @@ export const actions = {
 }
 
 export const getters = {
-  sanitizedJSON: (state, getter, rootState) => {
-    // We need to cleanup the JSON a bit
-    // 1) We don't want to send null values
-    // 2) the local store stores everything as a string so we need to fix that before sending
-    // 3) we only want to send the date not the time
-    const sanitizedJSON = {
-      general_questions: [],
-      language: 'en'
+  own_project: (state, getter, rootState) => {
+    return {
+      project_name: state.project_name,
+      project_descr: state.project_descr,
+      project_type: state.project_type,
+      project_lang: state.project_lang
     }
-    Object.keys(state).forEach(function (key) {
-      if (state[key] !== null) {
-        switch (key) {
-          case 'birthmonth': {
-            const date = typeof state[key] === typeof Date ? state[key] : new Date(state[key])
-            sanitizedJSON[key] = date.toISOString().substr(0, 10)
-            break
-          }
-          case 'postalcode': {
-            const postalcode = typeof state[key] === typeof Number ? state[key] : Number.parseInt(state[key])
-            sanitizedJSON[key] = postalcode
-            break
-          }/*
-          case 'general_questions': {
-            sanitizedJSON.general_questions = []
-            // sanitizedJSON.general_questions[0] = sanitizedJSON.general_questions.filter(q => q !== '_')
-            break
-          }
-          case 'general_questions2': {
-            sanitizedJSON.general_questions[1] = state[key]
-            break
-          } */
-          default: {
-            sanitizedJSON[key] = state[key]
-            break
-          }
-        }
+  },
+  other_project: (state, getter, rootState) => {
+    return {
+      project_code: state.project_code
+    }
+  },
+  user: (state, getter, rootState) => {
+    return {
+      language: state.user_language,
+      year: state.user_year,
+      month: state.user_month,
+      email: state.user_email,
+      firstname: state.user_firstname,
+      lastname: state.user_lastname,
+      sex: state.user_sex,
+      gsm: state.user_gsm,
+      via: state.user_via,
+      medical: state.user_medical,
+      email_guardian: state.user_email_guardian,
+      gsm_guardian: state.user_gsm_guardian,
+      t_size: state.user_t_size,
+      general_questions: Object.assign({}, state.user_general_questions),
+      mandatory_approvals: [...state.user_mandatory_approvals],
+      contact: {
+        postalcode: state.user_contact_postalcode,
+        street: state.user_contact_street,
+        house_number: state.user_contact_house_number,
+        bus_number: state.user_contact_bus_number,
+        municipality_name: state.user_contact_municipality_name
       }
-    })
-    // we have 2 scenarios, the service doesn't allow any extra fields
-    // 1) registration with project
-    // 2) registration without project
-    if (sanitizedJSON.project_code) {
-      delete sanitizedJSON.project_name
-      delete sanitizedJSON.project_descr
-      delete sanitizedJSON.project_type
-      delete sanitizedJSON.project_lang
-    } else {
-      delete sanitizedJSON.project_code
     }
-    // no guardian information needed so don't send
-    if (differenceInCalendarYears(rootState.startDateEvent, sanitizedJSON.birthmonth) > rootState.guardianAge) {
-      delete sanitizedJSON.gsm_guardian
-      delete sanitizedJSON.email_guardian
+  },
+  post_api: (state, getter, rootState) => {
+    return {
+      birthmonth: new Date(state.year, state.month, 1),
+      firstname: state.user_firstname,
+      lastname: state.user_lastname,
+      mandatory_approvals: state.user_mandatory_approvals,
+      postalcode: state.user_contact_postalcode,
+      sex: state.user_sex,
+      language: '',
+      email: state.user_email,
+      general_questions: state.user_general_questions,
+      t_size: state.user_t_size,
+      via: state.user_via,
+      medical: state.user_medical,
+      project_name: state.project_name,
+      project_descr: state.project_descr,
+      project_type: state.project_type,
+      project_code: state.project_code,
+      street: state.user_contact_street,
+      house_number: state.user_contact_house_number,
+      municipality_name: state.user_contact_municipality_name,
+      box_number: state.user_contact_bus_number,
+      project_lang: state.project_lang,
+      gsm: state.user_gsm,
+      gsm_guardian: state.user_gsm_guardian,
+      email_guardian: state.user_email_guardian,
     }
-
-    return sanitizedJSON
   }
 }

@@ -44,7 +44,7 @@ export default ({ app, store }, inject) => {
     },
     registration: {
       post() {
-        return app.$axios.$post('/register', store.getters['registration/sanitizedJSON'])
+        return app.$axios.$post('/register', store.getters['registration/post_api'])
       }
     },
     userinfo: {

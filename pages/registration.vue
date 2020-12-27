@@ -2,30 +2,27 @@
   <b-row>
     <b-col>
       <h1>{{ $t("titleReg") }}</h1>
-      <b-alert :show="show" :variant="variant" dismissible>
-        {{ message }}
-      </b-alert>
-      {{ user }}
+      <global-notification />
       <h2>{{ $t("personal_info") }}</h2>
       <ValidationObserver ref="observer" v-slot="{ passes }">
         <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
           <user v-model="user" />
           <h1>{{ $t("Project") }}</h1>
           <b-form-group>
-            <b-form-radio v-model="own_project" name="own_project" value="own">
+            <b-form-radio v-model="is_own_project" name="own_project" value="own">
               {{ $t("eigenProject") }}
             </b-form-radio>
-            <b-form-radio v-model="own_project" name="own_project" value="other">
+            <b-form-radio v-model="is_own_project" name="own_project" value="other">
               {{ $t("medeProject") }}
             </b-form-radio>
           </b-form-group>
-          <div v-if="own_project === 'own'">
-            <own-project v-model="project" />
+          <div v-if="is_own_project === 'own'">
+            <own-project v-model="own_project" />
           </div>
           <div v-else>
-            <other-project v-model="project" />
+            <other-project v-model="other_project" />
           </div>
-          <mandatory-questions v-model="user.mandatory_approvals" />
+          <mandatory-questions v-model="mandatory_approvals" />
           <b-form-group>
             <b-button
               :disabled="loading"
@@ -60,8 +57,6 @@
   </b-row>
 </template>
 <script>
-// import { mapState, mapGetters } from 'vuex'
-// import { addYears, differenceInYears } from 'date-fns'
 import { ValidationObserver } from 'vee-validate'
 
 export default {
@@ -73,65 +68,64 @@ export default {
   data () {
     return {
       loading: false,
-      project: {
-        project_name: null,
-        project_descr: null,
-        project_type: null,
-        project_code: null,
-        project_lang: null
+      is_own_project: 'own'
+    }
+  },
+  computed: {
+    own_project: {
+      set (value) {
+        this.$store.dispatch('registration/own_project', value)
       },
-      user: {
-        year: null,
-        month: null,
-        email: null,
-        firstname: null,
-        lastname: null,
-        sex: null,
-        gsm: null,
-        via: null,
-        medical: null,
-        email_guardian: null,
-        gsm_guardian: null,
-        t_size: null,
-        general_questions: {},
-        contact: {
-          postalcode: null,
-          street: null,
-          house_number: null,
-          bus_number: null,
-          municipality_name: null
-        },
-        mandatory_approvals: []
+      get () {
+        return this.$store.getters['registration/own_project']
+      }
+    },
+    other_project: {
+      set (value) {
+        this.$store.dispatch('registration/other_project', value)
       },
-      own_project: 'own',
-      show: false,
-      variant: 'success',
-      message: this.$i18n.t('successReg')
+      get () {
+        return this.$store.getters['registration/other_project']
+      }
+    },
+    user: {
+      set (value) {
+        const u = this.$store.getters['registration/user']
+        u.language = this.$i18n.language
+        this.$store.dispatch('registration/user', u)
+      },
+      get () {
+        return this.$store.getters['registration/user']
+      }
+    },
+    mandatory_approvals: {
+      set (value) {
+        const u = this.$store.getters['registration/user']
+        u.mandatory_approvals = value
+        this.$store.dispatch('registration/user', u)
+      },
+      get () {
+        const u = this.$store.getters['registration/user']
+        return u.mandatory_approvals
+      }
     }
   },
   methods: {
     async onSubmit (evt) {
-      this.show = false
       this.loading = true
       try {
-        // pass language to store
-        this.$store.dispatch('registration/language', this.$i18n.locale)
+        this.$nuxt.$emit('clear-msg')
         await this.$services.registration.post()
         this.onReset(evt)
-        this.variant = 'success'
-        this.message = this.$i18n.t('successReg')
-        this.show = true
+        this.$nuxt.$emit('display-msg', this.$i18n.t('successReg'), 'success')
       } catch (error) {
-        this.variant = 'danger'
-        this.message = this.$i18n.t('failedReg')
-        this.show = true
+        this.$nuxt.$emit('display-msg', this.$i18n.t('failedReg'), 'danger')
       }
       this.loading = false
       window.scrollTo(0, 0)
     },
     onReset (evt) {
-      this.$store.dispatch('registration/clear_form')
-      this.year = this.month = null // clean temp fields
+      this.$store.dispatch('registration/clear_all')
       requestAnimationFrame(() => {
         this.$refs.observer.reset()
       })
