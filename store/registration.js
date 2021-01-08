@@ -142,7 +142,7 @@ export const getters = {
       general_questions: state.user_general_questions,
       mandatory_approvals: state.user_mandatory_approvals,
       birthmonth: new Date(state.user_year, state.user_month, 1, 12, 0, 0).toISOString().substring(0, 10),
-      t_size: parseInt(state.user_t_size),
+      sizeId: parseInt(state.user_t_size),
       via: state.user_via,
       medical: state.user_medical,
       project_name: state.project_name,
