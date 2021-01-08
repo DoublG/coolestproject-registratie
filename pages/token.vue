@@ -2,9 +2,7 @@
   <b-row>
     <b-col>
       <h1>{{ $t('CreateViaToken') }}</h1>
-      <b-alert :show="show" :variant="variant" dismissible>
-        {{ message }}
-      </b-alert>
+      <global-notification />
       <ValidationObserver ref="observer" v-slot="{ passes }">
         <b-form @submit.prevent="passes(onTokenSubmit)" @reset.prevent="onTokenReset">
           <ValidationProvider v-slot="{ valid, errors }" rules="required|max:36|min:36" name="ProjectCode">
@@ -48,43 +46,20 @@ export default {
   },
   data () {
     return {
-      variant: 'success',
-      message: this.$i18n.t('successReg'),
-      languages: [
-        { value: 'nl', text: 'Nederlands' },
-        { value: 'fr', text: 'Frans' },
-        { value: 'en', text: 'Engels' }
-      ]
+      project_code: null
     }
   },
-  computed: {
-    project_code: {
-      set (value) {
-        this.$store.commit('project/project_code', value)
-      },
-      get () {
-        return this.$store.state.project.project_code
-      }
-    }
-  },
+  computed: {},
   methods: {
     async onTokenSubmit (evt) {
       try {
         // link to project
-        const projectData = await this.$services.projectinfo.post_token()
-        this.variant = 'success'
-        this.message = this.$i18n.t('successChange')
-        this.show = true
-        if (projectData !== '') {
-          await this.$store.dispatch('project/updateProject', projectData)
-        }
+        this.$nuxt.$emit('clear-msg')
+        await this.$services.projectinfo.post_token(this.project_code)
+        this.$nuxt.$emit('display-msg', this.$i18n.t('successChange'), 'success')
         this.$router.push('project')
       } catch (error) {
-        this.variant = 'danger'
-        // eslint-disable-next-line no-console
-        console.error(error)
-        this.message = this.$i18n.t('failedChange')
-        this.show = true
+        this.$nuxt.$emit('display-msg', this.$i18n.t('failedChange'), 'danger')
       }
     },
     onCancel (evt) {

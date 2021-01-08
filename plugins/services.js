@@ -4,8 +4,8 @@ export default ({ app, store }, inject) => {
       post() {
         return app.$axios.$post('/projectinfo', store.getters['project/projectinfo'], { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
       },
-      post_token() {
-        return app.$axios.$post('/projectinfo', store.getters['project/tokeninfo'], { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
+      post_token(token) {
+        return app.$axios.$post('/projectinfo', {}, { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
       },
       patch() {
         return app.$axios.$patch('/projectinfo', store.getters['project/projectinfo'], { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
@@ -43,8 +43,8 @@ export default ({ app, store }, inject) => {
       }
     },
     registration: {
-      post() {
-        return app.$axios.$post('/register', store.getters['registration/post_api'])
+      post(registration) {
+        return app.$axios.$post('/register', registration)
       }
     },
     userinfo: {

@@ -115,7 +115,7 @@ export default {
       this.loading = true
       try {
         this.$nuxt.$emit('clear-msg')
-        await this.$services.registration.post()
+        await this.$services.registration.post(this.$store.getters['registration/post_api'])
         this.onReset(evt)
         this.$nuxt.$emit('display-msg', this.$i18n.t('successReg'), 'success')
       } catch (error) {
