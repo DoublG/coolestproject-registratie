@@ -13,6 +13,7 @@
       >
         <b-form-input
           id="input-3"
+          :disabled="readOnly"
           :value="user.email"
           :placeholder="$t('Email adres:')"
           :state="errors[0] ? false : valid ? true : null"
@@ -394,6 +395,9 @@ export default {
           general_questions: {}
         }
       }
+    },
+    readOnly: {
+      type: Boolean
     }
   },
   async fetch () {

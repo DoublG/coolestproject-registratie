@@ -65,8 +65,13 @@ export default ({ app, store }, inject) => {
       patch() {
         return app.$axios.$patch('/userinfo', store.getters['user/userinfo'], { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
       },
-      get() {
-        return app.$axios.$get('/userinfo', { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
+      async get() {
+        const user = await app.$axios.$get('/userinfo', { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
+        const birthmonth = new Date(user.birthmonth)
+        user.year = birthmonth.getFullYear()
+        user.month = birthmonth.getMonth()
+        delete user.birthmonth
+        return user
       },
       delete() {
         return app.$axios.$delete('/userinfo', { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })

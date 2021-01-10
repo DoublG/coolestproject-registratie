@@ -17,6 +17,7 @@
           :options="languages"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-18-live-feedback"
+          :disabled="readOnly"
           @input="update_value('project_lang', $event)"
         />
         <b-form-invalid-feedback id="input-18-live-feedback">
@@ -39,6 +40,7 @@
           :value="project.project_type"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-166-live-feedback"
+          :disabled="readOnly"
           @input="update_value('project_type', $event)"
         />
         <b-form-invalid-feedback id="input-166-live-feedback">
@@ -62,6 +64,7 @@
           :placeholder="$t('GeefProjectnaam:')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-20-live-feedback"
+          :disabled="readOnly"
           @input="update_value('project_name', $event)"
         />
         <b-form-invalid-feedback id="input-20-live-feedback">
@@ -84,6 +87,7 @@
           :value="project.project_descr"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-21-live-feedback"
+          :disabled="readOnly"
           @input="update_value('project_descr', $event)"
         />
         <b-form-invalid-feedback id="input-21-live-feedback">
@@ -116,6 +120,9 @@ export default {
           project_lang: null
         }
       }
+    },
+    readOnly: {
+      type: Boolean
     }
   },
   async fetch () {},

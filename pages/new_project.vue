@@ -6,11 +6,12 @@
       </h1>
       <global-notification />
       <ValidationObserver ref="observer" v-slot="{ passes }">
-        <b-form @submit.prevent="passes(onCreateProject)" @reset.prevent="onReset">
+        <b-form @submit.prevent="passes(onCreateProject)" @reset.prevent="onResetProject">
           <own-project v-model="project" />
           <ActionBarProject
             create
             cancel
+            reset
             @cancel="onCancel"
           />
         </b-form>
@@ -31,6 +32,9 @@ export default {
     }
   },
   methods: {
+    onResetProject (evt) {
+      this.project = {}
+    },
     onCancel (evt) {
       this.$router.push('no_project')
     },
