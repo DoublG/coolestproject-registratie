@@ -1,17 +1,46 @@
 <template>
-  <Project create />
+  <b-row>
+    <b-col>
+      <h1>
+        {{ $t('createProject') }}
+      </h1>
+      <global-notification />
+      <ValidationObserver ref="observer" v-slot="{ passes }">
+        <b-form @submit.prevent="passes(onCreateProject)" @reset.prevent="onReset">
+          <own-project v-model="project" />
+          <ActionBarProject
+            create
+            cancel
+            @cancel="onCancel"
+          />
+        </b-form>
+      </ValidationObserver>
+    </b-col>
+  </b-row>
 </template>
 <script>
-import Project from '~/components/Project.vue'
-
+import { ValidationObserver } from 'vee-validate'
 export default {
-  middleware: ['authenticated'],
+  middleware: 'authenticated',
   components: {
-    Project
+    ValidationObserver
+  },
+  data () {
+    return {
+      project: {}
+    }
+  },
+  methods: {
+    onCancel (evt) {
+      this.$router.push('no_project')
+    },
+    async onCreateProject (evt) {
+      await this.$services.projectinfo.post(this.project)
+      this.$router.push({ path: '/project' })
+    }
   }
 }
 </script>
-
 
 <style>
 </style>

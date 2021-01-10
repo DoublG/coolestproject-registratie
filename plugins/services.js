@@ -1,14 +1,28 @@
 export default ({ app, store }, inject) => {
   const serviceHandler = {
     projectinfo: {
-      post() {
-        return app.$axios.$post('/projectinfo', store.getters['project/projectinfo'], { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
+      post(project) {
+        const createCreate = {
+          project_name: project.project_name,
+          project_descr: project.project_descr,
+          project_type: project.project_type,
+          project_lang: project.project_lang,
+          info: project.info
+        }
+        return app.$axios.$post('/projectinfo', createCreate, { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
       },
       post_token(token) {
         return app.$axios.$post('/projectinfo', {}, { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
       },
-      patch() {
-        return app.$axios.$patch('/projectinfo', store.getters['project/projectinfo'], { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
+      patch(project) {
+        const projectsUpdate = {
+          project_name: project.project_name,
+          project_descr: project.project_descr,
+          project_type: project.project_type,
+          project_lang: project.project_lang,
+          info: project.info
+        }
+        return app.$axios.$patch('/projectinfo', projectsUpdate, { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
       },
       get() {
         return app.$axios.$get('/projectinfo', { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })

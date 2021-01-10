@@ -12,25 +12,12 @@
   </b-row>
 </template>
 <script>
-import ActionBarProject from '~/components/ActionBarProject.vue'
-
 export default {
   middleware: 'authenticated',
   components: {
-    ActionBarProject
   },
   data () {
     return {}
-  },
-  computed: {
-    create_project: {
-      set (value) {
-        this.$store.commit('create_project', value)
-      },
-      get () {
-        return this.$store.state.create_project
-      }
-    }
   },
   methods: {
     onCreateProject (evt) {
