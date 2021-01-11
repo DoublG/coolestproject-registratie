@@ -216,7 +216,7 @@ export default {
     'CreateViaToken': 'Add me to another project',
     'december': 'December',
     'E-mail adres ouders/voogd:': 'E-mail address parents / guardian',
-    'E-mail adres:': 'E-mail address parents / guardian',
+    'E-mail adres:': 'E-mail address',
     'eigenProject': 'I have my own project',
     'EmailTokenToParticipant': 'Email token',
     'failedReg': 'Registration failed try again later',

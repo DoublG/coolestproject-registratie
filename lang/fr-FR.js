@@ -219,7 +219,7 @@ export default {
     'december': 'décembre',
     'eigenProject': "J'ai mon propre projet",
     'Email adres ouders/voogd:': 'Adresse mail des parents / tuteur',
-    'Email adres:': 'Adresse mail des parents / tuteur',
+    'Email adres:': 'Adresse mail',
     'EmailTokenToParticipant': 'jeton par courrier électronique',
     'failedReg': "L'inscription a échoué - Essaie à nouveau",
     'februari': 'février',
