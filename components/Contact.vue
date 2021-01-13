@@ -7,13 +7,13 @@
     >
       <b-form-group
         id="input-group-1"
-        :label="$t('Postcode:')"
+        :label="$t('label_Postcode:')"
         label-for="input-1"
       >
         <b-form-input
           id="input-1"
           :value="contact.postalcode"
-          :placeholder="$t('Postcode:')"
+          :placeholder="$t('placeholder_Postcode:')"
           :state="errors[0] ? false : valid ? true : null"
           type="number"
           aria-describedby="input-1-live-feedback"
@@ -31,13 +31,13 @@
     >
       <b-form-group
         id="input-group-1z"
-        :label="$t('Street')"
+        :label="$t('label_Street')"
         label-for="input-1z"
       >
         <b-form-input
           id="input-1z"
           :value="contact.street"
-          :placeholder="$t('Street')"
+          :placeholder="$t('placeholder_Street')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-1z-live-feedback"
           @input="update_value('street', $event)"
@@ -54,13 +54,13 @@
     >
       <b-form-group
         id="input-group-2z"
-        :label="$t('HouseNumber')"
+        :label="$t('label_HouseNumber')"
         label-for="input-2z"
       >
         <b-form-input
           id="input-2z"
           :value="contact.house_number"
-          :placeholder="$t('HouseNumber')"
+          :placeholder="$t('placeholder_HouseNumber')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-2z-live-feedback"
           @input="update_value('house_number', $event)"
@@ -73,13 +73,13 @@
     <ValidationProvider v-slot="{ valid, errors }" name="BusNumber">
       <b-form-group
         id="input-group-3z"
-        :label="$t('BusNumber')"
+        :label="$t('label_BusNumber')"
         label-for="input-3z"
       >
         <b-form-input
           id="input-3z"
           :value="contact.bus_number"
-          :placeholder="$t('BusNumber')"
+          :placeholder="$t('placeholder_BusNumber')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-3z-live-feedback"
           @input="update_value('bus_number', $event)"
@@ -92,13 +92,13 @@
     <ValidationProvider v-slot="{ valid, errors }" name="MunicipalityName">
       <b-form-group
         id="input-group-3zz"
-        :label="$t('MunicipalityName')"
+        :label="$t('label_MunicipalityName')"
         label-for="input-3zz"
       >
         <b-form-input
           id="input-3zz"
           :value="contact.municipality_name"
-          :placeholder="$t('MunicipalityName')"
+          :placeholder="$t('placeholder_MunicipalityName')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-3zz-live-feedback"
           @input="update_value('municipality_name', $event)"

@@ -7,15 +7,15 @@
     >
       <b-form-group
         id="input-group-3"
-        :label="$t('Email adres:')"
-        :description="$t('We delen dit met niemand')"
+        :label="$t('label_Email adres:')"
+        :description="$t('description_We delen dit met niemand')"
         label-for="input-3"
       >
         <b-form-input
           id="input-3"
           :disabled="readOnly"
           :value="user.email"
-          :placeholder="$t('Email adres:')"
+          :placeholder="$t('placeholder_Email adres:')"
           :state="errors[0] ? false : valid ? true : null"
           type="email"
           aria-describedby="input-3-live-feedback"
@@ -33,13 +33,13 @@
     >
       <b-form-group
         id="input-group-5"
-        :label="$t('Voornaam:')"
+        :label="$t('label_Voornaam:')"
         label-for="input-5"
       >
         <b-form-input
           id="input-5"
           :value="user.firstname"
-          :placeholder="$t('GeefVoornaam:')"
+          :placeholder="$t('placeholder_GeefVoornaam:')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-5-live-feedback"
           @input="update_value('firstname', $event)"
@@ -56,13 +56,13 @@
     >
       <b-form-group
         id="input-group-6"
-        :label="$t('Achternaam:')"
+        :label="$t('label_Achternaam:')"
         label-for="input-6"
       >
         <b-form-input
           id="input-6"
           :value="user.lastname"
-          :placeholder="$t('GeefAchternaam:')"
+          :placeholder="$t('placeholder_GeefAchternaam:')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-6-live-feedback"
           @input="update_value('lastname', $event)"
@@ -81,7 +81,7 @@
     >
       <b-form-group
         id="input-group-4"
-        :label="$t('Geboortejaar:')"
+        :label="$t('label_Geboortejaar:')"
         label-for="input-4"
       >
         <b-form-select
@@ -107,7 +107,7 @@
     >
       <b-form-group
         id="input-group-24"
-        :label="$t('Geboortemaand:')"
+        :label="$t('label_Geboortemaand:')"
         label-for="input-24"
       >
         <b-form-select
@@ -131,7 +131,7 @@
     >
       <b-form-group
         id="input-group-7"
-        :label="$t('Geslacht:')"
+        :label="$t('label_Geslacht:')"
         label-for="input-7"
       >
         <b-form-select
@@ -176,7 +176,7 @@
     >
       <b-form-group
         id="input-group-9"
-        :label="$t('T-shirt maat:')"
+        :label="$t('label_T-shirt maat:')"
         label-for="input-9"
       >
         <b-form-select
@@ -209,14 +209,14 @@
     >
       <b-form-group
         id="input-group-2"
-        :label="$t('mobiel nummer (+32):')"
-        :description="$t('Waar kunnen we jou bereiken in geval van nood')"
+        :label="$t('label_mobiel nummer (+32):')"
+        :description="$t('description_Waar kunnen we jou bereiken in geval van nood')"
         label-for="input-2"
       >
         <b-form-input
           id="input-2"
           :value="user.gsm"
-          :placeholder="$t('mobiel nummer (+32):')"
+          :placeholder="$t('placeholder_mobiel nummer (+32):')"
           :state="errors[0] ? false : valid ? true : null"
           type="tel"
           aria-describedby="input-2-live-feedback"
@@ -230,13 +230,13 @@
     <ValidationProvider v-slot="{ valid, errors }" name="Via">
       <b-form-group
         id="input-group-10"
-        :label="$t('Van waar ken je ons:')"
+        :label="$t('label_Van waar ken je ons:')"
         label-for="input-10"
       >
         <b-form-input
           id="input-10"
           :value="user.via"
-          :placeholder="$t('Geef je dojo, school')"
+          :placeholder="$t('placeholder_Geef je dojo, school')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-10-live-feedback"
           @input="update_value('via', $event)"
@@ -254,7 +254,7 @@
       >
         <b-form-group
           id="input-group-11"
-          :label="$t('Zijn er aandoeningen')"
+          :label="$t('label_Zijn er aandoeningen')"
           label-for="input-11"
         >
           <b-form-textarea
@@ -281,14 +281,14 @@
       >
         <b-form-group
           id="input-group-13"
-          :label="$t('Email adres ouders/voogd:')"
+          :label="$t('label_Email adres ouders/voogd:')"
           label-for="input-13"
-          de:description="$t('We delen dit met niemand')"
+          de:description="$t('description_We delen dit met niemand')"
         >
           <b-form-input
             id="input-13"
             :value="user.email_guardian"
-            :placeholder="$t('Email adres ouders/voogd:')"
+            :placeholder="$t('placeholder_Email adres ouders/voogd:')"
             :state="errors[0] ? false : valid ? true : null"
             type="email"
             aria-describedby="input-13-live-feedback"
@@ -309,7 +309,7 @@
       >
         <b-form-group
           id="input-group-14"
-          :label="$t('mobiel nummer ouders/voogd')"
+          :label="$t('label_mobiel nummer ouders/voogd')"
           :description="
             $t('Waar kunnen we jou bereiken in geval van nood')
           "
@@ -318,7 +318,7 @@
           <b-form-input
             id="input-14"
             :value="user.gsm_guardian"
-            :placeholder="$t('mobiel nummer ouders/voogd')"
+            :placeholder="$t('placeholder_mobiel nummer ouders/voogd')"
             :state="errors[0] ? false : valid ? true : null"
             type="tel"
             aria-describedby="input-14-live-feedback"
@@ -336,7 +336,7 @@
       >
         <b-form-group
           id="input-group-15"
-          :label="$t('Zijn er aandoeningen')"
+          :label="$t('label_Zijn er aandoeningen')"
           label-for="input-15"
         >
           <b-form-textarea

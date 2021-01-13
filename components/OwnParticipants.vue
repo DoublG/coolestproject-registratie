@@ -2,7 +2,7 @@
   <div>
     <b-table
       :items="participants"
-      :fields="[{ key: 'id', label: $t('MedewToken') }, { key: 'name', label: $t('MedewNaam') }]"
+      :fields="[{ key: 'id', label: $t('label_MedewToken') }, { key: 'name', label: $t('label_MedewNaam') }]"
       hover
       striped
     >

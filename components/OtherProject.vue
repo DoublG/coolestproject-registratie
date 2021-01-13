@@ -7,8 +7,8 @@
     >
       <b-form-group
         id="input-group-22"
-        :label="$t('Projectcode:')"
-        :description="$t('Geefcode')"
+        :label="$t('label_Projectcode:')"
+        :description="$t('description_Geefcode')"
         label-for="input-22"
       >
         <b-form-input
