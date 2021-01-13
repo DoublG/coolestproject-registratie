@@ -396,7 +396,7 @@ export default {
           email_guardian: null,
           gsm_guardian: null,
           t_size: null,
-          general_questions: {}
+          general_questions: []
         }
       }
     },
@@ -430,7 +430,7 @@ export default {
   },
   data () {
     const monthList =
-      Array.from({ length: 12 }, (v, k) => { return { text: format(new Date(2000, k), 'MMMM', { locale: locales[this.$i18n.locale] }) } })
+      Array.from({ length: 12 }, (v, k) => { return { value: k, text: format(new Date(2000, k), 'MMMM', { locale: locales[this.$i18n.locale] }) } })
     monthList.unshift({ text: this.$i18n.t('Kiesmaand'), value: null })
 
     return {

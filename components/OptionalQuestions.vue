@@ -10,7 +10,7 @@
       >
         <b-form-group :id="`input-group-${ question.id }`" :label="question.description">
           <b-form-radio-group
-            :checked="responses[ question.id ]"
+            :checked="responseIntern[ question.id ]"
             :state="errors[0] ? false : valid ? true : null"
             :options="get_options(question)"
             stacked
@@ -37,8 +37,8 @@ export default {
   },
   props: {
     responses: {
-      type: Object,
-      default: () => {}
+      type: Array,
+      default: () => []
     }
   },
   async fetch () {
@@ -53,10 +53,33 @@ export default {
         ]
       },
       change_selection (id, evt) {
-        this.$set(this.responses, id, evt)
-        this.$emit('change', this.responses)
+        // copy & change response
+        const oldResponse = Object.assign({}, this.responseIntern)
+        oldResponse[id] = evt
+
+        const responses = []
+        for (const [, value] of Object.entries(oldResponse)) {
+          if (value === '_') {
+            continue
+          }
+          responses.push(value)
+        }
+        this.$emit('change', responses)
       },
       questions: []
+    }
+  },
+  computed: {
+    responseIntern () {
+      const internal = {}
+      for (const question of this.questions) {
+        if (this.responses.includes(question.id)) {
+          internal[question.id] = parseInt(question.id)
+        } else {
+          internal[question.id] = '_'
+        }
+      }
+      return internal
     }
   }
 }
