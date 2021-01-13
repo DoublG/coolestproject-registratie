@@ -21,7 +21,7 @@ const originalState = () => {
     user_email_guardian: null,
     user_gsm_guardian: null,
     user_t_size: null,
-    user_general_questions: {},
+    user_general_questions: [],
     user_mandatory_approvals: [],
     // user contact
     user_contact_postalcode: null,
@@ -120,7 +120,7 @@ export const getters = {
       gsm_guardian: state.user_gsm_guardian,
       t_size: state.user_t_size,
       // copy before return
-      general_questions: Object.assign({}, state.user_general_questions),
+      general_questions: [...state.user_general_questions],
       mandatory_approvals: [...state.user_mandatory_approvals],
       contact: {
         postalcode: state.user_contact_postalcode,
@@ -141,8 +141,8 @@ export const getters = {
       language: state.user_language,
       general_questions: state.user_general_questions,
       mandatory_approvals: state.user_mandatory_approvals,
-      year: state.user_year,
-      month: state.user_month,
+      year: parseInt(state.user_year),
+      month: parseInt(state.user_month),
       sizeId: parseInt(state.user_t_size),
       via: state.user_via,
       medical: state.user_medical,
@@ -166,20 +166,7 @@ export const getters = {
       if (!base[key]) {
         return
       }
-      // cleanup questions (remove no answers)
-      if (key === 'general_questions') {
-        const questions = base[key]
-        cleanup[key] = []
-        Object.keys(questions).forEach(function (element) {
-          if (questions[element] === '_') {
-            return
-          }
-          cleanup[key].push(parseInt(element))
-        })
-      } else {
-        // normal copy
-        cleanup[key] = base[key]
-      }
+      cleanup[key] = base[key]
     })
     return cleanup
   }
