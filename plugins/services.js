@@ -43,17 +43,29 @@ export default ({ app, store }, inject) => {
     },
     questions: {
       get() {
-        return app.$axios.$get('/questions')
+        return app.$axios.$get('/questions', {
+          headers: {
+            'Accept-Language': app.i18n.locale
+          }
+        })
       }
     },
     approvals: {
       get() {
-        return app.$axios.$get('/approvals')
+        return app.$axios.$get('/approvals', {
+          headers: {
+            'Accept-Language': app.i18n.locale
+          }
+        })
       }
     },
     tshirts: {
       get() {
-        return app.$axios.$get('/tshirts')
+        return app.$axios.$get('/tshirts', {
+          headers: {
+            'Accept-Language': app.i18n.locale
+          }
+        })
       }
     },
     registration: {

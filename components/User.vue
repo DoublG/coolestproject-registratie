@@ -112,7 +112,7 @@
       >
         <b-form-select
           :value="user.month"
-          :options="month_list"
+          :options="monthList"
           :state="errors[0] ? false : valid ? true : null"
           @input="update_value('month', $event)"
         />
@@ -359,7 +359,11 @@
 
 <script>
 import { ValidationProvider } from 'vee-validate'
-import { addYears, differenceInYears, parseISO } from 'date-fns'
+import { addYears, differenceInYears, parseISO, format } from 'date-fns'
+import { en, nl, fr } from 'date-fns/locale'
+
+const locales = { en, nl, fr }
+
 export default {
   components: {
     ValidationProvider
@@ -425,26 +429,16 @@ export default {
     this.guardianAge = this.settings.guardianAge
   },
   data () {
+    const monthList =
+      Array.from({ length: 12 }, (v, k) => { return { text: format(new Date(2000, k), 'MMMM', { locale: locales[this.$i18n.locale] }) } })
+    monthList.unshift({ text: this.$i18n.t('Kiesmaand'), value: null })
+
     return {
       startDateEvent: null,
       guardianAge: -1,
       tshirtsList: [],
       year_list: [],
-      month_list: [
-        { text: this.$i18n.t('Kiesmaand'), value: null },
-        { value: 0, text: this.$i18n.t('januari') },
-        { value: 1, text: this.$i18n.t('februari') },
-        { value: 2, text: this.$i18n.t('maart') },
-        { value: 3, text: this.$i18n.t('april') },
-        { value: 4, text: this.$i18n.t('mei') },
-        { value: 5, text: this.$i18n.t('juni') },
-        { value: 6, text: this.$i18n.t('juli') },
-        { value: 7, text: this.$i18n.t('augustus') },
-        { value: 8, text: this.$i18n.t('september') },
-        { value: 9, text: this.$i18n.t('october') },
-        { value: 10, text: this.$i18n.t('november') },
-        { value: 11, text: this.$i18n.t('december') }
-      ],
+      monthList,
       geslacht: [
         { text: this.$i18n.t('Ik ben een'), value: null },
         { value: 'f', text: this.$i18n.t('meisje') },
@@ -458,7 +452,7 @@ export default {
       return (
         differenceInYears(
           state.startDateEvent,
-          new Date(state.year, state.month, 1)
+          new Date(state.user.year, state.user.month, 1)
         ) < state.guardianAge
       )
     }

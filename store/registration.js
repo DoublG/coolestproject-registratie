@@ -141,7 +141,8 @@ export const getters = {
       language: state.user_language,
       general_questions: state.user_general_questions,
       mandatory_approvals: state.user_mandatory_approvals,
-      birthmonth: new Date(state.user_year, state.user_month, 1, 12, 0, 0).toISOString().substring(0, 10),
+      year: state.user_year,
+      month: state.user_month,
       sizeId: parseInt(state.user_t_size),
       via: state.user_via,
       medical: state.user_medical,
@@ -165,7 +166,7 @@ export const getters = {
       if (!base[key]) {
         return
       }
-      // cleanup questions
+      // cleanup questions (remove no answers)
       if (key === 'general_questions') {
         const questions = base[key]
         cleanup[key] = []
