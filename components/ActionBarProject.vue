@@ -71,12 +71,9 @@
     >
       <font-awesome-icon :icon="['fas', 'eject']" />  {{ $t('Cancel') }}
     </b-button>
-    <b-modal v-model="showPopup" title="Delete Project/Remove Link" ok-title="Delete" @ok="onDelete">
-      <span v-if="!own">
-        {{ $t('LinkDelete') }}
-      </span>
-      <span v-else>
-        {{ $t('Project wordt verwijderd') }}
+    <b-modal v-model="showPopup" :title="deleteMsgTitle" :ok-title="okDeleteMsg" @ok="onDelete">
+      <span>
+        {{ deleteMsg }}
       </span>
     </b-modal>
   </b-form-group>
@@ -84,6 +81,18 @@
 <script>
 export default {
   props: {
+    deleteMsg: {
+      type: String,
+      default: 'deleten'
+    },
+    deleteMsgTitle: {
+      type: String,
+      default: 'deleten'
+    },
+    okDeleteMsg: {
+      type: String,
+      default: 'deleten'
+    },
     project: {
       type: Boolean,
       default: false
