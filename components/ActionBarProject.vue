@@ -50,7 +50,7 @@
       class="button-hero"
       @click="onCreateProject"
     >
-      <font-awesome-icon :icon="['fas', 'plus']" />  {{ $t('CreateProject') }}
+      <font-awesome-icon :icon="['fas', 'plus']" />  {{ $t('createProject') }}
     </b-button>
     <b-button
       v-if="token"

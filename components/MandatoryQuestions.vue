@@ -6,7 +6,7 @@
         :rules="{ required: true, all_true: { all: approvals.map((i) => { return i.value } ) , selected: responses } }"
         name="MandatoryApprovals"
       >
-        <b-form-group :description="$t('Je moet akkoord')">
+        <b-form-group :description="$t('description_Je moet akkoord')">
           <b-form-checkbox-group
             id="mandatory-approvals"
             :checked="responses"

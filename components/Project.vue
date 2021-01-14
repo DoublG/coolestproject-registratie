@@ -24,8 +24,8 @@
           <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Language">
             <b-form-group
               id="input-group-18"
-              :label="$t('Taal:')"
-              :description="$t('taalJury')"
+              :label="$t('label_Taal:')"
+              :description="$t('description_taalJury')"
               label-for="select-18"
             >
               <b-form-select
@@ -44,7 +44,7 @@
           <ValidationProvider v-slot="{ valid, errors }" name="ProjectType">
             <b-form-group
               id="input-group-166"
-              :label="$t('Project_Type')"
+              :label="$t('label_Project_Type')"
               label-for="input-166"
             >
               <b-form-textarea
@@ -62,13 +62,13 @@
           <ValidationProvider v-slot="{ valid, errors }" rules="required|max:100" name="ProjectName">
             <b-form-group
               id="input-group-20"
-              :label="$t('Projectnaam:')"
+              :label="$t('label_Projectnaam:')"
               label-for="input-20"
             >
               <b-form-input
                 id="input-20"
                 v-model="project_name"
-                :placeholder="$t('GeefProjectnaam:')"
+                :placeholder="$t('placeholder_GeefProjectnaam:')"
                 :state="errors[0] ? false : (valid ? true : null)"
                 :disabled="disabled"
                 aria-describedby="input-20-live-feedback"
@@ -81,7 +81,7 @@
           <ValidationProvider v-slot="{ valid, errors }" rules="required|max:4000" name="ProjectDescription">
             <b-form-group
               id="input-group-21"
-              :label="$t('Omschrijving:')"
+              :label="$t('label_Omschrijving:')"
               label-for="input-21"
             >
               <b-form-textarea
@@ -101,7 +101,7 @@
               <h2>{{ $t('participants') }}</h2>
               <b-table
                 :items="participants"
-                :fields="[{ key: 'id', label: $t('MedewToken') }, { key: 'name', label: $t('MedewNaam') }]"
+                :fields="[{ key: 'id', label: $t('label_MedewToken') }, { key: 'name', label: $t('label_MedewNaam') }]"
                 hover
                 striped
               >
@@ -121,7 +121,7 @@
               <h2>{{ $t('participants') }}</h2>
               <b-table
                 :items="participants"
-                :fields="[{ key: 'name', label: $t('MedewNaam') }]"
+                :fields="[{ key: 'name', label: $t('label_MedewNaam') }]"
                 striped
                 hover
               >

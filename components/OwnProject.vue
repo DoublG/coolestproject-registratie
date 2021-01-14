@@ -7,8 +7,8 @@
     >
       <b-form-group
         id="input-group-18"
-        :label="$t('Taal:')"
-        :description="$t('taalJury')"
+        :label="$t('label_Taal:')"
+        :description="$t('description_taalJury')"
         label-for="select-18"
       >
         <b-form-select
@@ -32,7 +32,7 @@
     >
       <b-form-group
         id="input-group-166"
-        :label="$t('Project_Type')"
+        :label="$t('label_Project_Type')"
         label-for="input-166"
       >
         <b-form-textarea
@@ -55,13 +55,13 @@
     >
       <b-form-group
         id="input-group-20"
-        :label="$t('Projectnaam:')"
+        :label="$t('label_Projectnaam:')"
         label-for="input-20"
       >
         <b-form-input
           id="input-20"
           :value="project.project_name"
-          :placeholder="$t('GeefProjectnaam:')"
+          :placeholder="$t('placeholder_GeefProjectnaam:')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-20-live-feedback"
           :disabled="readOnly"
@@ -79,7 +79,7 @@
     >
       <b-form-group
         id="input-group-21"
-        :label="$t('Omschrijving:')"
+        :label="$t('label_Omschrijving:')"
         label-for="input-21"
       >
         <b-form-textarea
