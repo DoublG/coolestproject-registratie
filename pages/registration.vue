@@ -115,7 +115,16 @@ export default {
       this.loading = true
       try {
         this.$nuxt.$emit('clear-msg')
-        await this.$services.registration.post(this.$store.getters['registration/post_api'])
+
+        const registration = { project: {} }
+        if (this.is_own_project === 'own') {
+          registration.project.own_project = this.own_project
+        } else {
+          registration.project.other_project = this.other_project
+        }
+        registration.user = this.user
+
+        await this.$services.registration.post(registration)
         this.onReset(evt)
         this.$nuxt.$emit('display-msg', this.$i18n.t('successReg'), 'success')
       } catch (error) {

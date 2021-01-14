@@ -23,12 +23,12 @@ const originalState = () => {
     user_t_size: null,
     user_general_questions: [],
     user_mandatory_approvals: [],
-    // user contact
-    user_contact_postalcode: null,
-    user_contact_street: null,
-    user_contact_house_number: null,
-    user_contact_bus_number: null,
-    user_contact_municipality_name: null
+    // user address
+    user_address_postalcode: null,
+    user_address_street: null,
+    user_address_house_number: null,
+    user_address_bus_number: null,
+    user_address_municipality_name: null
   }
 }
 
@@ -60,12 +60,12 @@ export const mutations = {
     state.user_t_size = user.t_size
     state.user_general_questions = user.general_questions
     state.user_mandatory_approvals = user.mandatory_approvals
-    // user contact
-    state.user_contact_postalcode = user.contact.postalcode
-    state.user_contact_street = user.contact.street
-    state.user_contact_house_number = user.contact.house_number
-    state.user_contact_bus_number = user.contact.bus_number
-    state.user_contact_municipality_name = user.contact.municipality_name
+    // user address
+    state.user_address_postalcode = user.address.postalcode
+    state.user_address_street = user.address.street
+    state.user_address_house_number = user.address.house_number
+    state.user_address_bus_number = user.address.bus_number
+    state.user_address_municipality_name = user.address.municipality_name
   },
   reset(state) {
     const origState = originalState()
@@ -122,42 +122,50 @@ export const getters = {
       // copy before return
       general_questions: [...state.user_general_questions],
       mandatory_approvals: [...state.user_mandatory_approvals],
-      contact: {
-        postalcode: state.user_contact_postalcode,
-        street: state.user_contact_street,
-        house_number: state.user_contact_house_number,
-        bus_number: state.user_contact_bus_number,
-        municipality_name: state.user_contact_municipality_name
+      address: {
+        postalcode: state.user_address_postalcode,
+        street: state.user_address_street,
+        house_number: state.user_address_house_number,
+        bus_number: state.user_address_bus_number,
+        municipality_name: state.user_address_municipality_name
       }
     }
   },
   post_api: (state, getter, rootState) => {
     const base = {
-      postalcode: parseInt(state.user_contact_postalcode),
-      email: state.user_email,
-      firstname: state.user_firstname,
-      lastname: state.user_lastname,
-      sex: state.user_sex,
-      language: state.user_language,
-      general_questions: state.user_general_questions,
-      mandatory_approvals: state.user_mandatory_approvals,
-      year: parseInt(state.user_year),
-      month: parseInt(state.user_month),
-      sizeId: parseInt(state.user_t_size),
-      via: state.user_via,
-      medical: state.user_medical,
-      project_name: state.project_name,
-      project_descr: state.project_descr,
-      project_type: state.project_type,
-      project_code: state.project_code,
-      street: state.user_contact_street,
-      house_number: state.user_contact_house_number,
-      municipality_name: state.user_contact_municipality_name,
-      box_number: state.user_contact_bus_number,
-      project_lang: state.project_lang,
-      gsm: state.user_gsm,
-      gsm_guardian: state.user_gsm_guardian,
-      email_guardian: state.user_email_guardian
+      user: {
+        email: state.user_email,
+        firstname: state.user_firstname,
+        lastname: state.user_lastname,
+        sex: state.user_sex,
+        language: state.user_language,
+        general_questions: state.user_general_questions,
+        mandatory_approvals: state.user_mandatory_approvals,
+        year: parseInt(state.user_year),
+        month: parseInt(state.user_month),
+        sizeId: parseInt(state.user_t_size),
+        via: state.user_via,
+        medical: state.user_medical,
+        gsm: state.user_gsm,
+        gsm_guardian: state.user_gsm_guardian,
+        email_guardian: state.user_email_guardian,
+        address: {
+          postalcode: parseInt(state.user_address_postalcode),
+          street: state.user_address_street,
+          house_number: state.user_address_house_number,
+          bus_number: state.user_address_bus_number,
+          municipality_name: state.user_address_municipality_name
+        }
+      },
+      other_project: {
+        project_code: state.project_code
+      },
+      own_project: {
+        project_name: state.project_name,
+        project_descr: state.project_descr,
+        project_type: state.project_type,
+        project_lang: state.project_lang
+      }
     }
     // cleanup api call (remove nulls & cleanup questions)
     const cleanup = {}

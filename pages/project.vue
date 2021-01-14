@@ -1,32 +1,32 @@
 <template>
   <b-row>
     <b-col>
-      <h1 v-if="project.own_project">
+      <h1 v-if="project.own_project.own_project">
         {{ $t('titleProject') }}
       </h1>
       <h1 v-else>
-        {{ $t('titleOther', { owner: project_owner }) }}
+        {{ $t('titleOther', { owner: project.own_project.project_owner }) }}
       </h1>
       <global-notification />
       <ValidationObserver ref="observer" v-slot="{ passes }">
         <b-form @submit.prevent="passes(onUpdateProject)" @reset.prevent="onReset">
-          <own-project v-model="project" />
+          <own-project v-model="project.own_project" />
           <h2>{{ $t('participants') }}</h2>
-          <div v-if="project.own_project">
+          <div v-if="project.own_project.own_project">
             <own-participants
-              v-model="project.participants"
+              v-model="project.own_project.participants"
               @copyToClipboard="copyToClipboard"
             />
           </div>
           <div v-else>
-            <other-participants v-model="project.participants" />
+            <other-participants v-model="project.own_project.participants" />
           </div>
           <ActionBarProject
-            :update="project.own_project"
-            :reset="project.own_project"
-            :add="project.remaining_tokens > 0 && project.own_project"
-            :del="project.delete_possible"
-            :own="project.own_project"
+            :update="project.own_project.own_project"
+            :reset="project.own_project.own_project"
+            :add="project.own_project.remaining_tokens > 0 && project.own_project.own_project"
+            :del="project.own_project.delete_possible"
+            :own="project.own_project.own_project"
             @deleteProject="onDelete"
             @createToken="onAddToken"
             @cancel="onCancel"
@@ -53,8 +53,7 @@ export default {
     }
   },
   data () {
-    return {
-    }
+    return {}
   },
   methods: {
     copyToClipboard (token) {

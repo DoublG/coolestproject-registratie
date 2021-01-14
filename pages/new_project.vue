@@ -7,7 +7,7 @@
       <global-notification />
       <ValidationObserver ref="observer" v-slot="{ passes }">
         <b-form @submit.prevent="passes(onCreateProject)" @reset.prevent="onResetProject">
-          <own-project v-model="project" />
+          <own-project v-model="project.own_project" />
           <ActionBarProject
             create
             cancel
@@ -28,12 +28,14 @@ export default {
   },
   data () {
     return {
-      project: {}
+      project: {
+        own_project: {}
+      }
     }
   },
   methods: {
     onResetProject (evt) {
-      this.project = {}
+      this.project = { own_project: {} }
     },
     onCancel (evt) {
       this.$router.push('no_project')

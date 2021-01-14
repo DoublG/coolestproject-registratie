@@ -198,7 +198,7 @@
         </b-form-invalid-feedback>
       </b-form-group>
     </ValidationProvider>
-    <contact :contact="user.contact" @change="update_value('contact', $event)" />
+    <contact :contact="user.address" @change="update_value('address', $event)" />
     <ValidationProvider
       v-slot="{ valid, errors }"
       :rules="{
@@ -383,7 +383,7 @@ export default {
           firstname: null,
           lastname: null,
           sex: null,
-          contact: {
+          address: {
             postalcode: null,
             street: null,
             house_number: null,

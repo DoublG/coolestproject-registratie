@@ -1,28 +1,29 @@
+
+/* remove null values for api calls */
+function cleanup(root) {
+  const result = {}
+  Object.keys(root).forEach(function (key, index) {
+    const v = root[key]
+    if (v !== null && typeof v === 'object' && !Array.isArray(v)) {
+      result[key] = cleanup(v)
+    } else if (v !== null) {
+      result[key] = v
+    }
+  })
+  return result
+}
+
 export default ({ app, store }, inject) => {
   const serviceHandler = {
     projectinfo: {
       post(project) {
-        const createCreate = {
-          project_name: project.project_name,
-          project_descr: project.project_descr,
-          project_type: project.project_type,
-          project_lang: project.project_lang,
-          info: project.info
-        }
-        return app.$axios.$post('/projectinfo', createCreate, { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
+        return app.$axios.$post('/projectinfo', cleanup(project), { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
       },
       post_token(token) {
         return app.$axios.$post('/projectinfo', {}, { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
       },
       patch(project) {
-        const projectsUpdate = {
-          project_name: project.project_name,
-          project_descr: project.project_descr,
-          project_type: project.project_type,
-          project_lang: project.project_lang,
-          info: project.info
-        }
-        return app.$axios.$patch('/projectinfo', projectsUpdate, { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
+        return app.$axios.$patch('/projectinfo', cleanup(project), { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
       },
       get() {
         return app.$axios.$get('/projectinfo', { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
@@ -70,12 +71,12 @@ export default ({ app, store }, inject) => {
     },
     registration: {
       post(registration) {
-        return app.$axios.$post('/register', registration)
+        return app.$axios.$post('/register', cleanup(registration))
       }
     },
     userinfo: {
       patch(user) {
-        return app.$axios.$patch('/userinfo', user, { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
+        return app.$axios.$patch('/userinfo', cleanup(user), { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
       },
       async get() {
         const user = await app.$axios.$get('/userinfo', { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })

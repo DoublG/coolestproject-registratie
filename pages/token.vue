@@ -5,7 +5,7 @@
       <global-notification />
       <ValidationObserver ref="observer" v-slot="{ passes }">
         <b-form @submit.prevent="passes(onTokenSubmit)" @reset.prevent="onTokenReset">
-          <other-project v-model="project" />
+          <other-project v-model="project.other_project" />
           <ActionBarProject create cancel reset @cancel="onCancel" />
         </b-form>
       </ValidationObserver>
@@ -21,16 +21,20 @@ export default {
   },
   data () {
     return {
-      project: {}
+      project: {
+        other_project: {}
+      }
     }
   },
   methods: {
     async onTokenSubmit (evt) {
-      await this.$services.projectinfo.post_token(this.project.project_code)
+      await this.$services.projectinfo.post(this.project)
       this.$router.push('project')
     },
     onTokenReset (evt) {
-      this.project = {}
+      this.project = {
+        other_project: {}
+      }
     },
     onCancel (evt) {
       this.$router.push('no_project')

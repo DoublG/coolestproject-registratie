@@ -11,6 +11,7 @@
             update
             :del="user.delete_possible"
             reset
+            @onDelete="onDelete"
           />
         </b-form>
       </ValidationObserver>
