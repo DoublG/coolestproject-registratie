@@ -189,7 +189,7 @@
         >
           <template #first>
             <b-form-select-option :value="null" disabled>
-              {{ $t('Select Tshirt size') }}
+              {{ $t('description_Select Tshirt size') }}
             </b-form-select-option>
           </template>
         </b-form-select>
@@ -418,7 +418,7 @@ export default {
 
     const yearStart = beginYear.getFullYear()
     const yearEnd = endYear.getFullYear()
-    const yearList = [{ text: this.$nuxt.$i18n.t('year'), value: null }]
+    const yearList = [{ text: this.$nuxt.$i18n.t('description_year'), value: null }]
     for (let i = 0; i <= yearEnd - yearStart; i++) {
       yearList.push({ text: yearStart + i, value: yearStart + i })
     }
@@ -431,7 +431,7 @@ export default {
   data () {
     const monthList =
       Array.from({ length: 12 }, (v, k) => { return { value: k, text: format(new Date(2000, k), 'MMMM', { locale: locales[this.$i18n.locale] }) } })
-    monthList.unshift({ text: this.$i18n.t('Kiesmaand'), value: null })
+    monthList.unshift({ text: this.$i18n.t('placeholder_Kiesmaand'), value: null })
 
     return {
       startDateEvent: null,
@@ -440,7 +440,7 @@ export default {
       year_list: [],
       monthList,
       geslacht: [
-        { text: this.$i18n.t('Ik ben een'), value: null },
+        { text: this.$i18n.t('placeholder_Ik ben een'), value: null },
         { value: 'f', text: this.$i18n.t('meisje') },
         { value: 'm', text: this.$i18n.t('jongen') },
         { value: 'x', text: 'X' }
