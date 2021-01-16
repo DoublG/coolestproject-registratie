@@ -72,6 +72,7 @@ export default ({ app, store }, inject) => {
     },
     registration: {
       post(registration) {
+        app.$bus.$emit('display-msg', app.i18n.t('message_successReg'), 'success')
         return app.$axios.$post('/register', cleanup(registration))
       }
     },
