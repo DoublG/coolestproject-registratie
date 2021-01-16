@@ -27,7 +27,7 @@ export default {
       show: false,
       variant: null,
       message: null,
-      dismissSecs: 10,
+      dismissSecs: 5,
       dismissCountDown: 0
     }
   },
