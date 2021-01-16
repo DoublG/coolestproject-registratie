@@ -63,6 +63,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/bus.js',
     '~/plugins/vee-validate.js',
     '~/plugins/services.js'
   ],

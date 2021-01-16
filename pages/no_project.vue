@@ -2,6 +2,7 @@
   <b-row>
     <b-col>
       <h1>{{ $t('MakeChoice') }}</h1>
+      <global-notification />
       <ActionBarProject
         project
         token

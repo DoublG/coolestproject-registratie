@@ -17,12 +17,12 @@ export default {
     }
   },
   created () {
-    this.$nuxt.$on('display-msg', (message, variant) => {
+    this.$bus.$on('display-msg', (message, variant) => {
       this.message = message
       this.variant = variant
       this.show = true
     })
-    this.$nuxt.$on('clear-msg', () => {
+    this.$bus.$on('clear-msg', () => {
       this.show = false
       this.message = null
       this.variant = null

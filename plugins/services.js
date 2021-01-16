@@ -76,7 +76,10 @@ export default ({ app, store }, inject) => {
     },
     userinfo: {
       patch(user) {
-        return app.$axios.$patch('/userinfo', cleanup(user), { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
+        app.$bus.$emit('clear-msg')
+        const response = app.$axios.$patch('/userinfo', cleanup(user), { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
+        app.$bus.$emit('display-msg', app.i18n.t('successReg'), 'success')
+        return response
       },
       async get() {
         const user = await app.$axios.$get('/userinfo', { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })

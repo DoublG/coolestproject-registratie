@@ -2,6 +2,7 @@
   <b-row>
     <b-col>
       <h1>{{ $t("titleUser") }}</h1>
+      <global-notification />
       <ValidationObserver ref="observer" v-slot="{ passes }">
         <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
           <user v-model="user" read-only />

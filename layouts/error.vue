@@ -1,13 +1,17 @@
 <template>
   <div>
-    <h1 v-if="error.statusCode === 404">{{ $t('Page not found') }}</h1>
-    <h1 v-else>{{ $t('An error occurred') }}</h1>
-    <p>Mogelijke oplossingen voor de error</p>
+    <h1 v-if="error.statusCode === 404">
+      {{ $t('Page not found') }}
+    </h1>
+    <h1 v-else>
+      {{ $t('An error occurred') }}
+    </h1>
+    <p>{{ $t('Mogelijke oplossingen voor de error') }}</p>
     <b-button
-      @click="$router.push({ path: '/' })"
       type="submit"
       variant="info"
       class="button-hero"
+      @click="$router.push({ path: '/' })"
     >
       {{ $t('Back to homepage') }}
     </b-button>
@@ -16,7 +20,7 @@
 
 <script>
 export default {
-    props: ['error'],
-    layout: 'error'
-  }
+  props: ['error'],
+  layout: 'error'
+}
 </script>
