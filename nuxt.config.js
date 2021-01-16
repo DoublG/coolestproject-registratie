@@ -56,9 +56,7 @@ module.exports = {
   */
   css: [
   ],
-  router: {
-    middleware: ['settings']
-  },
+  router: {},
   /*
   ** Plugins to load before mounting the App
   */

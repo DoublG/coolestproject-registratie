@@ -86,7 +86,10 @@ export default ({ app, store }, inject) => {
         return user
       },
       delete() {
-        return app.$axios.$delete('/userinfo', { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
+        app.$bus.$emit('clear-msg')
+        const response = app.$axios.$delete('/userinfo', { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
+        app.$bus.$emit('display-msg', app.i18n.t('successReg'), 'success')
+        return response
       }
     },
     login: {
