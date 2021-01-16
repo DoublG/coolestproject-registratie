@@ -1,4 +1,10 @@
 export default {
+    'message_successReg':'De registratie voor het aanmaken van je project is gelukt als je een bevestigingsmail ontvangt met verdere instructies om in te loggen en je gegevens te bekijken en/of bij te werken. Let op',
+    'message_successChange':'De wijziging is gelukt.',
+    'error_Page not found':'Pagina niet gevonden',
+    'error_An error occurred':'Er is een fout opgetreden',
+    'error_Possible solutions':'Mogelijke oplossingen:',
+    'error_Back to homepage':'Terug naar de startpagina',
     'An error occurred':' ',
     'Back to homepage':' ',
     'Page not found':' ',

@@ -1,4 +1,10 @@
     export default {
+        'message_successReg':"L'inscription pour la création de votre projet est réussie, vous allez recevoir un e-mail de confirmation avec des instructions supplémentaires pour vous connecter et afficher et / ou mettre à jour vos données. Remarque",
+        'message_successChange':'Le changement a réussi.',
+        'error_Page not found':'Page non trouvée',
+        'error_An error occurred':"Une erreur s'est produite",
+        'error_Possible solutions':'Solutions possibles:',
+        'error_Back to homepage':"Retour à la page d'accueil",
         'Aanpassen':'Modifier',
         'AddToken':'Add Participant',
         'agree':'En vous inscrivant vous acceptez les règles suivantes',

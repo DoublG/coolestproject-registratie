@@ -23,6 +23,7 @@ export default ({ app, store }, inject) => {
         return app.$axios.$post('/projectinfo', {}, { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
       },
       patch(project) {
+        app.$bus.$emit('display-msg', app.i18n.t('message_successChange'), 'success')
         return app.$axios.$patch('/projectinfo', cleanup(project), { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
       },
       get() {
@@ -78,7 +79,7 @@ export default ({ app, store }, inject) => {
       patch(user) {
         app.$bus.$emit('clear-msg')
         const response = app.$axios.$patch('/userinfo', cleanup(user), { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
-        app.$bus.$emit('display-msg', app.i18n.t('successReg'), 'success')
+        app.$bus.$emit('display-msg', app.i18n.t('message_successChange'), 'success')
         return response
       },
       async get() {
@@ -88,7 +89,7 @@ export default ({ app, store }, inject) => {
       delete() {
         app.$bus.$emit('clear-msg')
         const response = app.$axios.$delete('/userinfo', { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
-        app.$bus.$emit('display-msg', app.i18n.t('successReg'), 'success')
+        app.$bus.$emit('display-msg', app.i18n.t('message_successChange'), 'success')
         return response
       }
     },

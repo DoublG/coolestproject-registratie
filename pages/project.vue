@@ -62,7 +62,7 @@ export default {
     async onUpdateProject (evt) {
       this.$nuxt.$emit('clear-msg')
       await this.$services.projectinfo.patch(this.project)
-      this.$nuxt.$emit('display-msg', this.$i18n.t('successReg'), 'success')
+      this.$nuxt.$emit('display-msg', this.$i18n.t('message_successChange'), 'success')
     },
     async onAddToken (evt) {
       await this.$services.participant.post()
