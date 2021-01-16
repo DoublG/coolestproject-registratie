@@ -172,7 +172,7 @@ export default {
     return {
       show: false,
       variant: 'success',
-      message: this.$i18n.t('successReg'),
+      message: this.$i18n.t('message_successChange'),
       languages: [
         { value: 'nl', text: 'Nederlands' },
         { value: 'fr', text: 'Frans' },
@@ -263,7 +263,7 @@ export default {
           projectData = await this.$services.projectinfo.patch()
         }
         this.variant = 'success'
-        this.message = this.$i18n.t('successChange')
+        this.message = this.$i18n.t('message_successChange')
         this.show = true
       } catch (error) {
         this.variant = 'danger'

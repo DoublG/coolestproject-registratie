@@ -1,4 +1,10 @@
 export default {
+    'message_successReg':'The registration for the creation of your project is successful when you get a confirmation mail with further instructions to login and to see and/or change your data. Be aware',
+    'message_successChange':'The change was successful.',
+    'error_Page not found':'Page not found',
+    'error_An error occurred':'An error occurred',
+    'error_Possible solutions':'Possible solutions:',
+    'error_Back to homepage':'Back to homepage',
     'Aanpassen':'Change',
     'AddToken':'Add Participant',
     'agree':'By registering you agree to the following rules',
