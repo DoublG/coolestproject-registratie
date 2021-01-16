@@ -1,7 +1,6 @@
 export default {
     'An error occurred':' ',
     'Back to homepage':' ',
-    'Mandatory Approvals':' ',
     'Page not found':' ',
     'Aanpassen':'Aanpassen',
     'AddToken':'Deelnemer toevoegen',
