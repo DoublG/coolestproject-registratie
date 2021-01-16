@@ -14,6 +14,13 @@ function cleanup(root) {
 }
 
 export default ({ app, store }, inject) => {
+  /*
+  app.$axios.interceptors.response.use(function (response) {
+    return response
+  }, function () {
+    app.$bus.$emit('display-msg', app.i18n.t('message_backendKaput'), 'error')
+    return null
+  }) */
   const serviceHandler = {
     projectinfo: {
       post(project) {

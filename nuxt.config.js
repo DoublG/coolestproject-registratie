@@ -118,7 +118,8 @@ module.exports = {
       'TablePlugin',
       'PopoverPlugin',
       'ImagePlugin',
-      'CardPlugin'
+      'CardPlugin',
+      'ProgressPlugin'
     ]
   },
   components: true,
