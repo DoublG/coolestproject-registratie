@@ -5,6 +5,8 @@ export default {
     'error_An error occurred':'An error occurred',
     'error_Possible solutions':'Possible solutions:',
     'error_Back to homepage':'Back to homepage',
+    'jongen':'boy',
+    'meisje':'girl',
     'Aanpassen':'Change',
     'AddToken':'Add Participant',
     'agree':'By registering you agree to the following rules',
