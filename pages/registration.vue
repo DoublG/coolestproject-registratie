@@ -126,7 +126,6 @@ export default {
 
         await this.$services.registration.post(registration)
         this.onReset(evt)
-        app.$bus.$emit('display-msg', app.i18n.t('message_successReg'), 'success')
         this.$nuxt.$emit('display-msg', this.$i18n.t('message_successReg'), 'success')
       } catch (error) {
         this.$nuxt.$emit('display-msg', this.$i18n.t('failedReg'), 'danger')
