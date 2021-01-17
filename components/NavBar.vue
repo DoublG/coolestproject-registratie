@@ -72,17 +72,3 @@ export default {
 }
 </script>
 <style></style>
-
-<i18n>
-{
-  "en": {
-      "Registratie": " "
-      },
-  "fr": {
-    "Registratie": " "
-     },
-  "nl": {
-    "Registratie": " "
-  }
-}
-</i18n>
