@@ -5,6 +5,8 @@ export default {
     'error_An error occurred':'Er is een fout opgetreden',
     'error_Possible solutions':'Mogelijke oplossingen:',
     'error_Back to homepage':'Terug naar de startpagina',
+    'jongen':'jongen',
+    'meisje':'meijse',
     'An error occurred':' ',
     'Back to homepage':' ',
     'Page not found':' ',

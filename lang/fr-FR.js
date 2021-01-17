@@ -5,6 +5,8 @@
         'error_An error occurred':"Une erreur s'est produite",
         'error_Possible solutions':'Solutions possibles:',
         'error_Back to homepage':"Retour à la page d'accueil",
+        'jongen': 'Garçon',
+        'meisje': 'Fille',
         'Aanpassen':'Modifier',
         'AddToken':'Add Participant',
         'agree':'En vous inscrivant vous acceptez les règles suivantes',
