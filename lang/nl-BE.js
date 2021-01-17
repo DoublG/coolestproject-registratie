@@ -6,7 +6,7 @@ export default {
     'error_Possible solutions':'Mogelijke oplossingen:',
     'error_Back to homepage':'Terug naar de startpagina',
     'jongen':'jongen',
-    'meisje':'meijse',
+    'meisje':'meisje',
     'An error occurred':' ',
     'Back to homepage':' ',
     'Page not found':' ',
