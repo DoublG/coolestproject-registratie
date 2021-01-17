@@ -47,6 +47,7 @@ export default {
   },
   data () {
     return {
+      approvals: [],
       change_selection (evt) {
         this.$emit('change', evt)
       }

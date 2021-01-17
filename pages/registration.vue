@@ -64,7 +64,9 @@ export default {
   components: {
     ValidationObserver
   },
-  async asyncData ({ store, app, redirect }) {},
+  async asyncData ({ store, app, redirect }) {
+    // const settings = await app.$services.settings.get()
+  },
   data () {
     return {
       loading: false,
