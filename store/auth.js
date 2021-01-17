@@ -1,27 +1,21 @@
 export const state = () => ({
-  api_key: '',
-  expires: ''
+  api_key: null,
+  expires: null
 })
 
 export const mutations = {
-  api_key (state, apiKey) {
-    state.api_key = apiKey
-  },
-  expires (state, expires) {
-    state.expires = expires
+  update(state, auth) {
+    state.api_key = auth.key
+    state.expires = auth.expires
   }
 }
 
 export const actions = {
-  api_key ({ commit }, apiKey) {
-    commit('api_key', apiKey)
+  update({ commit }, auth) {
+    commit('update', auth)
   },
-  expires ({ commit }, expires) {
-    commit('expires', expires)
-  },
-  logout ({ commit }) {
-    commit('expires', null)
-    commit('api_key', null)
+  logout({ commit }) {
+    commit('update', { key: null, expires: null })
   }
 }
 

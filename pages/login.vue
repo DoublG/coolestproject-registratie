@@ -2,9 +2,7 @@
   <b-row>
     <b-col>
       <h1>{{ $t('titleLogin') }}</h1>
-      <b-alert :show="show" :variant="variant" dismissible>
-        {{ message }}
-      </b-alert>
+      <global-notification />
       <ValidationObserver ref="observer" v-slot="{ passes }">
         <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
           <ValidationProvider v-slot="{ valid, errors }" rules="required|email" name="Email">
@@ -53,44 +51,23 @@ export default {
   },
   data () {
     return {
-      show: false,
-      message: null,
-      variant: null,
       email: null,
       loading: false
     }
   },
-  computed: {
-    api_key: {
-      set (value) {
-        this.$store.dispatch('auth/api_key', value)
-      },
-      get () {
-        return this.$store.state.user.api_key
-      }
-    },
-    expires: {
-      set (value) {
-        this.$store.dispatch('auth/expires', value)
-      },
-      get () {
-        return this.$store.state.user.expires
-      }
-    }
-  },
+  computed: {},
   mounted () {
     this.$nextTick(async () => {
       this.loading = true
-      if (this.$route.query.token) {
+      // redirect to user page (token in GET string)
+      const token = this.$route.query.token
+      if (token) {
         try {
-          const loginToken = await this.$services.login.post(this.$route.query.token)
-          this.$store.commit('auth/api_key', loginToken.api_key)
-          this.$store.commit('auth/expires', loginToken.expires)
+          const loginToken = await this.$services.login.post(token)
+          this.$store.dispatch('auth/update', { key: loginToken.api_key, expires: loginToken.expires })
           this.$router.replace({ path: '/user' })
         } catch (ex) {
-          this.message = ex
-          this.variant = 'danger'
-          this.show = true
+          this.$nuxt.$emit('display-msg', this.$i18n.t('failureMessage'), 'danger')
         }
       }
       this.loading = false
@@ -98,57 +75,21 @@ export default {
   },
   methods: {
     async onSubmit (evt) {
-      this.show = false
       this.loading = true
       try {
         await this.$services.mail.post(this.email)
-        this.variant = 'success'
-        this.message = this.$i18n.t('successMessage')
-        this.show = true
+        this.$nuxt.$emit('display-msg', this.$i18n.t('successMessage'), 'success')
       } catch (error) {
-        this.variant = 'danger'
-        this.message = this.$i18n.t('failureMessage')
-        this.show = true
+        this.$nuxt.$emit('display-msg', this.$i18n.t('failureMessage'), 'danger')
       }
       this.loading = false
     },
     onReset (evt) {
       this.email = null
-      this.show = false
     }
   }
 }
 </script>
-
-<i18n>
-{
-  "en": {
-    "failureMessage": "Something went wrong please try again",
-    "message": "Something went wrong",
-    "Stuur me een logincode": "Please send me the login code",
-    "successMessage": "We've sent a logincode please check your mailbox",
-    "titleLogin": "Login",
-    "pleaseWait" : "Please Wait"
-  },
-  "fr": {
-
-    "failureMessage": "Une erreur s'est produite. Merci d'essayer à nouveau",
-    "message": "Il semblerait que cela n'a pas fonctionné",
-    "Stuur me een logincode": "Pourriez-vous m'envoyer un code de connexion ?",
-    "successMessage": "Nous avons envoyé un code de connexion - merci de bien vouloir vérifier votre boîte mail",
-    "titleLogin": "Login",
-    "pleaseWait" : "Veuillez Patienter"
-  },
-  "nl": {
-    "failureMessage": "Er is iets misgelopen probeer later opnieuw",
-    "message": "Er is iets misgelopen",
-    "Stuur me een logincode": "Stuur me een logincode aub",
-    "successMessage": "We hebben een logincode verzonden check je mailbox",
-    "titleLogin": "Login",
-    "pleaseWait" : "Even geduld"
-  }
-}
-</i18n>
 
 <style>
 </style>
