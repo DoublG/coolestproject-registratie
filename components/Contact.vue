@@ -143,8 +143,10 @@ export default {
   },
   methods: {
     update_value (id, evt) {
-      this.$set(this.contact, id, evt)
-      this.$emit('change', this.contact)
+      const c = Object.assign({}, this.contact)
+      c[id] = evt
+      // this.$set(this.contact, id, evt)
+      this.$emit('change', c)
     }
   }
 }
