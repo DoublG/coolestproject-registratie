@@ -56,8 +56,10 @@ export default {
   },
   methods: {
     update_value (id, evt) {
-      this.$set(this.project, id, evt)
-      this.$emit('change', this.project)
+      const p = Object.assign({}, this.project)
+      p[id] = evt
+      // this.$set(this.project, id, evt)
+      this.$emit('change', p)
     }
   }
 }

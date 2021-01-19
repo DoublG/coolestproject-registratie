@@ -6,6 +6,9 @@
     <h1 v-else>
       {{ $t('error_An error occurred') }}
     </h1>
+    <b-alert show variant="dark">
+      {{ error.message }}
+    </b-alert>
     <p>{{ $t('error_Possible solutions') }}</p>
     <b-button
       type="submit"
