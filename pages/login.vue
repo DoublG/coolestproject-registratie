@@ -8,7 +8,7 @@
           <ValidationProvider v-slot="{ valid, errors }" rules="required|email" name="Email">
             <b-form-group
               id="input-group-1"
-              label="Email adres"
+              :label="$t('label_Email adres:')"
               label-for="input-1"
             >
               <b-form-input
@@ -16,7 +16,7 @@
                 v-model="email"
                 :state="errors[0] ? false : (valid ? true : null)"
                 type="email"
-                placeholder="email adres"
+                :placeholder="$t('placeholder_Email adres:')"
                 aria-describedby="input-1-live-feedback"
               />
               <b-form-invalid-feedback id="input-1-live-feedback">
