@@ -283,7 +283,7 @@
           id="input-group-13"
           :label="$t('label_Email adres ouders/voogd:')"
           label-for="input-13"
-          de:description="$t('description_We delen dit met niemand')"
+          :description="$t('description_We delen dit met niemand')"
         >
           <b-form-input
             id="input-13"
