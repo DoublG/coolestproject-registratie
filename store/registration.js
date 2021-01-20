@@ -1,3 +1,5 @@
+import Vue from 'vue'
+
 const originalState = () => {
   return {
     // own project
@@ -32,7 +34,7 @@ const originalState = () => {
   }
 }
 
-export const state = originalState
+export const state = Object.assign({}, originalState)
 
 export const mutations = {
   own_project(state, ownProject) {
@@ -70,7 +72,7 @@ export const mutations = {
   reset(state) {
     const origState = originalState()
     Object.keys(origState).forEach(function (key) {
-      state[key] = origState[key]
+      Vue.set(state, key, origState[key])
     })
   }
 }

@@ -220,13 +220,13 @@ export default {
       }
       registration.user = this.user
       await this.$services.registration.post(registration)
-      this.onReset(evt)
+      await this.onReset(evt)
 
       this.loading = false
       window.scrollTo(0, 0)
     },
-    async onReset (evt) {
-      await this.$store.dispatch('registration/reset')
+    onReset (evt) {
+      this.$store.commit('registration/reset')
       requestAnimationFrame(() => {
         this.$refs.observer.reset()
       })
