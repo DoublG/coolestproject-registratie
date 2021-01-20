@@ -13,36 +13,49 @@ function cleanup(root) {
   return result
 }
 
-export default ({ app, store }, inject) => {
-  /*
-  app.$axios.interceptors.response.use(function (response) {
+export default ({ app, store, redirect }, inject) => {
+  app.$axios.interceptors.request.use((request) => {
+    app.$bus.$emit('start')
+    return request
+  }, async (error) => { return await error })
+  app.$axios.interceptors.response.use((response) => {
+    app.$bus.$emit('finish')
     return response
-  }, function () {
-    app.$bus.$emit('display-msg', app.i18n.t('message_backendKaput'), 'error')
+  }, (error) => {
+    // clean the store & redirect
+    if (error.response.status === 401) {
+      store.dispatch('auth/update', {})
+      redirect(app.localePath('login'))
+    }
+    // we don't want to fail via error screen, trigger alert message on current screen
+    app.$bus.$emit('display-msg', app.i18n.t('message_backendKaput'), 'danger')
+    app.$bus.$emit('finish')
+    // eslint-disable-next-line no-console
+    console.log(error)
     return null
-  }) */
+  })
   const serviceHandler = {
     projectinfo: {
       post(project) {
-        return app.$axios.$post('/projectinfo', cleanup(project), { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
+        return app.$axios.$post('/projectinfo', cleanup(project), { withCredentials: true })
       },
       post_token(token) {
-        return app.$axios.$post('/projectinfo', {}, { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
+        return app.$axios.$post('/projectinfo', {})
       },
       patch(project) {
         app.$bus.$emit('display-msg', app.i18n.t('message_successChange'), 'success')
-        return app.$axios.$patch('/projectinfo', cleanup(project), { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
+        return app.$axios.$patch('/projectinfo', cleanup(project))
       },
       get() {
-        return app.$axios.$get('/projectinfo', { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
+        return app.$axios.$get('/projectinfo')
       },
       delete() {
-        return app.$axios.$delete('/projectinfo', { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
+        return app.$axios.$delete('/projectinfo')
       }
     },
     participant: {
       post() {
-        return app.$axios.$post('/participants', null, { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
+        return app.$axios.$post('/participants', null)
       }
     },
     settings: {
@@ -86,29 +99,30 @@ export default ({ app, store }, inject) => {
     userinfo: {
       patch(user) {
         app.$bus.$emit('clear-msg')
-        const response = app.$axios.$patch('/userinfo', cleanup(user), { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
+        const response = app.$axios.$patch('/userinfo', cleanup(user))
         app.$bus.$emit('display-msg', app.i18n.t('message_successChange'), 'success')
         return response
       },
       async get() {
-        const user = await app.$axios.$get('/userinfo', { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
+        const user = await app.$axios.$get('/userinfo')
         return user
       },
       delete() {
         app.$bus.$emit('clear-msg')
-        const response = app.$axios.$delete('/userinfo', { headers: { Authorization: 'Bearer ' + store.state.auth.api_key } })
+        const response = app.$axios.$delete('/userinfo')
         app.$bus.$emit('display-msg', app.i18n.t('message_successChange'), 'success')
         return response
       }
     },
     login: {
       post(token) {
+        // this call sets the cookie used in de subsequent calls
         return app.$axios.$post('/login', null, { headers: { Authorization: 'Bearer ' + token } })
       }
     },
     mail: {
       post(email) {
-        return app.$axios.$post('/mailToken', { email })
+        return app.$axios.$post('/mailToken', email)
       }
     }
   }

@@ -38,11 +38,11 @@ export default {
       this.project = { own_project: {} }
     },
     onCancel (evt) {
-      this.$router.push('no_project')
+      this.$router.push(this.localePath('no_project'))
     },
     async onCreateProject (evt) {
       await this.$services.projectinfo.post(this.project)
-      this.$router.push({ path: '/project' })
+      this.$router.push(this.localePath('project'))
     }
   }
 }

@@ -1,5 +1,5 @@
-export default function ({ store, redirect }) {
+export default function ({ app, store, redirect }) {
   if (new Date(store.state.auth.expires) < new Date()) {
-    redirect('./login')
+    redirect(app.localePath('login'))
   }
 }

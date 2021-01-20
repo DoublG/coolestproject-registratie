@@ -6,7 +6,10 @@
       <h2>{{ $t("personal_info") }}</h2>
       <ValidationObserver ref="observer" v-slot="{ passes }">
         <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
-          <user v-model="user" />
+          <user
+            v-model="user"
+            :field-status="user_field_status"
+          />
           <h1>{{ $t("Project") }}</h1>
           <b-form-group>
             <b-form-radio v-model="is_own_project" name="own_project" value="own">
@@ -17,10 +20,16 @@
             </b-form-radio>
           </b-form-group>
           <div v-if="is_own_project === 'own'">
-            <own-project v-model="own_project" />
+            <own-project
+              v-model="own_project"
+              :field-status="own_project_field_status"
+            />
           </div>
           <div v-else>
-            <other-project v-model="other_project" />
+            <other-project
+              v-model="other_project"
+              :field-status="other_project_field_status"
+            />
           </div>
           <mandatory-questions v-model="mandatory_approvals" />
           <b-form-group>
@@ -65,15 +74,102 @@ export default {
     ValidationObserver
   },
   async asyncData ({ store, app, redirect }) {
-    // const settings = await app.$services.settings.get()
+    const settings = await app.$services.settings.get()
+    if (!settings) {
+      app.router.push(app.localePath('no_event'))
+    }
   },
   data () {
     return {
       loading: false,
-      is_own_project: 'own'
+      is_own_project: 'own',
+      readWrite: true
     }
   },
   computed: {
+    other_project_field_status () {
+      return {
+        project_code: {
+          rw: this.readWrite
+        }
+      }
+    },
+    own_project_field_status () {
+      return {
+        project_name: {
+          rw: this.readWrite
+        },
+        project_descr: {
+          rw: this.readWrite
+        },
+        project_type: {
+          rw: this.readWrite
+        },
+        project_lang: {
+          rw: this.readWrite
+        }
+      }
+    },
+    user_field_status () {
+      return {
+        year: {
+          rw: this.readWrite
+        },
+        month: {
+          rw: this.readWrite
+        },
+        email: {
+          rw: this.readWrite
+        },
+        firstname: {
+          rw: this.readWrite
+        },
+        lastname: {
+          rw: this.readWrite
+        },
+        sex: {
+          rw: this.readWrite
+        },
+        address: {
+          postalcode: {
+            rw: this.readWrite
+          },
+          street: {
+            rw: this.readWrite
+          },
+          house_number: {
+            rw: this.readWrite
+          },
+          bus_number: {
+            rw: this.readWrite
+          },
+          municipality_name: {
+            rw: this.readWrite
+          }
+        },
+        gsm: {
+          rw: this.readWrite
+        },
+        via: {
+          rw: this.readWrite
+        },
+        medical: {
+          rw: this.readWrite
+        },
+        email_guardian: {
+          rw: this.readWrite
+        },
+        gsm_guardian: {
+          rw: this.readWrite
+        },
+        t_size: {
+          rw: this.readWrite
+        },
+        general_questions: {
+          rw: this.readWrite
+        }
+      }
+    },
     own_project: {
       set (value) {
         this.$store.dispatch('registration/own_project', value)
@@ -92,7 +188,7 @@ export default {
     },
     user: {
       set (value) {
-        const u = this.$store.getters['registration/user']
+        const u = value
         u.language = this.$i18n.locale
         this.$store.dispatch('registration/user', u)
       },
@@ -129,8 +225,8 @@ export default {
       this.loading = false
       window.scrollTo(0, 0)
     },
-    onReset (evt) {
-      this.$store.dispatch('registration/reset')
+    async onReset (evt) {
+      await this.$store.dispatch('registration/reset')
       requestAnimationFrame(() => {
         this.$refs.observer.reset()
       })
