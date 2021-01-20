@@ -164,6 +164,9 @@ module.exports = {
     ],
     lazy: true
   },
+  axios: {
+    credentials: true
+  },
   publicRuntimeConfig: {
     axios: {
       browserBaseURL: process.env.NUXT_ENV_BASE_URL

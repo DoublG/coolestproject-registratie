@@ -13,6 +13,7 @@
         <b-form-input
           id="input-1"
           :value="contact.postalcode"
+          :disabled="!fieldStatus.postalcode.rw"
           :placeholder="$t('placeholder_Postcode:')"
           :state="errors[0] ? false : valid ? true : null"
           type="number"
@@ -37,6 +38,7 @@
         <b-form-input
           id="input-1z"
           :value="contact.street"
+          :disabled="!fieldStatus.street.rw"
           :placeholder="$t('placeholder_Street')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-1z-live-feedback"
@@ -60,6 +62,7 @@
         <b-form-input
           id="input-2z"
           :value="contact.house_number"
+          :disabled="!fieldStatus.house_number.rw"
           :placeholder="$t('placeholder_HouseNumber')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-2z-live-feedback"
@@ -79,6 +82,7 @@
         <b-form-input
           id="input-3z"
           :value="contact.bus_number"
+          :disabled="!fieldStatus.bus_number.rw"
           :placeholder="$t('placeholder_BusNumber')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-3z-live-feedback"
@@ -98,6 +102,7 @@
         <b-form-input
           id="input-3zz"
           :value="contact.municipality_name"
+          :disabled="!fieldStatus.municipality_name.rw"
           :placeholder="$t('placeholder_MunicipalityName')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-3zz-live-feedback"
@@ -131,6 +136,28 @@ export default {
           house_number: null,
           bus_number: null,
           municipality_name: null
+        }
+      }
+    },
+    fieldStatus: {
+      type: Object,
+      default: () => {
+        return {
+          postalcode: {
+            rw: true
+          },
+          street: {
+            rw: true
+          },
+          house_number: {
+            rw: true
+          },
+          bus_number: {
+            rw: true
+          },
+          municipality_name: {
+            rw: true
+          }
         }
       }
     }

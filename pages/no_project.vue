@@ -22,10 +22,10 @@ export default {
   },
   methods: {
     onCreateProject (evt) {
-      this.$router.push('/new_project')
+      this.$router.push(this.localePath('new_project'))
     },
     onEnterToken (evt) {
-      this.$router.push('/token')
+      this.$router.push(this.localePath('token'))
     }
   }
 }

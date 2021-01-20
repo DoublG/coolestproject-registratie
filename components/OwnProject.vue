@@ -17,7 +17,7 @@
           :options="languages"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-18-live-feedback"
-          :disabled="readOnly"
+          :disabled="!fieldStatus.project_lang.rw"
           @input="update_value('project_lang', $event)"
         />
         <b-form-invalid-feedback id="input-18-live-feedback">
@@ -40,7 +40,7 @@
           :value="project.project_type"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-166-live-feedback"
-          :disabled="readOnly"
+          :disabled="!fieldStatus.project_type.rw"
           @input="update_value('project_type', $event)"
         />
         <b-form-invalid-feedback id="input-166-live-feedback">
@@ -64,7 +64,7 @@
           :placeholder="$t('placeholder_GeefProjectnaam:')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-20-live-feedback"
-          :disabled="readOnly"
+          :disabled="!fieldStatus.project_name.rw"
           @input="update_value('project_name', $event)"
         />
         <b-form-invalid-feedback id="input-20-live-feedback">
@@ -87,7 +87,7 @@
           :value="project.project_descr"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-21-live-feedback"
-          :disabled="readOnly"
+          :disabled="!fieldStatus.project_descr.rw"
           @input="update_value('project_descr', $event)"
         />
         <b-form-invalid-feedback id="input-21-live-feedback">
@@ -109,6 +109,25 @@ export default {
     event: 'change'
   },
   props: {
+    fieldStatus: {
+      type: Object,
+      default: () => {
+        return {
+          project_name: {
+            rw: true
+          },
+          project_descr: {
+            rw: true
+          },
+          project_type: {
+            rw: true
+          },
+          project_lang: {
+            rw: true
+          }
+        }
+      }
+    },
     project: {
       type: Object,
       default: () => {
@@ -116,18 +135,14 @@ export default {
           project_name: null,
           project_descr: null,
           project_type: null,
-          project_code: null,
           project_lang: null
         }
       }
-    },
-    readOnly: {
-      type: Boolean
     }
   },
-  async fetch () {},
   data () {
     return {
+      internal_project: Object.assign({}, this.project),
       languages: [
         { value: 'nl', text: 'Nederlands' },
         { value: 'fr', text: 'Frans' },
@@ -139,10 +154,8 @@ export default {
   },
   methods: {
     update_value (id, evt) {
-      const p = Object.assign({}, this.project)
-      p[id] = evt
-      // this.$set(this.project, id, evt)
-      this.$emit('change', p)
+      this.internal_project[id] = evt
+      this.$emit('change', this.internal_project)
     }
   }
 }

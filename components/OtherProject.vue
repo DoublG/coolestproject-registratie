@@ -17,6 +17,7 @@
           :state="errors[0] ? false : valid ? true : null"
           placeholder="Code"
           aria-describedby="input-22-live-feedback"
+          :disabled="!fieldStatus.project_code.rw"
           @input="update_value('project_code', $event)"
         />
         <b-form-invalid-feedback id="input-22-live-feedback">
@@ -45,21 +46,30 @@ export default {
           project_code: null
         }
       }
+    },
+    fieldStatus: {
+      type: Object,
+      default: () => {
+        return {
+          project_code: {
+            rw: true
+          }
+        }
+      }
     }
   },
   async fetch () {},
   data () {
     return {
+      internal_project: Object.assign({}, this.project)
     }
   },
   computed: {
   },
   methods: {
     update_value (id, evt) {
-      const p = Object.assign({}, this.project)
-      p[id] = evt
-      // this.$set(this.project, id, evt)
-      this.$emit('change', p)
+      this.internal_project[id] = evt
+      this.$emit('change', this.internal_project)
     }
   }
 }

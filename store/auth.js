@@ -1,11 +1,9 @@
 export const state = () => ({
-  api_key: null,
   expires: null
 })
 
 export const mutations = {
   update(state, auth) {
-    state.api_key = auth.key
     state.expires = auth.expires
   }
 }
@@ -15,7 +13,7 @@ export const actions = {
     commit('update', auth)
   },
   logout({ commit }) {
-    commit('update', { key: null, expires: null })
+    commit('update', { expires: null })
   }
 }
 
