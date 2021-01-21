@@ -208,6 +208,16 @@ export default {
       }
     }
   },
+    mounted () {
+    this.$nextTick(async () => {
+      // redirect to user page (token in GET string)
+      const token = this.$route.query.token
+      if (token) {
+        this.is_own_project =  'other'
+        this.other_project.project_code = token
+      }
+    })
+  },
   methods: {
     async onSubmit (evt) {
       this.loading = true
