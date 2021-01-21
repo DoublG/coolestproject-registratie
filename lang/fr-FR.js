@@ -1,4 +1,8 @@
     export default {
+        'mail':"(s'il vous plaît, mettez ici l'adresse e-mail de votre collègue)",
+        'subject':'Invitation à participer à mon projet le plus cool 2021',
+        'body':"Bonjour <ami>,%0D%0A%0D%0ASi vous souhaitez participer à mon projet, veuillez vous inscrire en utilisant le lien suivant vers la page d'inscription du projet Coolest 2021:%0D%0A%0D%0A",
+        'closure':'%0D%0A%0D%0AY votre meilleur ami%0D%0A <Remplissez votre nom>',    
         'message_successReg':"L'inscription pour la création de votre projet est réussie, vous allez recevoir un e-mail de confirmation avec des instructions supplémentaires pour vous connecter et afficher et / ou mettre à jour vos données. Remarque",
         'message_successChange':'Le changement a réussi.',
         'error_Page not found':'Page non trouvée',

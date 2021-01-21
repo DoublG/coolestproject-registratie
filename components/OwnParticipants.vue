@@ -43,7 +43,10 @@ export default {
       this.$emit('copyToClipboard', token)
     },
     mailToken (token) {
-      return 'mailto:' + this.$i18n.t('mail', { token })
+      const fullUrl = window.location.protocol +'//' +window.location.hostname +':3000/registration?token=' + token
+      const closure = this.$i18n.t('closure')
+     // const url = 'this.$router.resolve('registration',base).href
+      return 'mailto:' + this.$i18n.t('mail') + '?subject=' + this.$i18n.t('subject') + '&body=' + this.$i18n.t('body') + ' ' + fullUrl + closure
     }
   }
 }

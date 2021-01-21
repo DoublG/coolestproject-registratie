@@ -122,8 +122,8 @@ export const getters = {
       gsm_guardian: state.user_gsm_guardian,
       t_size: state.user_t_size,
       // copy before return
-      general_questions: [...state.user_general_questions],
-      mandatory_approvals: [...state.user_mandatory_approvals],
+      general_questions: state.user_general_questions, //[...state.user_general_questions],
+      mandatory_approvals: state.user_mandatory_approvals, //[...state.user_mandatory_approvals],
       address: {
         postalcode: state.user_address_postalcode,
         street: state.user_address_street,

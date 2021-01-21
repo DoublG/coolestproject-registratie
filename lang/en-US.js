@@ -1,4 +1,8 @@
 export default {
+    'mail':'(please, put here the email address of your co-worker)',
+    'subject':'Invitation to participate in my Coolest Project 2021',
+    'body':'Hello <friend>, %0D%0A%0D%0Aif you want to participate in my project please register by using the following link  to the Coolest Project 2021 registration page: %0D%0A%0D%0A',
+    'closure':'%0D%0A%0D%0AYour best friend%0D%0A<Fill in Your name>',
     'message_successReg':'The registration for the creation of your project is successful when you get a confirmation mail with further instructions to login and to see and/or change your data. Be aware',
     'message_successChange':'The change was successful.',
     'error_Page not found':'Page not found',
