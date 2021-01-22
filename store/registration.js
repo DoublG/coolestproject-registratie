@@ -34,7 +34,7 @@ const originalState = () => {
   }
 }
 
-export const state = Object.assign({}, originalState)
+export const state =  originalState()
 
 export const mutations = {
   own_project(state, ownProject) {
