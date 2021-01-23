@@ -537,6 +537,9 @@ export default {
     update_value (id, evt) {
       this.internal_user[id] = evt
       this.$emit('change', this.internal_user)
+    },
+    reset () {
+      this.$emit('change', this.$options.props.user.default())
     }
   }
 }

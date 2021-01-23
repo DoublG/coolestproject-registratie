@@ -52,6 +52,12 @@ export default {
         this.$emit('change', evt)
       }
     }
+  },
+  methods: {
+    reset () {
+      this.$emit('change', this.$options.props.responses.default()
+      )
+    }
   }
 }
 </script>

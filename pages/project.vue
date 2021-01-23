@@ -22,7 +22,7 @@
             <other-participants v-model="project.own_project.participants" />
           </div>
           <h2>{{ $t('attachments') }}</h2>
-          <own-attachements v-model="project.own_project.attachments" />
+          <own-attachements v-model="attachments" />
           <ActionBarProject
             :update="project.own_project.own_project"
             :reset="project.own_project.own_project"
@@ -39,6 +39,7 @@
   </b-row>
 </template>
 <script>
+// project.own_project.attachments
 import { ValidationObserver } from 'vee-validate'
 export default {
   middleware: 'authenticated',
@@ -58,7 +59,11 @@ export default {
   data () {
     return {
       readWrite: false,
-      project: null
+      project: null,
+      attachments: [
+        { id: 'aa' },
+        { id: 'bb' }
+      ]
     }
   },
   computed: {

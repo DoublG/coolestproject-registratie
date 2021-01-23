@@ -150,9 +150,10 @@ export default {
       ]
     }
   },
-  computed: {
-  },
   methods: {
+    reset () {
+      this.$emit('change', this.$options.props.project.default())
+    },
     update_value (id, evt) {
       this.internal_project[id] = evt
       this.$emit('change', this.internal_project)

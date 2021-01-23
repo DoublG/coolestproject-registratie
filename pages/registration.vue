@@ -7,6 +7,7 @@
       <ValidationObserver ref="observer" v-slot="{ passes }">
         <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
           <user
+            ref="user"
             v-model="user"
             :field-status="user_field_status"
           />
@@ -21,17 +22,19 @@
           </b-form-group>
           <div v-if="is_own_project === 'own'">
             <own-project
+              ref="ownProject"
               v-model="own_project"
               :field-status="own_project_field_status"
             />
           </div>
           <div v-else>
             <other-project
+              ref="otherProject"
               v-model="other_project"
               :field-status="other_project_field_status"
             />
           </div>
-          <mandatory-questions v-model="mandatory_approvals" />
+          <mandatory-questions ref="mandatoryQuestions" v-model="mandatory_approvals" />
           <b-form-group>
             <b-button
               :disabled="loading"
@@ -171,39 +174,39 @@ export default {
       }
     },
     own_project: {
-      set (value) {
-        this.$store.dispatch('registration/own_project', value)
+      async set (value) {
+        await this.$store.dispatch('registration/own_project', Object.assign({}, value))
       },
       get () {
-        return this.$store.getters['registration/own_project']
+        return this.$store.state.registration.own_project
       }
     },
     other_project: {
-      set (value) {
-        this.$store.dispatch('registration/other_project', value)
+      async set (value) {
+        await this.$store.dispatch('registration/other_project', Object.assign({}, value))
       },
       get () {
-        return this.$store.getters['registration/other_project']
+        return this.$store.state.registration.other_project
       }
     },
     user: {
-      set (value) {
+      async set (value) {
         const u = value
         u.language = this.$i18n.locale
-        this.$store.dispatch('registration/user', u)
+        await this.$store.dispatch('registration/user', Object.assign({}, u))
       },
       get () {
-        return this.$store.getters['registration/user']
+        return this.$store.state.registration.user
       }
     },
     mandatory_approvals: {
-      set (value) {
-        const u = this.$store.getters['registration/user']
+      async set (value) {
+        const u = this.$store.state.registration.user
         u.mandatory_approvals = value
-        this.$store.dispatch('registration/user', u)
+        await this.$store.dispatch('registration/user', Object.assign({}, u))
       },
       get () {
-        const u = this.$store.getters['registration/user']
+        const u = this.$store.state.registration.user
         return u.mandatory_approvals
       }
     }
@@ -226,8 +229,15 @@ export default {
       window.scrollTo(0, 0)
     },
     onReset (evt) {
-      this.$store.commit('registration/reset')
-      requestAnimationFrame(() => {
+      this.$refs.mandatoryQuestions.reset()
+      this.$refs.user.reset()
+      if (this.$refs.otherProject) {
+        this.$refs.otherProject.reset()
+      }
+      if (this.$refs.ownProject) {
+        this.$refs.ownProject.reset()
+      }
+      this.$nextTick(() => {
         this.$refs.observer.reset()
       })
     }
