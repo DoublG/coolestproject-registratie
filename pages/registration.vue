@@ -174,26 +174,16 @@ export default {
       }
     },
     own_project: {
-<<<<<<< HEAD
-      set (value) {
-        this.$store.commit('registration/own_project', value)
-=======
       async set (value) {
         await this.$store.dispatch('registration/own_project', Object.assign({}, value))
->>>>>>> 1b626f11d672226555e35463545bcaca06f80813
       },
       get () {
         return this.$store.state.registration.own_project
       }
     },
     other_project: {
-<<<<<<< HEAD
-      set (value) {
-        this.$store.commit('registration/other_project', value)
-=======
       async set (value) {
         await this.$store.dispatch('registration/other_project', Object.assign({}, value))
->>>>>>> 1b626f11d672226555e35463545bcaca06f80813
       },
       get () {
         return this.$store.state.registration.other_project
@@ -203,11 +193,7 @@ export default {
       async set (value) {
         const u = value
         u.language = this.$i18n.locale
-<<<<<<< HEAD
-        this.$store.commit('registration/user', u)
-=======
         await this.$store.dispatch('registration/user', Object.assign({}, u))
->>>>>>> 1b626f11d672226555e35463545bcaca06f80813
       },
       get () {
         return this.$store.state.registration.user
@@ -217,11 +203,7 @@ export default {
       async set (value) {
         const u = this.$store.state.registration.user
         u.mandatory_approvals = value
-<<<<<<< HEAD
-        this.$store.commit('registration/user', u)
-=======
         await this.$store.dispatch('registration/user', Object.assign({}, u))
->>>>>>> 1b626f11d672226555e35463545bcaca06f80813
       },
       get () {
         const u = this.$store.state.registration.user
