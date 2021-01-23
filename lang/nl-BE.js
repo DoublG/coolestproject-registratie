@@ -1,4 +1,8 @@
 export default {
+    'mail':'(vul hier het e-mailadres van uw collega in)',
+    'subject':'Uitnodiging om deel te nemen aan mijn Coolest Project 2021', 
+    'body': 'Hallo <vriend>,%0D%0A%0D%0AAls je wilt deelnemen aan mijn project, registreer je dan via de volgende link naar de registratiepagina van Coolest Project 2021:%0D%0A%0D%0A',
+    'closure':'%0D%0A%0D%0AJe beste vriend%0D%0A<Vul uw naam in>',
     'message_successReg':'De registratie voor het aanmaken van je project is gelukt als je een bevestigingsmail ontvangt met verdere instructies om in te loggen en je gegevens te bekijken en/of bij te werken. Let op',
     'message_successChange':'De wijziging is gelukt.',
     'error_Page not found':'Pagina niet gevonden',
