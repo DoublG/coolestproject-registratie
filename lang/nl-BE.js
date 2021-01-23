@@ -86,7 +86,7 @@ export default {
     'label_MedewToken':'Medewerker Token',
     'label_mobiel nummer (+32):':'mobiel nummer (+32) of vaste lijn',
     'label_mobiel nummer ouders/voogd':'mobiel nummer ouders/voogd (+32)',
-    'label_MunicipalityName':'We hebben je filmpje goed ontvangen',
+    'label_MunicipalityName':'Naam van de gemeente',
     'label_Omschrijving:':'Omschrijving',
     'label_Postcode:':'Postcode',
     'label_Project_Type':'Wat zit er in jouw project? Link naar videoclip op youtube of dropbox of ...',

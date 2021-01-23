@@ -172,7 +172,7 @@ export default {
     },
     own_project: {
       set (value) {
-        this.$store.dispatch('registration/own_project', value)
+        this.$store.commit('registration/own_project', value)
       },
       get () {
         return this.$store.getters['registration/own_project']
@@ -180,7 +180,7 @@ export default {
     },
     other_project: {
       set (value) {
-        this.$store.dispatch('registration/other_project', value)
+        this.$store.commit('registration/other_project', value)
       },
       get () {
         return this.$store.getters['registration/other_project']
@@ -190,7 +190,7 @@ export default {
       set (value) {
         const u = value
         u.language = this.$i18n.locale
-        this.$store.dispatch('registration/user', u)
+        this.$store.commit('registration/user', u)
       },
       get () {
         return this.$store.getters['registration/user']
@@ -200,7 +200,7 @@ export default {
       set (value) {
         const u = this.$store.getters['registration/user']
         u.mandatory_approvals = value
-        this.$store.dispatch('registration/user', u)
+        this.$store.commit('registration/user', u)
       },
       get () {
         const u = this.$store.getters['registration/user']
