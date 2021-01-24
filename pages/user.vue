@@ -13,7 +13,7 @@
             update
             :del="user.delete_possible"
             reset
-            @onDelete="onDelete"
+            @deleteProject="onDelete"
           />
         </b-form>
       </ValidationObserver>
@@ -52,8 +52,12 @@ export default {
     },
     async onDelete (evt) {
       await this.$services.userinfo.delete()
-      this.logout()
+      await this.logout()
       this.$router.push(this.localePath('login'))
+    },
+    async logout () {
+      await this.$services.logout.post()
+      await this.$store.dispatch('auth/logout')
     }
   }
 }

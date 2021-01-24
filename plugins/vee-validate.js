@@ -4,6 +4,7 @@ import en from 'vee-validate/dist/locale/en.json'
 import nl from 'vee-validate/dist/locale/nl.json'
 import fr from 'vee-validate/dist/locale/fr.json'
 
+
 import { required, digits, regex, email, alpha_spaces as AlphaSpaces, oneOf, required_if as requiredIf, max, min, max_value as maxValue, min_value as minValue } from 'vee-validate/dist/rules'
 import { isWithinInterval, addDays } from 'date-fns'
 // install the 'required' rule.
@@ -14,7 +15,6 @@ localize({
   fr
 })
 localize('nl')
-
 extend('required', {
   ...required
 })
