@@ -13,6 +13,7 @@ localize({
   nl,
   fr
 })
+localize('nl')
 
 extend('required', {
   ...required
@@ -72,3 +73,4 @@ extend('all_true', {
     return selected.length === all.length
   }
 })
+

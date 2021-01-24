@@ -63,7 +63,8 @@ module.exports = {
   plugins: [
     '~/plugins/bus.js',
     '~/plugins/vee-validate.js',
-    '~/plugins/services.js'
+    '~/plugins/services.js',
+    '~/plugins/i18n-switcher.js'
   ],
   /*
   ** Nuxt.js dev-modules
