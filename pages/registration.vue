@@ -93,83 +93,106 @@ export default {
     other_project_field_status () {
       return {
         project_code: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         }
       }
     },
     own_project_field_status () {
       return {
         project_name: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         },
         project_descr: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         },
         project_type: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         },
         project_lang: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         }
       }
     },
     user_field_status () {
       return {
         year: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         },
         month: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         },
         email: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         },
         firstname: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         },
         lastname: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         },
         sex: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         },
         address: {
           postalcode: {
-            rw: this.readWrite
+            rw: this.readWrite,
+            hidden: false
           },
           street: {
-            rw: this.readWrite
+            rw: this.readWrite,
+            hidden: false
           },
           house_number: {
-            rw: this.readWrite
+            rw: this.readWrite,
+            hidden: false
           },
           bus_number: {
-            rw: this.readWrite
+            rw: this.readWrite,
+            hidden: false
           },
           municipality_name: {
-            rw: this.readWrite
+            rw: this.readWrite,
+            hidden: false
           }
         },
         gsm: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         },
         via: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         },
         medical: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         },
         email_guardian: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         },
         gsm_guardian: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         },
         t_size: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         },
         general_questions: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         }
       }
     },
