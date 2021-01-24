@@ -55,8 +55,7 @@ export default {
   },
   methods: {
     reset () {
-      this.$emit('change', this.$options.props.responses.default()
-      )
+      this.$emit('change', this.$options.props.responses.default())
     }
   }
 }

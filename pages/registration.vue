@@ -211,12 +211,12 @@ export default {
       }
     }
   },
-    mounted () {
-    this.$nextTick(async () => {
+  mounted () {
+    this.$nextTick(() => {
       // redirect to user page (token in GET string)
       const token = this.$route.query.token
       if (token) {
-        this.is_own_project =  'other'
+        this.is_own_project = 'other'
         this.other_project.project_code = token
       }
     })
@@ -233,19 +233,20 @@ export default {
       }
       registration.user = this.user
       await this.$services.registration.post(registration)
-      await this.onReset(evt)
+      this.onReset(evt)
 
       this.loading = false
       window.scrollTo(0, 0)
     },
     onReset (evt) {
-      this.$refs.mandatoryQuestions.reset()
-      this.$refs.user.reset()
+      // copy default state to vuex store
+      this.mandatory_approvals = this.$refs.mandatoryQuestions.$options.props.responses.default()
+      this.user = this.$refs.user.$options.props.user.default()
       if (this.$refs.otherProject) {
-        this.$refs.otherProject.reset()
+        this.other_project = this.$refs.otherProject.$options.props.project.default()
       }
       if (this.$refs.ownProject) {
-        this.$refs.ownProject.reset()
+        this.own_project = this.$refs.ownProject.$options.props.project.default()
       }
       this.$nextTick(() => {
         this.$refs.observer.reset()

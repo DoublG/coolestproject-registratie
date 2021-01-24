@@ -54,7 +54,7 @@ export default {
       },
       change_selection (id, evt) {
         // copy & change response
-        //const oldResponse = Object.assign({}, this.responseIntern)
+        // const oldResponse = Object.assign({}, this.responseIntern)
         this.responseIntern[id] = evt
         const responses = []
         for (const [, value] of Object.entries(this.responseIntern)) {

@@ -533,6 +533,11 @@ export default {
       )
     }
   },
+  watch: {
+    user (newUser, oldUser) {
+      this.internal_user = newUser
+    }
+  },
   methods: {
     update_value (id, evt) {
       this.internal_user[id] = evt

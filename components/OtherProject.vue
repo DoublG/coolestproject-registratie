@@ -64,6 +64,11 @@ export default {
       internal_project: Object.assign({}, this.project)
     }
   },
+  watch: {
+    project (newProject, oldProject) {
+      this.internal_project = newProject
+    }
+  },
   methods: {
     reset () {
       this.$emit('change', this.$options.props.project.default())
