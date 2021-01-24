@@ -241,6 +241,7 @@ export default {
       if (token) {
         this.is_own_project = 'other'
         this.other_project.project_code = token
+        this.$router.replace(this.localePath('registration'))
       }
     })
   },
