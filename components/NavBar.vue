@@ -48,7 +48,7 @@
   </div>
 </template>
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -64,9 +64,10 @@ export default {
   },
   mounted () {},
   methods: {
-    ...mapActions('auth', [
-      'logout'
-    ])
+    async logout () {
+      await this.$services.logout.post()
+      await this.$store.dispatch('auth/logout')
+    }
   }
 }
 </script>

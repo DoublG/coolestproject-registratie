@@ -111,6 +111,11 @@ export default ({ app, store, redirect }, inject) => {
         return app.$axios.$post('/login', null, { headers: { Authorization: 'Bearer ' + token } })
       }
     },
+    logout: {
+      post() {
+        return app.$axios.$post('/logout', null)
+      }
+    },
     mail: {
       post(email) {
         return app.$axios.$post('/mailToken', email)
