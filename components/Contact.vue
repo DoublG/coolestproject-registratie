@@ -2,7 +2,7 @@
   <div>
     <ValidationProvider
       v-slot="{ valid, errors }"
-      rules="required|digits:4"
+      rules="required|digits:4|maxValue:9992|minValue:1000"
       name="PostalCode"
     >
       <b-form-group
