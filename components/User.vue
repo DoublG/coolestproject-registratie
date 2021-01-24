@@ -1,6 +1,7 @@
 <template>
   <div>
     <ValidationProvider
+      v-if="!fieldStatus.email.hidden"
       v-slot="{ valid, errors }"
       rules="required|email"
       name="Email"
@@ -27,6 +28,7 @@
       </b-form-group>
     </ValidationProvider>
     <ValidationProvider
+      v-if="!fieldStatus.firstname.hidden"
       v-slot="{ valid, errors }"
       rules="required"
       name="FirstName"
@@ -51,6 +53,7 @@
       </b-form-group>
     </ValidationProvider>
     <ValidationProvider
+      v-if="!fieldStatus.lastname.hidden"
       v-slot="{ valid, errors }"
       rules="required"
       name="LastName"
@@ -75,6 +78,7 @@
       </b-form-group>
     </ValidationProvider>
     <ValidationProvider
+      v-if="!fieldStatus.year.hidden"
       v-slot="{ valid, errors }"
       :rules="{
         required: true
@@ -102,6 +106,7 @@
       </b-form-group>
     </ValidationProvider>
     <ValidationProvider
+      v-if="!fieldStatus.month.hidden"
       v-slot="{ valid, errors }"
       :rules="{
         required: true
@@ -129,6 +134,7 @@
       </b-form-group>
     </ValidationProvider>
     <ValidationProvider
+      v-if="!fieldStatus.sex.hidden"
       v-slot="{ valid, errors }"
       rules="required"
       name="Sex"
@@ -175,6 +181,7 @@
       </b-popover>
     </b-form-group>
     <ValidationProvider
+      v-if="!fieldStatus.t_size.hidden"
       v-slot="{ valid, errors }"
       :rules="{ required: true }"
       name="T-shirtSize"
@@ -206,6 +213,7 @@
     </ValidationProvider>
     <contact v-if="user" :contact="user.address" :field-status="fieldStatus.address" @change="update_value('address', $event)" />
     <ValidationProvider
+      v-if="!fieldStatus.gsm.hidden"
       v-slot="{ valid, errors }"
       :rules="{
         required: true,
@@ -234,7 +242,7 @@
         </b-form-invalid-feedback>
       </b-form-group>
     </ValidationProvider>
-    <ValidationProvider v-slot="{ valid, errors }" name="Via">
+    <ValidationProvider v-if="!fieldStatus.via.hidden" v-slot="{ valid, errors }" name="Via">
       <b-form-group
         id="input-group-10"
         :label="$t('label_Van waar ken je ons:')"
@@ -256,6 +264,7 @@
     </ValidationProvider>
     <div v-if="!isGuardianNeeded">
       <ValidationProvider
+        v-if="!fieldStatus.medical.hidden"
         v-slot="{ valid, errors }"
         rules="max:255"
         name="Medical"
@@ -284,6 +293,7 @@
     <div v-else>
       <h2>{{ $t("Informatie van je ouders/voogd") }}</h2>
       <ValidationProvider
+        v-if="!fieldStatus.email_guardian.hidden"
         v-slot="{ valid, errors }"
         rules="required|email"
         name="Email"
@@ -310,6 +320,7 @@
         </b-form-group>
       </ValidationProvider>
       <ValidationProvider
+        v-if="!fieldStatus.gsm_guardian.hidden"
         v-slot="{ valid, errors }"
         :rules="{
           required: true,
@@ -341,6 +352,7 @@
         </b-form-invalid-feedback>
       </ValidationProvider>
       <ValidationProvider
+        v-if="!fieldStatus.medical.hidden"
         v-slot="{ valid, errors }"
         rules="max:255"
         name="Medical"
@@ -417,60 +429,78 @@ export default {
       default: () => {
         return {
           year: {
-            rw: true
+            rw: true,
+            hidden: false
           },
           month: {
-            rw: true
+            rw: true,
+            hidden: false
           },
           email: {
-            rw: true
+            rw: true,
+            hidden: false
           },
           firstname: {
-            rw: true
+            rw: true,
+            hidden: false
           },
           lastname: {
-            rw: true
+            rw: true,
+            hidden: false
           },
           sex: {
-            rw: true
+            rw: true,
+            hidden: false
           },
           address: {
             postalcode: {
-              rw: true
+              rw: true,
+              hidden: false
             },
             street: {
-              rw: true
+              rw: true,
+              hidden: false
             },
             house_number: {
-              rw: true
+              rw: true,
+              hidden: false
             },
             bus_number: {
-              rw: true
+              rw: true,
+              hidden: false
             },
             municipality_name: {
-              rw: true
+              rw: true,
+              hidden: false
             }
           },
           gsm: {
-            rw: true
+            rw: true,
+            hidden: false
           },
           via: {
-            rw: true
+            rw: true,
+            hidden: false
           },
           medical: {
-            rw: true
+            rw: true,
+            hidden: false
           },
           email_guardian: {
-            rw: true
+            rw: true,
+            hidden: false
           },
           gsm_guardian: {
-            rw: true
+            rw: true,
+            hidden: false
           },
           t_size: {
-            rw: true
+            rw: true,
+            hidden: false
           },
           general_questions: {
-            rw: true
+            rw: true,
+            hidden: false
           }
         }
       }

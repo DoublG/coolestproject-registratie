@@ -70,16 +70,20 @@ export default {
     own_project_field_status () {
       return {
         project_name: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         },
         project_descr: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         },
         project_type: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         },
         project_lang: {
-          rw: this.readWrite
+          rw: this.readWrite,
+          hidden: false
         }
       }
     }

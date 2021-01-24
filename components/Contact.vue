@@ -1,6 +1,7 @@
 <template>
   <div>
     <ValidationProvider
+      v-if="!fieldStatus.postalcode.hidden"
       v-slot="{ valid, errors }"
       rules="required|digits:4|maxValue:9992|minValue:1000"
       name="PostalCode"
@@ -26,6 +27,7 @@
       </b-form-group>
     </ValidationProvider>
     <ValidationProvider
+      v-if="!fieldStatus.street.hidden"
       v-slot="{ valid, errors }"
       rules="required"
       name="Street"
@@ -50,6 +52,7 @@
       </b-form-group>
     </ValidationProvider>
     <ValidationProvider
+      v-if="!fieldStatus.house_number.hidden"
       v-slot="{ valid, errors }"
       rules="required"
       name="HouseNumber"
@@ -73,7 +76,7 @@
         </b-form-invalid-feedback>
       </b-form-group>
     </ValidationProvider>
-    <ValidationProvider v-slot="{ valid, errors }" name="BusNumber">
+    <ValidationProvider v-if="!fieldStatus.bus_number.hidden" v-slot="{ valid, errors }" name="BusNumber">
       <b-form-group
         id="input-group-3z"
         :label="$t('label_BusNumber')"
@@ -93,7 +96,7 @@
         </b-form-invalid-feedback>
       </b-form-group>
     </ValidationProvider>
-    <ValidationProvider v-slot="{ valid, errors }" name="MunicipalityName">
+    <ValidationProvider v-if="!fieldStatus.municipality_name.hidden" v-slot="{ valid, errors }" name="MunicipalityName">
       <b-form-group
         id="input-group-3zz"
         :label="$t('label_MunicipalityName')"
@@ -144,19 +147,24 @@ export default {
       default: () => {
         return {
           postalcode: {
-            rw: true
+            rw: true,
+            hidden: false
           },
           street: {
-            rw: true
+            rw: true,
+            hidden: false
           },
           house_number: {
-            rw: true
+            rw: true,
+            hidden: false
           },
           bus_number: {
-            rw: true
+            rw: true,
+            hidden: false
           },
           municipality_name: {
-            rw: true
+            rw: true,
+            hidden: false
           }
         }
       }
