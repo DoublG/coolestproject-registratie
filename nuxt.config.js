@@ -26,24 +26,24 @@ module.exports = {
       {
         rel: 'apple-touch-icon',
         sizes: '180x180',
-        href: 'apple-touch-icon.png'
+        href: '/apple-touch-icon.png'
       },
       {
         rel: 'icon',
         types: 'image/png',
         sizes: '32x32',
-        href: 'favicon-32x32.png'
+        href: '/favicon-32x32.png'
       },
       {
         rel: 'icon',
         types: 'image/png',
         sizes: '16x16',
-        href: 'favicon-16x16.png'
+        href: '/favicon-16x16.png'
       },
       {
         rel: 'mask-icon',
         color: '#5bbad5',
-        href: 'safari-pinned-tab.svg'
+        href: '/safari-pinned-tab.svg'
       }
     ]
   },
@@ -132,7 +132,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend(config, ctx) { },
+    extend (config, ctx) { },
     transpile: [
       'vee-validate/dist/rules',
       'nuxt-vuex-localstorage'
