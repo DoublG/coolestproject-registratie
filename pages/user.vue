@@ -7,12 +7,13 @@
         <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
           <user v-model="user" read-only />
           <h2>{{ $t("Mandatory Approvals") }}</h2>
-          <mandatory-questions v-model="user.mandatory_approvals" />
+          <mandatory-questions v-if="user" v-model="user.mandatory_approvals" />
           <ActionBarProject
+            v-if="user"
             update
             :del="user.delete_possible"
             reset
-            @onDelete="onDelete"
+            @deleteProject="onDelete"
           />
         </b-form>
       </ValidationObserver>
@@ -35,6 +36,7 @@ export default {
   },
   data () {
     return {
+      user: {}
     }
   },
   methods: {
@@ -50,8 +52,12 @@ export default {
     },
     async onDelete (evt) {
       await this.$services.userinfo.delete()
-      this.logout()
-      this.$router.push({ path: 'login' })
+      await this.logout()
+      this.$router.push(this.localePath('login'))
+    },
+    async logout () {
+      await this.$services.logout.post()
+      await this.$store.dispatch('auth/logout')
     }
   }
 }

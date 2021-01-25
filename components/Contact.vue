@@ -1,8 +1,9 @@
 <template>
   <div>
     <ValidationProvider
+      v-if="!fieldStatus.postalcode.hidden"
       v-slot="{ valid, errors }"
-      rules="required|digits:4"
+      rules="required|digits:4|maxValue:9992|minValue:1000"
       name="PostalCode"
     >
       <b-form-group
@@ -13,6 +14,7 @@
         <b-form-input
           id="input-1"
           :value="contact.postalcode"
+          :disabled="!fieldStatus.postalcode.rw"
           :placeholder="$t('placeholder_Postcode:')"
           :state="errors[0] ? false : valid ? true : null"
           type="number"
@@ -25,6 +27,7 @@
       </b-form-group>
     </ValidationProvider>
     <ValidationProvider
+      v-if="!fieldStatus.street.hidden"
       v-slot="{ valid, errors }"
       rules="required"
       name="Street"
@@ -37,6 +40,7 @@
         <b-form-input
           id="input-1z"
           :value="contact.street"
+          :disabled="!fieldStatus.street.rw"
           :placeholder="$t('placeholder_Street')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-1z-live-feedback"
@@ -48,6 +52,7 @@
       </b-form-group>
     </ValidationProvider>
     <ValidationProvider
+      v-if="!fieldStatus.house_number.hidden"
       v-slot="{ valid, errors }"
       rules="required"
       name="HouseNumber"
@@ -60,6 +65,7 @@
         <b-form-input
           id="input-2z"
           :value="contact.house_number"
+          :disabled="!fieldStatus.house_number.rw"
           :placeholder="$t('placeholder_HouseNumber')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-2z-live-feedback"
@@ -70,7 +76,7 @@
         </b-form-invalid-feedback>
       </b-form-group>
     </ValidationProvider>
-    <ValidationProvider v-slot="{ valid, errors }" name="BusNumber">
+    <ValidationProvider v-if="!fieldStatus.bus_number.hidden" v-slot="{ valid, errors }" name="BusNumber">
       <b-form-group
         id="input-group-3z"
         :label="$t('label_BusNumber')"
@@ -79,6 +85,7 @@
         <b-form-input
           id="input-3z"
           :value="contact.bus_number"
+          :disabled="!fieldStatus.bus_number.rw"
           :placeholder="$t('placeholder_BusNumber')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-3z-live-feedback"
@@ -89,7 +96,7 @@
         </b-form-invalid-feedback>
       </b-form-group>
     </ValidationProvider>
-    <ValidationProvider v-slot="{ valid, errors }" name="MunicipalityName">
+    <ValidationProvider v-if="!fieldStatus.municipality_name.hidden" v-slot="{ valid, errors }" name="MunicipalityName">
       <b-form-group
         id="input-group-3zz"
         :label="$t('label_MunicipalityName')"
@@ -98,6 +105,7 @@
         <b-form-input
           id="input-3zz"
           :value="contact.municipality_name"
+          :disabled="!fieldStatus.municipality_name.rw"
           :placeholder="$t('placeholder_MunicipalityName')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-3zz-live-feedback"
@@ -133,6 +141,33 @@ export default {
           municipality_name: null
         }
       }
+    },
+    fieldStatus: {
+      type: Object,
+      default: () => {
+        return {
+          postalcode: {
+            rw: true,
+            hidden: false
+          },
+          street: {
+            rw: true,
+            hidden: false
+          },
+          house_number: {
+            rw: true,
+            hidden: false
+          },
+          bus_number: {
+            rw: true,
+            hidden: false
+          },
+          municipality_name: {
+            rw: true,
+            hidden: false
+          }
+        }
+      }
     }
   },
   async fetch () {},
@@ -143,8 +178,10 @@ export default {
   },
   methods: {
     update_value (id, evt) {
-      this.$set(this.contact, id, evt)
-      this.$emit('change', this.contact)
+      const c = Object.assign({}, this.contact)
+      c[id] = evt
+      // this.$set(this.contact, id, evt)
+      this.$emit('change', c)
     }
   }
 }

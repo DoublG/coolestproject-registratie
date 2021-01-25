@@ -1,6 +1,7 @@
 <template>
   <div>
     <ValidationProvider
+      v-if="!fieldStatus.email.hidden"
       v-slot="{ valid, errors }"
       rules="required|email"
       name="Email"
@@ -13,7 +14,7 @@
       >
         <b-form-input
           id="input-3"
-          :disabled="readOnly"
+          :disabled="!fieldStatus.email.rw"
           :value="user.email"
           :placeholder="$t('placeholder_Email adres:')"
           :state="errors[0] ? false : valid ? true : null"
@@ -27,6 +28,7 @@
       </b-form-group>
     </ValidationProvider>
     <ValidationProvider
+      v-if="!fieldStatus.firstname.hidden"
       v-slot="{ valid, errors }"
       rules="required"
       name="FirstName"
@@ -39,6 +41,7 @@
         <b-form-input
           id="input-5"
           :value="user.firstname"
+          :disabled="!fieldStatus.firstname.rw"
           :placeholder="$t('placeholder_GeefVoornaam:')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-5-live-feedback"
@@ -50,6 +53,7 @@
       </b-form-group>
     </ValidationProvider>
     <ValidationProvider
+      v-if="!fieldStatus.lastname.hidden"
       v-slot="{ valid, errors }"
       rules="required"
       name="LastName"
@@ -62,6 +66,7 @@
         <b-form-input
           id="input-6"
           :value="user.lastname"
+          :disabled="!fieldStatus.lastname.rw"
           :placeholder="$t('placeholder_GeefAchternaam:')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-6-live-feedback"
@@ -73,6 +78,7 @@
       </b-form-group>
     </ValidationProvider>
     <ValidationProvider
+      v-if="!fieldStatus.year.hidden"
       v-slot="{ valid, errors }"
       :rules="{
         required: true
@@ -86,6 +92,7 @@
       >
         <b-form-select
           :value="user.year"
+          :disabled="!fieldStatus.year.rw"
           :options="year_list"
           :state="errors[0] ? false : valid ? true : null"
           @input="update_value('year', $event)"
@@ -99,6 +106,7 @@
       </b-form-group>
     </ValidationProvider>
     <ValidationProvider
+      v-if="!fieldStatus.month.hidden"
       v-slot="{ valid, errors }"
       :rules="{
         required: true
@@ -113,6 +121,7 @@
         <b-form-select
           :value="user.month"
           :options="monthList"
+          :disabled="!fieldStatus.month.rw"
           :state="errors[0] ? false : valid ? true : null"
           @input="update_value('month', $event)"
         />
@@ -125,6 +134,7 @@
       </b-form-group>
     </ValidationProvider>
     <ValidationProvider
+      v-if="!fieldStatus.sex.hidden"
       v-slot="{ valid, errors }"
       rules="required"
       name="Sex"
@@ -138,6 +148,7 @@
           id="input-7"
           :value="user.sex"
           :options="geslacht"
+          :disabled="!fieldStatus.sex.rw"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-7-live-feedback"
           @input="update_value('sex', $event)"
@@ -170,6 +181,7 @@
       </b-popover>
     </b-form-group>
     <ValidationProvider
+      v-if="!fieldStatus.t_size.hidden"
       v-slot="{ valid, errors }"
       :rules="{ required: true }"
       name="T-shirtSize"
@@ -183,6 +195,7 @@
           id="input-9"
           :value="user.t_size"
           :options="tshirtsList"
+          :disabled="!fieldStatus.t_size.rw"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-9-live-feedback"
           @input="update_value('t_size', $event)"
@@ -198,8 +211,9 @@
         </b-form-invalid-feedback>
       </b-form-group>
     </ValidationProvider>
-    <contact :contact="user.address" @change="update_value('address', $event)" />
+    <contact v-if="user" :contact="user.address" :field-status="fieldStatus.address" @change="update_value('address', $event)" />
     <ValidationProvider
+      v-if="!fieldStatus.gsm.hidden"
       v-slot="{ valid, errors }"
       :rules="{
         required: true,
@@ -216,6 +230,7 @@
         <b-form-input
           id="input-2"
           :value="user.gsm"
+          :disabled="!fieldStatus.gsm.rw"
           :placeholder="$t('placeholder_mobiel nummer (+32):')"
           :state="errors[0] ? false : valid ? true : null"
           type="tel"
@@ -227,7 +242,7 @@
         </b-form-invalid-feedback>
       </b-form-group>
     </ValidationProvider>
-    <ValidationProvider v-slot="{ valid, errors }" name="Via">
+    <ValidationProvider v-if="!fieldStatus.via.hidden" v-slot="{ valid, errors }" name="Via">
       <b-form-group
         id="input-group-10"
         :label="$t('label_Van waar ken je ons:')"
@@ -236,6 +251,7 @@
         <b-form-input
           id="input-10"
           :value="user.via"
+          :disabled="!fieldStatus.via.rw"
           :placeholder="$t('placeholder_Geef je dojo, school')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-10-live-feedback"
@@ -248,6 +264,7 @@
     </ValidationProvider>
     <div v-if="!isGuardianNeeded">
       <ValidationProvider
+        v-if="!fieldStatus.medical.hidden"
         v-slot="{ valid, errors }"
         rules="max:255"
         name="Medical"
@@ -260,6 +277,7 @@
           <b-form-textarea
             id="input-11"
             :value="user.medical"
+            :disabled="!fieldStatus.medical.rw"
             :state="errors[0] ? false : valid ? true : null"
             aria-describedby="input-11-live-feedback"
             @input="update_value('medical', $event)"
@@ -270,11 +288,12 @@
         </b-form-group>
       </ValidationProvider>
       <h2>{{ $t("Algemene vragen") }}</h2>
-      <optional-questions :responses="user.general_questions" @change="update_value('general_questions', $event)" />
+      <optional-questions v-if="user" :responses="user.general_questions" @change="update_value('general_questions', $event)" />
     </div>
     <div v-else>
       <h2>{{ $t("Informatie van je ouders/voogd") }}</h2>
       <ValidationProvider
+        v-if="!fieldStatus.email_guardian.hidden"
         v-slot="{ valid, errors }"
         rules="required|email"
         name="Email"
@@ -283,11 +302,12 @@
           id="input-group-13"
           :label="$t('label_Email adres ouders/voogd:')"
           label-for="input-13"
-          de:description="$t('description_We delen dit met niemand')"
+          :description="$t('description_We delen dit met niemand')"
         >
           <b-form-input
             id="input-13"
             :value="user.email_guardian"
+            :disabled="!fieldStatus.email_guardian.rw"
             :placeholder="$t('placeholder_Email adres ouders/voogd:')"
             :state="errors[0] ? false : valid ? true : null"
             type="email"
@@ -300,6 +320,7 @@
         </b-form-group>
       </ValidationProvider>
       <ValidationProvider
+        v-if="!fieldStatus.gsm_guardian.hidden"
         v-slot="{ valid, errors }"
         :rules="{
           required: true,
@@ -318,6 +339,7 @@
           <b-form-input
             id="input-14"
             :value="user.gsm_guardian"
+            :disabled="!fieldStatus.gsm_guardian.rw"
             :placeholder="$t('placeholder_mobiel nummer ouders/voogd')"
             :state="errors[0] ? false : valid ? true : null"
             type="tel"
@@ -330,6 +352,7 @@
         </b-form-invalid-feedback>
       </ValidationProvider>
       <ValidationProvider
+        v-if="!fieldStatus.medical.hidden"
         v-slot="{ valid, errors }"
         rules="max:255"
         name="Medical"
@@ -342,6 +365,7 @@
           <b-form-textarea
             id="input-15"
             :value="user.medical"
+            :disabled="!fieldStatus.medical.rw"
             :state="errors[0] ? false : valid ? true : null"
             aria-describedby="input-15-live-feedback"
             @input="update_value('medical', $event)"
@@ -352,7 +376,7 @@
         </b-form-group>
       </ValidationProvider>
       <h2>{{ $t("Algemene vragen") }}</h2>
-      <optional-questions :responses="user.general_questions" @change="update_value('general_questions', $event)" />
+      <optional-questions v-if="user" :responses="user.general_questions" @change="update_value('general_questions', $event)" />
     </div>
   </div>
 </template>
@@ -400,8 +424,86 @@ export default {
         }
       }
     },
-    readOnly: {
-      type: Boolean
+    fieldStatus: {
+      type: Object,
+      default: () => {
+        return {
+          year: {
+            rw: true,
+            hidden: false
+          },
+          month: {
+            rw: true,
+            hidden: false
+          },
+          email: {
+            rw: true,
+            hidden: false
+          },
+          firstname: {
+            rw: true,
+            hidden: false
+          },
+          lastname: {
+            rw: true,
+            hidden: false
+          },
+          sex: {
+            rw: true,
+            hidden: false
+          },
+          address: {
+            postalcode: {
+              rw: true,
+              hidden: false
+            },
+            street: {
+              rw: true,
+              hidden: false
+            },
+            house_number: {
+              rw: true,
+              hidden: false
+            },
+            bus_number: {
+              rw: true,
+              hidden: false
+            },
+            municipality_name: {
+              rw: true,
+              hidden: false
+            }
+          },
+          gsm: {
+            rw: true,
+            hidden: false
+          },
+          via: {
+            rw: true,
+            hidden: false
+          },
+          medical: {
+            rw: true,
+            hidden: false
+          },
+          email_guardian: {
+            rw: true,
+            hidden: false
+          },
+          gsm_guardian: {
+            rw: true,
+            hidden: false
+          },
+          t_size: {
+            rw: true,
+            hidden: false
+          },
+          general_questions: {
+            rw: true,
+            hidden: false
+          }
+        }
+      }
     }
   },
   async fetch () {
@@ -434,6 +536,7 @@ export default {
     monthList.unshift({ text: this.$i18n.t('placeholder_Kiesmaand'), value: null })
 
     return {
+      internal_user: Object.assign({}, this.user),
       startDateEvent: null,
       guardianAge: -1,
       tshirtsList: [],
@@ -449,6 +552,9 @@ export default {
   },
   computed: {
     isGuardianNeeded: (state) => {
+      if (!state.user) {
+        return false
+      }
       return (
         differenceInYears(
           state.startDateEvent,
@@ -457,10 +563,18 @@ export default {
       )
     }
   },
+  watch: {
+    user (newUser, oldUser) {
+      this.internal_user = newUser
+    }
+  },
   methods: {
     update_value (id, evt) {
-      this.$set(this.user, id, evt)
-      this.$emit('change', this.user)
+      this.internal_user[id] = evt
+      this.$emit('change', this.internal_user)
+    },
+    reset () {
+      this.$emit('change', this.$options.props.user.default())
     }
   }
 }

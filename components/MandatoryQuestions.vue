@@ -6,7 +6,12 @@
         :rules="{ required: true, all_true: { all: approvals.map((i) => { return i.value } ) , selected: responses } }"
         name="MandatoryApprovals"
       >
-        <b-form-group :description="$t('description_Je moet akkoord')">
+        <b-form-group>
+          <template v-slot:description>
+            <NuxtLink target='_blank' :to="localePath('index')">
+                  {{$t('description_Je moet akkoord')}}
+            </NuxtLink>
+          </template>
           <b-form-checkbox-group
             id="mandatory-approvals"
             :checked="responses"
@@ -51,6 +56,11 @@ export default {
       change_selection (evt) {
         this.$emit('change', evt)
       }
+    }
+  },
+  methods: {
+    reset () {
+      this.$emit('change', this.$options.props.responses.default())
     }
   }
 }

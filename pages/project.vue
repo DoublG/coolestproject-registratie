@@ -10,7 +10,7 @@
       <global-notification />
       <ValidationObserver ref="observer" v-slot="{ passes }">
         <b-form @submit.prevent="passes(onUpdateProject)" @reset.prevent="onReset">
-          <own-project v-model="project.own_project" />
+          <own-project v-model="project.own_project" :field-status="own_project_field_status" />
           <h2>{{ $t('participants') }}</h2>
           <div v-if="project.own_project.own_project">
             <own-participants
@@ -21,6 +21,8 @@
           <div v-else>
             <other-participants v-model="project.own_project.participants" />
           </div>
+          <h2>{{ $t('attachments') }}</h2>
+          <own-attachements v-model="attachments" />
           <ActionBarProject
             :update="project.own_project.own_project"
             :reset="project.own_project.own_project"
@@ -37,6 +39,7 @@
   </b-row>
 </template>
 <script>
+// project.own_project.attachments
 import { ValidationObserver } from 'vee-validate'
 export default {
   middleware: 'authenticated',
@@ -46,23 +49,51 @@ export default {
   async asyncData ({ store, query, app, redirect, route }) {
     const project = await app.$services.projectinfo.get()
     if (project === '') {
-      app.router.push({ path: '/no_project' })
+      app.router.push(app.localePath('no_project'))
     }
     return {
-      project
+      project,
+      readWrite: project.own_project.own_project || false
     }
   },
   data () {
-    return {}
+    return {
+      readWrite: false,
+      project: null,
+      attachments: [
+        { id: 'aa' },
+        { id: 'bb' }
+      ]
+    }
+  },
+  computed: {
+    own_project_field_status () {
+      return {
+        project_name: {
+          rw: this.readWrite,
+          hidden: false
+        },
+        project_descr: {
+          rw: this.readWrite,
+          hidden: false
+        },
+        project_type: {
+          rw: this.readWrite,
+          hidden: false
+        },
+        project_lang: {
+          rw: this.readWrite,
+          hidden: false
+        }
+      }
+    }
   },
   methods: {
     copyToClipboard (token) {
       navigator.clipboard.writeText(token)
     },
     async onUpdateProject (evt) {
-      this.$nuxt.$emit('clear-msg')
       await this.$services.projectinfo.patch(this.project)
-      this.$nuxt.$emit('display-msg', this.$i18n.t('message_successChange'), 'success')
     },
     async onAddToken (evt) {
       await this.$services.participant.post()
@@ -73,10 +104,10 @@ export default {
     },
     async onDelete (evt) {
       await this.$services.projectinfo.delete()
-      this.$router.push('no_project')
+      this.$router.push(this.localePath('no_project'))
     },
     onCancel (evt) {
-      this.$router.push('no_project')
+      this.$router.push(this.localePath('no_project'))
     }
   }
 }

@@ -29,7 +29,7 @@ export default {
   methods: {
     async onTokenSubmit (evt) {
       await this.$services.projectinfo.post(this.project)
-      this.$router.push('project')
+      this.$router.push(this.localePath('project'))
     },
     onTokenReset (evt) {
       this.project = {
@@ -37,7 +37,7 @@ export default {
       }
     },
     onCancel (evt) {
-      this.$router.push('no_project')
+      this.$router.push(this.localePath('no_project'))
     }
   }
 }

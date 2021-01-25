@@ -1,4 +1,8 @@
     export default {
+        'mail':"(s'il vous plaît, mettez ici l'adresse e-mail de votre collègue)",
+        'subject':'Invitation à participer à mon projet le plus cool 2021',
+        'body':"Bonjour <ami>,%0D%0A%0D%0ASi vous souhaitez participer à mon projet, veuillez vous inscrire en utilisant le lien suivant vers la page d'inscription du projet Coolest 2021:%0D%0A%0D%0A",
+        'closure':'%0D%0A%0D%0AY votre meilleur ami%0D%0A <Remplissez votre nom>',    
         'message_successReg':"L'inscription pour la création de votre projet est réussie, vous allez recevoir un e-mail de confirmation avec des instructions supplémentaires pour vous connecter et afficher et / ou mettre à jour vos données. Remarque",
         'message_successChange':'Le changement a réussi.',
         'error_Page not found':'Page non trouvée',
@@ -34,7 +38,6 @@
         'Project wordt verwijderd':'Le projet est supprimé',
         'Registratie':'Inscription',
         'Resetten':'Restaurer',
-        'agree':'En vous inscrivant vous acceptez les règles suivantes',
         'intro':'Au Coolest Projects Belgium les jeunes créateurs présentent leur créativité numérique. Veux-tu te joindre à nous?',
         'intro2':"C'est maintenant une SESSION EN DIRECT EN LIGNE corona le 25 avril 2021 avec des clips vidéo et des interviews de vos projets.",
         'problems':"Tu souhaiterais recevoir plus d'informations car c'est encore un peu flou pour toi ou tu as d'autres questions ou quelques problèmes avec ton inscription. Merci de contacter notre",

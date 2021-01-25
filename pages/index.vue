@@ -25,9 +25,13 @@
         </b>
         <span v-html="$t('href')" />
       </p>
-      <b-button variant="dark" class="button-hero" to="login">
+      <b-alert v-if="noEvent" show variant="warning">
+        {{ $t('No Event is active please come again later') }}
+      </b-alert>
+      <b-button v-else variant="dark" class="button-hero" :to="localePath('registration')">
         <font-awesome-icon :icon="['fas', 'paper-plane']" /> {{ $t('start') }}
       </b-button>
+      </p>
     </b-container>
   </div>
 </template>
@@ -36,8 +40,16 @@ export default {
   layout: 'fullwith',
   components: {
   },
+  async asyncData ({ store, query, app, redirect, route }) {
+    const settings = await app.$services.settings.get()
+    if (!settings) {
+      return { noEvent: true }
+    }
+  },
   data () {
-    return {}
+    return {
+      noEvent: false
+    }
   }
 }
 </script>

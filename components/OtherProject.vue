@@ -1,6 +1,7 @@
 <template>
   <div>
     <ValidationProvider
+      v-if="!fieldStatus.project_code.hidden"
       v-slot="{ valid, errors }"
       rules="required|max:36|min:36"
       name="ProjectCode"
@@ -17,6 +18,7 @@
           :state="errors[0] ? false : valid ? true : null"
           placeholder="Code"
           aria-describedby="input-22-live-feedback"
+          :disabled="!fieldStatus.project_code.rw"
           @input="update_value('project_code', $event)"
         />
         <b-form-invalid-feedback id="input-22-live-feedback">
@@ -45,19 +47,37 @@ export default {
           project_code: null
         }
       }
+    },
+    fieldStatus: {
+      type: Object,
+      default: () => {
+        return {
+          project_code: {
+            rw: true,
+            hidden: false
+          }
+        }
+      }
     }
   },
   async fetch () {},
   data () {
     return {
+      internal_project: Object.assign({}, this.project)
     }
   },
-  computed: {
+  watch: {
+    project (newProject, oldProject) {
+      this.internal_project = newProject
+    }
   },
   methods: {
+    reset () {
+      this.$emit('change', this.$options.props.project.default())
+    },
     update_value (id, evt) {
-      this.$set(this.project, id, evt)
-      this.$emit('change', this.project)
+      this.internal_project[id] = evt
+      this.$emit('change', this.internal_project)
     }
   }
 }
