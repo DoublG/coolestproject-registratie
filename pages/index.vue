@@ -31,7 +31,6 @@
       <b-button v-else variant="dark" class="button-hero" :to="localePath('registration')">
         <font-awesome-icon :icon="['fas', 'paper-plane']" /> {{ $t('start') }}
       </b-button>
-      </p>
     </b-container>
   </div>
 </template>

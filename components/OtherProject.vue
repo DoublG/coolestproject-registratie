@@ -1,6 +1,7 @@
 <template>
   <div>
     <ValidationProvider
+      v-if="!fieldStatus.project_code.hidden"
       v-slot="{ valid, errors }"
       rules="required|max:36|min:36"
       name="ProjectCode"
@@ -52,7 +53,8 @@ export default {
       default: () => {
         return {
           project_code: {
-            rw: true
+            rw: true,
+            hidden: false
           }
         }
       }

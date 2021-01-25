@@ -68,7 +68,7 @@ export default {
     'verwijder alles': 'VERWIJDER ALLES',
     'Waar kunnen we jou bereiken in geval van nood': 'Welk nummer gebruiken we in geval van nood?',
     'description_Geefcode': 'Geef de code in die je van de projecteigenaar gekregen hebt',
-    'description_Je moet akkoord': 'Je moet akkoord gaan met volgende vraag om je te kunnen inschrijven',
+    'description_Je moet akkoord': "Je moet akkoord gaan met volgende vraag om je te kunnen inschrijven",
     'description_taalJury': 'Als het panel van coderdojo jou mag opbellen',
     'description_Waar kunnen we jou bereiken in geval van nood': 'Welk nummer gebruiken we in geval van nood?',
     'description_We delen dit met niemand': 'We delen dit met niemand',
@@ -115,3 +115,4 @@ export default {
     'placeholder_Street': 'Straat',
     'No Event is active please come again later': 'Er is momenteel geen lopend event. Kom later eens terug kijken.'
 }
+

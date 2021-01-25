@@ -38,7 +38,6 @@ export default {
     'Project wordt verwijderd': 'Le projet est supprimé',
     'Registratie': 'Inscription',
     'Resetten': 'Restaurer',
-    'agree': 'En vous inscrivant vous acceptez les règles suivantes',
     'intro': 'Au Coolest Projects Belgium les jeunes créateurs présentent leur créativité numérique. Veux-tu te joindre à nous?',
     'intro2': "C'est maintenant une SESSION EN DIRECT EN LIGNE corona le 25 avril 2021 avec des clips vidéo et des interviews de vos projets.",
     'problems': "Tu souhaiterais recevoir plus d'informations car c'est encore un peu flou pour toi ou tu as d'autres questions ou quelques problèmes avec ton inscription. Merci de contacter notre",
@@ -113,4 +112,4 @@ export default {
     'placeholder_Postcode:': 'Code postal',
     'placeholder_Street': 'Rue',
     'No Event is active please come again later': 'Il n\'y a pas d\'evenement en cours. Revenez plus tard.'
-}        
+}

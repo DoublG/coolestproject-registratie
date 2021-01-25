@@ -1,6 +1,6 @@
 
 /* remove null values for api calls */
-function cleanup(root) {
+function cleanup (root) {
   const result = {}
   Object.keys(root).forEach(function (key, index) {
     const v = root[key]
@@ -36,69 +36,69 @@ export default ({ app, store, redirect }, inject) => {
   })
   const serviceHandler = {
     projectinfo: {
-      post(project) {
+      post (project) {
         return app.$axios.$post('/projectinfo', cleanup(project), { withCredentials: true })
       },
-      post_token(token) {
+      post_token (token) {
         return app.$axios.$post('/projectinfo', {})
       },
-      patch(project) {
+      patch (project) {
         app.$bus.$emit('display-msg', app.i18n.t('message_successChange'), 'success')
         return app.$axios.$patch('/projectinfo', cleanup(project))
       },
-      get() {
+      get () {
         return app.$axios.$get('/projectinfo')
       },
-      delete() {
+      delete () {
         return app.$axios.$delete('/projectinfo')
       }
     },
     participant: {
-      post() {
+      post () {
         return app.$axios.$post('/participants', null)
       }
     },
     settings: {
-      get() {
+      get () {
         return app.$axios.$get('/settings')
       }
     },
     questions: {
-      get() {
+      get () {
         return app.$axios.$get('/questions', {
         })
       }
     },
     approvals: {
-      get() {
+      get () {
         return app.$axios.$get('/approvals', {
         })
       }
     },
     tshirts: {
-      get() {
+      get () {
         return app.$axios.$get('/tshirts', {
         })
       }
     },
     registration: {
-      post(registration) {
+      post (registration) {
         app.$bus.$emit('display-msg', app.i18n.t('message_successReg'), 'success')
         return app.$axios.$post('/register', cleanup(registration))
       }
     },
     userinfo: {
-      patch(user) {
+      patch (user) {
         app.$bus.$emit('clear-msg')
         const response = app.$axios.$patch('/userinfo', cleanup(user))
         app.$bus.$emit('display-msg', app.i18n.t('message_successChange'), 'success')
         return response
       },
-      async get() {
+      async get () {
         const user = await app.$axios.$get('/userinfo')
         return user
       },
-      delete() {
+      delete () {
         app.$bus.$emit('clear-msg')
         const response = app.$axios.$delete('/userinfo')
         app.$bus.$emit('display-msg', app.i18n.t('message_successChange'), 'success')
@@ -106,18 +106,18 @@ export default ({ app, store, redirect }, inject) => {
       }
     },
     login: {
-      post(token) {
+      post (token) {
         // this call sets the cookie used in de subsequent calls
         return app.$axios.$post('/login', null, { headers: { Authorization: 'Bearer ' + token } })
       }
     },
     logout: {
-      post() {
+      post () {
         return app.$axios.$post('/logout', null)
       }
     },
     mail: {
-      post(email) {
+      post (email) {
         return app.$axios.$post('/mailToken', email)
       }
     }
