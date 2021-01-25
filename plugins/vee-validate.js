@@ -73,3 +73,4 @@ extend('all_true', {
     return selected.length === all.length
   }
 })
+
