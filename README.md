@@ -19,7 +19,7 @@ $ npm run start
 $ npm run generate
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org). Keep it cool!
 
 ## Build Setup for production
 Please note that we are using NODE_ENV === production to decide to use the proxy or not  
