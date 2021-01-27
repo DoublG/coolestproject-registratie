@@ -96,6 +96,7 @@ export default ({ app, store, redirect }, inject) => {
       },
       async get () {
         const user = await app.$axios.$get('/userinfo')
+        await app.i18n.setLocale(user.language)
         return user
       },
       delete () {
