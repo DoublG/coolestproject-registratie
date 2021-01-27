@@ -11,9 +11,9 @@ export default {
     'error_Back to homepage': 'Terug naar de startpagina',
     'jongen': 'jongen',
     'meisje': 'meisje',
-    'An error occurred': ' ',
-    'Back to homepage': ' ',
-    'Page not found': ' ',
+    'An error occurred': 'Er was een probleem',
+    'Back to homepage': 'Terug naar begin',
+    'Page not found': 'Pagina niet gevonden',
     'Aanpassen': 'Aanpassen',
     'AddToken': 'Deelnemer toevoegen',
     'agree': 'Door u te registreren gaat u akkoord met de volgende regels',
@@ -113,6 +113,8 @@ export default {
     'placeholder_MunicipalityName': 'Naam van de gemeente',
     'placeholder_Postcode:': 'Postcode',
     'placeholder_Street': 'Straat',
-    'No Event is active please come again later': 'Er is momenteel geen lopend event. Kom later eens terug kijken.'
+    'NoEventHeader': 'Geen lopend event',
+    'No Event is active please come again later': 'Er is momenteel geen lopend event. Kom later eens terug kijken.',
+    'message_backendKaput':'Algemeen systeem probleem. Onze excuses - wij werken met vrijwilligers ;-)',
+    'Info':'info'
 }
-

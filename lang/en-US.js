@@ -82,7 +82,7 @@ export default {
     'label_MedewToken': 'Participant Token',
     'label_mobiel nummer (+32):': 'mobile number or landline (+32)',
     'label_mobiel nummer ouders/voogd': 'mobile number parents / guardian (+32)',
-    'lable_MunicipalityName': 'MunicipalityName',
+    'label_MunicipalityName': 'MunicipalityName',
     'label_Omschrijving:': 'Description',
     'label_Postcode:': 'Postal Code',
     'label_Project_Type': 'What is in your project about hardware software network on WiFi or on cable....',
@@ -109,5 +109,8 @@ export default {
     'placeholder_MunicipalityName': 'MunicipalityName',
     'placeholder_Postcode:': 'Postal Code',
     'placeholder_Street': 'Street',
-    'No Event is active please come again later': 'No Event is currently active. Please come again later.'
+    'NoEventHeader': 'No event active',
+    'No Event is active please come again later': 'No Event is currently active. Please come again later.',
+    'message_backendKaput':'General system error. Sorry about that - we work with volunteers ;-)',
+    'Info':'info'
 }

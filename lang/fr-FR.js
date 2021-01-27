@@ -111,5 +111,8 @@ export default {
     'placeholder_MunicipalityName': 'Nom de la commune',
     'placeholder_Postcode:': 'Code postal',
     'placeholder_Street': 'Rue',
-    'No Event is active please come again later': 'Il n\'y a pas d\'evenement en cours. Revenez plus tard.'
+    'NoEventHeader': "Pas d'evenement",
+    'No Event is active please come again later': 'Il n\'y a pas d\'evenement en cours. Revenez plus tard.',
+    'message_backendKaput':'General system error. Sorry about that - we work with volunteers ;-)',
+    'Info':'info'
 }
