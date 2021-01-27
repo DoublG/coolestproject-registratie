@@ -43,7 +43,7 @@ export default {
       this.$emit('copyToClipboard', token)
     },
     mailToken (token) {
-      const fullUrl = window.location.href.replace('project', 'registration') + '?token=' + token
+      const fullUrl = window.location.href.replace('/project', '/registration') + '?token=' + token
       return 'mailto:' + this.$i18n.t('mail') + '?subject=' + this.$i18n.t('subject') + '&body=' + this.$i18n.t('body') + ' ' + fullUrl + this.$i18n.t('closure')
     }
   }
