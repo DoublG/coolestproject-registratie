@@ -2,7 +2,7 @@
   <b-row>
     <b-col>
       <h1>
-        {{ $t('NoEventisactive') }}
+        {{ $t('NoEventHeader') }}
       </h1>
       <b-alert show variant="warning">
         {{ $t('No Event is active please come again later') }}
