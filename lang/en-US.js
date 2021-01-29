@@ -100,7 +100,7 @@ export default {
     'label_Voornaam:': 'First Name',
     'label_Zijn er aandoeningen': 'Are there any conditions or circumstances that we should take into account',
     'message_successChange': 'The change was successful.',
-    'message_successReg': 'The registration for the creation of your project is successful when you get a confirmation mail with further instructions to login and to see and/or change your data. Be aware',
+    'message_successReg': 'ATTENTION: The first step is ready, well done! Now click on the link in the email we sent you for the follow-up.',
     'placeholder_BusNumber': 'Box Number',
     'placeholder_Email adres ouders/voogd:': 'E-mail address parents / guardian',
     'placeholder_Email adres:': 'E-mail address',
