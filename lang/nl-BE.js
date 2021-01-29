@@ -49,7 +49,7 @@ export default {
     'rule6': 'Na registratie kunnen jullie de persoonlijke informatie wijzigen. Alleen de projecteigenaar kan zijn project informatie wijzigen. Alle wijzigingen moeten definitief zijn op 9 april.',
     'rule7': 'We geven je een tijdslot om op zondag 25 april je project live te presenteren voor familie en vrienden. ',
     'rule8': 'We geven enkel goodie aan geregistreerde deelnemers die een video inzenden van hun project en hun project online voorstellen op zondag 25 april. Voor het versturen van deze goodies hebben we uiteraard het postadres nodig.',
-    'rule9': 'Wij respecteren uw gegevens. U kunt de <b><a href=\"{{https://www.coderdojobelgium.be/nl/coderdojo-belgium-privacyverklaring}}\">Privacyverklaring</a></b> lezen op de website van CoderDojo België.',
+    'rule9': 'Wij respecteren uw gegevens. U kunt de <b><a target=\"privacy\" href=\"https://www.coderdojobelgium.be/nl/coderdojo-belgium-privacyverklaring\">privacyverklaring</a></b> lezen op de website van CoderDojo België.',
     'rules': 'Coolest Projects Belgium',
     'SendMovie': 'Je kan je video indienen via deze url <a href={url}>video</a> ',
     'start': 'Start registratie',

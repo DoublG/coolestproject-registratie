@@ -47,7 +47,7 @@ export default {
     'rule6': "Après l'enregistrement, chaque participant.e peut modifier les informations d'utilisateur du projet. Seul.e le / la propriétaire du projet peut modifier les informations relatives à son projet. Toutes les modifications doivent être définitives le 7 mai.",
     'rule7': "Nous vous donnerons un créneau horaire pour présenter votre projet en direct à votre famille et à vos amis le dimanche 25 avril. ",
     'rule8': "Nous ne fournissons un goodie qu'aux inscrits qui envoient une vidéo pour présenter leur projet. Nous avons donc besoin d’une adresse postale pour procéder à l’envoi.",
-    'rule9': "Nous respectons toutes les données personnelles. La déclaration de confidentialité disponible sur le site web de CoderDojo: <b>https://www.coderdojobelgium.be/fr/déclaration-de-confidentialité-coderdojo-belgium</b>",
+    'rule9': "Nous respectons toutes les données personnelles. La déclaration de confidentialité disponible sur le site web de CoderDojo:&nbsp<b><a target=\"privacy\" href=\"https://www.coderdojobelgium.be/fr/déclaration-de-confidentialité-coderdojo-belgium\">declaration de confidentialité</a></b>",
     'rules': "Coolest Projects Belgium",
     'SendMovie': "Vous pouvez soumettre votre vidéo à cette URL <a href='{url}'>video</a>",
     'start': "Commencer l'inscription",
