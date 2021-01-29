@@ -100,7 +100,7 @@ export default {
     'label_Voornaam:': "Prénom",
     'label_Zijn er aandoeningen': "Y a-t-il des conditions ou des remarques dont nous devons tenir compte?",
     'message_successChange': "Le changement est réussi.",
-    'message_successReg': "L'inscription pour la création de votre projet est réussie, vous allez recevoir un e-mail de confirmation avec des instructions supplémentaires pour vous connecter et afficher et / ou mettre à jour vos données. Attention",
+    'message_successReg': "ATTENTION: La première étape est terminée, bravo! Cliquez maintenant sur le lien dans l'e-mail que nous vous avons envoyé pour le suivi.",
     'placeholder_BusNumber': "Numéro de boîte",
     'placeholder_Email adres ouders/voogd:': "Adresse mail des parents / tuteur",
     'placeholder_Email adres:': "Adresse mail",
