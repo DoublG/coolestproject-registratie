@@ -18,7 +18,7 @@ export default {
     'Ikbenakkoord': 'Ik ben akkoord met de algemene voorwaarden',
     'info': 'Info',
     'Informatie van je ouders/voogd': 'Informatie van je ouders/voogd',
-    'intro': 'Bij Coolest Projects Belgium tonen jonge makers hun digitale creativiteit. Doe je mee ?',
+    'intro': 'Bij Coolest Projects Belgium tonen jonge makers hun digitale creativiteit. Doe je mee?',
     'intro2': 'Op zondag 25 april gaat onze interactieve ONLINE editie live, met al jullie coole projecten.',
     'jongen': 'Jongen',
     'LinkDelete': 'Mijn verbinding met het project zal verwijderd worden',
