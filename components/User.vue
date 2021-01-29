@@ -595,7 +595,7 @@ export default {
   },
   watch: {
     user (newUser, oldUser) {
-      this.internal_user = newUser
+      this.internal_user = Object.assign({},newUser)
     }
   },
   methods: {
