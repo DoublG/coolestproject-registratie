@@ -118,6 +118,10 @@ export default {
     'placeholder_MunicipalityName': "Nom de la commune",
     'placeholder_Postcode:': "Code postal",
     'placeholder_Street': "Rue",
-    "href": "<a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#105;&#110;&#102;o&#64;&#99;&#111;&#111;&#108;&#101;&#115;&#116;&#112;&#114;&#111;&#106;&#101;&#99;&#116;s&#46;&#98;&#101;&quest;&#x53;&#x55;&#x42;&#x4a;&#x45;&#x43;&#x54;&equals;CoolestProjectsRegistration'><b>HELPDESK</b></a>"
-    }
+    "href": "<a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#105;&#110;&#102;o&#64;&#99;&#111;&#111;&#108;&#101;&#115;&#116;&#112;&#114;&#111;&#106;&#101;&#99;&#116;s&#46;&#98;&#101;&quest;&#x53;&#x55;&#x42;&#x4a;&#x45;&#x43;&#x54;&equals;CoolestProjectsRegistration'><b>HELPDESK</b></a>",
+    'NoEventHeader': 'No event active',
+    'No Event is active please come again later': 'No Event is currently active. Please come again later.',
+    'message_backendKaput':'General system error. Sorry about that - we work with volunteers ;-)',
+    'Info':'info'
+}
     
