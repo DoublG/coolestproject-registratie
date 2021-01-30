@@ -44,7 +44,7 @@ export default {
     'rule1': 'Een deelnemer moet tussen 7 en 18 jaar oud zijn op de dag van Coolest Projects en resideren in België',
     'rule2': 'Alle projecten zijn welkom van beginner tot expert. Alle technologieën worden geaccepteerd (ook onafgewerkte projecten)',
     'rule3': 'Na registratie ontvang je een bevestigingsmail. Je moeten op de link klikken om de registratie af te ronden.',
-    'rule4': 'Je kan met maximaal 4 vrienden deelnemen aan één project. Alle deelnemers moeten zich zelf registreren nadat de projecteigenaar zijn project heeft aangemeld. Na ontvangst van een uitnodigingsmail van de projecteigenaar met een registratietoken kunnen jullie ook registreren met deze token',
+    'rule4': 'Je kan met maximaal 4 personen deelnemen aan één project. Alle deelnemers moeten zich zelf registreren nadat de projecteigenaar zijn project heeft aangemeld. Na ontvangst van een uitnodigingsmail van de projecteigenaar met een registratietoken kunnen jullie ook registreren met deze token',
     'rule6': 'Voor een geldige deelname, moet je een video van je project inzenden van minimaal 1 en maximaal 3 minuten. Deze video moeten we ten laatste ontvangen hebben op 29 april 23.59h. ',
     'rule5': 'Na registratie kunnen jullie de persoonlijke informatie wijzigen. Alleen de projecteigenaar kan zijn project informatie wijzigen. Alle wijzigingen moeten definitief zijn op 9 april.',
     'rule7': 'We geven je een tijdslot om op zondag 25 april je project live te presenteren voor familie en vrienden. ',
