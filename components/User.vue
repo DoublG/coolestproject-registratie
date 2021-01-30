@@ -18,7 +18,7 @@
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-18-live-feedback"
           :disabled="!fieldStatus.language.rw"
-          @input="update_value('project_lang', $event)"
+          @input="update_value('language', $event)"
         />
         <b-form-invalid-feedback id="input-18-live-feedback">
           {{ errors[0] }}
@@ -577,6 +577,11 @@ export default {
         { value: 'f', text: this.$i18n.t('meisje') },
         { value: 'm', text: this.$i18n.t('jongen') },
         { value: 'x', text: 'X' }
+      ],
+      languages: [
+        { value: 'nl', text: 'Nederlands' },
+        { value: 'fr', text: 'Frans' },
+        { value: 'en', text: 'Engels' }
       ]
     }
   },
@@ -595,7 +600,7 @@ export default {
   },
   watch: {
     user (newUser, oldUser) {
-      this.internal_user = Object.assign({},newUser)
+      this.internal_user = Object.assign({}, newUser)
     }
   },
   methods: {
