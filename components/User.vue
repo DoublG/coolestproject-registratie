@@ -1,6 +1,7 @@
 <template>
   <div>
     <ValidationProvider
+      v-if="!fieldStatus.language.hidden"
       v-slot="{ valid, errors }"
       rules="required"
       name="Language"

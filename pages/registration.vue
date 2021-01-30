@@ -226,9 +226,9 @@ export default {
     },
     mandatory_approvals: {
       async set (value) {
-        const u = this.$store.state.registration.user
+        const u = Object.assign({}, this.$store.state.registration.user)
         u.mandatory_approvals = value
-        await this.$store.dispatch('registration/user', Object.assign({}, u))
+        await this.$store.dispatch('registration/user', u)
       },
       get () {
         const u = this.$store.state.registration.user
@@ -257,9 +257,10 @@ export default {
       } else {
         registration.project.other_project = this.other_project
       }
-      registration.user = this.user
-      // add language during submit
-      registration.user.language = this.$i18n.language
+      const user = Object.assign({}, this.user)
+      user.language = this.$i18n.locale
+
+      registration.user = user
       await this.$services.registration.post(registration)
       this.onReset(evt)
 
