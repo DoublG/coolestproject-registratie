@@ -71,11 +71,13 @@ export default {
     return {
       files: null,
       readWrite: false,
-      project: null,
+      project: null
+      /*
       attachments: [
         { id: 'aa' },
         { id: 'bb' }
       ]
+      */
     }
   },
   computed: {
