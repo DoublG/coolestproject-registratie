@@ -9,25 +9,25 @@ export const state = () => ({
 })
 
 export const mutations = {
-  own_project(state, ownProject) {
+  own_project (state, ownProject) {
     state.own_project = ownProject
   },
-  other_project(state, otherProject) {
+  other_project (state, otherProject) {
     state.other_project = otherProject
   },
-  user(state, user) {
+  user (state, user) {
     state.user = user
   }
 }
 
 export const actions = {
-  own_project({ commit }, ownProject) {
+  own_project ({ commit }, ownProject) {
     commit('own_project', ownProject)
   },
-  other_project({ commit }, otherProject) {
+  other_project ({ commit }, otherProject) {
     commit('other_project', otherProject)
   },
-  user({ commit }, user) {
+  user ({ commit }, user) {
     commit('user', user)
   }
 }

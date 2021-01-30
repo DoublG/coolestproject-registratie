@@ -101,11 +101,11 @@ export default {
     }
   },
   methods: {
+    /*
     async onUpload (evt) {
-      debugger
       const fileContent = await this.files.arrayBuffer()
       await this.$services.attachment.put(fileContent)
-    },
+    }, */
     copyToClipboard (token) {
       navigator.clipboard.writeText(token)
     },
