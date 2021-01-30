@@ -65,6 +65,8 @@ export default {
     'Waar kunnen we jou bereiken in geval van nood': "En cas d'urgence, quel numéro devons-nous appeler?",
     'X': "X",
     'description_Geefcode': "Tape le code reçu via le propriétaire du projet",
+    'label_taal_user' : 'Je parle',
+    'description_taal' : 'Langue du particitant',
     'description_Je moet akkoord': "Tu dois accepter la question suivante pour t'inscrire",
     'description_Select Tshirt size': "Taille de T-shirt",
     'description_taalJury': "Dans quelle langue souhaitez-vous présenter votre projet?",
