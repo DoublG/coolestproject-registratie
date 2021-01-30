@@ -120,6 +120,10 @@ export default {
     },
     user_field_status () {
       return {
+        language: {
+          rw: this.readWrite,
+          hidden: false
+        },
         year: {
           rw: this.readWrite,
           hidden: false
@@ -214,9 +218,7 @@ export default {
     },
     user: {
       async set (value) {
-        const u = value
-        u.language = this.$i18n.locale
-        await this.$store.dispatch('registration/user', Object.assign({}, u))
+        await this.$store.dispatch('registration/user', Object.assign({}, value))
       },
       get () {
         return this.$store.state.registration.user

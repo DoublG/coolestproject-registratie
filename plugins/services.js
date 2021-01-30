@@ -1,4 +1,4 @@
-
+import { localize } from 'vee-validate'
 /* remove null values for api calls */
 function cleanup (root) {
   const result = {}
@@ -96,6 +96,8 @@ export default ({ app, store, redirect }, inject) => {
       },
       async get () {
         const user = await app.$axios.$get('/userinfo')
+        //await app.i18n.setLocale(user.language)
+       // localize(user.language) 
         return user
       },
       delete () {
@@ -119,6 +121,11 @@ export default ({ app, store, redirect }, inject) => {
     mail: {
       post (email) {
         return app.$axios.$post('/mailToken', email)
+      }
+    },
+    attachment: {
+      put (fileContent) {
+        return app.$axios.$put('/mailToken', fileContent)
       }
     }
   }

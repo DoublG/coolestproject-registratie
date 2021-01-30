@@ -1,6 +1,31 @@
 <template>
   <div>
     <ValidationProvider
+      v-slot="{ valid, errors }"
+      rules="required"
+      name="Language"
+    >
+      <b-form-group
+        id="input-group-18"
+        :label="$t('label_Taal:')"
+        :description="$t('description_taal')"
+        label-for="select-18"
+      >
+        <b-form-select
+          id="select-18"
+          :value="user.language"
+          :options="languages"
+          :state="errors[0] ? false : valid ? true : null"
+          aria-describedby="input-18-live-feedback"
+          :disabled="!fieldStatus.language.rw"
+          @input="update_value('language', $event)"
+        />
+        <b-form-invalid-feedback id="input-18-live-feedback">
+          {{ errors[0] }}
+        </b-form-invalid-feedback>
+      </b-form-group>
+    </ValidationProvider>
+    <ValidationProvider
       v-if="!fieldStatus.email.hidden"
       v-slot="{ valid, errors }"
       rules="required|email"
@@ -401,6 +426,7 @@ export default {
       type: Object,
       default: () => {
         return {
+          language: null,
           year: null,
           month: null,
           email: null,
@@ -428,6 +454,10 @@ export default {
       type: Object,
       default: () => {
         return {
+          language: {
+            rw: true,
+            hidden: false
+          },
           year: {
             rw: true,
             hidden: false
@@ -547,6 +577,11 @@ export default {
         { value: 'f', text: this.$i18n.t('meisje') },
         { value: 'm', text: this.$i18n.t('jongen') },
         { value: 'x', text: 'X' }
+      ],
+      languages: [
+        { value: 'nl', text: 'Nederlands' },
+        { value: 'fr', text: 'Frans' },
+        { value: 'en', text: 'Engels' }
       ]
     }
   },
@@ -565,7 +600,7 @@ export default {
   },
   watch: {
     user (newUser, oldUser) {
-      this.internal_user = newUser
+      this.internal_user = Object.assign({}, newUser)
     }
   },
   methods: {
