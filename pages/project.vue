@@ -21,6 +21,7 @@
           <div v-else>
             <other-participants v-model="project.own_project.participants" />
           </div>
+          <!--
           <h2>{{ $t('attachments') }}</h2>
           <own-attachements v-model="attachments" />
 
@@ -32,7 +33,7 @@
           >
             Upload test
           </b-button>
-
+          -->
           <ActionBarProject
             :update="project.own_project.own_project"
             :reset="project.own_project.own_project"
