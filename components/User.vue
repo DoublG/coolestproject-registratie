@@ -580,9 +580,9 @@ export default {
         { value: 'x', text: 'X' }
       ],
       languages: [
-        { value: 'nl', text: 'Nederlands' },
-        { value: 'fr', text: 'Frans' },
-        { value: 'en', text: 'Engels' }
+        { value: 'nl', text: this.$i18n.t('Nederlands') },
+        { value: 'fr', text: this.$i18n.t('Frans') },
+        { value: 'en', text: this.$i18n.t('Engels') }
       ]
     }
   },

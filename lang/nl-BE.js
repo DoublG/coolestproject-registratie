@@ -124,6 +124,9 @@ export default {
     'NoEventHeader': 'No event active',
     'No Event is active please come again later': 'No Event is currently active. Please come again later.',
     'message_backendKaput':'General system error. Sorry about that - we work with volunteers ;-)',
-    'Info':'info'
+    'Info':'info',
+    'Nederlands':'Nederlands',
+    'Frans':'Frans',
+    'Engels':'Engels'
     }
     
