@@ -8,13 +8,13 @@
       >
         <b-form-group>
           <template v-slot:description>
-            <NuxtLink target='_blank' :to="localePath('index')">
-                  {{$t('description_Je moet akkoord')}}
+            <NuxtLink target="_blank" :to="localePath('index')">
+              {{ $t('description_Je moet akkoord') }}
             </NuxtLink>
           </template>
           <b-form-checkbox-group
             id="mandatory-approvals"
-            :checked="responses"
+            :checked="internal_responses"
             :options="approvals"
             :state="errors[0] ? false : valid ? true : null"
             aria-describedby="mandatory-approvals-live-feedback"
@@ -52,10 +52,16 @@ export default {
   },
   data () {
     return {
+      internal_responses: [...this.responses],
       approvals: [],
       change_selection (evt) {
         this.$emit('change', evt)
       }
+    }
+  },
+  watch: {
+    responses (newResponse, oldResponse) {
+      this.internal_responses = [...newResponse]
     }
   },
   methods: {
