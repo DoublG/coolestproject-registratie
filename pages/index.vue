@@ -10,6 +10,7 @@
       </p>
       <p>
         <ol>
+          <li v-html="$t('rule0')" />
           <li v-html="$t('rule1')" />
           <li v-html="$t('rule2')" />
           <li v-html="$t('rule3')" />
@@ -19,7 +20,6 @@
           <li v-html="$t('rule7')" />
           <li v-html="$t('rule8')" />
           <li v-html="$t('rule9')" />
-          <li v-html="$t('rule10')" />
         </ol>
         <b> {{ $t('problems') }}
         </b>
