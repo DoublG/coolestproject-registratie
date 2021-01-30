@@ -120,7 +120,8 @@ module.exports = {
       'PopoverPlugin',
       'ImagePlugin',
       'CardPlugin',
-      'ProgressPlugin'
+      'ProgressPlugin',
+      'FormFilePlugin'
     ]
   },
   components: true,
