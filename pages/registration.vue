@@ -234,6 +234,14 @@ export default {
         const u = this.$store.state.registration.user
         return u.mandatory_approvals
       }
+    },
+    residence: {
+      set (value) {
+        this.$store.dispatch('registration/residence', value)
+      },
+      get () {
+        return this.$store.state.registration.residence
+      }
     }
   },
   mounted () {

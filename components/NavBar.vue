@@ -18,9 +18,10 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
+            <!--
             <b-nav-item v-if="!isLoggedIn" :to="localePath('registration')">
               {{ $t('Registratie') }}
-            </b-nav-item>
+            </b-nav-item>-->
             <b-nav-item v-if="!isLoggedIn" :to="localePath('login')">
               <font-awesome-icon :icon="['fas', 'unlock']" /> Login
             </b-nav-item>

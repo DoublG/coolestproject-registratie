@@ -8,7 +8,7 @@
     >
       <b-form-group
         id="input-group-18"
-        :label="$t('label_Taal:')"
+        :label="$t('label_taal_user')"
         :description="$t('description_taal')"
         label-for="select-18"
       >
