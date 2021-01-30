@@ -144,9 +144,9 @@ export default {
     return {
       internal_project: Object.assign({}, this.project),
       languages: [
-        { value: 'nl', text: 'Nederlands' },
-        { value: 'fr', text: 'Frans' },
-        { value: 'en', text: 'Engels' }
+        { value: 'nl', text: this.$i18n.t('Nederlands') },
+        { value: 'fr', text: this.$i18n.t('Frans') },
+        { value: 'en', text: this.$i18n.t('Engels') }
       ]
     }
   },
