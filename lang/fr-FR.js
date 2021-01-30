@@ -45,7 +45,7 @@ export default {
     'rule4': "Chaque jeune peut collaborer avec un maximum de 4 participants pour un projet. Tou.te.s les participant.e.s doivent s'inscrire. Dans un premier temps, le / la propriétaire du projet enregistre le projet. Après confirmation, les autres participant.e.s peuvent rejoindre ce projet après avoir reçu un courrier d'invitation du / de la propriétaire du projet avec un token d'enregistrement.",
     'rule6': "Pour valider une inscription, vous devez envoyer une vidéo. La durée de la vidéo doit être comprise entre 1 et 3 minutes. La vidéo doit nous parvenir avant le 7 mai à 23h59.",
     'rule5': "Après l'enregistrement, chaque participant.e peut modifier les informations d'utilisateur du projet. Seul.e le / la propriétaire du projet peut modifier les informations relatives à son projet. Toutes les modifications doivent être définitives le 7 mai.",
-    'rule7': "Nous vous donnerons un créneau horaire pour présenter votre projet en direct à votre famille et à vos amis le dimanche 25 avril. ",
+    'rule7': "Nous vous donnerons un créneau horaire pour présenter votre projet en direct à votre famille et à vos amis le dimanche 25 avril.",
     'rule8': "Nous ne fournissons un goodie qu'aux inscrits qui envoient une vidéo pour présenter leur projet. Nous avons donc besoin d’une adresse postale pour procéder à l’envoi.",
     'rule9': "Nous respectons toutes les données personnelles. La déclaration de confidentialité disponible sur le site web de CoderDojo:&nbsp<b><a target=\"privacy\" href=\"https://www.coderdojobelgium.be/fr/déclaration-de-confidentialité-coderdojo-belgium\">declaration de confidentialité</a></b>",
     'rules': "Coolest Projects Belgium",
