@@ -122,7 +122,7 @@ export default {
       return {
         language: {
           rw: this.readWrite,
-          hidden: false
+          hidden: true // not needed for registration
         },
         year: {
           rw: this.readWrite,
@@ -258,6 +258,8 @@ export default {
         registration.project.other_project = this.other_project
       }
       registration.user = this.user
+      // add language during submit
+      registration.user.language = this.$i18n.language
       await this.$services.registration.post(registration)
       this.onReset(evt)
 
