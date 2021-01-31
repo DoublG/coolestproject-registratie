@@ -45,7 +45,7 @@ export default {
     'rule2': 'Alle projecten zijn welkom van beginner tot expert. Alle technologieën worden geaccepteerd (ook onafgewerkte projecten)',
     'rule3': 'Na registratie ontvang je een bevestigingsmail. Je moeten op de link klikken om de registratie af te ronden.',
     'rule4': 'Je kan met maximaal 4 personen deelnemen aan één project. Alle deelnemers moeten zich zelf registreren nadat de projecteigenaar zijn project heeft aangemeld. Na ontvangst van een uitnodigingsmail van de projecteigenaar met een registratietoken kunnen jullie ook registreren met deze token',
-    'rule6': 'Voor een geldige deelname, moet je een video van je project inzenden van minimaal 1 en maximaal 3 minuten. Deze video moeten we ten laatste ontvangen hebben op 29 april 23.59h. ',
+    'rule6': 'Voor een geldige deelname, moet je een video van je project inzenden van minimaal 1 en maximaal 3 minuten. Deze video moeten we ten laatste ontvangen hebben op 9 april 23.59h. ',
     'rule5': 'Na registratie kunnen jullie de persoonlijke informatie wijzigen. Alleen de projecteigenaar kan zijn project informatie wijzigen. Alle wijzigingen moeten definitief zijn op 9 april.',
     'rule7': 'We geven je een tijdslot om op zondag 25 april je project live te presenteren voor familie en vrienden. ',
     'rule8': 'We geven enkel goodie aan geregistreerde deelnemers die een video inzenden van hun project en hun project online voorstellen op zondag 25 april. Voor het versturen van deze goodies hebben we uiteraard het postadres nodig.',
@@ -124,6 +124,9 @@ export default {
     'NoEventHeader': 'No event active',
     'No Event is active please come again later': 'No Event is currently active. Please come again later.',
     'message_backendKaput':'General system error. Sorry about that - we work with volunteers ;-)',
-    'Info':'info'
+    'Info':'info',
+    'Nederlands':'Nederlands',
+    'Frans':'Frans',
+    'Engels':'Engels'
     }
     
