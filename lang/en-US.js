@@ -123,7 +123,7 @@ export default {
     'No Event is active please come again later': 'No Event is currently active. Please come again later.',
     'message_backendKaput':'General system error. Sorry about that - we work with volunteers ;-)',
     'Info':'info',
-    'Nederlands':'Flemish',
+    'Nederlands':'Dutch',
     'Frans':'French',
     'Engels':'English'
 }
