@@ -7,7 +7,7 @@ export default {
     'Back to homepage': 'Terug naar de startpagina',
     'body': 'Hallo <vriend>,%0D%0A%0D%0AAls je wilt deelnemen aan mijn project, registreer je dan via de volgende link naar de registratiepagina van Coolest Project 2021:%0D%0A%0D%0A',
     'Cancel': 'Annuleren',
-    'closure': '%0D%0A%0D%0AJe beste vriend%0D%0A<Vul uw naam in>',
+    'closure': '%0D%0AOpgelet: deze link kan slechts eenmaal gebruikt worden.%0D%0AJe beste vriend%0D%0A<Vul uw naam in>',
     'Create': 'Toevoegen',
     'createProject': 'Zelf een project starten',
     'CreateViaToken': 'Voeg mezelf toe aan een bestaand project',

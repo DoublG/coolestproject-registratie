@@ -44,7 +44,8 @@ export default {
     },
     mailToken (token) {
       // TODO Inject language for token creation
-      const fullUrl = window.location.href.replace('/project', '/registration') + '?token=' + token // Dit zou $root of zo moeten zijn
+      // TODO Dit zou $root of zo moeten zijn, ofwel window.location.protocol + window.location.hostname
+      const fullUrl = window.location.protocol + window.location.hostname + ((user.language != 'nl') ? '/' + user.language : '') + '/registration' + '?token=' + token
       return 'mailto:' + this.$i18n.t('mail') + '?subject=' + this.$i18n.t('subject') + '&body=' + this.$i18n.t('body') + ' ' + fullUrl + this.$i18n.t('closure')
     }
   }
