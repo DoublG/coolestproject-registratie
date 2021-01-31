@@ -149,7 +149,7 @@ module.exports = {
       useCookie: true,
       cookieKey: 'i18n_redirected',
       onlyOnRoot: true,
-      cookieCrossOrigin: true
+      cookieCrossOrigin: false
     },
     locales: [
       {
