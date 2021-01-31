@@ -120,7 +120,7 @@ export default {
     'placeholder_Street': "Rue",
     "href": "<a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#105;&#110;&#102;o&#64;&#99;&#111;&#111;&#108;&#101;&#115;&#116;&#112;&#114;&#111;&#106;&#101;&#99;&#116;s&#46;&#98;&#101;&quest;&#x53;&#x55;&#x42;&#x4a;&#x45;&#x43;&#x54;&equals;CoolestProjectsRegistration'><b>HELPDESK</b></a>",
     'NoEventHeader': "Pas d'evenement en cours",
-    'No Event is active please come again later': "Il n'y a pas d'evenement en cours. Revenez plus tard.'",
+    'No Event is active please come again later': "Il n'y a pas d'evenement en cours. Revenez plus tard.",
     'message_backendKaput': "Erreur système générale. Désolé, nous travaillons avec des bénévoles ;-)",
     'Info':'info',
     'Nederlands':'Néerlandais',
