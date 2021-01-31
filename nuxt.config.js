@@ -148,7 +148,8 @@ module.exports = {
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
-      onlyOnRoot: true
+      onlyOnRoot: true,
+      cookieCrossOrigin: true
     },
     locales: [
       {
