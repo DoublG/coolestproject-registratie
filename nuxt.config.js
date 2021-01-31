@@ -149,8 +149,7 @@ module.exports = {
       useCookie: true,
       cookieKey: 'i18n_redirected',
       onlyOnRoot: true,
-      cookieCrossOrigin: false,
-      cookieDomain: 'coolestproject.be'
+      cookieCrossOrigin: false
     },
     locales: [
       {
