@@ -7,7 +7,7 @@ export default {
     'Back to homepage': 'Back to homepage',
     'body': 'Hello <friend>, %0D%0A%0D%0Aif you want to participate in my project please register by using the following link to the Coolest Project 2021 registration page: %0D%0A%0D%0A',
     'Cancel': 'Cancel',
-    'closure': '%0D%0A%0D%0AYour best friend%0D%0A<Fill in Your name>',
+    'closure': '%0D%0AAttention: this link can only be used once.%0D%0AYour best friend%0D%0A<Fill in Your name>',
     'Create': 'Create',
     'createProject': 'Create your own project',
     'CreateViaToken': 'Add me to another project',
@@ -123,7 +123,7 @@ export default {
     'No Event is active please come again later': 'No Event is currently active. Please come again later.',
     'message_backendKaput':'General system error. Sorry about that - we work with volunteers ;-)',
     'Info':'info',
-    'Nederlands':'Flemish',
+    'Nederlands':'Dutch',
     'Frans':'French',
     'Engels':'English'
 }

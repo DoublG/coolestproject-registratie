@@ -43,8 +43,7 @@ export default {
       this.$emit('copyToClipboard', token)
     },
     mailToken (token) {
-      // TODO Inject language for token creation
-      const fullUrl = window.location.href.replace('/project', '/registration') + '?token=' + token // Dit zou $root of zo moeten zijn
+      const fullUrl = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port +  ((this.$i18n.locale != 'nl') ? '/' + this.$i18n.locale : '') + '/registration' + '?token=' + token
       return 'mailto:' + this.$i18n.t('mail') + '?subject=' + this.$i18n.t('subject') + '&body=' + this.$i18n.t('body') + ' ' + fullUrl + this.$i18n.t('closure')
     }
   }
