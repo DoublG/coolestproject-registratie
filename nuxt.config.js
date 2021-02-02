@@ -147,7 +147,8 @@ module.exports = {
     },
     detectBrowserLanguage: {
       useCookie: true,
-      cookieKey: 'i18n_redirected',
+      cookieKey: 'language',
+      cookieDomain: process.env.NUXT_ENV_DOMAIN,
       onlyOnRoot: true
     },
     locales: [
