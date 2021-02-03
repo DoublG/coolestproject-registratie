@@ -7,7 +7,7 @@ export default {
     'Back to homepage': "Retour à la page d'accueil",
     'body': "Bonjour <ami>,%0D%0A%0D%0ASi tu souhaites participer à mon projet, inscris-toi en utilisant le lien suivant vers la page d'inscription du projet Coolest 2021:%0D%0A%0D%0A",
     'Cancel': "Annuler",
-    'closure': "%0D%0AAttention: ce lien ne peut être utilisé qu'une seule fois.%0D%0AY votre meilleur ami%0D%0A <Remplissez votre nom>",
+    'closure': "%0D%0AAttention: ce lien ne peut être utilisé qu'une seule fois.%0D%0A%0D%0AVotre meilleur ami,%0D%0A <Remplissez votre nom>",
     'Create': "Créer",
     'createProject': "Crée ton propre projet",
     'CreateViaToken': "Ajoutez-moi à un autre projet",
