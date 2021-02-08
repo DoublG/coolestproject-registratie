@@ -26,7 +26,7 @@
 import { ValidationObserver } from 'vee-validate'
 
 export default {
-  middleware: 'notAuthenticated',
+  // middleware: 'notAuthenticated',
   components: {
     ValidationObserver
   },
