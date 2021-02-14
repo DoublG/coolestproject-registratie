@@ -31,6 +31,9 @@
             <b-nav-item v-if="isLoggedIn" :to="localePath('user')">
               <font-awesome-icon :icon="['fas', 'user']" /> User
             </b-nav-item>
+            <b-nav-item v-if="isLoggedIn" :to="localePath('rules')">
+              <font-awesome-icon :icon="['fas', 'plus']" /> Rules
+            </b-nav-item>
           </b-navbar-nav>
           <b-navbar-nav class="ml-auto">
             <b-nav-item v-if="isLoggedIn" :to="localePath('logout')" @click="logout">
