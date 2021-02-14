@@ -31,7 +31,7 @@
             <b-nav-item v-if="isLoggedIn" :to="localePath('user')">
               <font-awesome-icon :icon="['fas', 'user']" /> User
             </b-nav-item>
-            <b-nav-item v-if="isLoggedIn" :to="localePath('index')">
+            <b-nav-item v-if="isLoggedIn" :to="localePath('rules')">
               <font-awesome-icon :icon="['fas', 'plus']" /> Rules
             </b-nav-item>
           </b-navbar-nav>
