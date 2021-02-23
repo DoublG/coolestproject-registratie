@@ -125,5 +125,6 @@ export default {
     'Info':'info',
     'Nederlands':'Dutch',
     'Frans':'French',
-    'Engels':'English'
+    'Engels':'English',
+    'project_delete': 'Remove project participation'
 }
