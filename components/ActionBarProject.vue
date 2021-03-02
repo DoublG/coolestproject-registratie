@@ -83,15 +83,15 @@ export default {
   props: {
     deleteMsg: {
       type: String,
-      default: 'deleten'
+      default: function () {return this.$t('project_delete')}
     },
     deleteMsgTitle: {
       type: String,
-      default: 'deleten'
+      default: function () {return this.$t('Delete')}
     },
     okDeleteMsg: {
       type: String,
-      default: 'deleten'
+      default: function () {return this.$t('Delete')}
     },
     project: {
       type: Boolean,
