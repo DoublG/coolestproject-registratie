@@ -21,19 +21,8 @@
           <div v-else>
             <other-participants v-model="project.own_project.participants" />
           </div>
-          <!--
           <h2>{{ $t('attachments') }}</h2>
           <own-attachements v-model="attachments" />
-
-          <b-form-file v-model="files" />
-
-          <b-button
-            class="button-hero"
-            @click="onUpload"
-          >
-            Upload test
-          </b-button>
-          -->
           <ActionBarProject
             :update="project.own_project.own_project"
             :reset="project.own_project.own_project"
@@ -71,13 +60,11 @@ export default {
     return {
       files: null,
       readWrite: false,
-      project: null
-      /*
+      project: null,
       attachments: [
-        { id: 'aa' },
-        { id: 'bb' }
+        { name: 'aa' },
+        { name: 'bb' }
       ]
-      */
     }
   },
   computed: {
@@ -103,11 +90,10 @@ export default {
     }
   },
   methods: {
-    /*
     async onUpload (evt) {
       const fileContent = await this.files.arrayBuffer()
       await this.$services.attachment.put(fileContent)
-    }, */
+    },
     copyToClipboard (token) {
       navigator.clipboard.writeText(token)
     },

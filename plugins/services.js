@@ -130,9 +130,9 @@ export default ({ app, store, redirect }, inject) => {
         return app.$axios.$post('/mailToken', email)
       }
     },
-    attachment: {
-      put (fileContent) {
-        return app.$axios.$put('/mailToken', fileContent)
+    attachments: {
+      post () {
+        return app.$axios.$post('/attachments')
       }
     }
   }

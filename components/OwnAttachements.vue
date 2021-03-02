@@ -2,7 +2,7 @@
   <div>
     <b-table
       :items="attachments"
-      :fields="[{ key: 'id', label: 'Test' }]"
+      :fields="[{ key: 'id', label: 'title' }]"
       hover
       striped
     >

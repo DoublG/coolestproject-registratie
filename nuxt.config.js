@@ -64,7 +64,8 @@ module.exports = {
     '~/plugins/bus.js',
     '~/plugins/vee-validate.js',
     '~/plugins/services.js',
-    '~/plugins/i18n-switcher.js'
+    '~/plugins/i18n-switcher.js',
+    '~/plugins/attachments.js'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -121,7 +122,8 @@ module.exports = {
       'ImagePlugin',
       'CardPlugin',
       'ProgressPlugin',
-      'FormFilePlugin'
+      'FormFilePlugin',
+      'OverlayPlugin'
     ]
   },
   components: true,
