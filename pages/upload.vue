@@ -6,7 +6,7 @@
       </h1>
       <global-notification />
       <ValidationObserver ref="observer" v-slot="{ passes }">
-        <b-overlay :show="show" rounded="sm">
+        <b-overlay :show="show">
           <b-form @submit.prevent="passes(onUpload)" @reset.prevent="onReset">
             <upload-attachement v-model="file" />
             <b-button
@@ -59,8 +59,7 @@ export default {
   },
   methods: {
     async onUpload (evt) {
-      const azureURL = await this.$services.attachments.post(this.file.name)
-      await this.$attachments.process(azureURL.url, this.file.content, (percent) => { this.percent = percent })
+      await this.$attachments.process(this.file, (percent) => { this.percent = percent })
     },
     async onReset (evt) {
 

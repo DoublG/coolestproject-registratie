@@ -29,8 +29,11 @@ export default ({ app, store, redirect }, inject) => {
 
     // Get a new SAS for blob, we assume a SAS starts with a "?"
     async getNewSasForBlob (blobURL) {
-      const azureURL = await app.$services.attachments.post()
-      return '?' + azureURL.url.split('?')[1]
+      // we need the filename on the backend
+      const parts = blobURL.split('?')[0].split('/')
+      const name = parts[parts.length - 1]
+      const attachmentsResponse = await app.$services.attachments.post(name)
+      return '?' + attachmentsResponse.url.split('?')[1]
     }
   }
 
@@ -65,7 +68,12 @@ export default ({ app, store, redirect }, inject) => {
   }
 
   class AttachmentHandler {
-    async process (url, file, callback) {
+    async process (file, callback) {
+      const name = file.name
+      const fileContent = file.content
+      const attachmentsResponse = await app.$services.attachments.post(name)
+      const azureURL = attachmentsResponse.url
+
       const sasStore = new SasStore()
 
       const pipeline = newPipeline(new AnonymousCredential())
@@ -73,15 +81,15 @@ export default ({ app, store, redirect }, inject) => {
       pipeline.factories.unshift(new SasUpdatePolicyFactory(sasStore))
 
       const blockBlobClient = new BlockBlobClient(
-        `${url}${await sasStore.getValidSASForBlob(url)}`,
+        `${azureURL}${await sasStore.getValidSASForBlob(azureURL)}`,
         pipeline
       )
 
-      await blockBlobClient.uploadData(file, {
+      await blockBlobClient.uploadData(fileContent, {
         maxSingleShotSize: 4 * 1024 * 1024,
         onProgress: ({ loadedBytes }) => {
-          const count = Math.round(100 * (loadedBytes / file.size))
-          callback(count)
+          const percent = Math.round(100 * (loadedBytes / fileContent.size))
+          callback(percent)
         }
       })
     }
