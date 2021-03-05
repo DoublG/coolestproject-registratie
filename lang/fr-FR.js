@@ -126,6 +126,9 @@ export default {
     'Nederlands':'Néerlandais',
     'Frans':'Français',
     'Engels':'Anglais',
-    'project_delete': 'Supprimer la participation au projet'
+    'project_delete': 'Supprimer la participation au projet',
+    'Project movie name': 'Nom du film du projet',
+    'Project movie file': 'Fichier de film de projet',
+    'Movie title': 'Nommez votre vidéo ici'
 }
     

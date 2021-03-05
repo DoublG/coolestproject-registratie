@@ -126,5 +126,8 @@ export default {
     'Nederlands':'Dutch',
     'Frans':'French',
     'Engels':'English',
-    'project_delete': 'Remove project participation'
+    'project_delete': 'Remove project participation',
+    'Project movie name': 'Project movie name',
+    'Project movie file': 'Project movie file',
+    'Movie title': 'Enter your movie title here'
 }

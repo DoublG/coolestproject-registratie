@@ -3,7 +3,7 @@
     <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Title">
       <b-form-group
         id="input-group-1"
-        label="Project movie"
+        :label="$t('Project movie name')"
         label-for="form-1"
       >
         <b-form-input
@@ -11,7 +11,7 @@
           v-model="internal_file.name"
           :state="errors[0] ? false : (valid ? true : null)"
           :disabled="!fieldStatus.name.rw"
-          placeholder="Movie title"
+          :placeholder="$t('Movie title')"
           aria-describedby="input-1-live-feedback"
           @input="update_value('name', $event)"
         />
@@ -20,7 +20,7 @@
     <ValidationProvider v-slot="{ valid, errors }" rules="required" name="File">
       <b-form-group
         id="input-group-2"
-        label="Project movie"
+        :label="$t('Project movie file')"
         label-for="form-2"
       >
         <b-form-file id="form-2" v-model="internal_file.content" :state="errors[0] ? false : (valid ? true : null)" />

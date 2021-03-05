@@ -128,6 +128,9 @@ export default {
     'Nederlands':'Nederlands',
     'Frans':'Frans',
     'Engels':'Engels',
-    'project_delete': 'Project deelname verwijderen'
+    'project_delete': 'Project deelname verwijderen',
+    'Project movie name': 'Project video naam',
+    'Project movie file': 'Project video bestand',
+    'Movie title': 'Geef hier je video naam'
     }
     
