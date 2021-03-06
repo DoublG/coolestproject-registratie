@@ -23,7 +23,7 @@
         :label="$t('Project movie file')"
         label-for="form-2"
       >
-        <b-form-file id="form-2" v-model="internal_file.content" :state="errors[0] ? false : (valid ? true : null)" />
+        <b-form-file id="form-2" v-model="internal_file.content" :placeholder="$t('Enter your movie location')" :state="errors[0] ? false : (valid ? true : null)" />
       </b-form-group>
     </ValidationProvider>
   </div>
