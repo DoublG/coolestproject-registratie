@@ -126,8 +126,9 @@ export default {
   Frans: 'French',
   Engels: 'English',
   project_delete: 'Remove project participation',
-  'Project movie name': 'Project movie name',
-  'Project movie file': 'Project movie file',
-  'Movie title': 'Enter your movie name',
-  'Enter your movie location': 'Enter your movie location'
+  'Project movie name': 'Project video title',
+  'Project movie file': 'Project video file',
+  'Movie title': 'Enter your video titel',
+  'Upload Movie': 'Upload Video',
+  'Enter your movie location': 'Select your video location'
 }

@@ -126,8 +126,9 @@ export default {
   Frans: 'Français',
   Engels: 'Anglais',
   project_delete: 'Supprimer la participation au projet',
-  'Project movie name': 'Nom du film du projet',
-  'Project movie file': 'Fichier de film de projet',
-  'Movie title': 'Nommez votre film ici',
-  'Enter your movie location': "Entrez l'emplacement de votre film"
+  'Project movie name': 'Titre de la vidéo du projet',
+  'Project movie file': 'Fichier vidéo du projet',
+  'Movie title': 'Entrez le titre de votre vidéo',
+  'Upload Movie': 'Télécharger La Vidéo',
+  'Enter your movie location': 'Electionnez votre emplacement de vidéo'
 }
