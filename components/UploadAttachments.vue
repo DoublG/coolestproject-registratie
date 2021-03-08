@@ -3,7 +3,7 @@
     <ValidationProvider v-slot="{ valid, errors }" rules="required" name="Title">
       <b-form-group
         id="input-group-1"
-        label="Project movie"
+        :label="$t('Project movie name')"
         label-for="form-1"
       >
         <b-form-input
@@ -20,10 +20,10 @@
     <ValidationProvider v-slot="{ valid, errors }" rules="required" name="File">
       <b-form-group
         id="input-group-2"
-        label="Project movie"
+        :label="$t('Project movie file')"
         label-for="form-2"
       >
-        <b-form-file id="form-2" v-model="internal_file.content" :state="errors[0] ? false : (valid ? true : null)" />
+        <b-form-file id="form-2" v-model="internal_file.content" :placeholder="$t('Enter your movie location')" :state="errors[0] ? false : (valid ? true : null)" />
       </b-form-group>
     </ValidationProvider>
   </div>
