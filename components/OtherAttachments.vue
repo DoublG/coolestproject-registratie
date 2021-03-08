@@ -4,7 +4,7 @@
       :items="attachments"
       hover
       striped
-      :fields="['name','url','size','actions']"
+      :fields="fields"
     >
       <template #cell(url)="data">
         <b-link :href="data.item.url">
@@ -26,6 +26,12 @@ export default {
     event: 'change'
   },
   props: {
+    fields: {
+      type: Array,
+      default: () => {
+        return ['name', 'url', 'size']
+      }
+    },
     attachments: {
       type: Array,
       default: () => {
