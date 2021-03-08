@@ -11,7 +11,7 @@
           v-model="internal_file.name"
           :state="errors[0] ? false : (valid ? true : null)"
           :disabled="!fieldStatus.name.rw"
-          placeholder="Movie title"
+          :placeholder="$t('Movie title')"
           aria-describedby="input-1-live-feedback"
           @input="update_value('name', $event)"
         />

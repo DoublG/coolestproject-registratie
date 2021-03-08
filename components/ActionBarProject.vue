@@ -71,6 +71,16 @@
     >
       <font-awesome-icon :icon="['fas', 'eject']" />  {{ $t('Cancel') }}
     </b-button>
+    <!-- end project not yet created -->
+    <b-button
+      v-if="upload"
+      type="button"
+      variant="info"
+      class="button-hero"
+      @click="onUpload"
+    >
+      <font-awesome-icon :icon="['fas', 'upload']" />  {{ $t('Upload') }}
+    </b-button>
     <b-modal v-model="showPopup" :title="deleteMsgTitle" :ok-title="okDeleteMsg" @ok="onDelete">
       <span>
         {{ deleteMsg }}
@@ -83,15 +93,19 @@ export default {
   props: {
     deleteMsg: {
       type: String,
-      default: function () {return this.$t('project_delete')}
+      default () { return this.$t('project_delete') }
     },
     deleteMsgTitle: {
       type: String,
-      default: function () {return this.$t('Delete')}
+      default () { return this.$t('Delete') }
     },
     okDeleteMsg: {
       type: String,
-      default: function () {return this.$t('Delete')}
+      default () { return this.$t('Delete') }
+    },
+    upload: {
+      type: Boolean,
+      default: false
     },
     project: {
       type: Boolean,
@@ -156,6 +170,9 @@ export default {
     },
     onCancel (evt) {
       this.$emit('cancel')
+    },
+    onUpload (evt) {
+      this.$emit('upload')
     }
   }
 }

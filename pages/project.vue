@@ -22,16 +22,18 @@
             <other-participants v-model="project.own_project.participants" />
           </div>
           <h2>{{ $t('attachments') }}</h2>
-          <own-attachements v-model="attachments" />
+          <own-attachments v-model="project.attachments" @deleteFile="deleteAttachment" />
           <ActionBarProject
             :update="project.own_project.own_project"
             :reset="project.own_project.own_project"
             :add="project.own_project.remaining_tokens > 0 && project.own_project.own_project"
             :del="project.own_project.delete_possible"
             :own="project.own_project.own_project"
+            :upload="project.own_project.own_project"
             @deleteProject="onDelete"
             @createToken="onAddToken"
             @cancel="onCancel"
+            @upload="onUpload"
           />
         </b-form>
       </ValidationObserver>
@@ -60,11 +62,7 @@ export default {
     return {
       files: null,
       readWrite: false,
-      project: null,
-      attachments: [
-        { name: 'aa' },
-        { name: 'bb' }
-      ]
+      project: null
     }
   },
   computed: {
@@ -90,9 +88,9 @@ export default {
     }
   },
   methods: {
-    async onUpload (evt) {
-      const fileContent = await this.files.arrayBuffer()
-      await this.$services.attachment.put(fileContent)
+    async deleteAttachment (id) {
+      await this.$services.attachments.delete(id)
+      await this.onReset()
     },
     copyToClipboard (token) {
       navigator.clipboard.writeText(token)
@@ -110,6 +108,9 @@ export default {
     async onDelete (evt) {
       await this.$services.projectinfo.delete()
       this.$router.push(this.localePath('no_project'))
+    },
+    onUpload (evt) {
+      this.$router.push(this.localePath('upload'))
     },
     onCancel (evt) {
       this.$router.push(this.localePath('no_project'))

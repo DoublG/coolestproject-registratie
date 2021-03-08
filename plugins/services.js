@@ -131,8 +131,14 @@ export default ({ app, store, redirect }, inject) => {
       }
     },
     attachments: {
-      post () {
-        return app.$axios.$post('/attachments')
+      post (name, size) {
+        return app.$axios.$post('/attachments', { name, size })
+      },
+      post_sas (name) {
+        return app.$axios.$post(`/attachments/${name}/sas`)
+      },
+      delete (name) {
+        return app.$axios.$delete(`/attachments/${name}`)
       }
     }
   }

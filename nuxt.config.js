@@ -92,7 +92,7 @@ module.exports = {
             icons: ['faPlus', 'faEdit', 'faMinus',
               'faEject', 'faUnlock', 'faProjectDiagram', 'faUser', 'faLock', 'faGlobeEurope', 'faCheck',
               'faEnvelope', 'faCopy', 'faUserCircle', 'faPaperPlane', 'faTshirt', 'faTrashAlt', 'faUserEdit',
-              'faTrashRestore', 'faUserMinus']
+              'faTrashRestore', 'faUserMinus', 'faDownload', 'faUpload']
           }
         ]
       }
@@ -123,7 +123,8 @@ module.exports = {
       'CardPlugin',
       'ProgressPlugin',
       'FormFilePlugin',
-      'OverlayPlugin'
+      'OverlayPlugin',
+      'LinkPlugin'
     ]
   },
   components: true,

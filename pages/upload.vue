@@ -8,7 +8,7 @@
       <ValidationObserver ref="observer" v-slot="{ passes }">
         <b-overlay :show="show">
           <b-form @submit.prevent="passes(onUpload)" @reset.prevent="onReset">
-            <upload-attachement v-model="file" />
+            <upload-attachments v-model="file" />
             <b-button
               class="button-hero"
               type="submit"
@@ -60,9 +60,7 @@ export default {
   methods: {
     async onUpload (evt) {
       await this.$attachments.process(this.file, (percent) => { this.percent = percent })
-    },
-    async onReset (evt) {
-
+      this.$router.push(this.localePath('project'))
     }
   }
 }

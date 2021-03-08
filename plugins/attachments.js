@@ -32,7 +32,10 @@ export default ({ app, store, redirect }, inject) => {
       // we need the filename on the backend
       const parts = blobURL.split('?')[0].split('/')
       const name = parts[parts.length - 1]
-      const attachmentsResponse = await app.$services.attachments.post(name)
+      const attachmentsResponse = await app.$services.attachments.post_sas(name)
+      if (attachmentsResponse === null) {
+        return
+      }
       return '?' + attachmentsResponse.url.split('?')[1]
     }
   }
@@ -71,7 +74,10 @@ export default ({ app, store, redirect }, inject) => {
     async process (file, callback) {
       const name = file.name
       const fileContent = file.content
-      const attachmentsResponse = await app.$services.attachments.post(name)
+      const attachmentsResponse = await app.$services.attachments.post(name, fileContent.size)
+      if (attachmentsResponse === null) {
+        return
+      }
       const azureURL = attachmentsResponse.url
 
       const sasStore = new SasStore()
