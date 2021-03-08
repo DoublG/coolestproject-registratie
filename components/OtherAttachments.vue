@@ -1,20 +1,18 @@
 <template>
   <div>
     <b-table
-      :items="participants"
-      :fields="[{ key: 'id', label: $t('label_MedewToken') }, { key: 'name', label: $t('label_MedewNaam') }]"
+      :items="attachments"
       hover
       striped
+      :fields="['name','url','size','actions']"
     >
-      <template v-slot:cell(id)="data">
-        <span v-if="data.item.name === undefined">
-          {{ data.item.id }}
-          <b-button :href="mailToken(data.item.id)"><font-awesome-icon :icon="['fas', 'envelope']" /> Mail</b-button>
-          <b-button @click="copyToClipboard(data.item.id)"><font-awesome-icon :icon="['fas', 'copy']" /> Copy</b-button>
-        </span>
-        <span v-else>
-          <font-awesome-icon :icon="['fas', 'check']" /> {{ $t('tokenInUse') }}
-        </span>
+      <template #cell(url)="data">
+        <b-link :href="data.item.url">
+          <font-awesome-icon :icon="['fas', 'download']" /> Download
+        </b-link>
+      </template>
+      <template #cell(size)="data">
+        {{ (data.item.size / 1e+6).toFixed(2) }} megabytes
       </template>
     </b-table>
   </div>
@@ -24,11 +22,11 @@ export default {
   components: {
   },
   model: {
-    prop: 'attachements',
+    prop: 'attachments',
     event: 'change'
   },
   props: {
-    attachements: {
+    attachments: {
       type: Array,
       default: () => {
         return []
@@ -38,8 +36,7 @@ export default {
   data () {
     return {}
   },
-  methods: {
-  }
+  methods: {}
 }
 </script>
 <style>

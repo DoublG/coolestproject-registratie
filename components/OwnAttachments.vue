@@ -19,7 +19,7 @@
           class="button-hero"
           @click="showPopup=true;file_id=data.item.id;"
         >
-          <font-awesome-icon :icon="['fas', 'download']" />  {{ $t('Delete') }}
+          <font-awesome-icon :icon="['fas', 'minus']" />  {{ $t('Delete') }}
         </b-button>
       </template>
     </b-table>

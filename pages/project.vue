@@ -22,7 +22,12 @@
             <other-participants v-model="project.own_project.participants" />
           </div>
           <h2>{{ $t('attachments') }}</h2>
-          <own-attachments v-model="project.attachments" @deleteFile="deleteAttachment" />
+          <div v-if="project.own_project.own_project">
+            <own-attachments v-model="project.attachments" @deleteFile="deleteAttachment" />
+          </div>
+          <div v-else>
+            <other-attachments v-model="project.attachments" />
+          </div>
           <ActionBarProject
             :update="project.own_project.own_project"
             :reset="project.own_project.own_project"
