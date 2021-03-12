@@ -132,5 +132,7 @@ export default {
   'Project movie file': 'Project video bestand',
   'Movie title': 'Voer de titel van uw video in',
   'Upload Movie': 'Video Uploaden',
-  'Enter your movie location': 'Selecteer uw video locatie'
+  'Enter your movie location': 'Selecteer uw video locatie',
+  attachments: 'Toevoegingen'
+
 }
