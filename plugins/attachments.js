@@ -74,7 +74,7 @@ export default ({ app, store, redirect }, inject) => {
     async process (file, callback) {
       const name = file.name
       const fileContent = file.content
-      const attachmentsResponse = await app.$services.attachments.post(name, fileContent.size)
+      const attachmentsResponse = await app.$services.attachments.post(name, fileContent.name, fileContent.size)
       if (attachmentsResponse === null) {
         return
       }
