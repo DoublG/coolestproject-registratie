@@ -7,9 +7,9 @@
       :fields="fields"
     >
       <template #cell(url)="data">
-        <b-link :href="data.item.url">
+        <a :href="data.item.url" :download="data.item.filename">
           <font-awesome-icon :icon="['fas', 'download']" /> Download
-        </b-link>
+        </a>
       </template>
       <template #cell(size)="data">
         {{ (data.item.size / 1e+6).toFixed(2) }} megabytes
