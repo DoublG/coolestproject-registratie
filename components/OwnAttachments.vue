@@ -7,14 +7,27 @@
       :fields="fields"
     >
       <template #cell(url)="data">
-        <b-link :href="data.item.url">
+        <a :href="data.item.url" :download="data.item.filename">
           <font-awesome-icon :icon="['fas', 'download']" /> Download
-        </b-link>
+        </a>
       </template>
       <template #cell(size)="data">
         {{ (data.item.size / 1e+6).toFixed(2) }} megabytes
       </template>
+      <template #cell(actions)="data">
+        <b-button
+          class="button-hero"
+          @click="showPopup=true;file_id=data.item.id;"
+        >
+          <font-awesome-icon :icon="['fas', 'minus']" />  {{ $t('Delete') }}
+        </b-button>
+      </template>
     </b-table>
+    <b-modal v-model="showPopup" title="Delete file" ok-title="delete file" @ok="onDelete">
+      <span>
+        Delete file
+      </span>
+    </b-modal>
   </div>
 </template>
 <script>
@@ -29,7 +42,7 @@ export default {
     fields: {
       type: Array,
       default: () => {
-        return ['name', 'url', 'size']
+        return ['name', 'url', 'size', 'actions']
       }
     },
     attachments: {
@@ -40,9 +53,16 @@ export default {
     }
   },
   data () {
-    return {}
+    return {
+      showPopup: false,
+      file_id: -1
+    }
   },
-  methods: {}
+  methods: {
+    onDelete (evt) {
+      this.$emit('deleteFile', this.file_id)
+    }
+  }
 }
 </script>
 <style>

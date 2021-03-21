@@ -1,4 +1,3 @@
-import { localize } from 'vee-validate'
 /* remove null values for api calls */
 function cleanup (root) {
   const result = {}
@@ -130,9 +129,15 @@ export default ({ app, store, redirect }, inject) => {
         return app.$axios.$post('/mailToken', email)
       }
     },
-    attachment: {
-      put (fileContent) {
-        return app.$axios.$put('/mailToken', fileContent)
+    attachments: {
+      post (name, filename, size) {
+        return app.$axios.$post('/attachments', { name, filename, size })
+      },
+      post_sas (name) {
+        return app.$axios.$post(`/attachments/${name}/sas`)
+      },
+      delete (name) {
+        return app.$axios.$delete(`/attachments/${name}`)
       }
     }
   }

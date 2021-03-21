@@ -64,7 +64,8 @@ module.exports = {
     '~/plugins/bus.js',
     '~/plugins/vee-validate.js',
     '~/plugins/services.js',
-    '~/plugins/i18n-switcher.js'
+    '~/plugins/i18n-switcher.js',
+    '~/plugins/attachments.js'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -91,7 +92,7 @@ module.exports = {
             icons: ['faPlus', 'faEdit', 'faMinus',
               'faEject', 'faUnlock', 'faProjectDiagram', 'faUser', 'faLock', 'faGlobeEurope', 'faCheck',
               'faEnvelope', 'faCopy', 'faUserCircle', 'faPaperPlane', 'faTshirt', 'faTrashAlt', 'faUserEdit',
-              'faTrashRestore', 'faUserMinus']
+              'faTrashRestore', 'faUserMinus', 'faDownload', 'faUpload']
           }
         ]
       }
@@ -121,7 +122,9 @@ module.exports = {
       'ImagePlugin',
       'CardPlugin',
       'ProgressPlugin',
-      'FormFilePlugin'
+      'FormFilePlugin',
+      'OverlayPlugin',
+      'LinkPlugin'
     ]
   },
   components: true,
