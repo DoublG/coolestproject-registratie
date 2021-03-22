@@ -126,10 +126,10 @@ export default {
   Frans: 'Français',
   Engels: 'Anglais',
   project_delete: 'Supprimer la participation au projet',
-  'Project movie name': 'Titre de la vidéo du projet',
-  'Project movie file': 'Fichier vidéo du projet',
-  'Movie title': 'Entrez le titre de votre vidéo',
+  'Project movie name': 'Titre de la vidéo',
+  'Project movie file': 'Fichier vidéo',
+  'Movie title': 'Titre de votre vidéo',
   'Upload Movie': 'Télécharger La Vidéo',
-  'Enter your movie location': 'Electionnez votre emplacement de vidéo',
-  attachments: 'Ajouts'
+  'Enter your movie location': 'Selectionnez votre emplacement de vidéo',
+  attachments: "Vidéos"
 }

@@ -127,9 +127,9 @@ export default {
   Engels: 'English',
   project_delete: 'Remove project participation',
   'Project movie name': 'Project video title',
-  'Project movie file': 'Project video file',
-  'Movie title': 'Enter your video titel',
+  'Project movie file': 'Video file',
+  'Movie title': 'Video titel',
   'Upload Movie': 'Upload Video',
-  'Enter your movie location': 'Select your video location',
-  attachments: 'Additions'
+  'Enter your movie location': 'Select your video file',
+  attachments: 'Videos'
 }

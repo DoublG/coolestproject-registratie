@@ -128,11 +128,11 @@ export default {
   Frans: 'Frans',
   Engels: 'Engels',
   project_delete: 'Project deelname verwijderen',
-  'Project movie name': 'Titel project video',
-  'Project movie file': 'Project video bestand',
-  'Movie title': 'Voer de titel van uw video in',
-  'Upload Movie': 'Video Uploaden',
-  'Enter your movie location': 'Selecteer uw video locatie',
-  attachments: 'Toevoegingen'
+  'Project movie name': 'Titel van de video',
+  'Project movie file': 'Video bestandsnaam',
+  'Movie title': 'Titel van uw video',
+  'Upload Movie': 'Video opladen',
+  'Enter your movie location': 'Selecteer uw videobestand',
+  attachments: 'Video bestanden'
 
 }
