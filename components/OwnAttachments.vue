@@ -17,10 +17,14 @@
       <template #cell(actions)="data">
         <b-button
           class="button-hero"
+          v-if="!data.item.confirmed"
           @click="showPopup=true;file_id=data.item.id;"
         >
           <font-awesome-icon :icon="['fas', 'minus']" />  {{ $t('Delete') }}
         </b-button>
+        <div v-else>
+          <font-awesome-icon :icon="['fas', 'check']" /> {{ $t('Is Confirmed') }}
+        </div>
       </template>
     </b-table>
     <b-modal v-model="showPopup" title="Delete file" ok-title="delete file" @ok="onDelete">
