@@ -129,7 +129,7 @@ export default {
   'Project movie name': 'Titre de la vidéo',
   'Project movie file': 'Fichier vidéo',
   'Movie title': 'Titre de votre vidéo',
-  'Upload Movie': 'Télécharger La Vidéo',
+  'Upload Movie': 'Télécharger la vidéo',
   'Enter your movie location': 'Selectionnez votre emplacement de vidéo',
-  attachments: "Vidéos"
+  attachments: 'Vidéos'
 }

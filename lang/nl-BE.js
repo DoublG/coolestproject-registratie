@@ -134,5 +134,4 @@ export default {
   'Upload Movie': 'Video opladen',
   'Enter your movie location': 'Selecteer uw videobestand',
   attachments: 'Video bestanden'
-
 }
