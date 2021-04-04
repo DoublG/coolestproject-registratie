@@ -16,7 +16,10 @@
       <b-alert v-if="noEvent" show variant="warning">
         {{ $t('No Event is active please come again later') }}
       </b-alert>
-      <b-button v-else variant="dark" class="button-hero" :to="localePath('registration')">
+      <b-alert v-if="!noEvent && settings.waitingListActive" show variant="warning">
+        {{ $t('Waiting list is active') }}
+      </b-alert>
+      <b-button v-if="!noEvent" variant="dark" class="button-hero" :to="localePath('registration')">
         <font-awesome-icon :icon="['fas', 'paper-plane']" /> {{ $t('start') }}
       </b-button>
     </b-container>
@@ -30,6 +33,7 @@ export default {
     if (!settings) {
       return { noEvent: true }
     }
+    return { settings }
   },
   data () {
     return {
