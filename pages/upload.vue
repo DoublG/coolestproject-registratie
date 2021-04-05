@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     async onUpload (evt) {
-      if (this.file.size > this.settings.maxUploadSize) {
+      if (this.file.content.size > this.settings.maxUploadSize) {
         alert('file is to big')
         return
       }
