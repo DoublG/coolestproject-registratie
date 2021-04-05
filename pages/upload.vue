@@ -35,12 +35,14 @@ export default {
     ValidationObserver
   },
   async asyncData ({ store, query, app, redirect, route }) {
+    const settings = await app.$services.settings.get()
     const project = await app.$services.projectinfo.get()
     if (project === '') {
       app.router.push(app.localePath('no_project'))
     }
     return {
       project,
+      settings,
       readWrite: true
     }
   },
@@ -59,6 +61,10 @@ export default {
   },
   methods: {
     async onUpload (evt) {
+      if (this.file.size > this.settings.maxUploadSize) {
+        alert('file is to big')
+        return
+      }
       await this.$attachments.process(this.file, (percent) => { this.percent = percent })
       this.$router.push(this.localePath('project'))
     }
