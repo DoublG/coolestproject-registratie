@@ -49,6 +49,7 @@ export default {
   data () {
     return {
       percent: 0,
+      uploadInProgress: false,
       file: null,
       readWrite: false,
       project: null
@@ -56,7 +57,7 @@ export default {
   },
   computed: {
     show () {
-      return this.percent > 0 && this.percent < 100
+      return this.uploadInProgress || (this.percent > 0 && this.percent < 100)
     }
   },
   methods: {
@@ -65,7 +66,9 @@ export default {
         alert('file is to big')
         return
       }
+      this.uploadInProgress = true
       await this.$attachments.process(this.file, (percent) => { this.percent = percent })
+      this.uploadInProgress = false
       this.$router.push(this.localePath('project'))
     }
   }
