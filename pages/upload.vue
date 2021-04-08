@@ -30,7 +30,7 @@
 // project.own_project.attachments
 import { ValidationObserver } from 'vee-validate'
 export default {
-  middleware: 'authenticated',
+  middleware: ['authenticated', 'guard'],
   components: {
     ValidationObserver
   },
