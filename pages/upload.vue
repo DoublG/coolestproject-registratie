@@ -12,6 +12,7 @@
             <b-button
               class="button-hero"
               type="submit"
+              :disabled="uploadInProgress"
             >
               <font-awesome-icon :icon="['fas', 'plus']" />  {{ $t('Upload Movie') }}
             </b-button>
@@ -30,23 +31,26 @@
 // project.own_project.attachments
 import { ValidationObserver } from 'vee-validate'
 export default {
-  middleware: 'authenticated',
+  middleware: ['authenticated', 'guard'],
   components: {
     ValidationObserver
   },
   async asyncData ({ store, query, app, redirect, route }) {
+    const settings = await app.$services.settings.get()
     const project = await app.$services.projectinfo.get()
     if (project === '') {
       app.router.push(app.localePath('no_project'))
     }
     return {
       project,
+      settings,
       readWrite: true
     }
   },
   data () {
     return {
       percent: 0,
+      uploadInProgress: false,
       file: null,
       readWrite: false,
       project: null
@@ -54,12 +58,20 @@ export default {
   },
   computed: {
     show () {
-      return this.percent > 0 && this.percent < 100
+      return this.uploadInProgress || (this.percent > 0 && this.percent < 100)
     }
   },
   methods: {
     async onUpload (evt) {
+      if (this.file.content.size > this.settings.maxUploadSize) {
+        alert('file is to big')
+        return
+      }
+      this.uploadInProgress = true
+      this.$bus.$emit('block-navigation', this.uploadInProgress)
       await this.$attachments.process(this.file, (percent) => { this.percent = percent })
+      this.uploadInProgress = false
+      this.$bus.$emit('block-navigation', this.uploadInProgress)
       this.$router.push(this.localePath('project'))
     }
   }
