@@ -68,8 +68,10 @@ export default {
         return
       }
       this.uploadInProgress = true
+      this.$bus.$emit('block-navigation', this.uploadInProgress)
       await this.$attachments.process(this.file, (percent) => { this.percent = percent })
       this.uploadInProgress = false
+      this.$bus.$emit('block-navigation', this.uploadInProgress)
       this.$router.push(this.localePath('project'))
     }
   }
