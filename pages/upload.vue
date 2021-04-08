@@ -12,6 +12,7 @@
             <b-button
               class="button-hero"
               type="submit"
+              :disabled="uploadInProgress"
             >
               <font-awesome-icon :icon="['fas', 'plus']" />  {{ $t('Upload Movie') }}
             </b-button>
