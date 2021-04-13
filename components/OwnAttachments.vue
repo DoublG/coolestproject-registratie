@@ -7,17 +7,20 @@
       :fields="fields"
     >
       <template #cell(url)="data">
-        <a :href="data.item.url" :download="data.item.filename">
+        <a v-if="data.item.exists" :href="data.item.url" :download="data.item.filename">
           <font-awesome-icon :icon="['fas', 'download']" /> Download
         </a>
+        <div v-else>
+          <font-awesome-icon :icon="['fas', 'bug']" /> {{ $t('File not found') }}
+        </div>
       </template>
       <template #cell(size)="data">
         {{ (data.item.size / 1e+6).toFixed(2) }} megabytes
       </template>
       <template #cell(actions)="data">
         <b-button
-          class="button-hero"
           v-if="!data.item.confirmed"
+          class="button-hero"
           @click="showPopup=true;file_id=data.item.id;"
         >
           <font-awesome-icon :icon="['fas', 'minus']" />  {{ $t('Delete') }}

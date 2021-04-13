@@ -7,7 +7,7 @@
       :fields="fields"
     >
       <template #cell(url)="data">
-        <b-link :href="data.item.url">
+        <b-link v-if="data.item.exists" :href="data.item.url">
           <font-awesome-icon :icon="['fas', 'download']" /> Download
         </b-link>
       </template>
