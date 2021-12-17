@@ -13,9 +13,9 @@
 </template>
 <script>
 export default {
-  layout: 'fullwith',
   components: {
   },
+  layout: 'fullwith',
   data () {
     return {}
   }
