@@ -7,6 +7,7 @@
   "license": "MIT License",
   "scripts": {
     "dev": "NODE_ENV=development NUXT_HOST=0.0.0.0 nuxt",
+    "dev:light": "npm i && NODE_ENV=development NUXT_HOST=0.0.0.0 nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
