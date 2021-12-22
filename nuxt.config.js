@@ -1,13 +1,16 @@
-module.exports = {
+export default {
+  // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
-  /*
-  ** Headers of the page
-  */
+
+  // Target: https://go.nuxtjs.dev/config-target
+  target: 'static',
+
+  // TODO: Check if this is still required
   env: {
     baseUrl: process.env.NUXT_ENV_BASE_URL
   },
-  dotenv: {
-  },
+
+  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: process.env.npm_package_name || 'Coolestproject',
     meta: [
@@ -47,19 +50,11 @@ module.exports = {
       }
     ]
   },
-  /*
-  ** Customize the progress-bar color
-  */
-  loading: { color: '#fff' },
-  /*
-  ** Global CSS
-  */
-  css: [
-  ],
-  router: {},
-  /*
-  ** Plugins to load before mounting the App
-  */
+
+  // Global CSS: https://go.nuxtjs.dev/config-css
+  css: [],
+
+  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/bus.js',
     '~/plugins/vee-validate.js',
@@ -67,93 +62,36 @@ module.exports = {
     '~/plugins/i18n-switcher.js',
     '~/plugins/attachments.js'
   ],
-  /*
-  ** Nuxt.js dev-modules
-  */
+
+  // Auto import components: https://go.nuxtjs.dev/config-components
+  components: true,
+
+  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // Doc: https://github.com/nuxt-community/eslint-module
+    // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
-    '@nuxtjs/dotenv'
+    '@nuxtjs/fontawesome'
   ],
-  /*
-  ** Nuxt.js modules
-  */
+
+  // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    'nuxt-i18n',
-    // Doc: https://bootstrap-vue.js.org
+    // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
+    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    [
-      'nuxt-fontawesome',
-      {
-        imports: [
-          {
-            set: '@fortawesome/free-solid-svg-icons',
-            icons: ['faPlus', 'faEdit', 'faMinus',
-              'faEject', 'faUnlock', 'faProjectDiagram', 'faUser', 'faLock', 'faGlobeEurope', 'faCheck',
-              'faEnvelope', 'faCopy', 'faUserCircle', 'faPaperPlane', 'faTshirt', 'faTrashAlt', 'faUserEdit',
-              'faTrashRestore', 'faUserMinus', 'faDownload', 'faUpload']
-          }
-        ]
-      }
-    ],
+    // https://i18n.nuxtjs.org/
+    '@nuxtjs/i18n',
     'nuxt-vuex-localstorage'
   ],
-  bootstrapVue: {
-    bootstrapCSS: false,
-    bootstrapVueCSS: false,
-    componentPlugins: [
-      'LayoutPlugin',
-      'NavbarPlugin',
-      'ButtonPlugin',
-      'FormPlugin',
-      'FormSelectPlugin',
-      'FormTextareaPlugin',
-      'FormCheckboxPlugin',
-      'FormInputPlugin',
-      'FormRadioPlugin',
-      'FormGroupPlugin',
-      'AlertPlugin',
-      'ModalPlugin',
-      'JumbotronPlugin',
-      'SpinnerPlugin',
-      'TablePlugin',
-      'PopoverPlugin',
-      'ImagePlugin',
-      'CardPlugin',
-      'ProgressPlugin',
-      'FormFilePlugin',
-      'OverlayPlugin',
-      'LinkPlugin'
-    ]
+
+  // Axios module configuration: https://go.nuxtjs.dev/config-axios
+  axios: {
+    credentials: true
   },
-  components: true,
-  generate: {},
-  /*
-  ** Build configuration
-  */
-  build: {
-    /*
-    ** You can extend webpack config here
-    */
-    extend (config, ctx) { },
-    transpile: [
-      'vee-validate/dist/rules',
-      'nuxt-vuex-localstorage'
-    ]
-  },
+
   i18n: {
     defaultLocale: 'nl',
     langDir: 'lang/',
-    vueI18n: {
-      fallbackLocale: 'nl'
-    },
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'language',
-      cookieDomain: process.env.NUXT_ENV_DOMAIN,
-      onlyOnRoot: true
-    },
     locales: [
       {
         code: 'en',
@@ -168,14 +106,34 @@ module.exports = {
         file: 'fr-FR.js'
       }
     ],
-    lazy: true
+    lazy: true,
+    vueI18n: {
+      fallbackLocale: 'nl'
+    },
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'language',
+      cookieDomain: process.env.NUXT_ENV_DOMAIN,
+      onlyOnRoot: true
+    }
   },
-  axios: {
-    credentials: true
+
+  fontawesome: {
+    icons: {
+      solid: ['faPlus', 'faEdit', 'faMinus',
+        'faEject', 'faUnlock', 'faProjectDiagram', 'faUser', 'faLock', 'faGlobeEurope', 'faCheck',
+        'faEnvelope', 'faCopy', 'faUserCircle', 'faPaperPlane', 'faTshirt', 'faTrashAlt', 'faUserEdit',
+        'faTrashRestore', 'faUserMinus', 'faDownload', 'faUpload']
+    }
   },
+
+  // Build Configuration: https://go.nuxtjs.dev/config-build
+  build: {},
+
   publicRuntimeConfig: {
     axios: {
       browserBaseURL: process.env.NUXT_ENV_BASE_URL
     }
   }
+
 }
