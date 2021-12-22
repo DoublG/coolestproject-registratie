@@ -116,12 +116,12 @@ export default ({ app, store, redirect }, inject) => {
     login: {
       post (token) {
         // this call sets the cookie used in de subsequent calls
-        return app.$axios.$post('/login', null, { headers: { Authorization: 'Bearer ' + token } })
+        return app.$axios.$post('/login', {}, { headers: { Authorization: 'Bearer ' + token } })
       }
     },
     logout: {
       post () {
-        return app.$axios.$post('/logout', null)
+        return app.$axios.$post('/logout', {})
       }
     },
     mail: {
