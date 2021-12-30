@@ -152,7 +152,7 @@ export default {
   },
   watch: {
     project (newProject, oldProject) {
-      this.internal_project = Object.assign({},newProject)
+      this.internal_project = Object.assign({}, newProject)
     }
   },
   methods: {
