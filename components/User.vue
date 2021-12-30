@@ -410,9 +410,9 @@
 <script>
 import { ValidationProvider } from 'vee-validate'
 import { addYears, differenceInYears, parseISO, format } from 'date-fns'
-import { en, nl, fr } from 'date-fns/locale'
+import { nl, fr } from 'date-fns/locale'
 
-const locales = { en, nl, fr }
+const locales = { nl, fr }
 
 export default {
   components: {
@@ -537,30 +537,6 @@ export default {
       }
     }
   },
-  async fetch () {
-    // get all tshirts
-    const tshirts = await this.$nuxt.context.app.$services.tshirts.get()
-    this.tshirtsList = tshirts.map((element) => {
-      return { label: element.group, options: element.items.map((item) => { return { text: item.name, value: item.id } }) }
-    })
-
-    // get all settings
-    this.settings = await this.$nuxt.context.app.$services.settings.get()
-    const beginYear = addYears(parseISO(this.settings.startDateEvent), this.settings.maxAge * -1)
-    const endYear = addYears(parseISO(this.settings.startDateEvent), this.settings.minAge * -1)
-
-    const yearStart = beginYear.getFullYear()
-    const yearEnd = endYear.getFullYear()
-    const yearList = [{ text: this.$nuxt.$i18n.t('description_year'), value: null }]
-    for (let i = 0; i <= yearEnd - yearStart; i++) {
-      yearList.push({ text: yearStart + i, value: yearStart + i })
-    }
-
-    // calculated fields
-    this.year_list = yearList
-    this.startDateEvent = parseISO(this.settings.startDateEvent)
-    this.guardianAge = this.settings.guardianAge
-  },
   data () {
     const monthList =
       Array.from({ length: 12 }, (v, k) => { return { value: k, text: format(new Date(2000, k), 'MMMM', { locale: locales[this.$i18n.locale] }) } })
@@ -585,6 +561,30 @@ export default {
         { value: 'en', text: this.$i18n.t('Engels') }
       ]
     }
+  },
+  async fetch () {
+    // get all tshirts
+    const tshirts = await this.$nuxt.context.app.$services.tshirts.get()
+    this.tshirtsList = tshirts.map((element) => {
+      return { label: element.group, options: element.items.map((item) => { return { text: item.name, value: item.id } }) }
+    })
+
+    // get all settings
+    this.settings = await this.$nuxt.context.app.$services.settings.get()
+    const beginYear = addYears(parseISO(this.settings.startDateEvent), this.settings.maxAge * -1)
+    const endYear = addYears(parseISO(this.settings.startDateEvent), this.settings.minAge * -1)
+
+    const yearStart = beginYear.getFullYear()
+    const yearEnd = endYear.getFullYear()
+    const yearList = [{ text: this.$nuxt.$i18n.t('description_year'), value: null }]
+    for (let i = 0; i <= yearEnd - yearStart; i++) {
+      yearList.push({ text: yearStart + i, value: yearStart + i })
+    }
+
+    // calculated fields
+    this.year_list = yearList
+    this.startDateEvent = parseISO(this.settings.startDateEvent)
+    this.guardianAge = this.settings.guardianAge
   },
   computed: {
     isGuardianNeeded: (state) => {
