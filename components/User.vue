@@ -410,9 +410,9 @@
 <script>
 import { ValidationProvider } from 'vee-validate'
 import { addYears, differenceInYears, parseISO, format } from 'date-fns'
-import { nl, fr } from 'date-fns/locale'
+import { enUS, nl, fr } from 'date-fns/locale'
 
-const locales = { nl, fr }
+const locales = { enUS, nl, fr }
 
 export default {
   components: {
