@@ -438,7 +438,7 @@ export default {
             postalcode: null,
             street: null,
             house_number: null,
-            bus_number: null,
+            box_number: null,
             municipality_name: null
           },
           gsm: null,
@@ -496,7 +496,7 @@ export default {
               rw: true,
               hidden: false
             },
-            bus_number: {
+            box_number: {
               rw: true,
               hidden: false
             },

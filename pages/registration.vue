@@ -161,7 +161,7 @@ export default {
             rw: this.readWrite,
             hidden: false
           },
-          bus_number: {
+          box_number: {
             rw: this.readWrite,
             hidden: false
           },

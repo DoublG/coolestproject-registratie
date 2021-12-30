@@ -76,7 +76,7 @@
         </b-form-invalid-feedback>
       </b-form-group>
     </ValidationProvider>
-    <ValidationProvider v-if="!fieldStatus.bus_number.hidden" v-slot="{ valid, errors }" name="BusNumber">
+    <ValidationProvider v-if="!fieldStatus.box_number.hidden" v-slot="{ valid, errors }" name="BusNumber">
       <b-form-group
         id="input-group-3z"
         :label="$t('label_BusNumber')"
@@ -84,12 +84,12 @@
       >
         <b-form-input
           id="input-3z"
-          :value="contact.bus_number"
-          :disabled="!fieldStatus.bus_number.rw"
+          :value="contact.box_number"
+          :disabled="!fieldStatus.box_number.rw"
           :placeholder="$t('placeholder_BusNumber')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-3z-live-feedback"
-          @input="update_value('bus_number', $event)"
+          @input="update_value('box_number', $event)"
         />
         <b-form-invalid-feedback id="input-3z-live-feedback">
           {{ errors[0] }}
@@ -137,7 +137,7 @@ export default {
           postalcode: null,
           street: null,
           house_number: null,
-          bus_number: null,
+          box_number: null,
           municipality_name: null
         }
       }
@@ -158,7 +158,7 @@ export default {
             rw: true,
             hidden: false
           },
-          bus_number: {
+          box_number: {
             rw: true,
             hidden: false
           },
