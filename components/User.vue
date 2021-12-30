@@ -571,8 +571,8 @@ export default {
 
     // get all settings
     this.settings = await this.$nuxt.context.app.$services.settings.get()
-    const beginYear = addYears(parseISO(this.settings.startDateEvent), this.settings.maxAge * -1)
-    const endYear = addYears(parseISO(this.settings.startDateEvent), this.settings.minAge * -1)
+    const beginYear = addYears(parseISO(this.settings.officialStartDate), this.settings.maxAge * -1)
+    const endYear = addYears(parseISO(this.settings.officialStartDate), this.settings.minAge * -1)
 
     const yearStart = beginYear.getFullYear()
     const yearEnd = endYear.getFullYear()
@@ -583,7 +583,7 @@ export default {
 
     // calculated fields
     this.year_list = yearList
-    this.startDateEvent = parseISO(this.settings.startDateEvent)
+    this.startDateEvent = parseISO(this.settings.officialStartDate)
     this.guardianAge = this.settings.guardianAge
   },
   computed: {
