@@ -1,6 +1,6 @@
 <template>
   <ol>
-    <li v-html="$t('rule0')" />
+    <li v-html="$t('rule0', { maxRegistration: 48 })" />
     <li v-html="$t('rule1')" />
     <li v-html="$t('rule2')" />
     <li v-html="$t('rule3')" />

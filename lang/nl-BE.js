@@ -40,7 +40,7 @@ export default {
   'Project wordt verwijderd': 'Project wordt verwijderd',
   Registratie: 'Registratie',
   Resetten: 'Reset',
-  rule0: 'Inschrijvingen zijn open tussen 1 februari en 31 maart of tot de maximale capaciteit van 48 projecten is bereikt.',
+  rule0: 'Inschrijvingen zijn open tussen 1 februari en 31 maart of tot de maximale capaciteit van {maxRegistration} projecten is bereikt.',
   rule1: 'Een deelnemer moet tussen 7 en 18 jaar oud zijn op de dag van Coolest Projects en resideren in België',
   rule2: 'Alle projecten zijn welkom van beginner tot expert. Alle technologieën worden geaccepteerd (ook onafgewerkte projecten)',
   rule3: 'Na registratie ontvang je een bevestigingsmail. Je moeten op de link klikken om de registratie af te ronden.',
