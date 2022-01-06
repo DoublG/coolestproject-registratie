@@ -38,7 +38,7 @@ export default {
   'Project wordt verwijderd': 'Le projet est supprimé',
   Registratie: 'Inscription',
   Resetten: 'Tout supprimer',
-  rule0: "Les inscriptions sont ouvertes entre le 1er février et le 31 mars ou jusqu'à ce que la capacité maximale de 48 projets soit atteinte.",
+  rule0: "Les inscriptions sont ouvertes entre le 1er février et le 31 mars ou jusqu'à ce que la capacité maximale de {maxRegistration} projets soit atteinte.",
   rule1: 'Chaque participant.e est âgé de 7 à 18 ans et réside en Belgique.',
   rule2: 'Tous les projets sont les bienvenus, niveau débutant ou confirmé. Toutes les technologies sont acceptées, ainsi que les projets inachevés.',
   rule3: "Après l'inscription, chaque participant.e reçoit un courrier de confirmation, il/elle doit cliquer sur le lien pour s'assurer que l'inscription est validée.",

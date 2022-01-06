@@ -38,7 +38,7 @@ export default {
   'Project wordt verwijderd': 'Project will be deleted',
   Registratie: 'Enrollment',
   Resetten: 'Reset',
-  rule0: 'Registrations are open between February 1st and March 31nd or until the maximum capacity of 48 projects is reached.',
+  rule0: 'Registrations are open between February 1st and March 31nd or until the maximum capacity of {maxRegistration} projects is reached.',
   rule1: 'A participant is between 7 and 18 years old at the date of the event and a resident of Belgium. ',
   rule2: 'All projects are welcome, from beginner to advanced. All technologies are accepted.(also unfinished projects)',
   rule3: 'The participant will receive a confirmation mail after the registration. Participants need to click on the activation link to make sure the registration is valid. ',
