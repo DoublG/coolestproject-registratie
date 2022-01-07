@@ -39,7 +39,7 @@ export default {
   Registratie: 'Enrollment',
   Resetten: 'Reset',
   rule1: 'Registrations are open between {registrationOpenDate} and {registrationClosedDate} or until the maximum capacity of {maxRegistration} projects is reached.',
-  rule2: 'A participant is between{minAge} and {maxAge} years old at the date of the event and a resident of Belgium. ',
+  rule2: 'A participant is between {minAge} and {maxAge} years old at the date of the event and a resident of Belgium. ',
   rule3: 'All projects are welcome, from beginner to advanced. All technologies are accepted.(also unfinished projects)',
   rule4: 'The participant will receive a confirmation mail after the registration. Participants need to click on the activation link to make sure the registration is valid. ',
   rule5: 'You can collaborate with maximum {maxParticipants} participants on one project. All participants need to register. First the project owner registers the project. After confirmation, all the other participants can join this project after receiving an invitation mail from the project owner with a registration token. ',
