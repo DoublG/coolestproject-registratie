@@ -72,10 +72,10 @@
 import { ValidationObserver } from 'vee-validate'
 
 export default {
-  middleware: 'notAuthenticated',
   components: {
     ValidationObserver
   },
+  middleware: 'notAuthenticated',
   async asyncData ({ store, app, redirect }) {
     const settings = await app.$services.settings.get()
     if (!settings) {

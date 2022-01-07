@@ -49,10 +49,10 @@
 // project.own_project.attachments
 import { ValidationObserver } from 'vee-validate'
 export default {
-  middleware: 'authenticated',
   components: {
     ValidationObserver
   },
+  middleware: 'authenticated',
   async asyncData ({ store, query, app, redirect, route }) {
     const project = await app.$services.projectinfo.get()
     if (project === '') {

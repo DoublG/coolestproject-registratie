@@ -24,10 +24,10 @@
 import { ValidationObserver } from 'vee-validate'
 
 export default {
-  middleware: 'authenticated',
   components: {
     ValidationObserver
   },
+  middleware: 'authenticated',
   async asyncData ({ store, query, app, redirect, route }) {
     const user = await app.$services.userinfo.get()
     return {

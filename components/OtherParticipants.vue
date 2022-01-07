@@ -6,7 +6,7 @@
       striped
       hover
     >
-      <template v-slot:cell(name)="data">
+      <template #cell(name)="data">
         <font-awesome-icon v-if="data.item.self" :icon="['fas', 'user-circle']" /> {{ data.item.name }}
       </template>
     </b-table>

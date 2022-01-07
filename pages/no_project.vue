@@ -14,9 +14,9 @@
 </template>
 <script>
 export default {
-  middleware: 'authenticated',
   components: {
   },
+  middleware: 'authenticated',
   data () {
     return {}
   },

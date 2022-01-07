@@ -7,7 +7,7 @@
         name="MandatoryApprovals"
       >
         <b-form-group>
-          <template v-slot:description>
+          <template #description>
             <NuxtLink target="_blank" :to="localePath('index')">
               {{ $t('description_Je moet akkoord') }}
             </NuxtLink>
@@ -44,12 +44,6 @@ export default {
       default: () => []
     }
   },
-  async fetch () {
-    const app = await this.$nuxt.context.app.$services.approvals.get()
-    this.approvals = app.map((item) => {
-      return { value: item.id, text: item.description }
-    })
-  },
   data () {
     return {
       internal_responses: [...this.responses],
@@ -58,6 +52,12 @@ export default {
         this.$emit('change', evt)
       }
     }
+  },
+  async fetch () {
+    const app = await this.$nuxt.context.app.$services.approvals.get()
+    this.approvals = app.map((item) => {
+      return { value: item.id, text: item.description }
+    })
   },
   watch: {
     responses (newResponse, oldResponse) {

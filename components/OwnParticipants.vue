@@ -6,7 +6,7 @@
       hover
       striped
     >
-      <template v-slot:cell(id)="data">
+      <template #cell(id)="data">
         <span v-if="data.item.name === undefined">
           {{ data.item.id }}
           <b-button :href="mailToken(data.item.id)"><font-awesome-icon :icon="['fas', 'envelope']" /> Mail</b-button>
@@ -43,7 +43,7 @@ export default {
       this.$emit('copyToClipboard', token)
     },
     mailToken (token) {
-      const fullUrl = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port +  ((this.$i18n.locale != 'nl') ? '/' + this.$i18n.locale : '') + '/registration' + '?token=' + token
+      const fullUrl = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + ((this.$i18n.locale !== 'nl') ? '/' + this.$i18n.locale : '') + '/registration' + '?token=' + token
       return 'mailto:' + this.$i18n.t('mail') + '?subject=' + this.$i18n.t('subject') + '&body=' + this.$i18n.t('body') + ' ' + fullUrl + this.$i18n.t('closure')
     }
   }
