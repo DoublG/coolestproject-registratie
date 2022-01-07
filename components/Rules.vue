@@ -4,8 +4,8 @@
     <li
       v-html="
         $t('rule1', {
-          registrationOpenDate: $d(registrationOpenDate),
-          registrationClosedDate: $d(registrationClosedDate),
+          registrationOpenDate: $d(registrationOpenDate, 'long'),
+          registrationClosedDate: $d(registrationClosedDate, 'long'),
           maxRegistration: settings.maxRegistration
         })
       "
@@ -17,16 +17,16 @@
     <li v-html="$t('rule4')" />
     <li v-html="$t('rule5', { maxParticipants: settings.maxParticipants })" />
     <li
-      v-html="$t('rule6', { projectClosedDate: $d(projectClosedDate) })"
+      v-html="$t('rule6', { projectClosedDate: $d(projectClosedDate, 'long') })"
     />
     <li
-      v-html="$t('rule7', { projectClosedDate: $d(projectClosedDate) })"
+      v-html="$t('rule7', { projectClosedDate: $d(projectClosedDate, 'long') })"
     />
     <li
-      v-html="$t('rule8', { officialStartDate: $d(officialStartDate) })"
+      v-html="$t('rule8', { officialStartDate: $d(officialStartDate, 'long') })"
     />
     <li
-      v-html="$t('rule9', { officialStartDate: $d(officialStartDate) })"
+      v-html="$t('rule9', { officialStartDate: $d(officialStartDate, 'long') })"
     />
     <li v-html="$t('rule10')" />
   </ol>
