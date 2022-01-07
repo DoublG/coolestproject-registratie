@@ -110,37 +110,37 @@ export default {
     vueI18n: {
       fallbackLocale: 'nl',
       dateTimeFormats: {
-        'nl': {
+        nl: {
           long: {
             year: 'numeric',
             month: 'long',
-            day: 'numeric',
+            day: 'numeric'
             /*
             weekday: 'long',
             hour: 'numeric',
-            minute: 'numeric'*/
+            minute: 'numeric' */
           }
         },
-        'fr': {
+        fr: {
           long: {
             year: 'numeric',
             month: 'long',
-            day: 'numeric',
+            day: 'numeric'
             /*
             weekday: 'long',
             hour: 'numeric',
-            minute: 'numeric'*/
+            minute: 'numeric' */
           }
         },
         'en-US': {
           long: {
             year: 'numeric',
             month: 'long',
-            day: 'numeric',
+            day: 'numeric'
             /*
             weekday: 'long',
             hour: 'numeric',
-            minute: 'numeric'*/
+            minute: 'numeric' */
           }
         }
       }
