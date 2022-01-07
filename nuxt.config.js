@@ -108,7 +108,42 @@ export default {
     ],
     lazy: true,
     vueI18n: {
-      fallbackLocale: 'nl'
+      fallbackLocale: 'nl',
+      dateTimeFormats: {
+        'nl': {
+          long: {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            /*
+            weekday: 'long',
+            hour: 'numeric',
+            minute: 'numeric'*/
+          }
+        },
+        'fr': {
+          long: {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            /*
+            weekday: 'long',
+            hour: 'numeric',
+            minute: 'numeric'*/
+          }
+        },
+        'en-US': {
+          long: {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            /*
+            weekday: 'long',
+            hour: 'numeric',
+            minute: 'numeric'*/
+          }
+        }
+      }
     },
     detectBrowserLanguage: {
       useCookie: true,
