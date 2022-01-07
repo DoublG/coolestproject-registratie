@@ -4,7 +4,7 @@
     <b-container>
       <h1> {{ $t('rules') }} </h1>
       <h3> {{ $t('intro') }} </h3>
-      <h2> {{ $t('intro2') }} </h2>
+      <h2> {{ $t('intro2',{ officialStartDate: settings.officialStartDate }) }} </h2>
       <p>
         <b> {{ $t('agree') }} </b>
       </p>
