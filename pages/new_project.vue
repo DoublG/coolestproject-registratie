@@ -22,10 +22,10 @@
 <script>
 import { ValidationObserver } from 'vee-validate'
 export default {
-  middleware: 'authenticated',
   components: {
     ValidationObserver
   },
+  middleware: 'authenticated',
   data () {
     return {
       project: {

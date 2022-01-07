@@ -12,9 +12,9 @@
 </template>
 <script>
 export default {
-  middleware: 'notAuthenticated',
   components: {
   },
+  middleware: 'notAuthenticated',
   data () {
     return {}
   },
