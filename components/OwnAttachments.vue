@@ -16,8 +16,8 @@
       </template>
       <template #cell(actions)="data">
         <b-button
-          class="button-hero"
           v-if="!data.item.confirmed"
+          class="button-hero"
           @click="showPopup=true;file_id=data.item.id;"
         >
           <font-awesome-icon :icon="['fas', 'minus']" />  {{ $t('Delete') }}

@@ -170,10 +170,10 @@ export default {
       }
     }
   },
-  async fetch () {},
   data () {
     return {}
   },
+  async fetch () {},
   computed: {
   },
   methods: {

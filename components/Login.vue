@@ -8,7 +8,7 @@
       >
         <b-form-input
           id="input-1"
-          v-model="login.email"
+          :value="login.email"
           :state="errors[0] ? false : (valid ? true : null)"
           :disabled="!fieldStatus.email.rw"
           type="email"
@@ -54,12 +54,12 @@ export default {
       }
     }
   },
-  async fetch () {},
   data () {
     return {
       internal_login: Object.assign({}, this.login)
     }
   },
+  async fetch () {},
   computed: {
   },
   methods: {

@@ -60,15 +60,15 @@ export default {
       }
     }
   },
-  async fetch () {},
   data () {
     return {
       internal_project: Object.assign({}, this.project)
     }
   },
+  async fetch () {},
   watch: {
     project (newProject, oldProject) {
-      this.internal_project = Object.assign({},newProject)
+      this.internal_project = Object.assign({}, newProject)
     }
   },
   methods: {

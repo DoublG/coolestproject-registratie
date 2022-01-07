@@ -41,9 +41,6 @@ export default {
       default: () => []
     }
   },
-  async fetch () {
-    this.questions = await this.$nuxt.context.app.$services.questions.get()
-  },
   data () {
     return {
       get_options (question) {
@@ -67,6 +64,9 @@ export default {
       },
       questions: []
     }
+  },
+  async fetch () {
+    this.questions = await this.$nuxt.context.app.$services.questions.get()
   },
   computed: {
     responseIntern () {
