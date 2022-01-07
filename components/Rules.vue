@@ -4,8 +4,8 @@
     <li
       v-html="
         $t('rule1', {
-          registrationOpenDate: settings.registrationOpenDate,
-          registrationClosedDate: settings.registrationClosedDate,
+          registrationOpenDate: $d(registrationOpenDate),
+          registrationClosedDate: $d(registrationClosedDate),
           maxRegistration: settings.maxRegistration
         })
       "
@@ -17,16 +17,16 @@
     <li v-html="$t('rule4')" />
     <li v-html="$t('rule5', { maxParticipants: settings.maxParticipants })" />
     <li
-      v-html="$t('rule6', { projectClosedDate: settings.projectClosedDate })"
+      v-html="$t('rule6', { projectClosedDate: $d(projectClosedDate) })"
     />
     <li
-      v-html="$t('rule7', { projectClosedDate: settings.projectClosedDate })"
+      v-html="$t('rule7', { projectClosedDate: $d(projectClosedDate) })"
     />
     <li
-      v-html="$t('rule8', { officialStartDate: settings.officialStartDate })"
+      v-html="$t('rule8', { officialStartDate: $d(officialStartDate) })"
     />
     <li
-      v-html="$t('rule9', { officialStartDate: settings.officialStartDate })"
+      v-html="$t('rule9', { officialStartDate: $d(officialStartDate) })"
     />
     <li v-html="$t('rule10')" />
   </ol>
@@ -34,11 +34,6 @@
 
 <script>
 export default {
-  async fetch () {
-    // get all settings
-    this.settings = await this.$nuxt.context.app.$services.settings.get()
-  },
-
   data () {
     return {
       settings: {
@@ -51,6 +46,16 @@ export default {
         officialStartDate: null
       }
     }
+  },
+  async fetch () {
+    // get all settings
+    this.settings = await this.$nuxt.context.app.$services.settings.get()
+  },
+  computed: {
+    projectClosedDate () { return new Date(this.settings.projectClosedDate) },
+    registrationOpenDate () { return new Date(this.settings.registrationOpenDate) },
+    registrationClosedDate () { return new Date(this.settings.registrationClosedDate) },
+    officialStartDate () { return new Date(this.settings.officialStartDate) }
   }
 }
 </script>
