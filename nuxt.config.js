@@ -114,9 +114,9 @@ export default {
           long: {
             year: 'numeric',
             month: 'long',
-            day: 'numeric'
+            day: 'numeric',
+            weekday: 'long'
             /*
-            weekday: 'long',
             hour: 'numeric',
             minute: 'numeric' */
           }
@@ -125,20 +125,20 @@ export default {
           long: {
             year: 'numeric',
             month: 'long',
-            day: 'numeric'
+            day: 'numeric',
+            weekday: 'long'
             /*
-            weekday: 'long',
             hour: 'numeric',
             minute: 'numeric' */
           }
         },
-        'en-US': {
+        en: {
           long: {
             year: 'numeric',
             month: 'long',
-            day: 'numeric'
+            day: 'numeric',
+            weekday: 'long'
             /*
-            weekday: 'long',
             hour: 'numeric',
             minute: 'numeric' */
           }
