@@ -2,8 +2,8 @@
   <ol>
     <li>
       {{ $t('rule1', {
-        registrationOpenDate: $d(registrationOpenDate),
-        registrationClosedDate: $d(registrationClosedDate),
+        registrationOpenDate: $d(registrationOpenDate,'long'),
+        registrationClosedDate: $d(registrationClosedDate,'long'),
         maxRegistration: settings.maxRegistration
       }) }}
     </li>
@@ -20,16 +20,16 @@
       {{ $t('rule5', { maxParticipants: settings.maxParticipants }) }}
     </li>
     <li>
-      {{ $t('rule6', { projectClosedDate: $d(projectClosedDate) }) }}
+      {{ $t('rule6', { projectClosedDate: $d(projectClosedDate,'long') }) }}
     </li>
     <li>
-      {{ $t('rule7', { projectClosedDate: $d(projectClosedDate) }) }}
+      {{ $t('rule7', { projectClosedDate: $d(projectClosedDate,'long') }) }}
     </li>
     <li>
-      {{ $t('rule8', { officialStartDate: $d(officialStartDate) }) }}
+      {{ $t('rule8', { officialStartDate: $d(officialStartDate,'long') }) }}
     </li>
     <li>
-      {{ $t('rule9', { officialStartDate: $d(officialStartDate) }) }}
+      {{ $t('rule9', { officialStartDate: $d(officialStartDate,'long') }) }}
     </li>
     <i18n path="rule10" tag="li">
       <template #privacy_link>
