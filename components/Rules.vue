@@ -34,7 +34,7 @@
     </li>
     <i18n path="rule10" tag="li">
       <template #privacy_link>
-        <b><a target="privacy" href="https://www.coderdojobelgium.be/nl/coderdojo-belgium-privacyverklaring">{{ $t('privacy_text') }}</a></b>
+        <b><a target="privacy" :href="link">{{ $t('privacy_text') }}</a></b>
       </template>
     </i18n>
   </ol>
@@ -60,6 +60,15 @@ export default {
     this.settings = await this.$nuxt.context.app.$services.settings.get()
   },
   computed: {
+    link () {
+      let url = '/en/coderdojo-belgium-privacy-statement'
+      if (this.$i18n.locale === 'nl') {
+        url = '/nl/coderdojo-belgium-privacyverklaring'
+      } else if (this.$i18n.locale === 'fr') {
+        url = '/fr/déclaration-de-confidentialité-coderdojo-belgium'
+      }
+      return 'https://www.coderdojobelgium.be' + url
+    },
     projectClosedDate () { return new Date(this.settings.projectClosedDate) },
     registrationOpenDate () { return new Date(this.settings.registrationOpenDate) },
     registrationClosedDate () { return new Date(this.settings.registrationClosedDate) },
