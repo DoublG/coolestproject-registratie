@@ -51,7 +51,7 @@ export default {
   rules: 'Coolest Projects Belgique',
   SendMovie: "Vous pouvez soumettre votre vidéo à cette URL <a href='{url}'>video</a>",
   start: "Commencer l'inscription",
-  'Stuur me een logincode': "Pourriez-vous m'envoyer un code de connexion ?",
+  'Stuur me een logincode': "Pourriez-vous m'envoyer un code de connexion?",
   subject: 'Invitation à participer à mon Coolest Project 2022',
   'T-shirt maat:': 'Taille de T-shirt',
   titleLogin: 'Login',
