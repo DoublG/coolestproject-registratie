@@ -1,7 +1,7 @@
 export default {
   Aanpassen: 'Modifier',
   AddToken: 'Ajouter un.e co-participant.e',
-  agree: 'En vous inscrivant vous acceptez les règles suivantes',
+  agree: 'En vous inscrivant vous acceptez les règles suivantes:',
   'Algemene vragen': "Questions d'ordre général",
   'An error occurred': "Une erreur s'est produite",
   'Back to homepage': "Retour à la page d'accueil",

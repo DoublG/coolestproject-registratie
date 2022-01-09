@@ -1,7 +1,7 @@
 export default {
   Aanpassen: 'Change',
   AddToken: 'Add Participant',
-  agree: 'By registering you agree to the following rules',
+  agree: 'By registering you agree to the following rules:',
   'Algemene vragen': 'General Questions',
   'An error occurred': 'An error occurred',
   'Back to homepage': 'Back to homepage',
