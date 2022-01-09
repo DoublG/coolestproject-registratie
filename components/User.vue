@@ -135,7 +135,11 @@
       v-if="!fieldStatus.month.hidden"
       v-slot="{ valid, errors }"
       :rules="{
-        required: true
+        required: true,
+        between: {
+          min: minMonth,
+          max: maxMonth
+        }
       }"
       name="Birthmonth"
     >
@@ -409,7 +413,7 @@
 
 <script>
 import { ValidationProvider } from 'vee-validate'
-import { addYears, differenceInYears, parseISO, format } from 'date-fns'
+import { addYears, differenceInYears, parseISO, format, startOfMonth } from 'date-fns'
 import { enUS, nl, fr } from 'date-fns/locale'
 
 const locales = { enUS, nl, fr }
@@ -538,17 +542,12 @@ export default {
     }
   },
   data () {
-    const monthList =
-      Array.from({ length: 12 }, (v, k) => { return { value: k, text: format(new Date(2000, k), 'MMMM', { locale: locales[this.$i18n.locale] }) } })
-    monthList.unshift({ text: this.$i18n.t('placeholder_Kiesmaand'), value: null })
-
     return {
       internal_user: Object.assign({}, this.user),
       startDateEvent: null,
       guardianAge: -1,
       tshirtsList: [],
       year_list: [],
-      monthList,
       geslacht: [
         { text: this.$i18n.t('placeholder_Ik ben een'), value: null },
         { value: 'f', text: this.$i18n.t('meisje') },
@@ -559,7 +558,9 @@ export default {
         { value: 'nl', text: this.$i18n.t('Nederlands') },
         { value: 'fr', text: this.$i18n.t('Frans') },
         { value: 'en', text: this.$i18n.t('Engels') }
-      ]
+      ],
+      beginAgeDate: null,
+      endAgeDate: null
     }
   },
   async fetch () {
@@ -571,8 +572,10 @@ export default {
 
     // get all settings
     this.settings = await this.$nuxt.context.app.$services.settings.get()
-    const beginYear = addYears(parseISO(this.settings.officialStartDate), this.settings.maxAge * -1)
+    const beginYear = startOfMonth(addYears(parseISO(this.settings.officialStartDate), this.settings.maxAge * -1))
     const endYear = addYears(parseISO(this.settings.officialStartDate), this.settings.minAge * -1)
+    this.beginAgeDate = beginYear
+    this.endAgeDate = endYear
 
     const yearStart = beginYear.getFullYear()
     const yearEnd = endYear.getFullYear()
@@ -597,6 +600,32 @@ export default {
           new Date(state.user.year, state.user.month, 1)
         ) < state.guardianAge
       )
+    },
+    monthList () {
+      const monthList = []
+      monthList.push({ value: null, text: this.$i18n.t('placeholder_Kiesmaand') })
+      for (let i = 0; i < 12; i++) {
+        const dat = new Date(this.internal_user.year, i, 1)
+        if (dat < this.beginAgeDate || dat > this.endAgeDate) {
+          continue
+        }
+        monthList.push(
+          { value: i, text: format(dat, 'MMMM', { locale: locales[this.$i18n.locale] }) }
+        )
+      }
+      return monthList
+    },
+    minMonth () {
+      if (!this.monthList.at(1)) {
+        return 0
+      }
+      return this.monthList.at(1).value
+    },
+    maxMonth () {
+      if (!this.monthList.at(-1)) {
+        return 12
+      }
+      return this.monthList.at(-1).value
     }
   },
   watch: {
