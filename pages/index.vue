@@ -13,7 +13,7 @@
         <b> {{ $t('problems') }} </b>
         <i18n path="href" tag="span">
           <template #link>
-            <a href="mailto:info@coolestprojects.be&quest;SUBJECT&equals;CoolestProjectsRegistration"><b>{{ $t('href_text') }}</b></a>
+            <a href="mailto:info@coolestprojects.be?subject=CoolestProjectsRegistration"><b>{{ $t('href_text') }}</b></a>
           </template>
         </i18n>
       </p>

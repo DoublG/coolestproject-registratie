@@ -43,7 +43,7 @@ export default {
   rule3: 'Tous les projets sont les bienvenus, niveau débutant ou confirmé. Toutes les technologies sont acceptées, ainsi que les projets inachevés.',
   rule4: "Après l'inscription, chaque participant.e reçoit un courrier de confirmation, il/elle doit cliquer sur le lien pour s'assurer que l'inscription est validée.",
   rule5: "Chaque jeune peut collaborer avec un maximum de {maxParticipants} participants pour un projet. Tou.te.s les participant.e.s doivent s'inscrire. Dans un premier temps, le / la propriétaire du projet enregistre le projet. Après confirmation, les autres participant.e.s peuvent rejoindre ce projet après avoir reçu un courrier d'invitation du / de la propriétaire du projet avec un token d'enregistrement.",
-  rule6: 'Pour valider une inscription, vous devez envoyer une vidéo. La durée de la vidéo doit être comprise entre 1 et 3 minutes. La vidéo doit nous parvenir avant le {projectClosedDate} à 23h59.',
+  rule6: 'Pour valider une inscription, vous devez envoyer une vidéo. La durée de la vidéo doit être comprise entre 1 et 3 minutes. La vidéo doit nous parvenir avant le {projectClosedDate} à 23:59h.',
   rule7: "Après l'enregistrement, chaque participant.e peut modifier les informations d'utilisateur du projet. Seul.e le / la propriétaire du projet peut modifier les informations relatives à son projet. Toutes les modifications doivent être définitives le {projectClosedDate}.",
   rule8: 'Nous vous donnerons un créneau horaire pour présenter votre projet en direct à votre famille et à vos amis le {officialStartDate}.',
   rule9: "Nous ne fournissons un goodie qu'aux inscrits qui envoient une vidéo pour présenter leur projet. Nous avons donc besoin d’une adresse postale pour procéder à l’envoi.",
