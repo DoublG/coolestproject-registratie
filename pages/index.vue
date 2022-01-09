@@ -11,7 +11,11 @@
       <p>
         <rules />
         <b> {{ $t('problems') }} </b>
-        <span v-html="$t('href')" />
+        <i18n path="href" tag="span">
+          <template #link>
+            <a href="mailto:info@coolestprojects.be&quest;SUBJECT&equals;CoolestProjectsRegistration"><b>{{ $t('href_text') }}</b></a>
+          </template>
+        </i18n>
       </p>
       <b-alert v-if="!settings || !settings.isActive" show variant="warning">
         {{ $t('No Event is active please come again later') }}
