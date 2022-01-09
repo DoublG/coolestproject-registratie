@@ -17,7 +17,7 @@
       {{ $t('rule4') }}
     </li>
     <li>
-      {{ $t('rule5', { maxParticipants: settings.maxParticipants }) }}
+      {{ $t('rule5', { maxParticipants: settings.maxParticipants+1 }) }}
     </li>
     <li>
       {{ $t('rule6', { projectClosedDate: $d(projectClosedDate,'long') }) }}
