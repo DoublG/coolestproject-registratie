@@ -5,7 +5,7 @@ export default {
   'Algemene vragen': 'General Questions',
   'An error occurred': 'An error occurred',
   'Back to homepage': 'Back to homepage',
-  body: 'Hello <friend>, %0D%0A%0D%0Aif you want to participate in my project please register by using the following link to the Coolest Project 2021 registration page: %0D%0A%0D%0A',
+  body: 'Hello <friend>, %0D%0A%0D%0Aif you want to participate in my project please register by using the following link to the Coolest Project 2022 registration page: %0D%0A%0D%0A',
   Cancel: 'Cancel',
   closure: '%0D%0AAttention: this link can only be used once.%0D%0AYour best friend%0D%0A<Fill in Your name>',
   Create: 'Create',
