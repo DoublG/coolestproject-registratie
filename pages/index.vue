@@ -9,7 +9,7 @@
         <b> {{ $t('agree') }} </b>
       </p>
       <p>
-        <rules v-if="settings" />
+        <rules :settings="settings" />
         <b> {{ $t('problems') }} </b>
         <i18n path="href" tag="span">
           <template #link>
@@ -32,26 +32,32 @@
     </b-container>
   </div>
 </template>
-<script>
-export default {
+<script lang="ts">
+import { Context } from '@nuxt/types'
+import Vue from 'vue'
+import { Settings } from '~/api'
+
+export default Vue.extend({
   layout: 'fullwith',
-  async asyncData ({ store, query, app, redirect, route }) {
-    const settings = await app.$services.settings.get()
-    return { settings }
+  middleware: ['http'],
+  async asyncData (context:Context) {
+    const settingResponse = await context.$http.settings.settingsGet()
+    return { settings: settingResponse.data }
   },
   data () {
+    const settings:Settings = {}
     return {
-      settings: {
-        officialStartDate: null
-      }
+      settings
     }
   },
   computed: {
-    officialStartDate () { return new Date(this.settings.officialStartDate) },
+    officialStartDate ():Date | null {
+      return this.settings.officialStartDate ? new Date(this.settings.officialStartDate) : null
+    },
     registrationOpenDate () { return new Date(this.settings.registrationOpenDate) },
     registrationClosedDate () { return new Date(this.settings.registrationClosedDate) }
   }
-}
+})
 </script>
 
 <style>

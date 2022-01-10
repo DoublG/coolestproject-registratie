@@ -633,7 +633,7 @@ export default {
     }
   },
   watch: {
-    user (newUser, oldUser) {
+    user (newUser, _) {
       this.internal_user = Object.assign({}, newUser)
     }
   },

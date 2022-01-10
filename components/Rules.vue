@@ -39,24 +39,15 @@
   </ol>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      settings: {
-        registrationOpenDate: null,
-        registrationClosedDate: null,
-        minAge: 0,
-        maxAge: 0,
-        maxParticipants: 0,
-        projectClosedDate: null,
-        officialStartDate: null
-      }
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+  props: {
+    settings: {
+      type: Object,
+      required: true
     }
-  },
-  async fetch () {
-    // get all settings
-    this.settings = await this.$nuxt.context.app.$services.settings.get()
   },
   computed: {
     link () {
@@ -68,10 +59,18 @@ export default {
       }
       return 'https://www.coderdojobelgium.be' + url
     },
-    projectClosedDate () { return new Date(this.settings.projectClosedDate) },
-    registrationOpenDate () { return new Date(this.settings.registrationOpenDate) },
-    registrationClosedDate () { return new Date(this.settings.registrationClosedDate) },
-    officialStartDate () { return new Date(this.settings.officialStartDate) }
+    projectClosedDate () {
+      return new Date(this.settings.projectClosedDate)
+    },
+    registrationOpenDate () {
+      return new Date(this.settings.registrationOpenDate)
+    },
+    registrationClosedDate () {
+      return new Date(this.settings.registrationClosedDate)
+    },
+    officialStartDate () {
+      return new Date(this.settings.officialStartDate)
+    }
   }
-}
+})
 </script>

@@ -68,18 +68,21 @@
     </b-col>
   </b-row>
 </template>
-<script>
+
+<script lang="ts">
 import { ValidationObserver } from 'vee-validate'
+import { Context } from '@nuxt/types'
 
 export default {
   components: {
     ValidationObserver
   },
-  middleware: 'notAuthenticated',
-  async asyncData ({ store, app, redirect }) {
-    const settings = await app.$services.settings.get()
-    if (!settings) {
-      app.router.push(app.localePath('no_event'))
+  middleware: ['notAuthenticated', 'http'],
+  async asyncData (context: Context) {
+    const settingsResponse = await context.$http.settings.settingsGet()
+    const settings = settingsResponse.data
+    if (!settings.isActive) {
+      context.app.router?.push(context.app.localePath('no_event'))
     }
   },
   data () {
@@ -275,7 +278,7 @@ export default {
       this.loading = false
       window.scrollTo(0, 0)
     },
-    onReset (evt) {
+    onReset (_) {
       // copy default state to vuex store
       this.mandatory_approvals = this.$refs.mandatoryQuestions.$options.props.responses.default()
       this.user = this.$refs.user.$options.props.user.default()

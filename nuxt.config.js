@@ -7,7 +7,7 @@ export default {
 
   // TODO: Check if this is still required
   env: {
-    baseUrl: process.env.NUXT_ENV_BASE_URL
+    baseUrl: process.env.NUXT_ENV_BASE_URL || 'http://localhost:3000'
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -69,6 +69,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/eslint
+    '@nuxt/typescript-build',
     '@nuxtjs/eslint-module',
     '@nuxtjs/fontawesome'
   ],
