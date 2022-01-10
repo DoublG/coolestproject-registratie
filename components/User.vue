@@ -603,11 +603,13 @@ export default {
       )
     },
     monthList () {
+      if (!this.user.year) {
+        return null
+      }
       const monthList = []
       monthList.push({ value: null, text: this.$i18n.t('placeholder_Kiesmaand') })
       for (let i = 0; i < 12; i++) {
-        // const dat = new Date(this.internal_user.year, i, 1)
-        const dat = new Date(this.user.year, i, 1)
+        const dat = new Date(this.internal_user.year, i, 1)
         if (dat < this.beginAgeDate || dat > this.endAgeDate) {
           continue
         }
@@ -618,13 +620,13 @@ export default {
       return monthList
     },
     minMonth () {
-      if (!this.monthList.at(1)) {
+      if (!this.monthList) {
         return 0
       }
       return this.monthList.at(1).value
     },
     maxMonth () {
-      if (!this.monthList.at(-1)) {
+      if (!this.monthList) {
         return 12
       }
       return this.monthList.at(-1).value
