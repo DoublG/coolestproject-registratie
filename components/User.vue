@@ -623,7 +623,7 @@ export default {
       if (!this.monthList) {
         return 0
       }
-      return this.monthList.at(1).value
+      return 0 // this.monthList.at(1).value
     },
     maxMonth () {
       if (!this.monthList) {
