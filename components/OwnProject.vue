@@ -25,29 +25,7 @@
         </b-form-invalid-feedback>
       </b-form-group>
     </ValidationProvider>
-    <ValidationProvider
-      v-slot="{ valid, errors }"
-      rules="max:100"
-      name="ProjectType"
-    >
-      <b-form-group
-        id="input-group-166"
-        :label="$t('label_Project_Type')"
-        label-for="input-166"
-      >
-        <b-form-textarea
-          id="input-166"
-          :value="project.project_type"
-          :state="errors[0] ? false : valid ? true : null"
-          aria-describedby="input-166-live-feedback"
-          :disabled="!fieldStatus.project_type.rw"
-          @input="update_value('project_type', $event)"
-        />
-        <b-form-invalid-feedback id="input-166-live-feedback">
-          {{ errors[0] }}
-        </b-form-invalid-feedback>
-      </b-form-group>
-    </ValidationProvider>
+
     <ValidationProvider
       v-slot="{ valid, errors }"
       rules="required|max:100"
@@ -91,6 +69,29 @@
           @input="update_value('project_descr', $event)"
         />
         <b-form-invalid-feedback id="input-21-live-feedback">
+          {{ errors[0] }}
+        </b-form-invalid-feedback>
+      </b-form-group>
+    </ValidationProvider>
+    <ValidationProvider
+      v-slot="{ valid, errors }"
+      rules="max:100"
+      name="ProjectType"
+    >
+      <b-form-group
+        id="input-group-166"
+        :label="$t('label_Project_Type')"
+        label-for="input-166"
+      >
+        <b-form-textarea
+          id="input-166"
+          :value="project.project_type"
+          :state="errors[0] ? false : valid ? true : null"
+          aria-describedby="input-166-live-feedback"
+          :disabled="!fieldStatus.project_type.rw"
+          @input="update_value('project_type', $event)"
+        />
+        <b-form-invalid-feedback id="input-166-live-feedback">
           {{ errors[0] }}
         </b-form-invalid-feedback>
       </b-form-group>
