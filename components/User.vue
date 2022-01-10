@@ -585,6 +585,7 @@ export default {
     }
 
     // calculated fields
+    this.yearStart = yearStart
     this.year_list = yearList
     this.startDateEvent = parseISO(this.settings.officialStartDate)
     this.guardianAge = this.settings.guardianAge
@@ -605,7 +606,8 @@ export default {
       const monthList = []
       monthList.push({ value: null, text: this.$i18n.t('placeholder_Kiesmaand') })
       for (let i = 0; i < 12; i++) {
-        const dat = new Date(this.internal_user.year, i, 1)
+        // const dat = new Date(this.internal_user.year, i, 1)
+        const dat = new Date(this.user.year, i, 1)
         if (dat < this.beginAgeDate || dat > this.endAgeDate) {
           continue
         }
