@@ -39,10 +39,9 @@ import { Settings } from '~/api'
 
 export default Vue.extend({
   layout: 'fullwith',
-  middleware: ['http'],
   async asyncData (context:Context) {
-    const settingResponse = await context.$http.settings.settingsGet()
-    return { settings: settingResponse.data }
+    const settings = await context.app.$http.settings.settingsGet().then(response => response.data)
+    return { settings }
   },
   data () {
     const settings:Settings = {}

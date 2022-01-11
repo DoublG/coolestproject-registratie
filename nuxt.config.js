@@ -57,6 +57,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/bus.js',
+    '~/plugins/http.ts',
     '~/plugins/vee-validate.js',
     '~/plugins/services.js',
     '~/plugins/i18n-switcher.js',
@@ -108,6 +109,7 @@ export default {
       }
     ],
     lazy: true,
+    vueI18nLoader: true,
     vueI18n: {
       fallbackLocale: 'nl',
       dateTimeFormats: {

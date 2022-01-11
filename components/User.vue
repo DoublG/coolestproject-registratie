@@ -195,7 +195,8 @@
         class="button-hero"
         variant="info"
       >
-        <font-awesome-icon :icon="['fas', 'tshirt']" /> {{ $t("Info") }}
+        <font-awesome-icon :icon="['fas', 'tshirt']" />
+        {{ $t("Info") }}
       </b-button>
       <b-popover
         target="popover"
@@ -241,7 +242,12 @@
         </b-form-invalid-feedback>
       </b-form-group>
     </ValidationProvider>
-    <contact v-if="user" :contact="user.address" :field-status="fieldStatus.address" @change="update_value('address', $event)" />
+    <contact
+      v-if="user"
+      :contact="user.address"
+      :field-status="fieldStatus.address"
+      @change="update_value('address', $event)"
+    />
     <ValidationProvider
       v-if="!fieldStatus.gsm.hidden"
       v-slot="{ valid, errors }"
@@ -318,7 +324,11 @@
         </b-form-group>
       </ValidationProvider>
       <h2>{{ $t("Algemene vragen") }}</h2>
-      <optional-questions v-if="user" :responses="user.general_questions" @change="update_value('general_questions', $event)" />
+      <optional-questions
+        v-if="user"
+        :responses="user.general_questions"
+        @change="update_value('general_questions', $event)"
+      />
     </div>
     <div v-else>
       <h2>{{ $t("Informatie van je ouders/voogd") }}</h2>
@@ -406,19 +416,34 @@
         </b-form-group>
       </ValidationProvider>
       <h2>{{ $t("Algemene vragen") }}</h2>
-      <optional-questions v-if="user" :responses="user.general_questions" @change="update_value('general_questions', $event)" />
+      <optional-questions
+        v-if="user"
+        :responses="user.general_questions"
+        @change="update_value('general_questions', $event)"
+      />
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { ValidationProvider } from 'vee-validate'
 import { addYears, differenceInYears, parseISO, format, startOfMonth } from 'date-fns'
 import { enUS, nl, fr } from 'date-fns/locale'
+import Vue from 'vue'
+
+type TShirtOption = {
+  text: string,
+  value: string
+}
+
+type TShirtList = {
+  label: string
+  options: Array<TShirtOption>
+}
 
 const locales = { enUS, nl, fr }
 
-export default {
+export default Vue.extend({
   components: {
     ValidationProvider
   },
@@ -427,6 +452,10 @@ export default {
     event: 'change'
   },
   props: {
+    settings: {
+      type: Object,
+      required: true
+    },
     user: {
       type: Object,
       default: () => {
@@ -544,10 +573,7 @@ export default {
   data () {
     return {
       internal_user: Object.assign({}, this.user),
-      startDateEvent: null,
-      guardianAge: -1,
-      tshirtsList: [],
-      year_list: [],
+      tshirtsList: [] as Array<TShirtList>,
       geslacht: [
         { text: this.$i18n.t('placeholder_Ik ben een'), value: null },
         { value: 'f', text: this.$i18n.t('meisje') },
@@ -558,39 +584,48 @@ export default {
         { value: 'nl', text: this.$i18n.t('Nederlands') },
         { value: 'fr', text: this.$i18n.t('Frans') },
         { value: 'en', text: this.$i18n.t('Engels') }
-      ],
-      beginAgeDate: null,
-      endAgeDate: null
+      ]
     }
   },
   async fetch () {
+    const tshirts = await this.$nuxt.context.app.$http.values.tshirtsGet({
+      headers: {
+        'Accept-Language': this.$nuxt.context.app.i18n.locale
+      }
+    }).then(response => response.data)
     // get all tshirts
-    const tshirts = await this.$nuxt.context.app.$services.tshirts.get()
     this.tshirtsList = tshirts.map((element) => {
-      return { label: element.group, options: element.items.map((item) => { return { text: item.name, value: item.id } }) }
+      return {
+        label: element.group,
+        options: element.items?.map((item) => {
+          return { text: item.name, value: item.id }
+        })
+      }
     })
-
-    // get all settings
-    this.settings = await this.$nuxt.context.app.$services.settings.get()
-    const beginYear = startOfMonth(addYears(parseISO(this.settings.officialStartDate), this.settings.maxAge * -1))
-    const endYear = addYears(parseISO(this.settings.officialStartDate), this.settings.minAge * -1)
-    this.beginAgeDate = beginYear
-    this.endAgeDate = endYear
-
-    const yearStart = beginYear.getFullYear()
-    const yearEnd = endYear.getFullYear()
-    const yearList = [{ text: this.$nuxt.$i18n.t('description_year'), value: null }]
-    for (let i = 0; i <= yearEnd - yearStart; i++) {
-      yearList.push({ text: yearStart + i, value: yearStart + i })
-    }
-
-    // calculated fields
-    this.yearStart = yearStart
-    this.year_list = yearList
-    this.startDateEvent = parseISO(this.settings.officialStartDate)
-    this.guardianAge = this.settings.guardianAge
   },
   computed: {
+    startDateEvent () {
+      return parseISO(this.settings.officialStartDate)
+    },
+    beginAgeDate () {
+      return startOfMonth(addYears(this.startDateEvent, this.settings.maxAge * -1))
+    },
+    endAgeDate () {
+      return addYears(parseISO(this.settings.officialStartDate), this.settings.minAge * -1)
+    },
+    yearStart () {
+      return this.beginAgeDate.getFullYear()
+    },
+    year_list () {
+      const yearList = [{ text: this.$nuxt.$i18n.t('description_year'), value: null }]
+      for (let i = 0; i <= this.endAgeDate.getFullYear() - this.yearStart; i++) {
+        yearList.push({ text: this.yearStart + i, value: this.yearStart + i })
+      }
+      return yearList
+    },
+    guardianAge () {
+      return this.settings.guardianAge
+    },
     isGuardianNeeded: (state) => {
       if (!state.user) {
         return false
@@ -608,14 +643,17 @@ export default {
       }
       const monthList = []
       monthList.push({ value: null, text: this.$i18n.t('placeholder_Kiesmaand') })
-      for (let i = 0; i < 12; i++) {
-        const dat = new Date(this.internal_user.year, i, 1)
-        if (dat < this.beginAgeDate || dat > this.endAgeDate) {
-          continue
+      if (this.user.year) {
+        for (let i = 0; i < 12; i++) {
+          const dat = new Date(this.internal_user.year, i, 1)
+
+          if (dat < this.beginAgeDate || dat > this.endAgeDate) {
+            continue
+          }
+          monthList.push(
+            { value: i, text: format(dat, 'MMMM', { locale: locales[this.$i18n.locale] }) }
+          )
         }
-        monthList.push(
-          { value: i, text: format(dat, 'MMMM', { locale: locales[this.$i18n.locale] }) }
-        )
       }
       return monthList
     },
@@ -646,5 +684,5 @@ export default {
       this.$emit('change', this.$options.props.user.default())
     }
   }
-}
+})
 </script>

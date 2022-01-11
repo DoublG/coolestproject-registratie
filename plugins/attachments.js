@@ -6,7 +6,7 @@ import {
   newPipeline
 } from '@azure/storage-blob'
 
-export default ({ app, store, redirect }, inject) => {
+export default ({ app }, inject) => {
   class SasStore {
     constructor () {
       this.sasCache = {}

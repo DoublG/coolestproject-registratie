@@ -61,6 +61,31 @@ export interface Address {
 /**
  * 
  * @export
+ * @interface Approval
+ */
+export interface Approval {
+    /**
+     * 
+     * @type {number}
+     * @memberof Approval
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Approval
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Approval
+     */
+    'description'?: string;
+}
+/**
+ * 
+ * @export
  * @interface Attachment
  */
 export interface Attachment {
@@ -330,6 +355,43 @@ export interface Project {
 /**
  * 
  * @export
+ * @interface Question
+ */
+export interface Question {
+    /**
+     * 
+     * @type {number}
+     * @memberof Question
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Question
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Question
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Question
+     */
+    'positive'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Question
+     */
+    'negative'?: string;
+}
+/**
+ * 
+ * @export
  * @interface Registration
  */
 export interface Registration {
@@ -497,6 +559,44 @@ export interface Settings {
      * @memberof Settings
      */
     'maxParticipants'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface Tshirt
+ */
+export interface Tshirt {
+    /**
+     * 
+     * @type {string}
+     * @memberof Tshirt
+     */
+    'id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Tshirt
+     */
+    'name': string;
+}
+/**
+ * 
+ * @export
+ * @interface TshirtGroup
+ */
+export interface TshirtGroup {
+    /**
+     * 
+     * @type {string}
+     * @memberof TshirtGroup
+     */
+    'group': string;
+    /**
+     * 
+     * @type {Array<Tshirt>}
+     * @memberof TshirtGroup
+     */
+    'items'?: Array<Tshirt>;
 }
 /**
  * 
@@ -2034,7 +2134,7 @@ export const ValuehelpsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async approvalsGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<object>>> {
+        async approvalsGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Approval>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.approvalsGet(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2044,7 +2144,7 @@ export const ValuehelpsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async questionsGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<object>>> {
+        async questionsGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Question>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.questionsGet(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2054,7 +2154,7 @@ export const ValuehelpsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async tshirtsGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<object>>> {
+        async tshirtsGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TshirtGroup>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.tshirtsGet(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2074,7 +2174,7 @@ export const ValuehelpsApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        approvalsGet(options?: any): AxiosPromise<Array<object>> {
+        approvalsGet(options?: any): AxiosPromise<Array<Approval>> {
             return localVarFp.approvalsGet(options).then((request) => request(axios, basePath));
         },
         /**
@@ -2083,7 +2183,7 @@ export const ValuehelpsApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        questionsGet(options?: any): AxiosPromise<Array<object>> {
+        questionsGet(options?: any): AxiosPromise<Array<Question>> {
             return localVarFp.questionsGet(options).then((request) => request(axios, basePath));
         },
         /**
@@ -2092,7 +2192,7 @@ export const ValuehelpsApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        tshirtsGet(options?: any): AxiosPromise<Array<object>> {
+        tshirtsGet(options?: any): AxiosPromise<Array<TshirtGroup>> {
             return localVarFp.tshirtsGet(options).then((request) => request(axios, basePath));
         },
     };

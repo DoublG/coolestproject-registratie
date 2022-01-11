@@ -1,7 +1,7 @@
 /* remove null values for api calls */
 function cleanup (root) {
   const result = {}
-  Object.keys(root).forEach(function (key, index) {
+  Object.keys(root).forEach(function (key, _) {
     const v = root[key]
     if (v !== null && typeof v === 'object' && !Array.isArray(v)) {
       result[key] = cleanup(v)
@@ -46,7 +46,7 @@ export default ({ app, store, redirect }, inject) => {
       post (project) {
         return app.$axios.$post('/projectinfo', cleanup(project), { withCredentials: true })
       },
-      post_token (token) {
+      post_token (_) {
         return app.$axios.$post('/projectinfo', {})
       },
       patch (project) {
@@ -63,38 +63,6 @@ export default ({ app, store, redirect }, inject) => {
     participant: {
       post () {
         return app.$axios.$post('/participants', null)
-      }
-    },
-    settings: {
-      get () {
-        return app.$axios.$get('/settings', { timeout: 1000 })
-      }
-    },
-    questions: {
-      get () {
-        return app.$axios.$get('/questions', {
-          headers: {
-            'Accept-Language': app.i18n.locale
-          }
-        })
-      }
-    },
-    approvals: {
-      get () {
-        return app.$axios.$get('/approvals', {
-          headers: {
-            'Accept-Language': app.i18n.locale
-          }
-        })
-      }
-    },
-    tshirts: {
-      get () {
-        return app.$axios.$get('/tshirts', {
-          headers: {
-            'Accept-Language': app.i18n.locale
-          }
-        })
       }
     },
     registration: {

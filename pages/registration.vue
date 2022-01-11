@@ -10,6 +10,7 @@
             ref="user"
             v-model="user"
             :field-status="user_field_status"
+            :settings="settings"
           />
           <h1>{{ $t("Project") }}</h1>
           <b-form-group>
@@ -72,17 +73,20 @@
 <script lang="ts">
 import { ValidationObserver } from 'vee-validate'
 import { Context } from '@nuxt/types'
+import Vue from 'vue'
 
-export default {
+export default Vue.extend({
   components: {
     ValidationObserver
   },
-  middleware: ['notAuthenticated', 'http'],
+  middleware: ['notAuthenticated'],
   async asyncData (context: Context) {
-    const settingsResponse = await context.$http.settings.settingsGet()
-    const settings = settingsResponse.data
+    const settings = await context.app.$http.settings.settingsGet().then(response => response.data)
     if (!settings.isActive) {
       context.app.router?.push(context.app.localePath('no_event'))
+    }
+    return {
+      settings
     }
   },
   data () {
@@ -94,111 +98,114 @@ export default {
   },
   computed: {
     other_project_field_status () {
+      const readWrite = true
       return {
         project_code: {
-          rw: this.readWrite,
+          rw: readWrite,
           hidden: false
         }
       }
     },
     own_project_field_status () {
+      const readWrite = true
       return {
         project_name: {
-          rw: this.readWrite,
+          rw: readWrite,
           hidden: false
         },
         project_descr: {
-          rw: this.readWrite,
+          rw: readWrite,
           hidden: false
         },
         project_type: {
-          rw: this.readWrite,
+          rw: readWrite,
           hidden: false
         },
         project_lang: {
-          rw: this.readWrite,
+          rw: readWrite,
           hidden: false
         }
       }
     },
     user_field_status () {
+      const readWrite = true
       return {
         language: {
-          rw: this.readWrite,
+          rw: readWrite,
           hidden: true // not needed for registration
         },
         year: {
-          rw: this.readWrite,
+          rw: readWrite,
           hidden: false
         },
         month: {
-          rw: this.readWrite,
+          rw: readWrite,
           hidden: false
         },
         email: {
-          rw: this.readWrite,
+          rw: readWrite,
           hidden: false
         },
         firstname: {
-          rw: this.readWrite,
+          rw: readWrite,
           hidden: false
         },
         lastname: {
-          rw: this.readWrite,
+          rw: readWrite,
           hidden: false
         },
         sex: {
-          rw: this.readWrite,
+          rw: readWrite,
           hidden: false
         },
         address: {
           postalcode: {
-            rw: this.readWrite,
+            rw: readWrite,
             hidden: false
           },
           street: {
-            rw: this.readWrite,
+            rw: readWrite,
             hidden: false
           },
           house_number: {
-            rw: this.readWrite,
+            rw: readWrite,
             hidden: false
           },
           box_number: {
-            rw: this.readWrite,
+            rw: readWrite,
             hidden: false
           },
           municipality_name: {
-            rw: this.readWrite,
+            rw: readWrite,
             hidden: false
           }
         },
         gsm: {
-          rw: this.readWrite,
+          rw: readWrite,
           hidden: false
         },
         via: {
-          rw: this.readWrite,
+          rw: readWrite,
           hidden: false
         },
         medical: {
-          rw: this.readWrite,
+          rw: readWrite,
           hidden: false
         },
         email_guardian: {
-          rw: this.readWrite,
+          rw: readWrite,
           hidden: false
         },
         gsm_guardian: {
-          rw: this.readWrite,
+          rw: readWrite,
           hidden: false
         },
         t_size: {
-          rw: this.readWrite,
+          rw: readWrite,
           hidden: false
         },
         general_questions: {
-          rw: this.readWrite,
+          rw: readWrite,
           hidden: false
         }
       }
@@ -259,7 +266,7 @@ export default {
     })
   },
   methods: {
-    async onSubmit (evt) {
+    async onSubmit () {
       this.loading = true
 
       const registration = { project: {} }
@@ -273,12 +280,12 @@ export default {
 
       registration.user = user
       await this.$services.registration.post(registration)
-      this.onReset(evt)
+      this.onReset()
 
       this.loading = false
       window.scrollTo(0, 0)
     },
-    onReset (_) {
+    onReset () {
       // copy default state to vuex store
       this.mandatory_approvals = this.$refs.mandatoryQuestions.$options.props.responses.default()
       this.user = this.$refs.user.$options.props.user.default()
@@ -293,6 +300,6 @@ export default {
       })
     }
   }
-}
+})
 </script>
 <style></style>

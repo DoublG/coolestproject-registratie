@@ -1,3 +1,11 @@
+<i18n lang="yaml">
+en:
+  link: https://www.coderdojobelgium.be/en/coderdojo-belgium-privacy-statement
+fr:
+  link: https://www.coderdojobelgium.be/fr/déclaration-de-confidentialité-coderdojo-belgium
+nl:
+  link: https://www.coderdojobelgium.be/nl/coderdojo-belgium-privacyverklaring
+</i18n>
 <template>
   <ol>
     <li>
@@ -33,7 +41,7 @@
     </li>
     <i18n path="rule10" tag="li">
       <template #privacy_link>
-        <b><a target="privacy" :href="link">{{ $t('privacy_text') }}</a></b>
+        <b><a target="privacy" :href="$t('link')">{{ $t('privacy_text') }}</a></b>
       </template>
     </i18n>
   </ol>
@@ -50,15 +58,6 @@ export default Vue.extend({
     }
   },
   computed: {
-    link () {
-      let url = '/en/coderdojo-belgium-privacy-statement'
-      if (this.$i18n.locale === 'nl') {
-        url = '/nl/coderdojo-belgium-privacyverklaring'
-      } else if (this.$i18n.locale === 'fr') {
-        url = '/fr/déclaration-de-confidentialité-coderdojo-belgium'
-      }
-      return 'https://www.coderdojobelgium.be' + url
-    },
     projectClosedDate () {
       return new Date(this.settings.projectClosedDate)
     },

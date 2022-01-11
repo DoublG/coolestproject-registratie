@@ -25,9 +25,13 @@
     </div>
   </div>
 </template>
-<script>
+
+<script lang="ts">
 import { ValidationProvider } from 'vee-validate'
-export default {
+import Vue from 'vue'
+import { Question } from '~/api'
+
+export default Vue.extend({
   components: {
     ValidationProvider
   },
@@ -43,30 +47,21 @@ export default {
   },
   data () {
     return {
-      get_options (question) {
+      get_options (question:Question) {
         return [
           { value: question.id, text: question.positive },
           { value: '_', text: question.negative }
         ]
       },
-      change_selection (id, evt) {
-        // copy & change response
-        // const oldResponse = Object.assign({}, this.responseIntern)
-        this.responseIntern[id] = evt
-        const responses = []
-        for (const [, value] of Object.entries(this.responseIntern)) {
-          if (value === '_') {
-            continue
-          }
-          responses.push(value)
-        }
-        this.$emit('change', responses)
-      },
-      questions: []
+      questions: [] as Array<Question>
     }
   },
   async fetch () {
-    this.questions = await this.$nuxt.context.app.$services.questions.get()
+    this.questions = await this.$nuxt.context.app.$http.values.questionsGet({
+      headers: {
+        'Accept-Language': this.$nuxt.context.app.i18n.locale
+      }
+    }).then(response => response.data)
   },
   computed: {
     responseIntern () {
@@ -80,7 +75,23 @@ export default {
       }
       return internal
     }
+  },
+  methods: {
+    change_selection (id, evt) {
+      // copy & change response
+      // const oldResponse = Object.assign({}, this.responseIntern)
+      this.responseIntern[id] = evt
+      const responses = []
+      for (const [, value] of Object.entries(this.responseIntern)) {
+        if (value === '_') {
+          continue
+        }
+        responses.push(value)
+      }
+      this.$emit('change', responses)
+    }
   }
-}
+})
 </script>
+
 <style></style>

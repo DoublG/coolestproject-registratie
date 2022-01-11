@@ -27,16 +27,19 @@
     </b-col>
   </b-row>
 </template>
-<script>
+
+<script lang="ts">
 // project.own_project.attachments
 import { ValidationObserver } from 'vee-validate'
-export default {
+import Vue from 'vue'
+
+export default Vue.extend({
   components: {
     ValidationObserver
   },
   middleware: ['authenticated', 'guard'],
-  async asyncData ({ store, query, app, redirect, route }) {
-    const settings = await app.$services.settings.get()
+  async asyncData ({ app }) {
+    const settings = await app.$http.settings.settingsGet().then(response => response.data)
     const project = await app.$services.projectinfo.get()
     if (project === '') {
       app.router.push(app.localePath('no_project'))
@@ -62,7 +65,7 @@ export default {
     }
   },
   methods: {
-    async onUpload (evt) {
+    async onUpload (_) {
       if (this.file.content.size > this.settings.maxUploadSize) {
         alert('file is to big')
         return
@@ -75,7 +78,7 @@ export default {
       this.$router.push(this.localePath('project'))
     }
   }
-}
+})
 </script>
 
 <style>

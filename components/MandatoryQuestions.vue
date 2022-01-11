@@ -28,9 +28,17 @@
     </div>
   </div>
 </template>
-<script>
+
+<script lang="ts">
 import { ValidationProvider } from 'vee-validate'
-export default {
+import Vue from 'vue'
+
+type Question = {
+  value: number;
+  text?: string
+}
+
+export default Vue.extend({
   components: {
     ValidationProvider
   },
@@ -47,28 +55,33 @@ export default {
   data () {
     return {
       internal_responses: [...this.responses],
-      approvals: [],
-      change_selection (evt) {
-        this.$emit('change', evt)
-      }
+      approvals: [] as Array<Question>
     }
   },
   async fetch () {
-    const app = await this.$nuxt.context.app.$services.approvals.get()
-    this.approvals = app.map((item) => {
+    const approvals = await this.$nuxt.context.app.$http.values.approvalsGet({
+      headers: {
+        'Accept-Language': this.$nuxt.context.app.i18n.locale
+      }
+    }).then(response => response.data)
+
+    this.approvals = approvals.map((item) => {
       return { value: item.id, text: item.description }
     })
   },
   watch: {
-    responses (newResponse, oldResponse) {
+    responses (newResponse, _) {
       this.internal_responses = [...newResponse]
     }
   },
   methods: {
     reset () {
       this.$emit('change', this.$options.props.responses.default())
+    },
+    change_selection (evt) {
+      this.$emit('change', evt)
     }
   }
-}
+})
 </script>
 <style></style>
