@@ -191,7 +191,7 @@
     <b-form-group>
       <b-button
         id="popover"
-        :href="require('~/assets/b_c_maattabel_in_cm_720.png')"
+        :href="require('~/assets/Maattabel-CPBE.png')"
         class="button-hero"
         variant="info"
       >
@@ -203,7 +203,7 @@
         placement="buttom"
       >
         <b-img
-          src="~/assets/b_c_maattabel_in_cm_720.png"
+          src="~/assets/Maattabel-CPBE.png"
           height="auto"
           width="600"
           alt="Responsive image"
