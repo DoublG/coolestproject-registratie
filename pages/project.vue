@@ -57,10 +57,11 @@ export default {
     const project = await app.$services.projectinfo.get()
     if (!project) {
       app.router.push(app.localePath('no_project'))
+      return
     }
     return {
       project,
-      readWrite: project.own_project.own_project || false
+      readWrite: (project) ? project.own_project.own_project || false : false
     }
   },
   data () {

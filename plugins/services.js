@@ -26,8 +26,16 @@ export default ({ app, store, redirect }, inject) => {
       store.dispatch('auth/update', {})
       redirect(app.localePath('login'))
     }
+    if (error.response.status === 404) {
+      return null
+    }
     // we don't want to fail via error screen, trigger alert message on current screen
-    app.$bus.$emit('display-msg', app.i18n.t('message_backendKaput'), 'danger')
+    let message = app.i18n.t('message_backendKaput')
+    if (error.response.data.code !== '000') {
+      message = error.response.data.message
+    }
+
+    app.$bus.$emit('display-msg', message, 'danger')
     app.$bus.$emit('finish')
     // eslint-disable-next-line no-console
     console.log(error)
