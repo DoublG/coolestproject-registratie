@@ -1,4 +1,4 @@
-# coderdojo
+# Coderdojo
 
 > registration procedure
 
