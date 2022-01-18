@@ -588,11 +588,7 @@ export default Vue.extend({
     }
   },
   async fetch () {
-    const tshirts = await this.$nuxt.context.app.$http.values.tshirtsGet({
-      headers: {
-        'Accept-Language': this.$nuxt.context.app.i18n.locale
-      }
-    }).then(response => response.data)
+    const tshirts = await this.$nuxt.context.app.$http.values.tshirts()
     // get all tshirts
     this.tshirtsList = tshirts.map((element) => {
       return {

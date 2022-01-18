@@ -1702,7 +1702,7 @@ export const SettingsApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        settingsGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetch: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/settings`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1742,8 +1742,8 @@ export const SettingsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async settingsGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Settings>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.settingsGet(options);
+        async fetch(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Settings>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetch(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -1762,8 +1762,8 @@ export const SettingsApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        settingsGet(options?: any): AxiosPromise<Settings> {
-            return localVarFp.settingsGet(options).then((request) => request(axios, basePath));
+        fetch(options?: any): AxiosPromise<Settings> {
+            return localVarFp.fetch(options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1782,8 +1782,8 @@ export class SettingsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof SettingsApi
      */
-    public settingsGet(options?: AxiosRequestConfig) {
-        return SettingsApiFp(this.configuration).settingsGet(options).then((request) => request(this.axios, this.basePath));
+    public fetch(options?: AxiosRequestConfig) {
+        return SettingsApiFp(this.configuration).fetch(options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -2023,10 +2023,10 @@ export class UserApi extends BaseAPI {
 
 
 /**
- * ValuehelpsApi - axios parameter creator
+ * ValuesApi - axios parameter creator
  * @export
  */
-export const ValuehelpsApiAxiosParamCreator = function (configuration?: Configuration) {
+export const ValuesApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
@@ -2034,7 +2034,7 @@ export const ValuehelpsApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        approvalsGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchApprovals: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/approvals`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2064,7 +2064,7 @@ export const ValuehelpsApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        questionsGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchQuestions: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/questions`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2094,7 +2094,7 @@ export const ValuehelpsApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        tshirtsGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fetchTshirts: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/tshirts`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2122,11 +2122,11 @@ export const ValuehelpsApiAxiosParamCreator = function (configuration?: Configur
 };
 
 /**
- * ValuehelpsApi - functional programming interface
+ * ValuesApi - functional programming interface
  * @export
  */
-export const ValuehelpsApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = ValuehelpsApiAxiosParamCreator(configuration)
+export const ValuesApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ValuesApiAxiosParamCreator(configuration)
     return {
         /**
          * 
@@ -2134,8 +2134,8 @@ export const ValuehelpsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async approvalsGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Approval>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.approvalsGet(options);
+        async fetchApprovals(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Approval>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchApprovals(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2144,8 +2144,8 @@ export const ValuehelpsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async questionsGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Question>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.questionsGet(options);
+        async fetchQuestions(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Question>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchQuestions(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2154,19 +2154,19 @@ export const ValuehelpsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async tshirtsGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TshirtGroup>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.tshirtsGet(options);
+        async fetchTshirts(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<TshirtGroup>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.fetchTshirts(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
 };
 
 /**
- * ValuehelpsApi - factory interface
+ * ValuesApi - factory interface
  * @export
  */
-export const ValuehelpsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = ValuehelpsApiFp(configuration)
+export const ValuesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ValuesApiFp(configuration)
     return {
         /**
          * 
@@ -2174,8 +2174,8 @@ export const ValuehelpsApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        approvalsGet(options?: any): AxiosPromise<Array<Approval>> {
-            return localVarFp.approvalsGet(options).then((request) => request(axios, basePath));
+        fetchApprovals(options?: any): AxiosPromise<Array<Approval>> {
+            return localVarFp.fetchApprovals(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2183,8 +2183,8 @@ export const ValuehelpsApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        questionsGet(options?: any): AxiosPromise<Array<Question>> {
-            return localVarFp.questionsGet(options).then((request) => request(axios, basePath));
+        fetchQuestions(options?: any): AxiosPromise<Array<Question>> {
+            return localVarFp.fetchQuestions(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2192,28 +2192,28 @@ export const ValuehelpsApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        tshirtsGet(options?: any): AxiosPromise<Array<TshirtGroup>> {
-            return localVarFp.tshirtsGet(options).then((request) => request(axios, basePath));
+        fetchTshirts(options?: any): AxiosPromise<Array<TshirtGroup>> {
+            return localVarFp.fetchTshirts(options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * ValuehelpsApi - object-oriented interface
+ * ValuesApi - object-oriented interface
  * @export
- * @class ValuehelpsApi
+ * @class ValuesApi
  * @extends {BaseAPI}
  */
-export class ValuehelpsApi extends BaseAPI {
+export class ValuesApi extends BaseAPI {
     /**
      * 
      * @summary Get Approvals
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValuehelpsApi
+     * @memberof ValuesApi
      */
-    public approvalsGet(options?: AxiosRequestConfig) {
-        return ValuehelpsApiFp(this.configuration).approvalsGet(options).then((request) => request(this.axios, this.basePath));
+    public fetchApprovals(options?: AxiosRequestConfig) {
+        return ValuesApiFp(this.configuration).fetchApprovals(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2221,10 +2221,10 @@ export class ValuehelpsApi extends BaseAPI {
      * @summary Get Questions
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValuehelpsApi
+     * @memberof ValuesApi
      */
-    public questionsGet(options?: AxiosRequestConfig) {
-        return ValuehelpsApiFp(this.configuration).questionsGet(options).then((request) => request(this.axios, this.basePath));
+    public fetchQuestions(options?: AxiosRequestConfig) {
+        return ValuesApiFp(this.configuration).fetchQuestions(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2232,10 +2232,10 @@ export class ValuehelpsApi extends BaseAPI {
      * @summary Get TShirts
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof ValuehelpsApi
+     * @memberof ValuesApi
      */
-    public tshirtsGet(options?: AxiosRequestConfig) {
-        return ValuehelpsApiFp(this.configuration).tshirtsGet(options).then((request) => request(this.axios, this.basePath));
+    public fetchTshirts(options?: AxiosRequestConfig) {
+        return ValuesApiFp(this.configuration).fetchTshirts(options).then((request) => request(this.axios, this.basePath));
     }
 }
 

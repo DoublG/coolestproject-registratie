@@ -81,7 +81,7 @@ export default Vue.extend({
   },
   middleware: ['notAuthenticated'],
   async asyncData (context: Context) {
-    const settings = await context.app.$http.settings.settingsGet().then(response => response.data)
+    const settings = await context.app.$http.settings.fetch()
     if (!settings.isActive) {
       context.app.router?.push(context.app.localePath('no_event'))
     }

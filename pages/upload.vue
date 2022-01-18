@@ -32,6 +32,7 @@
 // project.own_project.attachments
 import { ValidationObserver } from 'vee-validate'
 import Vue from 'vue'
+import { Settings } from '~/api'
 
 export default Vue.extend({
   components: {
@@ -39,7 +40,7 @@ export default Vue.extend({
   },
   middleware: ['authenticated', 'guard'],
   async asyncData ({ app }) {
-    const settings = await app.$http.settings.settingsGet().then(response => response.data)
+    const settings = await app.$http.settings.fetch()
     const project = await app.$services.projectinfo.get()
     if (project === '') {
       app.router.push(app.localePath('no_project'))
@@ -56,7 +57,8 @@ export default Vue.extend({
       uploadInProgress: false,
       file: null,
       readWrite: false,
-      project: null
+      project: null,
+      settings: {} as Settings
     }
   },
   computed: {

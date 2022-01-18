@@ -13,6 +13,8 @@ export default {
   CreateViaToken: 'Add me to another project',
   Delete: 'Delete',
   eigenProject: 'I have my own project',
+  emailAddressLabel: 'Email Address',
+  emailAddressPlaceholder: 'Email Address',
   EnterToken: 'Enter Token',
   'Ik schrijf me in': 'I register',
   Ikbenakkoord: 'I agree with the general conditions',

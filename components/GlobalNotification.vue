@@ -18,8 +18,11 @@
     </b-alert>
   </div>
 </template>
-<script>
-export default {
+<script lang="ts">
+
+import Vue from 'vue'
+
+export default Vue.extend({
   components: {
   },
   data () {
@@ -53,6 +56,6 @@ export default {
       this.dismissCountDown = dismissCountDown
     }
   }
-}
+})
 </script>
 <style></style>

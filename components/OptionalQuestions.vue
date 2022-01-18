@@ -57,11 +57,7 @@ export default Vue.extend({
     }
   },
   async fetch () {
-    this.questions = await this.$nuxt.context.app.$http.values.questionsGet({
-      headers: {
-        'Accept-Language': this.$nuxt.context.app.i18n.locale
-      }
-    }).then(response => response.data)
+    this.questions = await this.$nuxt.context.app.$http.values.questions()
   },
   computed: {
     responseIntern () {

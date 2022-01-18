@@ -26,7 +26,7 @@
       <b-alert v-if="settings && settings.waitingListActive" show variant="warning">
         {{ $t('Waiting list is active') }}
       </b-alert>
-      <b-button v-if="settings && settings.isRegistrationOpen" variant="dark" class="button-hero" :to="localePath('registration')">
+      <b-button v-if="settings && settings.isActive && !settings.isRegistrationClosed" variant="dark" class="button-hero" :to="localePath('registration')">
         <font-awesome-icon :icon="['fas', 'paper-plane']" /> {{ $t('start') }}
       </b-button>
     </b-container>
@@ -40,7 +40,7 @@ import { Settings } from '~/api'
 export default Vue.extend({
   layout: 'fullwith',
   async asyncData (context:Context) {
-    const settings = await context.app.$http.settings.settingsGet().then(response => response.data)
+    const settings = await context.app.$http.settings.fetch()
     return { settings }
   },
   data () {

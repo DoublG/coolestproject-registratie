@@ -59,11 +59,7 @@ export default Vue.extend({
     }
   },
   async fetch () {
-    const approvals = await this.$nuxt.context.app.$http.values.approvalsGet({
-      headers: {
-        'Accept-Language': this.$nuxt.context.app.i18n.locale
-      }
-    }).then(response => response.data)
+    const approvals = await this.$nuxt.context.app.$http.values.approvals()
 
     this.approvals = approvals.map((item) => {
       return { value: item.id, text: item.description }

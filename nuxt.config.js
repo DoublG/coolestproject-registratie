@@ -56,7 +56,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/bus.js',
+    '~/plugins/bus.ts',
     '~/plugins/http.ts',
     '~/plugins/vee-validate.js',
     '~/plugins/services.js',
