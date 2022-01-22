@@ -191,7 +191,7 @@
     <b-form-group>
       <b-button
         id="popover"
-        :href="require('~/assets/b_c_maattabel_in_cm_720.png')"
+        :href="require('~/assets/Maattabel-CPBE.png')"
         class="button-hero"
         variant="info"
       >
@@ -203,7 +203,7 @@
         placement="buttom"
       >
         <b-img
-          src="~/assets/b_c_maattabel_in_cm_720.png"
+          src="~/assets/Maattabel-CPBE.png"
           height="auto"
           width="600"
           alt="Responsive image"
@@ -603,11 +603,13 @@ export default {
       )
     },
     monthList () {
+      if (!this.user.year) {
+        return null
+      }
       const monthList = []
       monthList.push({ value: null, text: this.$i18n.t('placeholder_Kiesmaand') })
       for (let i = 0; i < 12; i++) {
-        // const dat = new Date(this.internal_user.year, i, 1)
-        const dat = new Date(this.user.year, i, 1)
+        const dat = new Date(this.internal_user.year, i, 1)
         if (dat < this.beginAgeDate || dat > this.endAgeDate) {
           continue
         }
@@ -618,13 +620,13 @@ export default {
       return monthList
     },
     minMonth () {
-      if (!this.monthList.at(1)) {
+      if (!this.monthList) {
         return 0
       }
-      return this.monthList.at(1).value
+      return 0 // this.monthList.at(1).value
     },
     maxMonth () {
-      if (!this.monthList.at(-1)) {
+      if (!this.monthList) {
         return 12
       }
       return this.monthList.at(-1).value
