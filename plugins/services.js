@@ -59,7 +59,7 @@ export default ({ app, store, redirect }, inject) => {
     },
     settings: {
       get () {
-        return app.$axios.$get('/settings')
+        return app.$axios.$get('/settings', { timeout: 1000 })
       }
     },
     questions: {
