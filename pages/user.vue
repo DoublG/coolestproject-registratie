@@ -28,7 +28,7 @@ export default {
     ValidationObserver
   },
   middleware: 'authenticated',
-  async asyncData ({ store, query, app, redirect, route }) {
+  async asyncData ({ app }) {
     const user = await app.$services.userinfo.get()
     return {
       user
@@ -40,17 +40,17 @@ export default {
     }
   },
   methods: {
-    async onSubmit (evt) {
+    async onSubmit () {
       await this.$services.userinfo.patch(this.user)
       window.scrollTo(0, 0)
     },
-    async onReset (evt) {
+    async onReset () {
       this.user = await this.$services.userinfo.get()
     },
-    onDeleteInfo (evt) {
+    onDeleteInfo () {
       this.deleteInfo = true
     },
-    async onDelete (evt) {
+    async onDelete () {
       await this.$services.userinfo.delete()
       await this.logout()
       this.$router.push(this.localePath('login'))

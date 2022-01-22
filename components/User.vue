@@ -19,7 +19,7 @@
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-18-live-feedback"
           :disabled="!fieldStatus.language.rw"
-          @input="update_value('language', $event)"
+          @input="updateValue('language', $event)"
         />
         <b-form-invalid-feedback id="input-18-live-feedback">
           {{ errors[0] }}
@@ -46,7 +46,7 @@
           :state="errors[0] ? false : valid ? true : null"
           type="email"
           aria-describedby="input-3-live-feedback"
-          @input="update_value('email', $event)"
+          @input="updateValue('email', $event)"
         />
         <b-form-invalid-feedback id="input-3-live-feedback">
           {{ errors[0] }}
@@ -71,7 +71,7 @@
           :placeholder="$t('placeholder_GeefVoornaam:')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-5-live-feedback"
-          @input="update_value('firstname', $event)"
+          @input="updateValue('firstname', $event)"
         />
         <b-form-invalid-feedback id="input-5-live-feedback">
           {{ errors[0] }}
@@ -96,7 +96,7 @@
           :placeholder="$t('placeholder_GeefAchternaam:')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-6-live-feedback"
-          @input="update_value('lastname', $event)"
+          @input="updateValue('lastname', $event)"
         />
         <b-form-invalid-feedback id="input-6-live-feedback">
           {{ errors[0] }}
@@ -119,9 +119,9 @@
         <b-form-select
           :value="user.year"
           :disabled="!fieldStatus.year.rw"
-          :options="year_list"
+          :options="yearList"
           :state="errors[0] ? false : valid ? true : null"
-          @input="update_value('year', $event)"
+          @input="updateValue('year', $event)"
         />
         <b-form-invalid-feedback
           id="input-4-live-feedback"
@@ -153,7 +153,7 @@
           :options="monthList"
           :disabled="!fieldStatus.month.rw"
           :state="errors[0] ? false : valid ? true : null"
-          @input="update_value('month', $event)"
+          @input="updateValue('month', $event)"
         />
         <b-form-invalid-feedback
           id="input-24-live-feedback"
@@ -181,7 +181,7 @@
           :disabled="!fieldStatus.sex.rw"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-7-live-feedback"
-          @input="update_value('sex', $event)"
+          @input="updateValue('sex', $event)"
         />
         <b-form-invalid-feedback id="input-7-live-feedback">
           {{ errors[0] }}
@@ -229,7 +229,7 @@
           :disabled="!fieldStatus.t_size.rw"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-9-live-feedback"
-          @input="update_value('t_size', $event)"
+          @input="updateValue('t_size', $event)"
         >
           <template #first>
             <b-form-select-option :value="null" disabled>
@@ -246,7 +246,7 @@
       v-if="user"
       :contact="user.address"
       :field-status="fieldStatus.address"
-      @change="update_value('address', $event)"
+      @change="updateValue('address', $event)"
     />
     <ValidationProvider
       v-if="!fieldStatus.gsm.hidden"
@@ -271,7 +271,7 @@
           :state="errors[0] ? false : valid ? true : null"
           type="tel"
           aria-describedby="input-2-live-feedback"
-          @input="update_value('gsm', $event)"
+          @input="updateValue('gsm', $event)"
         />
         <b-form-invalid-feedback id="input-2-live-feedback">
           {{ errors[0] }}
@@ -291,7 +291,7 @@
           :placeholder="$t('placeholder_Geef je dojo, school')"
           :state="errors[0] ? false : valid ? true : null"
           aria-describedby="input-10-live-feedback"
-          @input="update_value('via', $event)"
+          @input="updateValue('via', $event)"
         />
         <b-form-invalid-feedback id="input-10-live-feedback">
           {{ errors[0] }}
@@ -316,7 +316,7 @@
             :disabled="!fieldStatus.medical.rw"
             :state="errors[0] ? false : valid ? true : null"
             aria-describedby="input-11-live-feedback"
-            @input="update_value('medical', $event)"
+            @input="updateValue('medical', $event)"
           />
           <b-form-invalid-feedback id="input-11-live-feedback">
             {{ errors[0] }}
@@ -327,7 +327,7 @@
       <optional-questions
         v-if="user"
         :responses="user.general_questions"
-        @change="update_value('general_questions', $event)"
+        @change="updateValue('general_questions', $event)"
       />
     </div>
     <div v-else>
@@ -352,7 +352,7 @@
             :state="errors[0] ? false : valid ? true : null"
             type="email"
             aria-describedby="input-13-live-feedback"
-            @input="update_value('email_guardian', $event)"
+            @input="updateValue('email_guardian', $event)"
           />
           <b-form-invalid-feedback id="input-13-live-feedback">
             {{ errors[0] }}
@@ -384,7 +384,7 @@
             :state="errors[0] ? false : valid ? true : null"
             type="tel"
             aria-describedby="input-14-live-feedback"
-            @input="update_value('gsm_guardian', $event)"
+            @input="updateValue('gsm_guardian', $event)"
           />
         </b-form-group>
         <b-form-invalid-feedback id="input-14-live-feedback">
@@ -408,7 +408,7 @@
             :disabled="!fieldStatus.medical.rw"
             :state="errors[0] ? false : valid ? true : null"
             aria-describedby="input-15-live-feedback"
-            @input="update_value('medical', $event)"
+            @input="updateValue('medical', $event)"
           />
           <b-form-invalid-feedback id="input-15-live-feedback">
             {{ errors[0] }}
@@ -419,7 +419,7 @@
       <optional-questions
         v-if="user"
         :responses="user.general_questions"
-        @change="update_value('general_questions', $event)"
+        @change="updateValue('general_questions', $event)"
       />
     </div>
   </div>
@@ -427,9 +427,11 @@
 
 <script lang="ts">
 import { ValidationProvider } from 'vee-validate'
-import { addYears, differenceInYears, parseISO, format, startOfMonth } from 'date-fns'
-import { enUS, nl, fr } from 'date-fns/locale'
+import { addYears, differenceInYears, format, parseISO, startOfMonth } from 'date-fns'
+import { enUS, fr, nl } from 'date-fns/locale'
 import Vue from 'vue'
+import VueI18n from 'vue-i18n'
+import { Settings } from '~/api'
 
 type TShirtOption = {
   text: string,
@@ -438,12 +440,52 @@ type TShirtOption = {
 
 type TShirtList = {
   label: string
-  options: Array<TShirtOption>
+  options?: Array<TShirtOption>
+}
+
+interface IData {
+  internalUser: any,
+  tshirtsList: TShirtList[],
+  geslacht: Array<{text: VueI18n.TranslateResult, value: string | null}>,
+  languages: Array<{text: VueI18n.TranslateResult, value: string}>
+}
+
+interface IProps {
+  settings: Settings,
+  user: IUser,
+  fieldStatus: any
+}
+
+type YearList = {
+  value: number | null,
+  text: number | VueI18n.TranslateResult
+}
+
+type MonthValue = {
+  value: number | null,
+  text: VueI18n.TranslateResult|string
+}
+
+interface IComputed {
+  startDateEvent: Date,
+  beginAgeDate: Date,
+  endAgeDate: Date,
+  yearStart: number,
+  yearList: Array<YearList>,
+  monthList: Array<MonthValue> | null,
+  minMonth: number,
+  maxMonth: number,
+  guardianAge: number,
+  isGuardianNeeded: boolean
+}
+
+interface IMethods {
+  updateValue(id: string, evt: any): void,
 }
 
 const locales = { enUS, nl, fr }
 
-export default Vue.extend({
+export default Vue.extend<IData, IMethods, IComputed, IProps>({
   components: {
     ValidationProvider
   },
@@ -572,7 +614,7 @@ export default Vue.extend({
   },
   data () {
     return {
-      internal_user: Object.assign({}, this.user),
+      internalUser: Object.assign({}, this.user),
       tshirtsList: [] as Array<TShirtList>,
       geslacht: [
         { text: this.$i18n.t('placeholder_Ik ben een'), value: null },
@@ -601,53 +643,54 @@ export default Vue.extend({
   },
   computed: {
     startDateEvent () {
-      return parseISO(this.settings.officialStartDate)
+      return parseISO(this.settings.officialStartDate!)
     },
     beginAgeDate () {
-      return startOfMonth(addYears(this.startDateEvent, this.settings.maxAge * -1))
+      return startOfMonth(addYears(this.startDateEvent, this.settings.maxAge! * -1))
     },
     endAgeDate () {
-      return addYears(parseISO(this.settings.officialStartDate), this.settings.minAge * -1)
+      return addYears(parseISO(this.settings.officialStartDate!), this.settings.minAge! * -1)
     },
     yearStart () {
       return this.beginAgeDate.getFullYear()
     },
-    year_list () {
-      const yearList = [{ text: this.$nuxt.$i18n.t('description_year'), value: null }]
+    yearList () {
+      const yearList = [{ text: this.$nuxt.$i18n.t('description_year'), value: null } as YearList]
       for (let i = 0; i <= this.endAgeDate.getFullYear() - this.yearStart; i++) {
         yearList.push({ text: this.yearStart + i, value: this.yearStart + i })
       }
       return yearList
     },
     guardianAge () {
-      return this.settings.guardianAge
+      return this.settings.guardianAge!
     },
-    isGuardianNeeded: (state) => {
-      if (!state.user) {
+    isGuardianNeeded () {
+      if (!this.user) {
         return false
       }
       return (
         differenceInYears(
-          state.startDateEvent,
-          new Date(state.user.year, state.user.month, 1)
-        ) < state.guardianAge
+          this.startDateEvent,
+          new Date(this.user.year!, this.user.month!, 1)
+        ) < this.guardianAge
       )
     },
     monthList () {
       if (!this.user.year) {
         return null
       }
-      const monthList = []
+      const monthList = [] as Array<MonthValue>
       monthList.push({ value: null, text: this.$i18n.t('placeholder_Kiesmaand') })
       if (this.user.year) {
         for (let i = 0; i < 12; i++) {
-          const dat = new Date(this.internal_user.year, i, 1)
+          const dat = new Date(this.internalUser.year, i, 1)
 
           if (dat < this.beginAgeDate || dat > this.endAgeDate) {
             continue
           }
+          const locale = Object.entries(locales).find((entry) => { return entry[0] === this.$i18n.locale })!
           monthList.push(
-            { value: i, text: format(dat, 'MMMM', { locale: locales[this.$i18n.locale] }) }
+            { value: i, text: format(dat, 'MMMM', { locale: locale.at(1) as Locale }) }
           )
         }
       }
@@ -660,24 +703,21 @@ export default Vue.extend({
       return 0 // this.monthList.at(1).value
     },
     maxMonth () {
-      if (!this.monthList) {
+      if (this.monthList === null) {
         return 12
       }
-      return this.monthList.at(-1).value
+      return (this.monthList as any).at(-1)!.value
     }
   },
   watch: {
     user (newUser, _) {
-      this.internal_user = Object.assign({}, newUser)
+      this.internalUser = Object.assign({}, newUser)
     }
   },
   methods: {
-    update_value (id, evt) {
-      this.internal_user[id] = evt
-      this.$emit('change', this.internal_user)
-    },
-    reset () {
-      this.$emit('change', this.$options.props.user.default())
+    updateValue (id: string, evt: any) {
+      this.internalUser[id] = evt
+      this.$emit('change', this.internalUser)
     }
   }
 })

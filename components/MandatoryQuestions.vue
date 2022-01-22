@@ -14,7 +14,7 @@
           </template>
           <b-form-checkbox-group
             id="mandatory-approvals"
-            :checked="internal_responses"
+            :checked="internalResponses"
             :options="approvals"
             :state="errors[0] ? false : valid ? true : null"
             aria-describedby="mandatory-approvals-live-feedback"
@@ -38,7 +38,17 @@ type Question = {
   text?: string
 }
 
-export default Vue.extend({
+interface IData {
+  approvals: Array<Question>,
+  internalResponses: Array<any>
+}
+interface IMethods{}
+interface IComputed{}
+interface IProps {
+  responses: Array<any>
+}
+
+export default Vue.extend<IData, IMethods, IComputed, IProps>({
   components: {
     ValidationProvider
   },
@@ -54,7 +64,7 @@ export default Vue.extend({
   },
   data () {
     return {
-      internal_responses: [...this.responses],
+      internalResponses: [...this.responses],
       approvals: [] as Array<Question>
     }
   },
@@ -67,14 +77,11 @@ export default Vue.extend({
   },
   watch: {
     responses (newResponse, _) {
-      this.internal_responses = [...newResponse]
+      this.internalResponses = [...newResponse]
     }
   },
   methods: {
-    reset () {
-      this.$emit('change', this.$options.props.responses.default())
-    },
-    change_selection (evt) {
+    change_selection (evt: any) {
       this.$emit('change', evt)
     }
   }

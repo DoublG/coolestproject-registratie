@@ -269,7 +269,7 @@ export default Vue.extend({
     async onSubmit () {
       this.loading = true
 
-      const registration = { project: {} }
+      const registration = { project: {} as { [key: string]: any} } as { [key: string]: any}
       if (this.is_own_project === 'own') {
         registration.project.own_project = this.own_project
       } else {
@@ -287,16 +287,16 @@ export default Vue.extend({
     },
     onReset () {
       // copy default state to vuex store
-      this.mandatory_approvals = this.$refs.mandatoryQuestions.$options.props.responses.default()
-      this.user = this.$refs.user.$options.props.user.default()
+      this.mandatory_approvals = ((this.$refs.mandatoryQuestions as Vue).$options.props as any).responses.default()
+      this.user = ((this.$refs.user as Vue).$options.props as any).user.default()
       if (this.$refs.otherProject) {
-        this.other_project = this.$refs.otherProject.$options.props.project.default()
+        this.other_project = ((this.$refs.otherProject as Vue).$options.props as any).project.default()
       }
       if (this.$refs.ownProject) {
-        this.own_project = this.$refs.ownProject.$options.props.project.default()
+        this.own_project = ((this.$refs.ownProject as Vue).$options.props as any).project.default()
       }
       this.$nextTick(() => {
-        this.$refs.observer.reset()
+        (this.$refs.observer as any).reset()
       })
     }
   }

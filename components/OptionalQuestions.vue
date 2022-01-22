@@ -61,10 +61,10 @@ export default Vue.extend({
   },
   computed: {
     responseIntern () {
-      const internal = {}
+      const internal = {} as {[key:number|string]:number|string}
       for (const question of this.questions) {
         if (this.responses.includes(question.id)) {
-          internal[question.id] = parseInt(question.id)
+          internal[question.id] = question.id
         } else {
           internal[question.id] = '_'
         }
@@ -73,7 +73,7 @@ export default Vue.extend({
     }
   },
   methods: {
-    change_selection (id, evt) {
+    change_selection (id: string | number, evt: string | number) {
       // copy & change response
       // const oldResponse = Object.assign({}, this.responseIntern)
       this.responseIntern[id] = evt

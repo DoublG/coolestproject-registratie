@@ -34,7 +34,17 @@ import { ValidationObserver } from 'vee-validate'
 import Vue from 'vue'
 import { Settings } from '~/api'
 
-export default Vue.extend({
+interface IData {
+  uploadInProgress: boolean,
+  percent: number,
+  file: any,
+  settings: Settings
+}
+interface IMethods {}
+interface IComputed {}
+interface IProps {}
+
+export default Vue.extend<IData, IMethods, IComputed, IProps>({
   components: {
     ValidationObserver
   },
@@ -43,7 +53,7 @@ export default Vue.extend({
     const settings = await app.$http.settings.fetch()
     const project = await app.$services.projectinfo.get()
     if (project === '') {
-      app.router.push(app.localePath('no_project'))
+      app.router?.push(app.localePath('no_project'))
     }
     return {
       project,
@@ -67,14 +77,14 @@ export default Vue.extend({
     }
   },
   methods: {
-    async onUpload (_) {
-      if (this.file.content.size > this.settings.maxUploadSize) {
+    async onUpload (_: any) {
+      if (this.file!.content.size > (this.settings.maxUploadSize || 0)) {
         alert('file is to big')
         return
       }
       this.uploadInProgress = true
       this.$bus.$emit('block-navigation', this.uploadInProgress)
-      await this.$attachments.process(this.file, (percent) => { this.percent = percent })
+      await this.$attachments.process(this.file, (percent: number) => { this.percent = percent })
       this.uploadInProgress = false
       this.$bus.$emit('block-navigation', this.uploadInProgress)
       this.$router.push(this.localePath('project'))

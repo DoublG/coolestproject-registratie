@@ -21,6 +21,7 @@
 <script lang="ts">
 
 import Vue from 'vue'
+import VueI18n from 'vue-i18n'
 
 export default Vue.extend({
   components: {
@@ -28,14 +29,14 @@ export default Vue.extend({
   data () {
     return {
       show: false,
-      variant: null,
-      message: null,
+      variant: null as string|null,
+      message: null as VueI18n.TranslateResult|null,
       dismissSecs: 5,
       dismissCountDown: 0
     }
   },
   created () {
-    this.$bus.$on('display-msg', (message, variant, timer) => {
+    this.$bus.$on('display-msg', (message: VueI18n.TranslateResult, variant: string, timer: boolean) => {
       this.message = message
       this.variant = variant
 
@@ -52,7 +53,7 @@ export default Vue.extend({
     })
   },
   methods: {
-    countDownChanged (dismissCountDown) {
+    countDownChanged (dismissCountDown: number) {
       this.dismissCountDown = dismissCountDown
     }
   }

@@ -4,7 +4,9 @@
     <b-container>
       <h1> {{ $t('rules') }} </h1>
       <h3> {{ $t('intro') }} </h3>
-      <h2 v-if="settings"> {{ $t('intro2',{ officialStartDate: $d(officialStartDate, 'long') }) }} </h2>
+      <h2 v-if="settings">
+        {{ $t('intro2',{ officialStartDate: $d(officialStartDate, 'long') }) }}
+      </h2>
       <p>
         <b> {{ $t('agree') }} </b>
       </p>
@@ -50,11 +52,15 @@ export default Vue.extend({
     }
   },
   computed: {
-    officialStartDate ():Date | null {
+    officialStartDate (): Date | null {
       return this.settings.officialStartDate ? new Date(this.settings.officialStartDate) : null
     },
-    registrationOpenDate () { return new Date(this.settings.registrationOpenDate) },
-    registrationClosedDate () { return new Date(this.settings.registrationClosedDate) }
+    registrationOpenDate (): Date | null {
+      return this.settings.registrationOpenDate ? new Date(this.settings.registrationOpenDate) : null
+    },
+    registrationClosedDate (): Date | null {
+      return this.settings.registrationClosedDate ? new Date(this.settings.registrationClosedDate) : null
+    }
   }
 })
 </script>

@@ -59,9 +59,9 @@ export default {
     '~/plugins/bus.ts',
     '~/plugins/http.ts',
     '~/plugins/vee-validate.js',
-    '~/plugins/services.js',
+    '~/plugins/services.ts',
     '~/plugins/i18n-switcher.js',
-    '~/plugins/attachments.js'
+    '~/plugins/attachments.ts'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
