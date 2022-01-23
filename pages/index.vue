@@ -28,7 +28,7 @@
       <b-alert v-if="settings.isActive && settings.waitingListActive" show variant="warning">
         {{ $t('Waiting list is active') }}
       </b-alert>
-      <b-button v-if="settings.isActive && !settings.isRegistrationClosed" variant="dark" class="button-hero" :to="localePath('registration')">
+      <b-button v-if="settings.isActive && settings.isRegistrationOpen" variant="dark" class="button-hero" :to="localePath('registration')">
         <font-awesome-icon :icon="['fas', 'paper-plane']" /> {{ $t('start') }}
       </b-button>
     </b-container>

@@ -540,7 +540,7 @@ export interface Settings {
      * @type {boolean}
      * @memberof Settings
      */
-    'isRegistrationClosed'?: boolean;
+    'isRegistrationOpen'?: boolean;
     /**
      * 
      * @type {boolean}
