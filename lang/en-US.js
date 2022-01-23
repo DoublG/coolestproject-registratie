@@ -133,5 +133,6 @@ export default {
   'Movie title': 'Video titel',
   'Upload Movie': 'Upload Video',
   'Enter your movie location': 'Select your video file',
-  attachments: 'Videos'
+  attachments: 'Videos',
+  'Registration opens on': 'Registrations are open between {registrationOpenDate} and {registrationClosedDate}'
 }
