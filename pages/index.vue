@@ -21,7 +21,7 @@
         {{ $t('No Event is active please come again later') }}
       </b-alert>
       <b-alert v-if="settings && !settings.isRegistrationOpen" show variant="warning">
-        {{ $t('Registration opens on',{ registrationOpenDate: $d(registrationOpenDate, 'long') }) }}
+        {{ $t('Registration opens on',{ registrationOpenDate: $d(registrationOpenDate, 'long'), registrationClosedDate: $d(registrationClosedDate, 'long') }) }}
       </b-alert>
       <b-alert v-if="settings && settings.waitingListActive" show variant="warning">
         {{ $t('Waiting list is active') }}
@@ -48,7 +48,8 @@ export default {
   },
   computed: {
     officialStartDate () { return new Date(this.settings.officialStartDate) },
-    registrationOpenDate () { return new Date(this.settings.registrationOpenDate) }
+    registrationOpenDate () { return new Date(this.settings.registrationOpenDate) },
+    registrationClosedDate () { return new Date(this.settings.registrationClosedDate) }
   }
 }
 </script>
