@@ -135,5 +135,6 @@ export default {
   'Movie title': 'Titel van uw video',
   'Upload Movie': 'Video opladen',
   'Enter your movie location': 'Selecteer uw videobestand',
-  attachments: 'Video bestanden'
+  attachments: 'Video bestanden',
+  'Registration opens on': 'Inschrijvingen zijn open tussen {registrationOpenDate} en {registrationClosedDate}'
 }

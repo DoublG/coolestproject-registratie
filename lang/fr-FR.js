@@ -133,5 +133,6 @@ export default {
   'Movie title': 'Titre de votre vidéo',
   'Upload Movie': 'Télécharger la vidéo',
   'Enter your movie location': 'Selectionnez votre emplacement de vidéo',
-  attachments: 'Vidéos'
+  attachments: 'Vidéos',
+  'Registration opens on': 'Les inscriptions sont ouvertes entre le {registrationOpenDate} et {registrationClosedDate}'
 }
