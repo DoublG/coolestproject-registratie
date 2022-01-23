@@ -1,6 +1,6 @@
-/* remove null values for api calls */
 import { Plugin } from '@nuxt/types'
 
+/* remove null values for api calls */
 function cleanup (root: any) {
   const result = {} as { [key: string]: any }
   Object.keys(root).forEach(function (key, _) {
@@ -96,12 +96,6 @@ const services: Plugin = ({ app, store, redirect }, inject) => {
     participant: {
       post () {
         return app.$axios.$post('/participants', null)
-      }
-    },
-    registration: {
-      post (registration: any) {
-        app.$bus.$emit('display-msg', app.i18n.t('message_successReg'), 'success')
-        return app.$axios.$post('/register', cleanup(registration))
       }
     },
     userinfo: {

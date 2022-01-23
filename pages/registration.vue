@@ -74,6 +74,7 @@
 import { ValidationObserver } from 'vee-validate'
 import { Context } from '@nuxt/types'
 import Vue from 'vue'
+import { Registration } from '~/api'
 
 export default Vue.extend({
   components: {
@@ -269,7 +270,7 @@ export default Vue.extend({
     async onSubmit () {
       this.loading = true
 
-      const registration = { project: {} as { [key: string]: any} } as { [key: string]: any}
+      const registration = {} as Registration
       if (this.is_own_project === 'own') {
         registration.project.own_project = this.own_project
       } else {
@@ -279,8 +280,10 @@ export default Vue.extend({
       user.language = this.$i18n.locale
 
       registration.user = user
-      await this.$services.registration.post(registration)
-      this.onReset()
+      const registrationResult = await this.$http.registration.send(registration)
+      if (registrationResult) {
+        this.onReset()
+      }
 
       this.loading = false
       window.scrollTo(0, 0)

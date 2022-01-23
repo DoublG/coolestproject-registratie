@@ -400,13 +400,13 @@ export interface Registration {
      * @type {User}
      * @memberof Registration
      */
-    'user'?: User;
+    'user': User;
     /**
      * 
      * @type {Project}
      * @memberof Registration
      */
-    'project'?: Project;
+    'project': Project;
 }
 /**
  * 
