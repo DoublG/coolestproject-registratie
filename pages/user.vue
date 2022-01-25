@@ -5,7 +5,10 @@
       <global-notification />
       <ValidationObserver ref="observer" v-slot="{ passes }">
         <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
-          <user v-model="user" read-only />
+          <user
+            v-model="user"
+            :settings="settings"
+            read-only />
           <h2>{{ $t("Mandatory Approvals") }}</h2>
           <mandatory-questions v-if="user" v-model="user.mandatory_approvals" />
           <ActionBarProject
@@ -27,11 +30,12 @@ export default {
   components: {
     ValidationObserver
   },
-  middleware: 'authenticated',
   async asyncData ({ app }) {
     const user = await app.$services.userinfo.get()
+    const settings = await app.$http.settings.fetch()
     return {
-      user
+      user,
+      settings
     }
   },
   data () {
