@@ -6,7 +6,7 @@
         <b> {{ $t('agree') }} </b>
       </p>
       <p>
-        <rules />
+        <rules :settings="settings" />
       </p>
     </b-container>
   </div>
@@ -16,6 +16,10 @@ export default {
   components: {
   },
   layout: 'fullwith',
+  async asyncData (context) {
+    const settings = await context.app.$http.settings.fetch()
+    return { settings }
+  },
   data () {
     return {}
   }
