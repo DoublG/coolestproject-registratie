@@ -16,6 +16,7 @@ function cleanup (root: any) {
 
 type AttachmentHandler = {
   post(name: any, filename: any, size: any): any,
+  // eslint-disable-next-line camelcase
   post_sas(name: any): any
 }
 

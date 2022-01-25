@@ -6,6 +6,7 @@ declare module 'vue/types/vue' {
     $bus: Vue
   }
 }
+
 declare module '@nuxt/types' {
   interface NuxtAppOptions {
     $bus: Vue
