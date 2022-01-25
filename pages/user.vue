@@ -30,6 +30,7 @@ export default {
   components: {
     ValidationObserver
   },
+  middleware: 'authenticated',
   async asyncData ({ app }) {
     const user = await app.$services.userinfo.get()
     const settings = await app.$http.settings.fetch()

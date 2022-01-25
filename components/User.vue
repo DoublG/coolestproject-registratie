@@ -688,7 +688,7 @@ export default Vue.extend<IData, IMethods, IComputed, IProps>({
           if (dat < this.beginAgeDate || dat > this.endAgeDate) {
             continue
           }
-          const locale = Object.entries(locales).find((entry) => { return entry[0] === this.$i18n.locale })!
+          const locale = Object.entries(locales).find((entry) => { return entry[0].startsWith(this.$i18n.locale) })!
           monthList.push(
             { value: i, text: format(dat, 'MMMM', { locale: locale.at(1) as Locale }) }
           )
