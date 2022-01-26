@@ -568,10 +568,10 @@ export interface Settings {
 export interface Tshirt {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof Tshirt
      */
-    'id': string;
+    'id': number;
     /**
      * 
      * @type {string}
