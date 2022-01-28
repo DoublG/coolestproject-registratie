@@ -93,3 +93,4 @@ sw.*
 
 *.cmd
 nano.exe.stackdump
+api/git_push.sh

@@ -435,7 +435,7 @@ import { Settings } from '~/api'
 
 type TShirtOption = {
   text: string,
-  value: string
+  value: number
 }
 
 type TShirtList = {
