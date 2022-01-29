@@ -8,7 +8,7 @@
       >
         <b-form-group>
           <template #description>
-            <NuxtLink target="_blank" :to="localePath('index')">
+            <NuxtLink target="_blank" :to="localePath('rules')">
               {{ $t('description_Je moet akkoord') }}
             </NuxtLink>
           </template>
