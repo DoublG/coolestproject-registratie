@@ -42,8 +42,11 @@ export default {
     copyToClipboard (token) {
       this.$emit('copyToClipboard', token)
     },
+
     mailToken (token) {
-      const fullUrl = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + ((this.$i18n.locale !== 'nl') ? '/' + this.$i18n.locale : '') + '/registration' + '?token=' + token
+      let ddot = ''
+      if (window.location.port) { ddot = ':' }
+      const fullUrl = window.location.protocol + '//' + window.location.hostname + ddot + window.location.port + ((this.$i18n.locale !== 'nl') ? '/' + this.$i18n.locale : '') + '/registration' + '?token=' + token
       return 'mailto:' + this.$i18n.t('mail') + '?subject=' + this.$i18n.t('subject') + '&body=' + this.$i18n.t('body') + ' ' + fullUrl + this.$i18n.t('closure')
     }
   }
