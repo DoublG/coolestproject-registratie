@@ -3,7 +3,7 @@
     <b-jumbotron class="bg-info" />
     <b-container>
       <p>
-        <b> {{ $t('agree') }} </b>
+        <strong> {{ $t('agree') }} </strong>
       </p>
       <p>
         <rules :settings="settings" />
