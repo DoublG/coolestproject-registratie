@@ -12,6 +12,7 @@
     </b-col>
   </b-row>
 </template>
+
 <script>
 export default {
   components: {
@@ -21,10 +22,10 @@ export default {
     return {}
   },
   methods: {
-    onCreateProject (evt) {
+    onCreateProject (_) {
       this.$router.push(this.localePath('new_project'))
     },
-    onEnterToken (evt) {
+    onEnterToken (_) {
       this.$router.push(this.localePath('token'))
     }
   }

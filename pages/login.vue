@@ -61,12 +61,12 @@ export default {
     })
   },
   methods: {
-    async onSubmit (evt) {
+    async onSubmit (_) {
       this.loading = true
       await this.$services.mail.post(this.login)
       this.loading = false
     },
-    onReset (evt) {
+    onReset (_) {
       this.email = null
     }
   }

@@ -19,6 +19,7 @@
     </b-col>
   </b-row>
 </template>
+
 <script>
 import { ValidationObserver } from 'vee-validate'
 export default {
@@ -34,13 +35,13 @@ export default {
     }
   },
   methods: {
-    onResetProject (evt) {
+    onResetProject (_) {
       this.project = { own_project: {} }
     },
-    onCancel (evt) {
+    onCancel (_) {
       this.$router.push(this.localePath('no_project'))
     },
-    async onCreateProject (evt) {
+    async onCreateProject (_) {
       await this.$services.projectinfo.post(this.project)
       this.$router.push(this.localePath('project'))
     }

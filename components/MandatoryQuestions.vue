@@ -8,13 +8,13 @@
       >
         <b-form-group>
           <template #description>
-            <NuxtLink target="_blank" :to="localePath('index')">
+            <NuxtLink target="_blank" :to="localePath('rules')">
               {{ $t('description_Je moet akkoord') }}
             </NuxtLink>
           </template>
           <b-form-checkbox-group
             id="mandatory-approvals"
-            :checked="internal_responses"
+            :checked="internalResponses"
             :options="approvals"
             :state="errors[0] ? false : valid ? true : null"
             aria-describedby="mandatory-approvals-live-feedback"
@@ -28,9 +28,27 @@
     </div>
   </div>
 </template>
-<script>
+
+<script lang="ts">
 import { ValidationProvider } from 'vee-validate'
-export default {
+import Vue from 'vue'
+
+type Question = {
+  value: number;
+  text?: string
+}
+
+interface IData {
+  approvals: Array<Question>,
+  internalResponses: Array<any>
+}
+interface IMethods{}
+interface IComputed{}
+interface IProps {
+  responses: Array<any>
+}
+
+export default Vue.extend<IData, IMethods, IComputed, IProps>({
   components: {
     ValidationProvider
   },
@@ -46,29 +64,27 @@ export default {
   },
   data () {
     return {
-      internal_responses: [...this.responses],
-      approvals: [],
-      change_selection (evt) {
-        this.$emit('change', evt)
-      }
+      internalResponses: [...this.responses],
+      approvals: [] as Array<Question>
     }
   },
   async fetch () {
-    const app = await this.$nuxt.context.app.$services.approvals.get()
-    this.approvals = app.map((item) => {
+    const approvals = await this.$nuxt.context.app.$http.values.approvals()
+
+    this.approvals = approvals.map((item) => {
       return { value: item.id, text: item.description }
     })
   },
   watch: {
-    responses (newResponse, oldResponse) {
-      this.internal_responses = [...newResponse]
+    responses (newResponse, _) {
+      this.internalResponses = [...newResponse]
     }
   },
   methods: {
-    reset () {
-      this.$emit('change', this.$options.props.responses.default())
+    change_selection (evt: any) {
+      this.$emit('change', evt)
     }
   }
-}
+})
 </script>
 <style></style>

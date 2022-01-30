@@ -27,19 +27,33 @@
     </b-col>
   </b-row>
 </template>
-<script>
+
+<script lang="ts">
 // project.own_project.attachments
 import { ValidationObserver } from 'vee-validate'
-export default {
+import Vue from 'vue'
+import { Settings } from '~/api'
+
+interface IData {
+  uploadInProgress: boolean,
+  percent: number,
+  file: any,
+  settings: Settings
+}
+interface IMethods {}
+interface IComputed {}
+interface IProps {}
+
+export default Vue.extend<IData, IMethods, IComputed, IProps>({
   components: {
     ValidationObserver
   },
   middleware: ['authenticated', 'guard'],
-  async asyncData ({ store, query, app, redirect, route }) {
-    const settings = await app.$services.settings.get()
+  async asyncData ({ app }) {
+    const settings = await app.$http.settings.fetch()
     const project = await app.$services.projectinfo.get()
     if (project === '') {
-      app.router.push(app.localePath('no_project'))
+      app.router?.push(app.localePath('no_project'))
     }
     return {
       project,
@@ -53,7 +67,8 @@ export default {
       uploadInProgress: false,
       file: null,
       readWrite: false,
-      project: null
+      project: null,
+      settings: {} as Settings
     }
   },
   computed: {
@@ -62,20 +77,20 @@ export default {
     }
   },
   methods: {
-    async onUpload (evt) {
-      if (this.file.content.size > this.settings.maxUploadSize) {
+    async onUpload (_: any) {
+      if (this.file!.content.size > (this.settings.maxUploadSize || 0)) {
         alert('file is to big')
         return
       }
       this.uploadInProgress = true
       this.$bus.$emit('block-navigation', this.uploadInProgress)
-      await this.$attachments.process(this.file, (percent) => { this.percent = percent })
+      await this.$attachments.process(this.file, (percent: number) => { this.percent = percent })
       this.uploadInProgress = false
       this.$bus.$emit('block-navigation', this.uploadInProgress)
       this.$router.push(this.localePath('project'))
     }
   }
-}
+})
 </script>
 
 <style>

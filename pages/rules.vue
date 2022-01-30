@@ -3,10 +3,10 @@
     <b-jumbotron class="bg-info" />
     <b-container>
       <p>
-        <b> {{ $t('agree') }} </b>
+        <strong> {{ $t('agree') }} </strong>
       </p>
       <p>
-        <rules />
+        <rules :settings="settings" />
       </p>
     </b-container>
   </div>
@@ -16,6 +16,10 @@ export default {
   components: {
   },
   layout: 'fullwith',
+  async asyncData (context) {
+    const settings = await context.app.$http.settings.fetch()
+    return { settings }
+  },
   data () {
     return {}
   }

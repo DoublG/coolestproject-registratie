@@ -1,7 +1,9 @@
 /* remove null values for api calls */
-function cleanup (root) {
-  const result = {}
-  Object.keys(root).forEach(function (key, index) {
+import { Plugin } from '@nuxt/types'
+
+function cleanup (root: any) {
+  const result = {} as { [key: string]: any }
+  Object.keys(root).forEach(function (key, _) {
     const v = root[key]
     if (v !== null && typeof v === 'object' && !Array.isArray(v)) {
       result[key] = cleanup(v)
@@ -12,15 +14,47 @@ function cleanup (root) {
   return result
 }
 
-export default ({ app, store, redirect }, inject) => {
-  app.$axios.interceptors.request.use((request) => {
+type AttachmentHandler = {
+  post(name: any, filename: any, size: any): any,
+  // eslint-disable-next-line camelcase
+  post_sas(name: any): any
+}
+
+type ProjectHandler = {
+  get(): any
+}
+
+type RegistrationHandler = {
+  post(registration: any): any
+}
+
+declare module 'vue/types/vue' {
+  // this.$myInjectedFunction inside Vue components
+  interface Vue {
+    $services: {
+      registration: RegistrationHandler
+    }
+  }
+}
+declare module '@nuxt/types' {
+  interface NuxtAppOptions {
+    $services: {
+      attachments: AttachmentHandler,
+      projectinfo: ProjectHandler,
+      registration: RegistrationHandler
+    }
+  }
+}
+
+const services: Plugin = ({ app, store, redirect }, inject) => {
+  app.$axios.interceptors.request.use((request: any) => {
     app.$bus.$emit('start')
     return request
-  }, async (error) => { return await error })
-  app.$axios.interceptors.response.use((response) => {
+  }, async (error: any) => { return await error })
+  app.$axios.interceptors.response.use((response: any) => {
     app.$bus.$emit('finish')
     return response
-  }, (error) => {
+  }, (error: any) => {
     // clean the store & redirect
     if (error.response.status === 401) {
       store.dispatch('auth/update', {})
@@ -43,13 +77,13 @@ export default ({ app, store, redirect }, inject) => {
   })
   const serviceHandler = {
     projectinfo: {
-      post (project) {
+      post (project: any) {
         return app.$axios.$post('/projectinfo', cleanup(project), { withCredentials: true })
       },
-      post_token (token) {
+      post_token () {
         return app.$axios.$post('/projectinfo', {})
       },
-      patch (project) {
+      patch (project: any) {
         app.$bus.$emit('display-msg', app.i18n.t('message_successChange'), 'success')
         return app.$axios.$patch('/projectinfo', cleanup(project))
       },
@@ -65,46 +99,14 @@ export default ({ app, store, redirect }, inject) => {
         return app.$axios.$post('/participants', null)
       }
     },
-    settings: {
-      get () {
-        return app.$axios.$get('/settings', { timeout: 1000 })
-      }
-    },
-    questions: {
-      get () {
-        return app.$axios.$get('/questions', {
-          headers: {
-            'Accept-Language': app.i18n.locale
-          }
-        })
-      }
-    },
-    approvals: {
-      get () {
-        return app.$axios.$get('/approvals', {
-          headers: {
-            'Accept-Language': app.i18n.locale
-          }
-        })
-      }
-    },
-    tshirts: {
-      get () {
-        return app.$axios.$get('/tshirts', {
-          headers: {
-            'Accept-Language': app.i18n.locale
-          }
-        })
-      }
-    },
     registration: {
-      post (registration) {
+      post (registration: any) {
         app.$bus.$emit('display-msg', app.i18n.t('message_successReg'), 'success')
         return app.$axios.$post('/register', cleanup(registration))
       }
     },
     userinfo: {
-      patch (user) {
+      patch (user: any) {
         app.$bus.$emit('clear-msg')
         const response = app.$axios.$patch('/userinfo', cleanup(user))
         app.$bus.$emit('display-msg', app.i18n.t('message_successChange'), 'success')
@@ -122,7 +124,7 @@ export default ({ app, store, redirect }, inject) => {
       }
     },
     login: {
-      post (token) {
+      post (token: any) {
         // this call sets the cookie used in de subsequent calls
         return app.$axios.$post('/login', {}, { headers: { Authorization: 'Bearer ' + token } })
       }
@@ -133,21 +135,23 @@ export default ({ app, store, redirect }, inject) => {
       }
     },
     mail: {
-      post (email) {
+      post (email: any) {
         return app.$axios.$post('/mailToken', email)
       }
     },
     attachments: {
-      post (name, filename, size) {
+      post (name: any, filename: any, size: any) {
         return app.$axios.$post('/attachments', { name, filename, size })
       },
-      post_sas (name) {
+      post_sas (name: any) {
         return app.$axios.$post(`/attachments/${name}/sas`)
       },
-      delete (name) {
+      delete (name: any) {
         return app.$axios.$delete(`/attachments/${name}`)
       }
     }
   }
   inject('services', serviceHandler)
 }
+
+export default services

@@ -5,7 +5,10 @@
       <global-notification />
       <ValidationObserver ref="observer" v-slot="{ passes }">
         <b-form @submit.prevent="passes(onSubmit)" @reset.prevent="onReset">
-          <user v-model="user" read-only />
+          <user
+            v-model="user"
+            :settings="settings"
+            read-only />
           <h2>{{ $t("Mandatory Approvals") }}</h2>
           <mandatory-questions v-if="user" v-model="user.mandatory_approvals" />
           <ActionBarProject
@@ -28,10 +31,12 @@ export default {
     ValidationObserver
   },
   middleware: 'authenticated',
-  async asyncData ({ store, query, app, redirect, route }) {
+  async asyncData ({ app }) {
     const user = await app.$services.userinfo.get()
+    const settings = await app.$http.settings.fetch()
     return {
-      user
+      user,
+      settings
     }
   },
   data () {
@@ -40,17 +45,17 @@ export default {
     }
   },
   methods: {
-    async onSubmit (evt) {
+    async onSubmit () {
       await this.$services.userinfo.patch(this.user)
       window.scrollTo(0, 0)
     },
-    async onReset (evt) {
+    async onReset () {
       this.user = await this.$services.userinfo.get()
     },
-    onDeleteInfo (evt) {
+    onDeleteInfo () {
       this.deleteInfo = true
     },
-    async onDelete (evt) {
+    async onDelete () {
       await this.$services.userinfo.delete()
       await this.logout()
       this.$router.push(this.localePath('login'))

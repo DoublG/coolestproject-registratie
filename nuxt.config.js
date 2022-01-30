@@ -7,7 +7,7 @@ export default {
 
   // TODO: Check if this is still required
   env: {
-    baseUrl: process.env.NUXT_ENV_BASE_URL
+    baseUrl: process.env.NUXT_ENV_BASE_URL || 'http://localhost:3000'
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -56,11 +56,12 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/bus.js',
+    '~/plugins/bus.ts',
+    '~/plugins/http.ts',
     '~/plugins/vee-validate.js',
-    '~/plugins/services.js',
+    '~/plugins/services.ts',
     '~/plugins/i18n-switcher.js',
-    '~/plugins/attachments.js'
+    '~/plugins/attachments.ts'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -69,6 +70,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/eslint
+    '@nuxt/typescript-build',
     '@nuxtjs/eslint-module',
     '@nuxtjs/fontawesome'
   ],
@@ -107,6 +109,7 @@ export default {
       }
     ],
     lazy: true,
+    vueI18nLoader: true,
     vueI18n: {
       fallbackLocale: 'nl',
       dateTimeFormats: {

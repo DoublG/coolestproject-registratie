@@ -1,3 +1,11 @@
+<i18n lang="yaml">
+en:
+  link: https://www.coderdojobelgium.be/en/coderdojo-belgium-privacy-statement
+fr:
+  link: https://www.coderdojobelgium.be/fr/déclaration-de-confidentialité-coderdojo-belgium
+nl:
+  link: https://www.coderdojobelgium.be/nl/coderdojo-belgium-privacyverklaring
+</i18n>
 <template>
   <ol>
     <li>
@@ -33,45 +41,35 @@
     </li>
     <i18n path="rule10" tag="li">
       <template #privacy_link>
-        <b><a target="privacy" :href="link">{{ $t('privacy_text') }}</a></b>
+        <b><a target="privacy" :href="$t('link')">{{ $t('privacy_text') }}</a></b>
       </template>
     </i18n>
   </ol>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      settings: {
-        registrationOpenDate: null,
-        registrationClosedDate: null,
-        minAge: 0,
-        maxAge: 0,
-        maxParticipants: 0,
-        projectClosedDate: null,
-        officialStartDate: null
-      }
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+  props: {
+    settings: {
+      type: Object,
+      required: true
     }
   },
-  async fetch () {
-    // get all settings
-    this.settings = await this.$nuxt.context.app.$services.settings.get()
-  },
   computed: {
-    link () {
-      let url = '/en/coderdojo-belgium-privacy-statement'
-      if (this.$i18n.locale === 'nl') {
-        url = '/nl/coderdojo-belgium-privacyverklaring'
-      } else if (this.$i18n.locale === 'fr') {
-        url = '/fr/déclaration-de-confidentialité-coderdojo-belgium'
-      }
-      return 'https://www.coderdojobelgium.be' + url
+    projectClosedDate () {
+      return new Date(this.settings.projectClosedDate)
     },
-    projectClosedDate () { return new Date(this.settings.projectClosedDate) },
-    registrationOpenDate () { return new Date(this.settings.registrationOpenDate) },
-    registrationClosedDate () { return new Date(this.settings.registrationClosedDate) },
-    officialStartDate () { return new Date(this.settings.officialStartDate) }
+    registrationOpenDate () {
+      return new Date(this.settings.registrationOpenDate)
+    },
+    registrationClosedDate () {
+      return new Date(this.settings.registrationClosedDate)
+    },
+    officialStartDate () {
+      return new Date(this.settings.officialStartDate)
+    }
   }
-}
+})
 </script>

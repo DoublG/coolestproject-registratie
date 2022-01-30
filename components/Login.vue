@@ -3,7 +3,7 @@
     <ValidationProvider v-slot="{ valid, errors }" rules="required|email" name="Email">
       <b-form-group
         id="input-group-1"
-        label="Email adres"
+        :label="$t('emailAddressLabel')"
         label-for="input-1"
       >
         <b-form-input
@@ -12,7 +12,7 @@
           :state="errors[0] ? false : (valid ? true : null)"
           :disabled="!fieldStatus.email.rw"
           type="email"
-          placeholder="email adres"
+          :placeholder="$t('emailAddressPlaceholder')"
           aria-describedby="input-1-live-feedback"
           @input="update_value('email', $event)"
         />
