@@ -94,7 +94,7 @@ export default {
   label_MunicipalityName: 'Nom de la commune',
   'label_Omschrijving:': 'Description',
   'label_Postcode:': 'Code postal',
-  label_Project_Type: "Qu'en est-il de votre projet au niveau matériel hardware, logiciel, réseau via WiFi ou par câble...?",
+  label_Project_Type: "Quel matériel ou logiciel as-tu utilisé pour ton projet? As-tu des exigences particulières pour présenter votre projet en cas d'événement physique?",
   'label_Projectcode:': 'Token du projet',
   'label_Projectnaam:': 'Nom du projet',
   label_Street: 'Rue',
