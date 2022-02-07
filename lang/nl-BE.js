@@ -96,7 +96,7 @@ export default {
   label_MunicipalityName: 'Naam van de gemeente',
   'label_Omschrijving:': 'Omschrijving',
   'label_Postcode:': 'Postcode',
-  label_Project_Type: 'Wat voor hardware, software, etc. zit er in je project? ',
+  label_Project_Type: 'Welke hardware, software,... heb je gebruikt in je project? Heb je speciale vereisten om je project voor te stellen in geval van een fysiek event?',
   'label_Projectcode:': 'Project token',
   'label_Projectnaam:': 'Projectnaam',
   label_Street: 'Straat',
