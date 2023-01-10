@@ -61,7 +61,7 @@ export default Vue.extend({
   },
   computed: {
     responseIntern () {
-     const internal = {} as {[key:string]:number|string}
+      const internal = {} as {[key:string]:number|string}
       for (const question of this.questions) {
         if (this.responses.includes(question.id)) {
           internal[question.id] = question.id
