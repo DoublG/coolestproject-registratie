@@ -56,7 +56,7 @@ export interface Address {
      * @type {string}
      * @memberof Address
      */
-    'postalcode': string;
+    'postalcode'?: string;
 }
 /**
  * 
@@ -360,10 +360,10 @@ export interface Project {
 export interface Question {
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof Question
      */
-    'id': number;
+    'id': string;
     /**
      * 
      * @type {string}
