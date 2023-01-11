@@ -22,7 +22,7 @@
       variant="warning"
       class="button-hero"
     >
-      <font-awesome-icon :icon="['fas', 'trash']" />  {{ $t('Resetten') }}
+      <font-awesome-icon :icon="['fas', 'trash-arrow-up']" />  {{ $t('Resetten') }}
     </b-button>
     <b-button
       v-if="del"
