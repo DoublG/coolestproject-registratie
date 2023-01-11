@@ -60,7 +60,7 @@
               variant="warning"
               class="button-hero"
             >
-              <font-awesome-icon :icon="['fas', 'trash-restore']" />
+              <font-awesome-icon :icon="['fas', 'trash']" />
               {{ $t("verwijder alles") }}
             </b-button>
           </b-form-group>

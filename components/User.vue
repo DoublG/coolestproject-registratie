@@ -195,7 +195,7 @@
         class="button-hero"
         variant="info"
       >
-        <font-awesome-icon :icon="['fas', 'tshirt']" />
+        <font-awesome-icon :icon="['fas', 'shirt']" />
         {{ $t("Info") }}
       </b-button>
       <b-popover

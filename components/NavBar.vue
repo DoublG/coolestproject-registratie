@@ -26,7 +26,7 @@
               <font-awesome-icon :icon="['fas', 'unlock']" /> Login
             </b-nav-item>
             <b-nav-item v-if="isLoggedIn" :to="localePath('project')">
-              <font-awesome-icon :icon="['fas', 'project-diagram']" /> Project
+              <font-awesome-icon :icon="['fas', 'diagram-project']" /> Project
             </b-nav-item>
             <b-nav-item v-if="isLoggedIn" :to="localePath('user')">
               <font-awesome-icon :icon="['fas', 'user']" /> User
@@ -40,7 +40,7 @@
               <font-awesome-icon :icon="['fas', 'lock']" /> Logout
             </b-nav-item>
             <b-nav-form>
-              <font-awesome-icon :icon="['fas', 'globe-europe']" />
+                 <font-awesome-icon :icon="['fas', 'earth-europe']" />
             </b-nav-form>
             <b-nav-item v-for="(lang, i) in langs" :key="`Lang${i}`" :to="switchLocalePath(lang)">
               {{ lang }}
