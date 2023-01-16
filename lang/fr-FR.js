@@ -112,7 +112,7 @@ export default {
   placeholder_BusNumber: 'Numéro de boîte',
   'placeholder_Email adres ouders/voogd:': 'Adresse mail des parents ou tuteur⸱ice',
   'placeholder_Email adres:': 'Adresse mail',
-  'placeholder_Geef je dojo, school': 'Précise le nom de ton Dojo, école ...',
+  'placeholder_Geef je dojo, school': 'Précise le nom de ton Dojo, école...',
   'placeholder_GeefAchternaam:': 'Indique ton nom de famille',
   'placeholder_GeefProjectnaam:': 'Indique le nom du projet',
   'placeholder_GeefVoornaam:': 'Indique ton prénom',
