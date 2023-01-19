@@ -23,21 +23,21 @@
               {{ $t('Registratie') }}
             </b-nav-item>-->
             <b-nav-item v-if="!isLoggedIn" :to="localePath('login')">
-              <font-awesome-icon :icon="['fas', 'unlock']" /> Login
+              <font-awesome-icon :icon="['fas', 'unlock']" /> {{$t('Login')}}
             </b-nav-item>
             <b-nav-item v-if="isLoggedIn" :to="localePath('project')">
-              <font-awesome-icon :icon="['fas', 'diagram-project']" /> Project
+              <font-awesome-icon :icon="['fas', 'diagram-project']" /> {{$t('Project')}}
             </b-nav-item>
             <b-nav-item v-if="isLoggedIn" :to="localePath('user')">
-              <font-awesome-icon :icon="['fas', 'user']" /> User
+              <font-awesome-icon :icon="['fas', 'user']" /> {{$t('User')}}
             </b-nav-item>
             <b-nav-item v-if="isLoggedIn" :to="localePath('rules')">
-              <font-awesome-icon :icon="['fas', 'plus']" /> Rules
+              <font-awesome-icon :icon="['fas', 'plus']" /> {{$t('Rules')}}
             </b-nav-item>
           </b-navbar-nav>
           <b-navbar-nav class="ml-auto">
             <b-nav-item v-if="isLoggedIn" :to="localePath('logout')" @click="logout">
-              <font-awesome-icon :icon="['fas', 'lock']" /> Logout
+              <font-awesome-icon :icon="['fas', 'lock']" /> {{$t('Logout')}}
             </b-nav-item>
             <b-nav-form>
                  <font-awesome-icon :icon="['fas', 'earth-europe']" />
