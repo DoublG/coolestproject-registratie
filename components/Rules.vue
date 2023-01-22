@@ -39,7 +39,13 @@ nl:
     <li>
       {{ $t('rule9', { officialStartDate: $d(officialStartDate,'long') }) }}
     </li>
-    <i18n path="rule10" tag="li">
+    <li>
+      {{ $t('rule10') }}
+    </li>
+          {{ $t('rule10a') }}
+    <br>  {{ $t('rule10b') }} 
+    <br>  {{ $t('rule10c') }} 
+    <i18n path="rule10d" >
       <template #privacy_link>
         <b><a target="privacy" :href="$t('link')">{{ $t('privacy_text') }}</a></b>
       </template>

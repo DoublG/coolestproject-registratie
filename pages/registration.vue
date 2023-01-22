@@ -60,7 +60,7 @@
               variant="warning"
               class="button-hero"
             >
-              <font-awesome-icon :icon="['fas', 'trash-restore']" />
+              <font-awesome-icon :icon="['fas', 'trash-can']" />
               {{ $t("verwijder alles") }}
             </b-button>
           </b-form-group>
@@ -161,23 +161,23 @@ export default Vue.extend({
         address: {
           postalcode: {
             rw: readWrite,
-            hidden: false
+            hidden: true
           },
           street: {
             rw: readWrite,
-            hidden: false
+            hidden: true
           },
           house_number: {
             rw: readWrite,
-            hidden: false
+            hidden: true
           },
           box_number: {
             rw: readWrite,
-            hidden: false
+            hidden: true
           },
           municipality_name: {
             rw: readWrite,
-            hidden: false
+            hidden: true
           }
         },
         gsm: {

@@ -195,7 +195,7 @@
         class="button-hero"
         variant="info"
       >
-        <font-awesome-icon :icon="['fas', 'tshirt']" />
+        <font-awesome-icon :icon="['fas', 'shirt']" />
         {{ $t("Info") }}
       </b-button>
       <b-popover
@@ -249,7 +249,7 @@
       @change="updateValue('address', $event)"
     />
     <ValidationProvider
-      v-if="!fieldStatus.gsm.hidden"
+      v-if="!fieldStatus.gsm.hidden && !isGuardianNeeded"
       v-slot="{ valid, errors }"
       :rules="{
         required: true,
@@ -427,7 +427,9 @@
 
 <script lang="ts">
 import { ValidationProvider } from 'vee-validate'
+// eslint-disable-next-line import/no-duplicates
 import { addYears, differenceInYears, format, parseISO, startOfMonth } from 'date-fns'
+// eslint-disable-next-line import/no-duplicates
 import { enUS, fr, nl } from 'date-fns/locale'
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
@@ -561,23 +563,23 @@ export default Vue.extend<IData, IMethods, IComputed, IProps>({
           address: {
             postalcode: {
               rw: true,
-              hidden: false
+              hidden: true
             },
             street: {
               rw: true,
-              hidden: false
+              hidden: true
             },
             house_number: {
               rw: true,
-              hidden: false
+              hidden: true
             },
             box_number: {
               rw: true,
-              hidden: false
+              hidden: true
             },
             municipality_name: {
               rw: true,
-              hidden: false
+              hidden: true
             }
           },
           gsm: {

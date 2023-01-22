@@ -14,7 +14,7 @@
       variant="info"
       class="button-hero"
     >
-      <font-awesome-icon :icon="['fas', 'edit']" /> {{ $t('Aanpassen') }}
+      <font-awesome-icon :icon="['fas', 'user-pen']" /> {{ $t('Aanpassen') }}
     </b-button>
     <b-button
       v-if="reset"
@@ -22,7 +22,7 @@
       variant="warning"
       class="button-hero"
     >
-      <font-awesome-icon :icon="['fas', 'trash-restore']" />  {{ $t('Resetten') }}
+      <font-awesome-icon :icon="['fas', 'trash-arrow-up']" />  {{ $t('Resetten') }}
     </b-button>
     <b-button
       v-if="del"
