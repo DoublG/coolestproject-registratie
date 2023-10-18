@@ -1,10 +1,10 @@
 <i18n lang="yaml">
 en:
-  link: https://www.coderdojobelgium.be/en/coderdojo-belgium-privacy-statement
+  link: https://coderdojobelgium.be/privacy
 fr:
-  link: https://www.coderdojobelgium.be/fr/déclaration-de-confidentialité-coderdojo-belgium
+  link: https://coderdojobelgium.be/fr/confidentialité
 nl:
-  link: https://www.coderdojobelgium.be/nl/coderdojo-belgium-privacyverklaring
+  link: https://coderdojobelgium.be/privacy
 </i18n>
 <template>
   <ol>

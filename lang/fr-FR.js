@@ -54,7 +54,7 @@ export default {
   rule10b: "b. En t’inscrivant à Coolest Projects, tu acceptes que nous utilisions les données et les photos de ton projet sur notre site web et sur les réseaux sociaux pour promouvoir de futurs événements.",
   rule10c: "c. Nous respectons votre vie privée. ", 
   rule10d: "(La déclaration de confidentialité est disponible sur le site web de CoderDojo Belgium {privacy_link})",
-  privacy_text: 'https://coderdojobelgium.be/fr/confidentialit%C3%A9',
+  privacy_text: 'déclaration de confidentialité',
   rules: 'Coolest Projects Belgique',
   Rules: 'Des règles',
   User: "Utilisat(rice|eur)",
