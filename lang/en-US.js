@@ -54,7 +54,7 @@ export default {
   rule10b: 'b. By registering for Coolest Projects, you agree that we can use your project data and pictures on our website and social media for promoting future events.',
   rule10c: 'c. We respect your privacy. ', 
   rule10d: '(For additional information, you can consult our privacy statement on the CoderDojo Belgium website {privacy_link}.)',
-  privacy_text: 'https://www.coderdojobelgium.be/en/coderdojo-belgium-privacy-statement',
+  privacy_text: 'https://coderdojobelgium.be/privacy',
   rules: 'Coolest Projects Belgium',
   Rules: 'Rules',
   User: "User",
