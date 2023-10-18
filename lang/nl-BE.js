@@ -113,7 +113,7 @@ export default {
   'label_Voornaam:': 'Voornaam',
   'label_Zijn er aandoeningen': 'Zijn er dingen waarmee we rekening moeten houden?',
   message_successChange: 'De wijziging is gelukt.',
-  message_successReg: 'OPGELET: De eerste stap is klaar, goed gedaan! Klik nu op de link in de email die we je gestuurd hebben voor het vervolg.',
+  message_successReg: 'OPGELET: De eerste stap is klaar, goed gedaan! Klik nu op de link in de email die we je gestuurd hebben voor het vervolg. Kijk zeker ook in je SPAM folder.',
   placeholder_BusNumber: 'Busnummer',
   'placeholder_Email adres ouders/voogd:': 'E-mail adres ouders / voogd',
   'placeholder_Email adres:': 'E-mail adres',

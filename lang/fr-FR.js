@@ -113,7 +113,7 @@ export default {
   'label_Voornaam:': 'Prénom',
   'label_Zijn er aandoeningen': 'Y a-t-il des choses dont nous devons tenir compte que tu voudrais nous faire savoir?',
   message_successChange: 'La modification est réussie.',
-  message_successReg: "ATTENTION : La première étape est terminée, bravo! Clique maintenant sur le lien dans le mail que nous t'avons envoyé pour poursuivre.",
+  message_successReg: "ATTENTION : La première étape est terminée, bravo! Clique maintenant sur le lien dans le mail que nous t'avons envoyé pour poursuivre. Assurez-vous de vérifier votre dossier SPAM.",
   placeholder_BusNumber: 'Numéro de boîte',
   'placeholder_Email adres ouders/voogd:': 'Adresse mail des parents ou tuteur⸱ice',
   'placeholder_Email adres:': 'Adresse mail',

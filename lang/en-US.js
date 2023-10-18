@@ -113,7 +113,7 @@ export default {
   'label_Voornaam:': 'First name',
   'label_Zijn er aandoeningen': 'Are there any conditions or circumstances that we should take into account',
   message_successChange: 'The change was successful.',
-  message_successReg: 'ATTENTION: The first step is ready, well done! Now click on the link in the email we sent you for the follow-up.',
+  message_successReg: 'ATTENTION: The first step is ready, well done! Now click on the link in the email we sent you for the follow-up. Be sure to check your SPAM folder.',
   placeholder_BusNumber: 'Box number',
   'placeholder_Email adres ouders/voogd:': 'E-mail address parents / guardian',
   'placeholder_Email adres:': 'E-mail address',
