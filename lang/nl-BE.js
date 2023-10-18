@@ -103,7 +103,7 @@ export default {
   label_MunicipalityName: 'Naam van de gemeente',
   'label_Omschrijving:': 'Omschrijving (max. 4000 karakters)',
   'label_Postcode:': 'Postcode',
-  label_Project_Type: 'Welke hardware, software,... heb je gebruikt in je project? Heb je speciale vereisten om je project voor te stellen in geval van een fysiek event?',
+  label_Project_Type: 'Welke hardware, software,... heb je gebruikt in je project? Heb je speciale vereisten om je project voor te stellen?',
   'label_Projectcode:': 'Project token',
   'label_Projectnaam:': 'Projectnaam (max. 100 karakters)',
   label_Street: 'Straat',
